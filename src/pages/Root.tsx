@@ -7,6 +7,8 @@ function Root(props: any) {
             <Navigation />
             <h1>this is root </h1>
             <Outlet />
+            <div className='h-screen' />
+            <div className='h-screen' />
         </>
     );
 }
