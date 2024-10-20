@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/layout/Navigation';
 
-function Root(props: any) {
+function Root() {
     return (
         <>
             <Navigation />

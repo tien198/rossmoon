@@ -1,4 +1,4 @@
-import Navigation from '../components/Navigation';
+import Navigation from '../components/layout/Navigation';
 
 function Error(props: any) {
     return (

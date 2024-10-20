@@ -1,4 +1,4 @@
-import { SVGProps } from "../models/Props"
+import { SVGProps } from "../../models/Props"
 
 function SVG(props: SVGProps) {
     const { className,

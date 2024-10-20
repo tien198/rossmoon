@@ -1,4 +1,4 @@
-import { SVGProps } from "./models/Props";
+import { SVGProps } from "../models/Props";
 import SVG from "./UI/SVG";
 
 export function BriefCase(props: SVGProps) {
