@@ -1,4 +1,42 @@
+.header {
+    position: fixed;
+    width: 100%;
+}
+
 .nav {
     margin: 0px auto;
+    width: 100vw;
     max-width: 1440px;
+}
+
+.nav-base {
+    /* transform: translate3d(0, 100px, 0); */
+    animation: nav-down .5s ease-out 0s 1 normal forwards;
+}
+
+.nav-srolled {
+    /* transform: translate3d(0, 0px, 0); */
+    animation: nav-up .5s ease-out 0s 1 normal forwards;
+}
+
+@keyframes nav-up {
+    0% {
+        transform: translate3d(0, 100px, 0)
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes nav-down {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 100px, 0)
+    }
+
+
 }

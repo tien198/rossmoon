@@ -18,25 +18,40 @@ const navIcons = [
     },
 ]
 
+enum navState {
+    navBase = 'nav-base',
+    navSrolled = 'nav-srolled',
+    black = '#000',
+    white = '#fff',
+    bgBlack = 'bg-black',
+    bgWhite = 'bg-white'
+}
 
 function Navigation() {
-    const black = '#000'
-    const white = '#fff'
-    const [svgFill, setFill] = useState(black)
+    const [svgFill, setFill] = useState(navState.black)
+    const [backgroundClass, setBackgroundClass] = useState('bg-white')
+    const [navTransformClass, setNavTransformClass] = useState(navState.navBase)
+
     useEffect(() => {
         window.addEventListener('scroll', () => {
             if (scrollY > 0) {
-                setFill(white)
+                setFill(navState.white)
+                setBackgroundClass(navState.bgBlack)
+                setNavTransformClass(navState.navSrolled)
             } else {
-                setFill(black)
+                setFill(navState.black)
+                setBackgroundClass(navState.bgWhite)
+                setNavTransformClass(navState.navBase)
             }
         })
     }, [])
 
     return (
-        <header>
-            <nav className={`flex justify-between p-16 ${styles['nav']}`}>
-                <NavButton clickHandler={() => { }}>+ <span className="pl-4 text-sm">Contact Us</span></NavButton>
+        <header className={`${styles['header']} ${backgroundClass} duration-700`}>
+            <nav className={`flex justify-between p-16 ${styles['nav']} ${styles[navTransformClass]} `}>
+                <NavButton clickHandler={() => { }}>
+                    <div style={{ color: svgFill }}><span>+</span> <span className='pl-4 text-sm'>Contact Us</span></div>
+                </NavButton>
                 <ul className="flex gap-8">
                     {
                         navIcons.map((icon, i) => (
@@ -49,7 +64,7 @@ function Navigation() {
                     }
                     <li>
                         <NavButton clickHandler={() => { }}>
-                            {<Bars width={25} height={25} className="h-6" fill={svgFill}>{null}</Bars>}<span className={svgFill === white ? 'text-white' : 'text-black'}>MENU</span>
+                            {<Bars width={25} height={25} className="h-6" fill={svgFill}>{null}</Bars>}<span className={svgFill === navState.white ? 'text-white' : 'text-black'}>MENU</span>
                         </NavButton>
                     </li>
                 </ul>
