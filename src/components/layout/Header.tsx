@@ -1,16 +1,22 @@
 import { CiMenuBurger, CiUser } from "react-icons/ci";
+import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 
 export default function Header() {
     return (
         <>
-            <header className="flex items-center justify-between px-4 py-2 border-b border-gray-200 md:px-16 md:py-8">
+            <header className="fixed top-0 left-0 z-50 w-screen bg-white flex items-center justify-between px-4 py-4 border-b border-gray-200 md:px-16 md:py-8">
                 {/* Menu icon */}
-                <button className="flex items-end gap-4 cursor-pointer" type="button">
-                    <CiMenuBurger className="text-2xl" /><span className="text-sm">Menu</span>
-                </button>
+                <div className="flex gap-3 md:gap-5">
+                    <button className="flex items-end gap-4 cursor-pointer" type="button">
+                        <CiMenuBurger size={20} /><span className="text-sm hidden md:inline">Menu</span>
+                    </button>
+                    <button className="flex items-end gap-4 cursor-pointer" type="button">
+                        <HiMiniMagnifyingGlass size={20} /><span className="text-sm hidden md:inline">Tìm kiếm</span>
+                    </button>
+                </div>
 
                 {/* Logo */}
-                <h1 className="text-lg font-bold tracking-widest">LOUIS VUITTON</h1>
+                <h1 className="text-lg font-bold tracking-widest -translate-1/2 fixed left-1/2 top-7 md:top-10">LOUIS VUITTON</h1>
 
                 {/* User icon */}
                 <button className="text-xl" type="button">
