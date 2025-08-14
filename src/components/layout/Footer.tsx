@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="border-t border-b border-gray-200">
                 {/* Logo */}
                 <div className="md:hidden text-center font-bold text-lg tracking-wider mt-6">
-                    LOUIS VUITTON
+                    ROSSMOON
                 </div>
 
                 {/* Mobile Layout - Accordion */}
@@ -85,7 +85,7 @@ export default function Footer() {
 
                 </div>
                 <div className="hidden md:block text-center font-bold text-lg tracking-wider mb-10">
-                    LOUIS VUITTON
+                    RossMoon
                 </div>
             </Container>
         </footer>

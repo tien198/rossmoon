@@ -15,8 +15,8 @@ import Footer from "@/components/layout/Footer";
 // });
 
 export const metadata: Metadata = {
-  title: "Rossmon",
-  description: "lorem lorem lorem lorem lorem lorem lorem lorem ",
+  title: "Rossmoon",
+  description: "Thời trang thời thượng, tinh tế trong từng đường khâu mũi chỉ",
 };
 
 export default function RootLayout({

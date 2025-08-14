@@ -22,7 +22,7 @@ export function useFooter() {
             ],
         },
         {
-            title: "Về Louis Vuitton",
+            title: "Về RossMoon",
             content: [
                 "Buổi trình diễn thời trang",
                 "Nghệ thuật & Văn hóa",
@@ -30,7 +30,7 @@ export function useFooter() {
                 "Phát triển bền vững",
                 "Tin mới nhất",
                 "Nghề nghiệp",
-                "Foundation Louis Vuitton",
+                "Foundation Rossmoon",
             ],
         },
         {
