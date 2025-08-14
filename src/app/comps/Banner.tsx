@@ -4,7 +4,7 @@ import Video from "@/components/Video";
 export default function Banner() {
     const bannerSources = useGetBannerSources()
 
-    return <section className="relative -z-10 h-[530px] md:h-[850px]">
+    return <section className="relative -z-10 h-[500px] md:h-[850px]">
         <Video
             sources={bannerSources} autoPlay loop muted
             className="h-full md:w-full object-cover"
