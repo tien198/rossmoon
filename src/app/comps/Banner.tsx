@@ -6,7 +6,7 @@ export default function Banner() {
 
     return <section className="relative -z-10 h-[500px] md:h-[850px]">
         <Video
-            sources={bannerSources} autoPlay loop muted
+            sources={bannerSources} autoPlay loop muted playsInline
             className="h-full md:w-full object-cover"
         />
         <div className="z-10 absolute bottom-0 text-white">
