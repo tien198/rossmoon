@@ -1,11 +1,12 @@
 import Image from "next/image";
+import banner from '@/assets/river-forest-sunset-landscape-art.jpg'
 
 export default function Home() {
   return (
     <main >
       <div className="relative" style={{height:900}}>
 
-        <Image src='http://localhost:3000/river-forest-sunset-landscape-art.jpg' alt=""
+        <Image src={banner.src} alt=""
           fill
         // width={1080} height={720}
         />
