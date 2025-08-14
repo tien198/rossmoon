@@ -4,7 +4,7 @@ import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 export default function Header() {
     return (
         <>
-            <header className="fixed top-0 left-0 z-50 w-screen bg-white flex items-center justify-between px-4 h-16 border-gray-200 md:px-16 md:py-8">
+            <header className="fixed top-0 left-0 z-50 w-screen bg-white flex items-center justify-between px-4 h-16 border-gray-200 md:px-16 md:py-11">
                 {/* Menu icon */}
                 <div className="flex gap-3 md:gap-5">
                     <button className="flex items-end gap-4 cursor-pointer" type="button">
@@ -16,7 +16,7 @@ export default function Header() {
                 </div>
 
                 {/* Logo */}
-                <h1 className="text-lg font-bold tracking-widest -translate-1/2 fixed left-1/2 top-7 md:top-10">ROSSMOON</h1>
+                <h1 className="text-3xl font-bold tracking-widest -translate-1/2 fixed left-1/2 top-7 md:top-10">ROSSMOON</h1>
 
                 {/* User icon */}
                 <button className="text-xl" type="button">

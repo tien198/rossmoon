@@ -1,21 +1,24 @@
 import Video from "@/components/Video";
 import Link from "next/link";
 
+import styles from './Banner.module.scss'
 
 export default function Banner() {
     const bannerSources = useGetBannerSources()
     const story = useGetStory()
 
-    return <section className="relative -z-10 h-[500px] md:h-[850px]">
+    return <section
+        className={`relative -z-10 max-h-[813px] `+ styles['banner']}
+    >
         <Video
             sources={bannerSources} autoPlay loop muted playsInline
             className="h-full md:w-full object-cover"
         />
-        <div className="z-10 absolute -translate-1/2 left-1/2 bottom-0 text-white
-            flex flex-col justify-between items-center gap-5 text-center">
-                <div className="font-extralight text-sm md:text-base">{story.category}</div>
-                <div className="text-2xl md:text-5xl">{story.storyName}</div>
-                <Link href='/' className='border-b border-white'>Đăng ký nhận thông báo</Link>
+        <div className="z-50 absolute bottom-0 text-white w-full px-[6.4vw] py-6 md:py-10
+            flex flex-col justify-between items-center gap-4 text-center">
+            <div className="font-thin text-xs">{story.category}</div>
+            <div className= "text-2xl md:text-3xl">{story.storyName}</div>
+            <Link href='/' className='border-b border-white'>Đăng ký nhận thông báo</Link>
         </div>
     </section>
 }
@@ -43,6 +46,10 @@ function useGetBannerSources() {
     ]
     return bannerSources
 }
+
+
+
+
 
 
 function useGetStory() {
