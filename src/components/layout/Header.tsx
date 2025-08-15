@@ -16,7 +16,7 @@ export default function Header() {
                 </div>
 
                 {/* Logo */}
-                <h1 className="text-3xl font-bold tracking-widest -translate-1/2 fixed left-1/2 top-7 md:top-10">ROSSMOON</h1>
+                <h1 className="ojuju text-3xl font-bold tracking-widest -translate-1/2 fixed left-1/2 top-7 md:top-10">ROSS MOON</h1>
 
                 {/* User icon */}
                 <button className="text-xl" type="button">

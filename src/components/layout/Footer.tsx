@@ -12,8 +12,8 @@ export default function Footer() {
         <footer className="bg-white text-black text-sm font-extralight">
             <div className="border-t border-b border-gray-200">
                 {/* Logo */}
-                <div className="md:hidden text-center font-bold text-lg tracking-wider mt-6">
-                    ROSSMOON
+                <div className="ojuju md:hidden text-center font-bold text-lg tracking-wider mt-6">
+                    ROSS MOON
                 </div>
 
                 {/* Mobile Layout - Accordion */}
@@ -84,8 +84,8 @@ export default function Footer() {
                     </div>
 
                 </div>
-                <div className="hidden md:block text-center font-bold text-lg tracking-wider mb-10">
-                    RossMoon
+                <div className="ojuju hidden md:block text-center font-bold text-lg tracking-wider mb-10">
+                    Ross Moon
                 </div>
             </Container>
         </footer>
