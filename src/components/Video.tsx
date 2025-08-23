@@ -14,5 +14,6 @@ export default function Video(props: Props) {
         {sources.map(i =>
             <source key={i.url} src={i.url} type={i.type} />
         )}
+        <p>Trình duyệt không hỗ trợ !</p>
     </video>
 }

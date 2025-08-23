@@ -2,6 +2,7 @@ import Video from "@/components/Video";
 import Link from "next/link";
 
 import styles from './Banner.module.scss'
+import { useGetBannerSources, useGetStory } from "../hooks/bannerHooks";
 
 export default function Banner() {
     const bannerSources = useGetBannerSources()
@@ -28,33 +29,3 @@ export default function Banner() {
 
 
 
-
-function useGetBannerSources() {
-    const bannerSources = [
-        {
-            url: '/videos/banner-video.mp4',
-            type: 'video/mp4'
-        },
-        {
-            url: '/none.webm',
-            type: 'video/webm'
-        },
-        {
-            url: '/none.ogv',
-            type: 'video/ogg'
-        }
-    ]
-    return bannerSources
-}
-
-
-
-
-
-
-function useGetStory() {
-    return {
-        category: 'Làm đẹp',
-        storyName: ' La Beauté Louis Vuitton'
-    }
-}
