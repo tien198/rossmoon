@@ -1,13 +1,24 @@
+'use client'
+
 import { CiMenuBurger, CiUser } from "react-icons/ci";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
+import Nav from "./Navbar/Nav";
+import { useState } from "react";
 
 export default function Header() {
+    const [isNavActive, setNavActive] = useState(false)
+
+    const handleNavActive = () => setNavActive(prev => !prev)
+
     return (
         <>
             <header className="fixed top-0 left-0 z-50 w-screen bg-white flex items-center justify-between px-4 h-16 border-gray-200 md:px-16 md:py-11">
                 {/* Menu icon */}
                 <div className="flex gap-3 md:gap-5">
-                    <button className="flex items-end gap-4 cursor-pointer" type="button">
+                    <button
+                        className="flex items-end gap-4 cursor-pointer" type="button"
+                        onClick={handleNavActive}
+                    >
                         <CiMenuBurger size={20} /><span className="text-sm hidden md:inline">Menu</span>
                     </button>
                     <button className="hidden md:flex items-end gap-4 cursor-pointer" type="button">
@@ -22,6 +33,8 @@ export default function Header() {
                 <button className="text-xl" type="button">
                     <CiUser fontWeight={800} /><span className="hidden">user</span>
                 </button>
+
+                <Nav isActive={isNavActive} handleActive={handleNavActive} />
             </header>
         </>
     )
