@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main >
       {/* Search bar */}
-      <div className="h-16"></div>
+      <div className="h-18"></div>
       <SearchBar />
       <Banner />
     </main>
