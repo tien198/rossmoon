@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import type { MenuItem } from "../../types/menuItem";
+import type { MenuItem } from "@/types/menuItem";
 import Item from "./Nav.List.Item";
 
 import styles from './nav.module.scss'

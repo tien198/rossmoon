@@ -1,7 +1,7 @@
 'use client'
 
 import { IoIosArrowForward } from "react-icons/io"
-import type { MenuItem } from "../../types/menuItem"
+import type { MenuItem } from "@/types/menuItem"
 
 import styles from './nav.module.scss'
 import Panel from "./Nav.List.Panel"
