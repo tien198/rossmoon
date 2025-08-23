@@ -1,19 +1,17 @@
-import type { PropsWithChildren } from 'react'
 import styles from './nav.module.scss'
 import { IoIosArrowRoundBack } from 'react-icons/io'
 
-type Props = {
-    onClick: () => void
-} & PropsWithChildren
+type Props = React.DOMAttributes<HTMLButtonElement>
 
 export default function BackButton(props: Props) {
+    const { children, ...rest } = props
     return (
         <button
             className={`${styles['item']} ${styles['back-button']}`}
-            onClick={props.onClick}
+            {...rest}
         >
             <IoIosArrowRoundBack size={'1.5rem'} />
-            {props.children}
+            {children}
         </button>
     )
 }

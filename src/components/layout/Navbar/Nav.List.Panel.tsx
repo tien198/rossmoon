@@ -44,33 +44,36 @@ function PanelContainer({
     return (
         <>
             <div
-                className={isRoot ? '' : styles['nav__list__panel'] + ' ' + activeCls}
+                className={isRoot ? styles['nav-root'] : styles['nav__list__panel'] + ' ' + activeCls}
             >
 
                 <div className={styles['nav__list__panel--content'] + ' ' + activeCls}>
                     {/* This layout is children's layout */}
                     <div className={styles['nav__list__panel--layout'] + ' ' + ((state.actIdx !== null && isActive) ? styles['active'] : '')}></div>
 
-                    <div className={`${styles['wrapper']} ${activeCls}`}>
-                        {item.nameDisplay
-                            &&
-                            <BackButton
-                                onClick={handleActivate!}
-                            >
-                                {item.nameDisplay}
-                            </BackButton>}
-                        <ul className={`${styles['nav__list']} ${activeCls}`}>
-                            {item.categoryItems?.map((i, idx) =>
-                                <Item
-                                    item={i} key={idx}
-                                    idx={idx}
-                                    layoutActive={laytAct}
-                                />
-                            )}
-                        </ul>
-                        {
-                            footerPanel
-                        }
+                    <div className={`${styles['wrapper']}`}>
+                        <div className={styles['scrollable']}>
+
+                            {item.nameDisplay
+                                &&
+                                <BackButton
+                                    onClick={handleActivate!}
+                                >
+                                    {item.nameDisplay}
+                                </BackButton>}
+                            <ul className={`${styles['nav__list']} ${activeCls}`}>
+                                {item.categoryItems?.map((i, idx) =>
+                                    <Item
+                                        item={i} key={idx}
+                                        idx={idx}
+                                        layoutActive={laytAct}
+                                    />
+                                )}
+                            </ul>
+                            {
+                                footerPanel
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
