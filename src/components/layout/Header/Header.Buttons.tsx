@@ -40,9 +40,14 @@ export default function HeaderButtons({ isNavActive, handleNavActive }: Props) {
             </div>
 
             {/* User icon */}
-            <button className="text-xl z-50 md:z-0" type="button">
-                <CiUser fontWeight={800} /><span className="hidden">user</span>
-            </button>
+            <div className="relative z-50 md:z-0">
+                <button className="text-sm hidden md:block" type="button">
+                    Liên hệ với chúng tôi
+                </button>
+                {/* <button className="text-xl" type="button">
+                    <CiUser fontWeight={800} /><span className="hidden">user</span>
+                </button> */}
+            </div>
         </div>
     )
 }
