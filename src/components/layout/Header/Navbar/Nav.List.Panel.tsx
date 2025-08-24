@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import type { MenuItem } from "@/types/menuItem";
 import Item from "./Nav.List.Item";
 
-import styles from './nav.module.scss'
 import BackButton from "./Nav.List.BackButton";
 import ListPanelProvider, { ListPanelContext } from "./store/panelContext";
+
+import styles from './nav.module.scss'
 
 type Props = {
     // isRoot indicate that this is root of Navbar
@@ -16,11 +17,11 @@ type Props = {
     footerPanel?: React.ReactElement
 }
 
-export default function Panel(props: Props) {
+export default memo(function Panel(props: Props) {
     return <ListPanelProvider>
         <PanelContainer {...props} />
     </ListPanelProvider>
-}
+})
 
 
 function PanelContainer({

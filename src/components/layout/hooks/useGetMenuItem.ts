@@ -3,7 +3,7 @@
 import { MenuItem } from "@/types/menuItem";
 
 //  3 level
-export function useGetMenuItems(): MenuItem {
+export function useGetNavMenuItems(): MenuItem {
     return {
         display: 'cate',
         nameDisplay: '',
