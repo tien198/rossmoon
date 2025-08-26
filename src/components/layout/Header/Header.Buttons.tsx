@@ -1,4 +1,4 @@
-import { CiMenuBurger, CiUser } from "react-icons/ci";
+import { RiMenuLine } from "react-icons/ri";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 
 
@@ -20,7 +20,7 @@ export default function HeaderButtons({ isNavActive, handleNavActive }: Props) {
                     className="flex items-end gap-4 cursor-pointer" type="button"
                     onClick={handleNavActive}
                 >
-                    <CiMenuBurger size={20} /><span className="text-sm hidden md:inline">Menu</span>
+                    <RiMenuLine size={20} /><span className="text-sm hidden md:inline">Menu</span>
                 </button>
                 <button className={
                     "cursor-pointer "

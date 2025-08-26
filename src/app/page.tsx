@@ -14,11 +14,11 @@ export default async function Home() {
       <Banner />
       <section className=" bg-white py-12">
         <h1 className="text-center text-2xl pb-4 md:text-3xl md:pb-6">Khám phá vũ trụ làm đẹp</h1>
-        <div className="flex justify-between flex-wrap px-[6.5vw]">
+        <div className="flex justify-between flex-wrap px-[6.5vw] lg:px-[8.3333vw]">
           {categories.map(cate =>
             <div className="p-2 w-1/2 md:w-1/4" key={cate.url} >
               <Link href={cate.imgUrl} >
-                <Image src={cate.imgUrl} alt={cate.name} width={155.5} height={194.38}
+                <Image src={cate.imgUrl} alt={cate.name} width={1600} height={2000} sizes="100"
                   className="w-full" />
               </Link>
               <p className="py-2 md:py-4 text-center">{cate.name}</p>
