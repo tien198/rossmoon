@@ -14,6 +14,7 @@ export default function Header() {
     return (
         <>
             <header>
+                <div className="h-16 md:h-20"></div>
                 <div className="fixed top-0 left-0 h-16 md:h-20">
                     <div
                         className={"fixed z-30 opacity-70 inset-0 bg-black "
