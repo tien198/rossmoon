@@ -14,8 +14,9 @@ export default function Home() {
         </div>
         <div className="bg-white ">
           <Image className="w-full h-3/5 sticky top-[5rem]"
-            src={process.env.ORIGIN + "/river-forest-sunset-landscape-art.jpg"}
+            src={ "/river-forest-sunset-landscape-art.jpg"}
             width={3840} height={2160}
+            priority
             sizes="75"
             style={{ objectFit: 'cover' }} alt="" />
           <div className="relative z-10 bg-white">
