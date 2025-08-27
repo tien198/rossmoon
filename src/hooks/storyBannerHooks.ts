@@ -1,5 +1,5 @@
 
-export function useGetBannerSources() {
+export function useGetStoryBannerSources() {
     const bannerSources = [
         {
             url: '/videos/banner-video.mp4',

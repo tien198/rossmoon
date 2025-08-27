@@ -1,11 +1,11 @@
 import Video from "@/components/Video";
 import Link from "next/link";
 
-import styles from './Banner.module.scss'
-import { useGetBannerSources, useGetStory } from "../hooks/bannerHooks";
+import styles from './StoryBanner.module.scss'
+import { useGetStoryBannerSources, useGetStory } from "../../hooks/storyBannerHooks";
 
-export default function Banner() {
-    const bannerSources = useGetBannerSources()
+export default function StoryBanner() {
+    const bannerSources = useGetStoryBannerSources()
     const story = useGetStory()
 
     return <section

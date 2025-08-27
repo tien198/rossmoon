@@ -1,6 +1,6 @@
 import SearchBar from "@/components/layout/SearchBar";
-import Banner from "./comps/Banner";
-import CategoriesSection from "./comps/CategoriesSection";
+import StoryBanner from "../components/home/StoryBanner";
+import CategoriesSection from "../components/home/CategoriesSection";
 
 export default async function Home() {
 
@@ -8,7 +8,7 @@ export default async function Home() {
     <>
       {/* Search bar */}
       <SearchBar />
-      <Banner />
+      <StoryBanner />
       <CategoriesSection />
     </>
   );
