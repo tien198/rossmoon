@@ -4,3 +4,6 @@ POST http://localhost:3000/products HTTP/1.1
 
 ###
 GET http://localhost:3000/products HTTP/1.1
+
+###
+DELETE http://localhost:3000/products HTTP/1.1

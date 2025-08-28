@@ -12,3 +12,8 @@ export async function POST(req:NextRequest) {
     })
     return NextResponse.json(created)
 }
+
+export async function DELETE(req:NextRequest) {
+    const deleteResult = await ProductImp.deleteById('68b069e88872871c1605f5c5')
+    return NextResponse.json(deleteResult)
+}

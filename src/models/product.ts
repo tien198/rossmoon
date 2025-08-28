@@ -1,4 +1,4 @@
-import type { WithId, Document } from "mongodb";
+import type { WithId, Document, DeleteResult } from "mongodb";
 import type { Product } from "./product.zod";
 
 import { ObjectId } from "mongodb";
@@ -47,6 +47,26 @@ export default class ProductImp implements Product {
         }
         return query
     }
+
+    static async deleteById(id: string | ObjectId) {
+        let query: DeleteResult | null = null
+        switch (typeof id) {
+            case 'string': {
+                query = await productCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
+                break
+            }
+            case 'object': {
+                if (id instanceof ObjectId)
+                    query = await productCollection.deleteOne({ _id: id })
+                break
+            }
+            default: {
+                break
+            }
+        }
+        return query
+    }
+
 
     static async create(prod: Product) {
         const result = await productCollection.insertOne(prod)
