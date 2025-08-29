@@ -6,6 +6,8 @@ export const productSchema = z.object({
     name: z.string(),
     imageUrl: z.url(),
     price: z.number().positive(),
+    priceFormatted: z.string(),
+
     description: z.string().min(10),
     // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )
     width: z.number().positive().nullish(),

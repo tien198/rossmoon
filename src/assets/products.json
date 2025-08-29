@@ -1,0 +1,49 @@
+[
+    {
+        "name": "Ví Đựng Hộ Chiếu",
+        "price": 12700000,
+        "priceFormatted": "12,700,000",
+        "description": "Mẫu ví đựng hộ chiếu được may từ chất liệu Monogram Glow Canvas rực rỡ, kết hợp đường viền sơn màu đồng điệu được lấy cảm hứng từ bãi biển Miami. Bên cạnh ngăn đựng hộ chiếu, sản phẩm còn có bốn khe đựng thẻ và một ngăn phụ bên trong.",
+        "width": 10,
+        "height": 14,
+        "depth": 2.5,
+        "imageUrl": "/louis-vuitton-lv-lanterne--M26036_PM2_Front view.avif",
+        "features": [
+            "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở"
+        ],
+        "origin": "Sản phẩm được sản xuất tại Pháp, Tây Ban Nha, Ý hoặc Mỹ.",
+        "notice": "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng",
+        "sustainability": "Chất liệu da của sản phẩm này được sản xuất tại một xưởng thuộc da đạt chứng nhận của Leather Working Group (LWG - Tổ chức Chế tác Da). Đây là tiêu chuẩn môi trường khắt khe nhất với quy trình thuộc da.\nTiêu chuẩn này yêu cầu các xưởng chế tác phải giảm mức tiêu thụ nước và năng lượng, cũng như không sử dụng các chất có khả năng gây nguy hiểm. Louis Vuitton hợp tác với các xưởng chế tác da thuộc ở Châu Âu. Các xưởng thuộc da hợp tác với Louis Vuitton có trụ sở ở Châu Âu, là những đối tác cam kết đồng hành cùng Louis Vuitton trong nỗ lực tìm kiếm nguồn cung ứng có trách nhiệm và luôn nâng cao chất lượng (đưa ra các hệ thống truy xuất nguồn gốc chất liệu, đấu tranh chống nạn phá rừng).",
+        "productCare": ""
+    },
+    {
+        "name": "Túi Nice BB",
+        "price": 46500000,
+        "priceFormatted": "46,500,000",
+        "description": "Phiên bản này của túi Nice BB gây ấn tượng với bảng màu lấy cảm hứng từ các mẫu son thuộc dòng mỹ phẩm Louis Vuitton Beauty. Được may từ da Epi có vân và lớp lót bằng vải dệt dễ giặt, thiết kế nhỏ gọn sở hữu cấu trúc mềm mại cùng quai xách bằng da có thể xếp phẳng để tiết kiệm không gian, dễ dàng để vào trong hành lý du lịch. Sản phẩm được hoàn thiện với miệng túi rộng và khóa kéo hai chiều có đầu khóa khắc logo LV.",
+        "width": 24,
+        "height": 18,
+        "depth": 14.5,
+        "imageUrl": "/louis-vuitton-nice-bb--M25856_PM2_Front view.avif",
+        "features": [
+            "Màu đỏ với họa tiết Monogram", "Da Epi có vân", "Chi tiết trang trí bằng da bò", "Lớp lót bằng vải dệt dễ giặt", "Chi tiết kim loại màu vàng", "Khóa kéo hai chiều", "Ngăn phụ ở bên trong", "Ngăn có khóa kéo bên dưới nắp gập", "Tay cầm: Quai xách đơn"
+        ],
+        "origin": "Sản phẩm được sản xuất tại Pháp, Tây Ban Nha, Ý hoặc Mỹ.",
+        "notice": "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng",
+        "sustainability": "The leather used in this product comes from a tannery audited and certified by the Leather Working Group (LWG), which is the highest environmental standard in terms of leather tanning. This standard requires tanneries to reduce their water and energy consumption, as well as their use of potentially hazardous substances. The tanneries we work with are located in Europe and are committed partners who work with us in our efforts for responsible sourcing and continuous improvement (implementation of material traceability systems, fighting against deforestation practices).",
+        "productCare": ""
+    },
+    {
+        "name": "Đầm Dáng Sơ Mi",
+        "price": 61000000,
+        "priceFormatted": "61,000,000",
+        "description": "Mẫu đầm dáng sơ mi sang trọng được may từ vải Cotton Poplin mềm mại, kết hợp hàng khuy được may ẩn tinh tế. Phần cổ áo trông ấn tượng hơn với chi tiết khăn lụa in họa tiết Monogram và luồn qua hai khoen lớn, tạo điểm nhấn thời thượng mà không kém phần thanh lịch.",
+        "imageUrl": "/louis-vuitton-monogram-scarf-shirt-dress--FTRS10A05607_PM2_Front view.avif",
+        "features": [
+            "Chất liệu chính: 100% Cotton", "Màu xanh dương nhạt", "Sản xuất tại Ý"
+        ],
+        "notice": "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng",
+        "sustainability": "The leather used in this product comes from a tannery audited and certified by the Leather Working Group (LWG), which is the highest environmental standard in terms of leather tanning. This standard requires tanneries to reduce their water and energy consumption, as well as their use of potentially hazardous substances. The tanneries we work with are located in Europe and are committed partners who work with us in our efforts for responsible sourcing and continuous improvement (implementation of material traceability systems, fighting against deforestation practices).",
+        "productCare": ""
+    }
+]
