@@ -7,34 +7,25 @@ import { getDb } from '@/services/mongoDB'
 
 const productCollection = getDb().collection('products')
 
-export default class ProductImp implements Product {
+export default class ProductImp implements ProductPart {
     _id?: ObjectId
-    name: string
-    price: number
-    imageUrl: string
-    description: string
-    /*
-    dimensions: string
-    features: string[]
-    origin: string
-    notice: string
-    sustainability: string
-    productCare: string
-    */
+    name?: string
+    price?: number
+    imageUrl?: string
+    description?: string
 
-    constructor() {
-        this.name = 'no name'
-        this.price = 12
-        this.imageUrl = 'none-url'
-        this.description = ''
-        /*
-        this.dimensions=''
-        this.features=''
-        this.origin=''
-        this.notice=''
-        this.sustainability=''
-        this.productCare=''
-        */
+    widht?: number
+    height?: number
+    depth?: number
+
+    features?: string[]
+    origin?: string
+    notice?: string
+    sustainability?: string
+    productCare?: string
+
+    constructor(prod?: ProductPart) {
+        Object.assign(this, prod)
     }
 
     async save() {

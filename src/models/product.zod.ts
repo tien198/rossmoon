@@ -7,8 +7,11 @@ export const productSchema = z.object({
     imageUrl: z.url(),
     price: z.number().positive(),
     description: z.string().min(10),
-    // 16 x 27 x 16 cm ( Chiều dài x Chiều cao x Chiều rộng )
-    dimensions: z.string(),
+    // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )
+    width: z.number().positive().nullish(),
+    height: z.number().positive().nullish(),
+    depth: z.number().positive().nullish(),
+
     /* List of detail features
      [ 
         "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở" 
