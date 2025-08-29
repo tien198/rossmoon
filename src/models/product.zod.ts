@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 export const productSchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
+    collectionId: z.instanceof(ObjectId).nullish(),
     name: z.string(),
     imageUrl: z.url(),
     price: z.number().positive(),

@@ -9,6 +9,7 @@ const productCollection = getDb().collection('products')
 
 export default class ProductImp implements ProductPart {
     _id?: ObjectId
+    collectionId?: ObjectId
     name?: string
     price?: number
     imageUrl?: string

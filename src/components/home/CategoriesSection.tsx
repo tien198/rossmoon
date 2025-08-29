@@ -1,4 +1,4 @@
-import { Category } from "@/types/category"
+import { Category } from "@/models/category.zod"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -12,8 +12,8 @@ export default async function CategoriesSection() {
       <div className="flex justify-between flex-wrap px-[6.5vw] lg:px-[8.3333vw]">
         {categories.map((cate, idx) =>
           <div className="p-2 w-1/2 md:w-1/4" key={idx} >
-            <Link href={cate.imgUrl} >
-              <Image src={cate.imgUrl} alt={cate.name} width={1600} height={2000} sizes="100"
+            <Link href={cate.url} >
+              <Image src={cate.imageUrl} alt={cate.name} width={1600} height={2000} sizes="100"
                 className="w-full" />
             </Link>
             <p className="py-2 md:py-4 text-center">{cate.name}</p>
@@ -32,22 +32,22 @@ async function getCategories(): Promise<Category[]> {
     {
       name: 'Son Môi LV Rouge',
       url: '/img',
-      imgUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg'
+      imageUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg'
     },
     {
       name: 'Son Dưỡng LV Baume',
       url: '/img',
-      imgUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg'
+      imageUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg'
     },
     {
       name: 'Phấn mắt LV Ombres',
       url: '/img',
-      imgUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg'
+      imageUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg'
     },
     {
       name: 'Phụ Kiện Làm Đẹp',
       url: '/img',
-      imgUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg'
+      imageUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg'
     }
   ]
 }
