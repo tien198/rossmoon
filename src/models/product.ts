@@ -1,5 +1,5 @@
-import type { WithId, Document, DeleteResult } from "mongodb";
-import type { Product } from "./product.zod";
+import type { WithId, Document, DeleteResult, Filter } from "mongodb";
+import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
 import { getDb } from '@/services/mongoDB'
@@ -8,18 +8,44 @@ import { getDb } from '@/services/mongoDB'
 const productCollection = getDb().collection('products')
 
 export default class ProductImp implements Product {
+    _id?: ObjectId
     name: string
     price: number
     imageUrl: string
+    description: string
+    /*
+    dimensions: string
+    features: string[]
+    origin: string
+    notice: string
+    sustainability: string
+    productCare: string
+    */
 
     constructor() {
         this.name = 'no name'
         this.price = 12
         this.imageUrl = 'none-url'
+        this.description = ''
+        /*
+        this.dimensions=''
+        this.features=''
+        this.origin=''
+        this.notice=''
+        this.sustainability=''
+        this.productCare=''
+        */
     }
 
     async save() {
         await productCollection.insertOne(this)
+    }
+
+    async update() {
+        await productCollection.updateOne(
+            { _id: this._id },
+            { $set: { ...this } }
+        )
     }
 
 
@@ -48,6 +74,13 @@ export default class ProductImp implements Product {
         return query
     }
 
+    static async update(filter: Filter<Document>, prod: ProductPart) {
+        await productCollection.updateOne(
+            { ...filter },
+            { ...prod }
+        )
+    }
+
     static async deleteById(id: string | ObjectId) {
         let query: DeleteResult | null = null
         switch (typeof id) {
@@ -69,7 +102,7 @@ export default class ProductImp implements Product {
 
 
     static async create(prod: Product) {
-        const result = await productCollection.insertOne(prod)
+        const result = await productCollection.insertOne({ ...prod, _id: undefined })
         return result
     }
 
