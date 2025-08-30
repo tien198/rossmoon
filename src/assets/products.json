@@ -7,7 +7,7 @@
         "width": 10,
         "height": 14,
         "depth": 2.5,
-        "imageUrl": "/louis-vuitton-lv-lanterne--M26036_PM2_Front view.avif",
+        "imageUrls": ["/louis-vuitton-lv-lanterne--M26036_PM2_Front view.avif"],
         "features": [
             "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở"
         ],
@@ -24,7 +24,7 @@
         "width": 24,
         "height": 18,
         "depth": 14.5,
-        "imageUrl": "/louis-vuitton-nice-bb--M25856_PM2_Front view.avif",
+        "imageUrls": ["/louis-vuitton-nice-bb--M25856_PM2_Front view.avif"],
         "features": [
             "Màu đỏ với họa tiết Monogram", "Da Epi có vân", "Chi tiết trang trí bằng da bò", "Lớp lót bằng vải dệt dễ giặt", "Chi tiết kim loại màu vàng", "Khóa kéo hai chiều", "Ngăn phụ ở bên trong", "Ngăn có khóa kéo bên dưới nắp gập", "Tay cầm: Quai xách đơn"
         ],
@@ -38,7 +38,7 @@
         "price": 61000000,
         "gender": "female",
         "description": "Mẫu đầm dáng sơ mi sang trọng được may từ vải Cotton Poplin mềm mại, kết hợp hàng khuy được may ẩn tinh tế. Phần cổ áo trông ấn tượng hơn với chi tiết khăn lụa in họa tiết Monogram và luồn qua hai khoen lớn, tạo điểm nhấn thời thượng mà không kém phần thanh lịch.",
-        "imageUrl": "/louis-vuitton-monogram-scarf-shirt-dress--FTRS10A05607_PM2_Front view.avif",
+        "imageUrls": ["/louis-vuitton-monogram-scarf-shirt-dress--FTRS10A05607_PM2_Front view.avif"],
         "features": [
             "Chất liệu chính: 100% Cotton", "Màu xanh dương nhạt", "Sản xuất tại Ý"
         ],
