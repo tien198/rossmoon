@@ -1,11 +1,12 @@
 import { Category } from "@/models/category.zod"
+import { Collection } from "@/models/collection.zod"
 import Image from "next/image"
 import Link from "next/link"
 
 
 
-export default async function CategoriesSection() {
-  const categories = await getCategories()
+export default async function NewCollectionsSection() {
+  const categories = await getNewCollections()
   return (
     <section className=" bg-white py-12">
       <h1 className="text-center text-2xl pb-4 md:text-3xl md:pb-6">Khám phá vũ trụ làm đẹp</h1>
@@ -27,27 +28,31 @@ export default async function CategoriesSection() {
 
 
 
-async function getCategories(): Promise<Category[]> {
+async function getNewCollections(): Promise<Collection[]> {
   return [
     {
       name: 'Son Môi LV Rouge',
-      url: '/img',
-      imageUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg'
+      url: '/collection-url',
+      imageUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg',
+      releaseDate: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Son Dưỡng LV Baume',
-      url: '/img',
-      imageUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg'
+      url: '/collection-url',
+      imageUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg',
+      releaseDate: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Phấn mắt LV Ombres',
-      url: '/img',
-      imageUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg'
+      url: '/collection-url',
+      imageUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg',
+      releaseDate: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Phụ Kiện Làm Đẹp',
-      url: '/img',
-      imageUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg'
+      url: '/collection-url',
+      imageUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg',
+      releaseDate: "2025-07-02T03:51:27.282Z"
     }
   ]
 }
