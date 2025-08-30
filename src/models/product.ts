@@ -1,5 +1,5 @@
 import type { WithId, Document, DeleteResult, Filter } from "mongodb";
-import type { Product, ProductPart } from "./product.zod";
+import type { Gender, Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
 import { getDb } from '@/services/mongoDB'
@@ -10,9 +10,13 @@ const productCollection = getDb().collection('products')
 export default class ProductImp implements ProductPart {
     _id?: ObjectId
     collectionId?: ObjectId
+    categoryId?: ObjectId
+
     name?: string
     price?: number
-    imageUrl?: string
+
+    gender?: Gender
+    imageUrls?: string[]
     description?: string
 
     widht?: number
@@ -27,6 +31,11 @@ export default class ProductImp implements ProductPart {
 
     constructor(prod?: ProductPart) {
         Object.assign(this, prod)
+    }
+
+    get priceFormatted() {
+        const [intPart, decimalPart] = String(this.price).split('.')
+        return parseInt(intPart).toLocaleString('vi-VN') + (decimalPart ? (',' + parseInt(decimalPart).toLocaleString('vi-VN')) : '')
     }
 
     async save() {
@@ -103,3 +112,4 @@ export default class ProductImp implements ProductPart {
     }
 
 }
+

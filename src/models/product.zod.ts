@@ -1,13 +1,20 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 
+export enum Gender {
+    "male", "female", "other"
+}
+
+
 export const productSchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     collectionId: z.instanceof(ObjectId).nullish(),
+    categoryId: z.instanceof(ObjectId).nullish(),
     name: z.string(),
-    imageUrl: z.url(),
+    imageUrls: z.array(z.url()),
     price: z.number().positive(),
-    priceFormatted: z.string(),
+
+    gender: z.enum(Gender),
 
     description: z.string().min(10),
     // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )

@@ -10,7 +10,7 @@ const collectionCollection = getDb().collection('collections')
 export default class CollectionImp implements CollectionPart {
     _id?: ObjectId
     name?: string
-    releaseDate?: string
+    releaseDate?: string | number | Date
 
     constructor(col?: CollectionPart) {
         Object.assign(this, col)
