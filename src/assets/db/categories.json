@@ -1,30 +1,18 @@
 [
     {
-        "name": "Son môi LV Rouge",
-        "url": "none-url",
-        "imageUrl": "image-url",
-        "gender": "other",
-        "releaseDate": "2025-08-29T13:54:05.000Z"
+        "name": "for-man",
+        "slug": "for-man"
     },
     {
-        "name": "Son dưỡng LV Baume",
-        "url": "none-url",
-        "imageUrl": "image-url",
-        "gender": "other",
-        "releaseDate": "2025-08-29T13:54:05.000Z"
+        "name": "for-woman",
+        "slug": "for-woman"
     },
     {
-        "name": "Phấn mắt LV Ombers",
-        "url": "none-url",
-        "imageUrl": "image-url",
-        "gender": "other",
-        "releaseDate": "2025-08-29T13:54:05.000Z"
+        "name": "for-pet",
+        "slug": "for-pets"
     },
     {
-        "name": "Phụ kiện làm đẹp",
-        "url": "none-url",
-        "imageUrl": "image-url",
-        "gender": "other",
-        "releaseDate": "2025-08-29T13:54:05.000Z"
+        "name": "perfumes-and-beauty",
+        "slug": "perfumes-and-beauty"
     }
 ]

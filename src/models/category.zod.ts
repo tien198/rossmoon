@@ -4,8 +4,7 @@ import z from "zod";
 export const categorySchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     name: z.string(),
-    url: z.string(),
-    imageUrl: z.url()
+    slug: z.string(),
 })
 
 export type Category = z.infer<typeof categorySchema>

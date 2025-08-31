@@ -2,11 +2,10 @@ import type { WithId, Document, DeleteResult, Filter } from "mongodb";
 import type { Collection, CollectionPart } from "./collection.zod";
 
 import { ObjectId } from "mongodb";
-import { getDb } from '@/services/mongoDB'
 import { Gender } from "@/shared/enums/gender";
+import { collectionCollection } from "@/services/mongoDbCollections";
 
 
-const collectionCollection = getDb().collection('collections')
 
 export default class CollectionImp implements CollectionPart {
     _id?: ObjectId

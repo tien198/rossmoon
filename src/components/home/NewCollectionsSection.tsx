@@ -1,4 +1,3 @@
-import { Category } from "@/models/category.zod"
 import { Collection } from "@/models/collection.zod"
 import Image from "next/image"
 import Link from "next/link"
@@ -34,25 +33,29 @@ async function getNewCollections(): Promise<Collection[]> {
       name: 'Son Môi LV Rouge',
       url: '/collection-url',
       imageUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg',
+      gender: 'female',
       releaseDate: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Son Dưỡng LV Baume',
       url: '/collection-url',
       imageUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg',
+      gender: 'female',
       releaseDate: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Phấn mắt LV Ombres',
       url: '/collection-url',
       imageUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg',
+      gender: 'female',
       releaseDate: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Phụ Kiện Làm Đẹp',
       url: '/collection-url',
       imageUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg',
-      releaseDate: "2025-07-02T03:51:27.282Z"
+      gender: 'female',
+      releaseDate: "2025-07-02T03:51:27.282Z",
     }
-  ]
+  ] as Collection[]
 }

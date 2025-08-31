@@ -2,11 +2,10 @@ import type { WithId, Document, DeleteResult, Filter } from "mongodb";
 import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
-import { getDb } from '@/services/mongoDB'
 import { Gender } from "@/shared/enums/gender";
+import { productCollection } from "@/services/mongoDbCollections";
 
 
-const productCollection = getDb().collection('products')
 
 export default class ProductImp implements ProductPart {
     _id?: ObjectId
@@ -14,12 +13,13 @@ export default class ProductImp implements ProductPart {
     categoryId?: ObjectId
 
     name?: string
+    slug?: string
+    imageUrls?: string[]
     price?: number
 
     gender?: Gender
-    imageUrls?: string[]
+    
     description?: string
-
     widht?: number
     height?: number
     depth?: number

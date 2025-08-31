@@ -8,7 +8,9 @@ export const productSchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     collectionId: z.instanceof(ObjectId).nullish(),
     categoryId: z.instanceof(ObjectId).nullish(),
+
     name: z.string(),
+    slug: z.string(),
     imageUrls: z.array(z.url()),
     price: z.number().positive(),
 
