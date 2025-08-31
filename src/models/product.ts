@@ -1,8 +1,9 @@
 import type { WithId, Document, DeleteResult, Filter } from "mongodb";
-import type { Gender, Product, ProductPart } from "./product.zod";
+import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
 import { getDb } from '@/services/mongoDB'
+import { Gender } from "@/shared/enums/gender";
 
 
 const productCollection = getDb().collection('products')

@@ -1,9 +1,7 @@
+import { Gender } from '@/shared/enums/gender'
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 
-export enum Gender {
-    "male", "female", "other"
-}
 
 
 export const productSchema = z.object({

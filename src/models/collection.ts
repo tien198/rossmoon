@@ -3,6 +3,7 @@ import type { Collection, CollectionPart } from "./collection.zod";
 
 import { ObjectId } from "mongodb";
 import { getDb } from '@/services/mongoDB'
+import { Gender } from "@/shared/enums/gender";
 
 
 const collectionCollection = getDb().collection('collections')
@@ -10,6 +11,9 @@ const collectionCollection = getDb().collection('collections')
 export default class CollectionImp implements CollectionPart {
     _id?: ObjectId
     name?: string
+    gender?: Gender
+    url?: string
+    imageUrl?: string
     releaseDate?: string | number | Date
 
     constructor(col?: CollectionPart) {
