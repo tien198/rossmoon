@@ -9,7 +9,8 @@ export const collectionShema = z.object({
     gender: z.enum(Gender),
     url: z.string(),
     imageUrl: z.url(),
-    releaseDate: zDate()
+    releaseDate: zDate(),
+    categoryId: z.instanceof(ObjectId).nullish()
 })
 
 export type Collection = z.infer<typeof collectionShema>

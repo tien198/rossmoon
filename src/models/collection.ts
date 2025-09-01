@@ -14,6 +14,7 @@ export default class CollectionImp implements CollectionPart {
     url?: string
     imageUrl?: string
     releaseDate?: string | number | Date
+    categoryId?: ObjectId
 
     constructor(col?: CollectionPart) {
         Object.assign(this, col)
