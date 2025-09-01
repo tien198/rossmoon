@@ -1,29 +1,41 @@
+'use client'
+
+import Image from "next/image";
 import { Gallery } from "./types/gallery";
 
 
 export default function ProductsGallery(prop: any) {
+    const gallery = getGallery()
 
     return (
         <>
-            <section className=" bg-white py-12">
+            <section >
                 {/* <Video
                     sources={bannerViSources} autoPlay loop muted playsInline
                     className="h-full md:w-full object-cover"
                 /> */}
-                <div className="text-center pb-4 md:pb-6">
-                    <p className="text-xs md:text-xs uppercase pb-2 md:pb-3">Dành cho nữ (cateName)</p>
-                    <h1 className="text-2xl md:text-3xl">Các thiết kế mới</h1>
-                </div>
-                <div className="flex justify-between flex-wrap px-[6.5vw] lg:px-[8.3333vw]">
-                    {/* {collections.map((col, idx) =>
-                        <div className="p-2 w-1/2 md:w-1/4" key={idx} >
-                            <Link href={col.url} >
-                                <Image src={col.imageUrl} alt={col.name} width={1600} height={2000} sizes="100"
-                                    className="w-full" />
-                            </Link>
-                            <p className="py-2 md:py-4 text-center">{col.name}</p>
+                <div className=" ">
+                    {!isMobile && <Image src={gallery.desktopBanner!} alt={'fda'} width={1920} height={1080} className="object-cover sticky top-[4rem] -z-10 scale-200" />}
+                    {isMobile && <Image src={gallery.mobileBanner!} alt={'fda'} width={1600} height={2000} className="object-cover sticky top-[4rem] -z-10 scale-200" />}
+
+                    <div className="bg-white ">
+                        <div className="text-center py-6 md:py-12">
+                            <p className="text-xs md:text-xs uppercase pb-2 md:pb-3">Dành cho nữ (cateName)</p>
+                            <h1 className="text-2xl md:text-3xl">Các thiết kế mới</h1>
                         </div>
-                    )} */}
+                        <div className="flex justify-between flex-wrap px-[6.5vw] lg:px-[8.3333vw]">
+                            <div className="h-96"></div>
+                            {/* {collections.map((col, idx) =>
+                        <div className="p-2 w-1/2 md:w-1/4" key={idx} >
+                        <Link href={col.url} >
+                        <Image src={col.imageUrl} alt={col.name} width={1600} height={2000} sizes="100"
+                        className="w-full" />
+                        </Link>
+                        <p className="py-2 md:py-4 text-center">{col.name}</p>
+                        </div>
+                        )} */}
+                        </div>
+                    </div>
                 </div>
             </section>
         </>
@@ -31,10 +43,10 @@ export default function ProductsGallery(prop: any) {
 }
 
 
-
-async function getGallery(): Promise<Gallery> {
+function getGallery(): Gallery {
     return {
         bannerType: 'image',
-        bannerImage: '/images/banners/W_BC_TEXTILES_SHAWLS_096_Aug2025_DI3.jpg'
+        desktopBanner: '/images/banners/W_BC_TEXTILES_SHAWLS_096_Aug2025_DI3.jpg',
+        mobileBanner:'/images/banners/W_BC_TEXTILES_SHAWLS_096_Aug2025_DII.jpg'
     }
 }

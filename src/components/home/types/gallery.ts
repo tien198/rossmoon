@@ -4,6 +4,7 @@ import { Product } from "@/models/product.zod"
 export type Gallery = {
     bannerType: 'image' | 'video'
     bannerVideoSources?: VideoSource[]
-    bannerImage?: string
+    desktopBanner?: string
+    mobileBanner?: string
     products: Product & { productURL: string }[]
 }
