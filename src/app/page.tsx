@@ -1,6 +1,7 @@
 import SearchBar from "@/components/layout/SearchBar";
 import StoryBanner from "../components/home/StoryBanner";
-import NewCollectionsSection from "@/components/home/NewCollectionsSection";
+import NewCollectionsSection from "@/components/home/NewCollections.Section";
+import ProductsGallery from "@/components/home/ProductsGallery.Section";
 
 export default async function Home() {
 
@@ -10,6 +11,7 @@ export default async function Home() {
       <SearchBar />
       <StoryBanner />
       <NewCollectionsSection />
+      <ProductsGallery />
     </>
   );
 }

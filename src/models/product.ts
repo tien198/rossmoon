@@ -18,7 +18,7 @@ export default class ProductImp implements ProductPart {
     price?: number
 
     gender?: Gender
-    
+
     description?: string
     widht?: number
     height?: number
@@ -30,8 +30,12 @@ export default class ProductImp implements ProductPart {
     sustainability?: string
     productCare?: string
 
+    // Virtural fields
+    productUrl?: string
+
     constructor(prod?: ProductPart) {
         Object.assign(this, prod)
+        this.productUrl = '/product/' + this.slug
     }
 
     get priceFormatted() {
@@ -50,6 +54,11 @@ export default class ProductImp implements ProductPart {
         )
     }
 
+    static standardizeProduct(prod: ProductImp) {
+        const prodCp = { ...prod }
+        delete prodCp.productUrl
+        return prodCp
+    }
 
     static async find(skip?: number, limit?: number) {
         let query = productCollection.find()

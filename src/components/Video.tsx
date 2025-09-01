@@ -1,10 +1,12 @@
 import { MediaHTMLAttributes } from "react"
 
+export type VideoSource = {
+    url: string
+    type?: "video/mp4" | "video/webm" | "video/ogg"
+}
+
 type Props = {
-    sources: {
-        url: string
-        type?: string
-    }[]
+    sources: VideoSource[]
 } & MediaHTMLAttributes<HTMLVideoElement>
 
 export default function Video(props: Props) {
