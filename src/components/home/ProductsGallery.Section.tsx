@@ -31,10 +31,13 @@ export default function ProductsGallery({ gallery }: Props) {
                     <div className="flex justify-between flex-wrap px-[6.5vw] lg:px-[8.3333vw]">
                         <div className="h-96"></div>
                         {gallery.products.map((prod, idx) =>
-                            <div className="p-2 w-1/2 md:w-1/4" key={idx} >
-                                <Link href={prod.productURL || ''} >
+                            <div className="p-2 w-1/2 md:w-1/4" key={idx}
+                            // style={{background: url()}}
+                            >
+                                <Link href={prod.productURL}>
                                     <Image src={prod.imageUrls[0]} alt={prod.name} width={1600} height={2000} sizes="100"
-                                        className="w-full border border-black" />
+                                        className="w-full"
+                                    />
                                 </Link>
                                 <p className="py-2 md:py-4 text-center">{prod.name}</p>
                             </div>
@@ -42,7 +45,7 @@ export default function ProductsGallery({ gallery }: Props) {
                     </div>
                 </div>
                 <div className="text-center py-12">
-                    <Link href={gallery.galleryUrl} className="px-12 py-4 bg-gray-500">Xem thêm</Link> 
+                    <Link href={gallery.galleryUrl} className="px-12 py-4 bg-gray-500">Xem thêm</Link>
                 </div>
             </section>
         </>

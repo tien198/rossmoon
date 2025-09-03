@@ -1,4 +1,3 @@
-import { Gender } from '@/shared/enums/gender'
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { categorySchema } from './category.zod'
@@ -14,8 +13,6 @@ export const productSchema = z.object({
     slug: z.string(),
     imageUrls: z.array(z.url()),
     price: z.number().positive(),
-
-    gender: z.enum(Gender),
 
     description: z.string().min(10),
     // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )

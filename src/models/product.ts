@@ -2,7 +2,6 @@ import type { WithId, Document, DeleteResult, Filter } from "mongodb";
 import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
-import { Gender } from "@/shared/enums/gender";
 import { productCollection } from "@/services/mongoDbCollections";
 import { CategoryPart } from "./category.zod";
 
@@ -17,8 +16,6 @@ export default class ProductImp implements ProductPart {
     slug?: string
     imageUrls?: string[]
     price?: number
-
-    gender?: Gender
 
     description?: string
     widht?: number

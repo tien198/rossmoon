@@ -2,7 +2,6 @@
     {
         "name": "Ví Đựng Hộ Chiếu",
         "price": 12700000,
-        "gender": "female",
         "description": "Mẫu ví đựng hộ chiếu được may từ chất liệu Monogram Glow Canvas rực rỡ, kết hợp đường viền sơn màu đồng điệu được lấy cảm hứng từ bãi biển Miami. Bên cạnh ngăn đựng hộ chiếu, sản phẩm còn có bốn khe đựng thẻ và một ngăn phụ bên trong.",
         "width": 10,
         "height": 14,
@@ -19,7 +18,6 @@
     {
         "name": "Túi Nice BB",
         "price": 46500000,
-        "gender": "female",
         "description": "Phiên bản này của túi Nice BB gây ấn tượng với bảng màu lấy cảm hứng từ các mẫu son thuộc dòng mỹ phẩm Louis Vuitton Beauty. Được may từ da Epi có vân và lớp lót bằng vải dệt dễ giặt, thiết kế nhỏ gọn sở hữu cấu trúc mềm mại cùng quai xách bằng da có thể xếp phẳng để tiết kiệm không gian, dễ dàng để vào trong hành lý du lịch. Sản phẩm được hoàn thiện với miệng túi rộng và khóa kéo hai chiều có đầu khóa khắc logo LV.",
         "width": 24,
         "height": 18,
@@ -36,7 +34,6 @@
     {
         "name": "Đầm Dáng Sơ Mi",
         "price": 61000000,
-        "gender": "female",
         "description": "Mẫu đầm dáng sơ mi sang trọng được may từ vải Cotton Poplin mềm mại, kết hợp hàng khuy được may ẩn tinh tế. Phần cổ áo trông ấn tượng hơn với chi tiết khăn lụa in họa tiết Monogram và luồn qua hai khoen lớn, tạo điểm nhấn thời thượng mà không kém phần thanh lịch.",
         "imageUrls": ["/louis-vuitton-monogram-scarf-shirt-dress--FTRS10A05607_PM2_Front view.avif"],
         "features": [
