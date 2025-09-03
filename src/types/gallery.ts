@@ -10,6 +10,7 @@ export type Gallery = {
     desktopBanner?: string
     mobileBanner?: string
     products: ProductWithUrl[]
+    galleryUrl: string
 }
 
 
