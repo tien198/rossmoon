@@ -4,13 +4,14 @@ import type { Product, ProductPart } from "./product.zod";
 import { ObjectId } from "mongodb";
 import { Gender } from "@/shared/enums/gender";
 import { productCollection } from "@/services/mongoDbCollections";
+import { CategoryPart } from "./category.zod";
 
 
 
 export default class ProductImp implements ProductPart {
     _id?: ObjectId
     collectionId?: ObjectId
-    categoryId?: ObjectId
+    category?: CategoryPart
 
     name?: string
     slug?: string
@@ -30,12 +31,9 @@ export default class ProductImp implements ProductPart {
     sustainability?: string
     productCare?: string
 
-    // Virtural fields
-    productUrl?: string
 
     constructor(prod?: ProductPart) {
         Object.assign(this, prod)
-        this.productUrl = '/product/' + this.slug
     }
 
     get priceFormatted() {
@@ -56,7 +54,6 @@ export default class ProductImp implements ProductPart {
 
     static standardizeProduct(prod: ProductImp) {
         const prodCp = { ...prod }
-        delete prodCp.productUrl
         return prodCp
     }
 

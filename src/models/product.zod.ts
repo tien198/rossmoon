@@ -1,13 +1,14 @@
 import { Gender } from '@/shared/enums/gender'
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
+import { categorySchema } from './category.zod'
 
 
 
 export const productSchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     collectionId: z.instanceof(ObjectId).nullish(),
-    categoryId: z.instanceof(ObjectId).nullish(),
+    category: categorySchema.partial(),
 
     name: z.string(),
     slug: z.string(),
