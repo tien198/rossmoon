@@ -1,12 +1,13 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { categorySchema } from './category.zod'
+import { collectionShema } from './collection.zod'
 
 
 
 export const productSchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
-    collectionId: z.instanceof(ObjectId).nullish(),
+    collection: collectionShema.partial(),
     category: categorySchema.partial(),
 
     name: z.string(),

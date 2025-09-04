@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "68b8fc05fc5fc76d89529557"
+  },
+  "name": "woman",
+  "slug": "for-woman"
+},
+{
+  "_id": {
+    "$oid": "68b8fc05fc5fc76d89529558"
+  },
+  "name": "man",
+  "slug": "for-man"
+},
+{
+  "_id": {
+    "$oid": "68b8fc05fc5fc76d89529559"
+  },
+  "name": "pet",
+  "slug": "for-pets"
+},
+{
+  "_id": {
+    "$oid": "68b8fc05fc5fc76d8952955a"
+  },
+  "name": "perfumes-and-beauty",
+  "slug": "perfumes-and-beauty"
+}]

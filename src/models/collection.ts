@@ -3,6 +3,7 @@ import type { Collection, CollectionPart } from "./collection.zod";
 
 import { ObjectId } from "mongodb";
 import { collectionCollection } from "@/services/mongoDbCollections";
+import { Category } from "./category.zod";
 
 
 
@@ -12,7 +13,7 @@ export default class CollectionImp implements CollectionPart {
     url?: string
     imageUrl?: string
     releaseDate?: string | number | Date
-    categoryId?: ObjectId
+    category?: Category
 
     constructor(col?: CollectionPart) {
         Object.assign(this, col)

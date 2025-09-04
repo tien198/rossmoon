@@ -4,12 +4,13 @@ import type { Product, ProductPart } from "./product.zod";
 import { ObjectId } from "mongodb";
 import { productCollection } from "@/services/mongoDbCollections";
 import { CategoryPart } from "./category.zod";
+import { CollectionPart } from "./collection.zod";
 
 
 
 export default class ProductImp implements ProductPart {
     _id?: ObjectId
-    collectionId?: ObjectId
+    collection?: CollectionPart
     category?: CategoryPart
 
     name?: string
