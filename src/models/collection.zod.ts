@@ -6,7 +6,7 @@ import { categorySchema } from "./category.zod";
 export const collectionShema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     name: z.string(),
-    url: z.string(),
+    slug: z.string(),
     imageUrl: z.url(),
     releaseDate: zDate(),
     category: categorySchema.nullish()

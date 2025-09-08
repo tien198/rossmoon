@@ -10,7 +10,7 @@ import { Category } from "./category.zod";
 export default class CollectionImp implements CollectionPart {
     _id?: ObjectId
     name?: string
-    url?: string
+    slug?: string
     imageUrl?: string
     releaseDate?: string | number | Date
     category?: Category

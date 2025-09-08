@@ -3,7 +3,7 @@
     "$oid": "68b90b12fc8982ae09f9bffe"
   },
   "name": "Phụ kiện làm đẹp",
-  "url": "none-url",
+  "slug": "none-url",
   "imageUrl": "image-url",
   "releaseDate": {
     "$date": "2025-08-29T13:54:05.000Z"
@@ -21,7 +21,7 @@
     "$oid": "68b90b12fc8982ae09f9bfff"
   },
   "name": "Phấn mắt LV Ombers",
-  "url": "none-url",
+  "slug": "none-url",
   "imageUrl": "image-url",
   "releaseDate": {
     "$date": "2025-08-29T13:54:05.000Z"
@@ -39,7 +39,7 @@
     "$oid": "68b90b12fc8982ae09f9c000"
   },
   "name": "Son dưỡng LV Baume",
-  "url": "none-url",
+  "slug": "none-url",
   "imageUrl": "image-url",
   "releaseDate": {
     "$date": "2025-08-29T13:54:05.000Z"
@@ -57,7 +57,7 @@
     "$oid": "68b90b12fc8982ae09f9c001"
   },
   "name": "Son môi LV Rouge",
-  "url": "none-url",
+  "slug": "none-url",
   "imageUrl": "image-url",
   "releaseDate": {
     "$date": "2025-08-29T13:54:05.000Z"
