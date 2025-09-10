@@ -2,13 +2,15 @@ import zDate from "@/shared/zod.date";
 import { ObjectId } from "mongodb";
 import z from "zod";
 import { categorySchema } from "./category.zod";
+import { subCollectionSchema } from "./subCollection.zod";
 
 export const collectionShema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     name: z.string(),
     slug: z.string(),
-    imageUrl: z.url(),
+    subCollections: z.array(subCollectionSchema),
     releaseDate: zDate(),
+    type: z.string(),
     category: categorySchema.nullish()
 })
 

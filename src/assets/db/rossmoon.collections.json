@@ -1,72 +1,74 @@
-[{
-  "_id": {
-    "$oid": "68b90b12fc8982ae09f9bffe"
-  },
-  "name": "Phụ kiện làm đẹp",
-  "slug": "none-url",
-  "imageUrl": "image-url",
-  "releaseDate": {
-    "$date": "2025-08-29T13:54:05.000Z"
-  },
-  "category": {
+[
+  {
     "_id": {
-      "$oid": "68b8fc05fc5fc76d89529557"
+      "$oid": "68b90b12fc8982ae09f9bffe"
     },
-    "name": "woman",
-    "slug": "for-woman"
-  }
-},
-{
-  "_id": {
-    "$oid": "68b90b12fc8982ae09f9bfff"
+    "name": "Phụ kiện làm đẹp",
+    "slug": "/for-woman/phu-kien-lam-dep/_/68b90b12fc8982ae09f9bffe",
+    "imageUrl": "image-url",
+    "releaseDate": {
+      "$date": "2025-08-29T13:54:05.000Z"
+    },
+    "category": {
+      "_id": {
+        "$oid": "68b8fc05fc5fc76d89529557"
+      },
+      "name": "woman",
+      "slug": "for-woman"
+    }
   },
-  "name": "Phấn mắt LV Ombers",
-  "slug": "none-url",
-  "imageUrl": "image-url",
-  "releaseDate": {
-    "$date": "2025-08-29T13:54:05.000Z"
-  },
-  "category": {
+  {
     "_id": {
-      "$oid": "68b8fc05fc5fc76d89529557"
+      "$oid": "68b90b12fc8982ae09f9bfff"
     },
-    "name": "woman",
-    "slug": "for-woman"
-  }
-},
-{
-  "_id": {
-    "$oid": "68b90b12fc8982ae09f9c000"
+    "name": "Phấn mắt LV Ombers",
+    "slug": "/for-woman/phan-mat-lv-ombers/_/68b90b12fc8982ae09f9bfff",
+    "imageUrl": "image-url",
+    "releaseDate": {
+      "$date": "2025-08-29T13:54:05.000Z"
+    },
+    "category": {
+      "_id": {
+        "$oid": "68b8fc05fc5fc76d89529557"
+      },
+      "name": "woman",
+      "slug": "for-woman"
+    }
   },
-  "name": "Son dưỡng LV Baume",
-  "slug": "none-url",
-  "imageUrl": "image-url",
-  "releaseDate": {
-    "$date": "2025-08-29T13:54:05.000Z"
-  },
-  "category": {
+  {
     "_id": {
-      "$oid": "68b8fc05fc5fc76d89529557"
+      "$oid": "68b90b12fc8982ae09f9c000"
     },
-    "name": "woman",
-    "slug": "for-woman"
-  }
-},
-{
-  "_id": {
-    "$oid": "68b90b12fc8982ae09f9c001"
+    "name": "Son dưỡng LV Baume",
+    "slug": "/for-woman/son-duong-lv-ombers/_/68b90b12fc8982ae09f9c000",
+    "imageUrl": "image-url",
+    "releaseDate": {
+      "$date": "2025-08-29T13:54:05.000Z"
+    },
+    "category": {
+      "_id": {
+        "$oid": "68b8fc05fc5fc76d89529557"
+      },
+      "name": "woman",
+      "slug": "for-woman"
+    }
   },
-  "name": "Son môi LV Rouge",
-  "slug": "none-url",
-  "imageUrl": "image-url",
-  "releaseDate": {
-    "$date": "2025-08-29T13:54:05.000Z"
-  },
-  "category": {
+  {
     "_id": {
-      "$oid": "68b8fc05fc5fc76d89529557"
+      "$oid": "68b90b12fc8982ae09f9c001"
     },
-    "name": "woman",
-    "slug": "for-woman"
+    "name": "Son môi LV Rouge",
+    "slug": "/for-woman/son-moi-lv-rouge/_/68b90b12fc8982ae09f9c001",
+    "imageUrl": "image-url",
+    "releaseDate": {
+      "$date": "2025-08-29T13:54:05.000Z"
+    },
+    "category": {
+      "_id": {
+        "$oid": "68b8fc05fc5fc76d89529557"
+      },
+      "name": "woman",
+      "slug": "for-woman"
+    }
   }
-}]
+]

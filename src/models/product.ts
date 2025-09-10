@@ -1,4 +1,4 @@
-import type { WithId, Document, DeleteResult, Filter } from "mongodb";
+import type { WithId, DeleteResult, Filter } from "mongodb";
 import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
@@ -28,6 +28,7 @@ export default class ProductImp implements ProductPart {
     notice?: string
     sustainability?: string
     productCare?: string
+    
 
 
     constructor(prod?: ProductPart) {
@@ -66,7 +67,7 @@ export default class ProductImp implements ProductPart {
     }
 
     static async findById(id: string | ObjectId) {
-        let query: WithId<Document> | null = null
+        let query: WithId<ProductPart> | null = null
         switch (typeof id) {
             case 'string': {
                 query = await productCollection.findOne({ _id: ObjectId.createFromHexString(id) })
@@ -84,7 +85,7 @@ export default class ProductImp implements ProductPart {
         return query
     }
 
-    static async update(filter: Filter<Document>, prod: ProductPart) {
+    static async update(filter: Filter<ProductPart>, prod: ProductPart) {
         await productCollection.updateOne(
             { ...filter },
             { ...prod }
