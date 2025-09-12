@@ -1,14 +1,11 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
-import { categorySchema } from './category.zod'
-import { collectionShema } from './collection.zod'
+import { previewCategorySchema } from './category.zod'
 
 
 
 export const productSchema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
-    collection: collectionShema.partial(),
-    category: categorySchema.partial(),
 
     name: z.string(),
     slug: z.string(),
@@ -31,10 +28,23 @@ export const productSchema = z.object({
     // "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng"
     notice: z.string().nullish(),
     sustainability: z.string().nullish(),
-    productCare: z.string().nullish()
+    productCare: z.string().nullish(),
 
+    category: previewCategorySchema.nullish(),
 })
 
 export type Product = z.infer<typeof productSchema>
 
 export type ProductPart = Partial<Product>
+
+
+//---- previewProductSchema------------------------------------------------------
+export const previewProductSchema = productSchema.pick({
+    _id: true,
+    name: true,
+    price: true,
+    slug: true,
+    imageUrls: true
+})
+
+export type PreviewProduct = z.infer<typeof previewProductSchema>

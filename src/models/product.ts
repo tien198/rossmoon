@@ -3,15 +3,12 @@ import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
 import { productCollection } from "@/services/mongoDbCollections";
-import { CategoryPart } from "./category.zod";
-import { CollectionPart } from "./collection.zod";
+import { PreviewCategory } from "./category.zod";
 
 
 
 export default class ProductImp implements ProductPart {
     _id?: ObjectId
-    collection?: CollectionPart
-    category?: CategoryPart
 
     name?: string
     slug?: string
@@ -19,7 +16,7 @@ export default class ProductImp implements ProductPart {
     price?: number
 
     description?: string
-    widht?: number
+    width?: number
     height?: number
     depth?: number
 
@@ -28,8 +25,8 @@ export default class ProductImp implements ProductPart {
     notice?: string
     sustainability?: string
     productCare?: string
-    
 
+    category?: PreviewCategory
 
     constructor(prod?: ProductPart) {
         Object.assign(this, prod)

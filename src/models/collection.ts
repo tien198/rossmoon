@@ -3,7 +3,7 @@ import type { Collection, CollectionPart } from "./collection.zod";
 
 import { ObjectId } from "mongodb";
 import { collectionCollection } from "@/services/mongoDbCollections";
-import { Category } from "./category.zod";
+import { PreviewCategory } from "./category.zod";
 import { SubCollection } from "./subCollection.zod";
 
 
@@ -12,9 +12,9 @@ export default class CollectionImp implements CollectionPart {
     _id: ObjectId
     name?: string
     slug?: string
-    subCollections?: SubCollection[]
+    imageUrl?: string
     releaseDate?: string | number | Date
-    category?: Category
+    category?: PreviewCategory
 
     constructor(col?: CollectionPart) {
         this._id = col!._id!
@@ -32,6 +32,7 @@ export default class CollectionImp implements CollectionPart {
         )
     }
 
+    /*
     async addSubCollection(subCol: SubCollection) {
         await collectionCollection.updateOne(
             { _id: this._id },
@@ -46,6 +47,7 @@ export default class CollectionImp implements CollectionPart {
             }
         )
     }
+    */
 
     static async find(skip?: number, limit?: number) {
         let query = collectionCollection.find()

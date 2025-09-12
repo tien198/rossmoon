@@ -1,17 +1,16 @@
 import zDate from "@/shared/zod.date";
 import { ObjectId } from "mongodb";
 import z from "zod";
-import { categorySchema } from "./category.zod";
-import { subCollectionSchema } from "./subCollection.zod";
+import { previewCategorySchema } from "./category.zod";
 
 export const collectionShema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     name: z.string(),
     slug: z.string(),
-    subCollections: z.array(subCollectionSchema),
+    imageUrl: z.url().nullish(),
     releaseDate: zDate(),
-    type: z.string(),
-    category: categorySchema.nullish()
+    category: previewCategorySchema.nullish(),
+    storyId: z.instanceof(ObjectId).nullish(),
 })
 
 export type Collection = z.infer<typeof collectionShema>
