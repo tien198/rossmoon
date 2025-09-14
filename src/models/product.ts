@@ -4,6 +4,7 @@ import type { Product, ProductPart } from "./product.zod";
 import { ObjectId } from "mongodb";
 import { productCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
+import { MagazineFeature } from "./magazineFeature.zod";
 
 
 
@@ -14,8 +15,8 @@ export default class ProductImp implements ProductPart {
     slug?: string
     imageUrls?: string[]
     price?: number
-
     description?: string
+
     width?: number
     height?: number
     depth?: number
@@ -26,7 +27,10 @@ export default class ProductImp implements ProductPart {
     sustainability?: string
     productCare?: string
 
+    magazineFeatures?: MagazineFeature[]
     category?: NestedCategory
+
+    createdAt?: Date
 
     constructor(prod?: ProductPart) {
         Object.assign(this, prod)

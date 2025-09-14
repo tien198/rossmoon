@@ -12,14 +12,18 @@ export default class CollectionImp implements CollectionPart {
     name?: string
     slug?: string
     imageUrl?: string
-    releaseDate?: string | number | Date
-    category?: NestedCategory
 
+    category?: NestedCategory
+    storyId?: ObjectId
+    subCollections?: ObjectId[]
+
+    createdAt?: string | number | Date
+    
     constructor(col?: CollectionPart) {
         this._id = col!._id!
         Object.assign(this, col)
     }
-
+    
     async save() {
         await collectionCollection.insertOne(this)
     }

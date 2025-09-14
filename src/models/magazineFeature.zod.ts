@@ -1,3 +1,4 @@
+import zDate from "@/shared/zod.date";
 import { ObjectId } from "mongodb";
 import z from "zod";
 
@@ -16,7 +17,9 @@ export const magazineFeatureSchema = z.object({
     description: z.string().nullish(),
     image: bannerImageSchema.nullish(),
 
-    collectionId: z.instanceof(ObjectId)
+    collectionId: z.instanceof(ObjectId),
+
+    createdAt: zDate()
 })
 
 export type MagazineFeature = z.infer<typeof magazineFeatureSchema>

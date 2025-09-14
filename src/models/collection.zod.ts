@@ -8,12 +8,13 @@ export const collectionShema = z.object({
     name: z.string(),
     slug: z.string(),
     imageUrl: z.url().nullish(),
-    releaseDate: zDate(),
 
     category: nestedCategorySchema.nullish(),
     storyId: z.instanceof(ObjectId).nullish(),
     // if collection hash sub-collections, subCollections was existed
-    subCollections: z.array(z.instanceof(ObjectId)).nullish()
+    subCollections: z.array(z.instanceof(ObjectId)).nullish(),
+    
+    createdAt: zDate(),
 })
 
 export type Collection = z.infer<typeof collectionShema>

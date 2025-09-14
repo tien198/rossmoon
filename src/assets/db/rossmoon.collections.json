@@ -13,8 +13,7 @@
       "_id": {
         "$oid": "68b8fc05fc5fc76d89529557"
       },
-      "name": "woman",
-      "slug": "for-woman"
+      "name": "woman"
     }
   },
   {
@@ -31,8 +30,7 @@
       "_id": {
         "$oid": "68b8fc05fc5fc76d89529557"
       },
-      "name": "woman",
-      "slug": "for-woman"
+      "name": "woman"
     }
   },
   {
@@ -49,8 +47,7 @@
       "_id": {
         "$oid": "68b8fc05fc5fc76d89529557"
       },
-      "name": "woman",
-      "slug": "for-woman"
+      "name": "woman"
     }
   },
   {
@@ -67,8 +64,7 @@
       "_id": {
         "$oid": "68b8fc05fc5fc76d89529557"
       },
-      "name": "woman",
-      "slug": "for-woman"
+      "name": "woman"
     }
   }
 ]
