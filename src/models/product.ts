@@ -3,7 +3,7 @@ import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
 import { productCollection } from "@/services/mongoDbCollections";
-import { PreviewCategory } from "./category.zod";
+import { NestedCategory } from "./category.zod";
 
 
 
@@ -26,7 +26,7 @@ export default class ProductImp implements ProductPart {
     sustainability?: string
     productCare?: string
 
-    category?: PreviewCategory
+    category?: NestedCategory
 
     constructor(prod?: ProductPart) {
         Object.assign(this, prod)

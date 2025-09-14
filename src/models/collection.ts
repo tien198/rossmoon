@@ -3,7 +3,7 @@ import type { Collection, CollectionPart } from "./collection.zod";
 
 import { ObjectId } from "mongodb";
 import { collectionCollection } from "@/services/mongoDbCollections";
-import { PreviewCategory } from "./category.zod";
+import { NestedCategory } from "./category.zod";
 
 
 
@@ -13,7 +13,7 @@ export default class CollectionImp implements CollectionPart {
     slug?: string
     imageUrl?: string
     releaseDate?: string | number | Date
-    category?: PreviewCategory
+    category?: NestedCategory
 
     constructor(col?: CollectionPart) {
         this._id = col!._id!

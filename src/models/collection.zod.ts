@@ -9,8 +9,11 @@ export const collectionShema = z.object({
     slug: z.string(),
     imageUrl: z.url().nullish(),
     releaseDate: zDate(),
+
     category: nestedCategorySchema.nullish(),
     storyId: z.instanceof(ObjectId).nullish(),
+    // if collection hash sub-collections, subCollections was existed
+    subCollections: z.array(z.instanceof(ObjectId)).nullish()
 })
 
 export type Collection = z.infer<typeof collectionShema>

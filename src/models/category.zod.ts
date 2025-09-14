@@ -25,4 +25,4 @@ export const nestedCategorySchema = categorySchema.pick({
     name: true
 })
 
-export type PreviewCategory = z.infer<typeof nestedCategorySchema>
+export type NestedCategory = z.infer<typeof nestedCategorySchema>
