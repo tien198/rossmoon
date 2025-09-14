@@ -1,32 +1,34 @@
-[{
-  "_id": {
-    "$oid": "68b8fc05fc5fc76d89529557"
+[
+  {
+    "_id": {
+      "$oid": "68c6de93f718c65b756b140b"
+    },
+    "name": "woman",
+    "slug": "for-woman",
+    "type": "collection"
   },
-  "name": "woman",
-  "slug": "for-woman",
-  "type": "collection"
-},
-{
-  "_id": {
-    "$oid": "68b8fc05fc5fc76d89529558"
+  {
+    "_id": {
+      "$oid": "68c6de93f718c65b756b140c"
+    },
+    "name": "man",
+    "slug": "for-man",
+    "type": "collection"
   },
-  "name": "man",
-  "slug": "for-man",
-  "type": "collection"
-},
-{
-  "_id": {
-    "$oid": "68b8fc05fc5fc76d89529559"
+  {
+    "_id": {
+      "$oid": "68c6de93f718c65b756b140d"
+    },
+    "name": "pet",
+    "slug": "for-pets",
+    "type": "collection"
   },
-  "name": "pet",
-  "slug": "for-pets",
-  "type": "collection"
-},
-{
-  "_id": {
-    "$oid": "68b8fc05fc5fc76d8952955a"
-  },
-  "name": "perfumes-and-beauty",
-  "slug": "perfumes-and-beauty",
-  "type": "collection"
-}]
+  {
+    "_id": {
+      "$oid": "68c6de93f718c65b756b140e"
+    },
+    "name": "perfumes-and-beauty",
+    "slug": "perfumes-and-beauty",
+    "type": "collection"
+  }
+]

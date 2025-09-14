@@ -2,29 +2,39 @@ import { Collection } from "../collection.zod";
 
 const collections: Collection[] = [
     {
-        "name": "Phụ kiện làm đẹp",
-        "slug": "/phu-kien-lam-dep",
-        "imageUrl": "image-url",
+        "name": "la-beaute-louis-vuitton",
+        "slug": "/la-beaute-louis-vuitton",
+        "imageUrl": "/images/la-beaute-louis-vuitton/Masthead_BEAUTY_BEAUTYCAMPAIGN_MODELS_IMG06_LVCOM_1920x1080_ANIMATION.jpg",
         "category": {
             "_id": {
-                "$oid": "68b8fc05fc5fc76d89529557"
+                "$oid": "68c6de93f718c65b756b140b"
             },
             "name": "woman"
         },
+        "subCollections": [],
         "createdAt": {
             "$date": "2025-08-29T13:54:05.000Z"
         },
     },
     {
-        "name": "Phấn mắt LV Ombers",
-        "slug": "/phan-mat-lv-ombers",
-        "imageUrl": "image-url",
+        "name": "the last",
+        "slug": "/the-last",
         "category": {
             "_id": {
-                "$oid": "68b8fc05fc5fc76d89529557"
+                "$oid": "68c6de93f718c65b756b140b"
             },
             "name": "woman"
         },
+        "subCollections": [],
+        "createdAt": {
+            "$date": "2025-08-29T13:54:05.000Z"
+        },
+    },
+    
+    {
+        "name": "Phấn mắt LV Ombers",
+        "slug": "/phan-mat-lv-ombers",
+        "imageUrl": "/images/la-beaute-louis-vuitton/ombres/Beauty_banner.webp",
         "createdAt": {
             "$date": "2025-08-29T13:54:05.000Z"
         },
@@ -35,7 +45,7 @@ const collections: Collection[] = [
         "imageUrl": "image-url",
         "category": {
             "_id": {
-                "$oid": "68b8fc05fc5fc76d89529557"
+                "$oid": "68c6de93f718c65b756b140b"
             },
             "name": "woman"
         },
@@ -49,7 +59,7 @@ const collections: Collection[] = [
         "imageUrl": "image-url",
         "category": {
             "_id": {
-                "$oid": "68b8fc05fc5fc76d89529557"
+                "$oid": "68c6de93f718c65b756b140b"
             },
             "name": "woman"
         },
