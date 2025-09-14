@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
-import { previewCategorySchema } from './category.zod'
+import { nestedCategorySchema } from './category.zod'
+import { magazineFeatureSchema } from './magazineFeature.zod'
 
 
 
@@ -30,21 +31,10 @@ export const productSchema = z.object({
     sustainability: z.string().nullish(),
     productCare: z.string().nullish(),
 
-    category: previewCategorySchema.nullish(),
+    magazineFeature: z.array(magazineFeatureSchema).nullish(),
+    category: nestedCategorySchema.nullish(),
 })
 
 export type Product = z.infer<typeof productSchema>
 
 export type ProductPart = Partial<Product>
-
-
-//---- previewProductSchema------------------------------------------------------
-export const previewProductSchema = productSchema.pick({
-    _id: true,
-    name: true,
-    price: true,
-    slug: true,
-    imageUrls: true
-})
-
-export type PreviewProduct = z.infer<typeof previewProductSchema>

@@ -14,10 +14,15 @@ export type Category = z.infer<typeof categorySchema>
 export type CategoryPart = Partial<Category>
 
 
-//---- previewCategorySchema ------------------------------------------------------
-export const previewCategorySchema = categorySchema.pick({
+
+
+
+
+
+//---- nestedCategorySchema ------------------------------------------------------
+export const nestedCategorySchema = categorySchema.pick({
     _id: true,
     name: true
 })
 
-export type PreviewCategory = z.infer<typeof previewCategorySchema>
+export type PreviewCategory = z.infer<typeof nestedCategorySchema>

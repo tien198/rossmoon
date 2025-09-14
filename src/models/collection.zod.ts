@@ -1,7 +1,7 @@
 import zDate from "@/shared/zod.date";
 import { ObjectId } from "mongodb";
 import z from "zod";
-import { previewCategorySchema } from "./category.zod";
+import { nestedCategorySchema } from "./category.zod";
 
 export const collectionShema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
@@ -9,7 +9,7 @@ export const collectionShema = z.object({
     slug: z.string(),
     imageUrl: z.url().nullish(),
     releaseDate: zDate(),
-    category: previewCategorySchema.nullish(),
+    category: nestedCategorySchema.nullish(),
     storyId: z.instanceof(ObjectId).nullish(),
 })
 
