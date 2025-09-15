@@ -4,6 +4,7 @@ import type { Collection, CollectionPart } from "./collection.zod";
 import { ObjectId } from "mongodb";
 import { collectionCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
+import { BannerImage } from "./bannerImage.zod";
 
 
 
@@ -11,19 +12,21 @@ export default class CollectionImp implements CollectionPart {
     _id: ObjectId
     name?: string
     slug?: string
-    imageUrl?: string
+    bannerImg?: BannerImage
+    type?: 'collection' | 'edit'
 
     category?: NestedCategory
     storyId?: ObjectId
     subCollections?: ObjectId[]
 
+
     createdAt?: string | number | Date
-    
+
     constructor(col?: CollectionPart) {
         this._id = col!._id!
         Object.assign(this, col)
     }
-    
+
     async save() {
         await collectionCollection.insertOne(this)
     }

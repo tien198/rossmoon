@@ -1,24 +1,22 @@
 import zDate from "@/shared/zod.date";
 import { ObjectId } from "mongodb";
 import z from "zod";
+import { bannerImageSchema } from "./bannerImage.zod";
+import { nestedProductSchema } from "./product.zod";
 
-const bannerImageSchema = z.object({
-    mobileUrl: z.url(),
-    desktopUrl: z.url(),
-    // if false, half width viewport
-    isFullWidth: z.boolean().nullish()
-})
+
 
 
 
 export const magazineFeatureSchema = z.object({
-    _id: z.instanceof(ObjectId),
+    _id: z.instanceof(ObjectId).nullish(),
     title: z.string().nullish(),
     description: z.string().nullish(),
-    image: bannerImageSchema.nullish(),
+    bannerImage: bannerImageSchema.nullish(),
+
+    products: z.array(nestedProductSchema.nullish()),
 
     collectionId: z.instanceof(ObjectId),
-
     createdAt: zDate()
 })
 

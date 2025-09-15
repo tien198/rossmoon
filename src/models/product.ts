@@ -4,7 +4,7 @@ import type { Product, ProductPart } from "./product.zod";
 import { ObjectId } from "mongodb";
 import { productCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
-import { MagazineFeature } from "./magazineFeature.zod";
+import { ProductAttributes } from "./product.attributes.zod";
 
 
 
@@ -17,9 +17,7 @@ export default class ProductImp implements ProductPart {
     price?: number
     description?: string
 
-    width?: number
-    height?: number
-    depth?: number
+    attributes?: ProductAttributes
 
     features?: string[]
     origin?: string
@@ -27,7 +25,6 @@ export default class ProductImp implements ProductPart {
     sustainability?: string
     productCare?: string
 
-    magazineFeatures?: MagazineFeature[]
     category?: NestedCategory
 
     createdAt?: Date

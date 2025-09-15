@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { nestedCategorySchema } from './category.zod'
-import { magazineFeatureSchema } from './magazineFeature.zod'
+import { productAttributesSchema } from './product.attributes.zod'
 import zDate from '@/shared/zod.date'
 
 
@@ -14,17 +14,14 @@ export const productSchema = z.object({
     price: z.number().positive(),
     description: z.string().min(10),
 
-    imageUrls: z.array(z.url()),
-    // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )
-    width: z.number().positive().nullish(),
-    height: z.number().positive().nullish(),
-    depth: z.number().positive().nullish(),
+
+    attributes: productAttributesSchema,
 
     /* List of detail features
     [ 
         "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở" 
         ]     */
-    features: z.array(z.string()),
+    features: z.array(z.string()).nullish(),
     // "Sản phẩm được sản xuất tại Pháp, Tây Ban Nha, Ý hoặc Mỹ."
     origin: z.string().nullish(),
     // "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng"
@@ -32,7 +29,6 @@ export const productSchema = z.object({
     sustainability: z.string().nullish(),
     productCare: z.string().nullish(),
 
-    magazineFeatures: z.array(magazineFeatureSchema).nullish(),
     category: nestedCategorySchema.nullish(),
 
     createdAt: zDate(),
@@ -41,3 +37,18 @@ export const productSchema = z.object({
 export type Product = z.infer<typeof productSchema>
 
 export type ProductPart = Partial<Product>
+
+
+
+
+
+
+
+export const nestedProductSchema = productSchema.pick({
+    _id: true,
+    name: true,
+    slug: true,
+    attributes: true,
+})
+
+export type NestedProduct = z.infer<typeof nestedProductSchema>
