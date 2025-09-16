@@ -2,8 +2,11 @@
   "_id": {
     "$oid": "68c8cd00af36274c8ce4326a"
   },
-  "collectionId": {
-    "$oid": "68c7e25e9bb388271ee43269"
+  "collection": {
+    "_id": {
+      "$oid": "68c7e25e9bb388271ee43269"
+    },
+    "slug": "phan-mat-lv-ombers"
   },
   "products": [
     {

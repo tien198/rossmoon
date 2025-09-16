@@ -12,7 +12,7 @@ export default async function New({ params }: Props) {
 
     const col = await CollectionImp.findOne({ slug: pars['collection-slug'] })
 
-    const docs = collectionsCollection.aggregate([
+    const docs = await collectionsCollection.aggregate([
         {
             $match: { slug: pars['collection-slug'] }
         },
@@ -24,7 +24,7 @@ export default async function New({ params }: Props) {
                 as: 'magazineFeatures'
             }
         }
-    ])
+    ]).toArray()
     console.log(docs);
     
 

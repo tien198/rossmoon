@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 import z from "zod";
 import { bannerImageSchema } from "./bannerImage.zod";
 import { nestedProductSchema } from "./product.zod";
+import { nestedCollectionSchema } from "./collection.zod";
 
 
 
@@ -16,7 +17,7 @@ export const magazineFeatureSchema = z.object({
 
     products: z.array(nestedProductSchema.nullish()),
 
-    collectionId: z.instanceof(ObjectId),
+    collection: nestedCollectionSchema,
     createdAt: zDate()
 })
 

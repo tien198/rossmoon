@@ -22,3 +22,14 @@ export const collectionShema = z.object({
 export type Collection = z.infer<typeof collectionShema>
 
 export type CollectionPart = Partial<Collection>
+
+
+
+
+
+export const nestedCollectionSchema = collectionShema.pick({
+    _id: true,
+    slug: true
+})
+
+export type NestedCollection = z.infer<typeof nestedCategorySchema>
