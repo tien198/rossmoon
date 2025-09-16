@@ -7,6 +7,7 @@ import styles from './nav.module.scss'
 import Panel from "./Nav.List.Panel"
 import { useContext } from "react"
 import { ListPanelContext } from "./store/panelContext"
+import Link from "next/link"
 
 type Props = {
     item: MenuItem
@@ -40,13 +41,13 @@ export default function Item({ item, idx, layoutActive }: Props) {
                     <span
                         className={isSelectedCls}
                     >
-                        <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            href={item.url!}
+                        // target="_blank"
+                        // rel="noopener noreferrer"
                         >
                             {item.nameDisplay}
-                        </a>
+                        </Link>
                     </span>
                 </div>
             </li>

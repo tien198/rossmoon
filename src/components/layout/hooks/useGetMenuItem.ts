@@ -52,12 +52,12 @@ export function useGetNavMenuItems(): MenuItem {
             {
                 display: 'cate',
                 nameDisplay: "Sản phẩm mới",
-                // 3
+                // 2
                 categoryItems: [
                     {
                         display: 'link',
                         nameDisplay: "Đồ Nữ",
-                        url: 'none',
+                        url: '/new/women/phan-mat-lv-ombers',
                     },
                     {
                         display: 'link',
