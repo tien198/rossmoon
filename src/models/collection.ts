@@ -38,31 +38,36 @@ export default class CollectionImp implements CollectionPart {
         )
     }
 
-    /*
-    async addSubCollection(subCol: SubCollection) {
-        await collectionsCollection.updateOne(
-            { _id: this._id },
-            {
-                $push: {
-                    subCollections: {
-                        _id: new ObjectId(),
-                        name: subCol.name,
-                        imageUrl: subCol.imageUrl
-                    }
-                }
-            }
-        )
-    }
-    */
-
-    static async find(skip?: number, limit?: number) {
-        let query = collectionsCollection.find()
+    static async find(filter?: Filter<CollectionPart>, skip?: number, limit?: number) {
+        let query = collectionsCollection.find(filter ? filter : {})
         if (skip)
             query = query.skip(skip)
         if (limit)
             query = query.limit(limit)
 
         return await query.toArray()
+    }
+
+    static async findOne(filter?: Filter<CollectionPart>) {
+        return await collectionsCollection.findOne(filter ? filter : {})
+    }
+
+    static async findFeatures(collectionSlug: string) {
+        const features = collectionsCollection.aggregate([
+            {
+                $match: { slug: collectionSlug }
+            },
+            {
+                $lookup: {
+                    from: 'magazineFeatures',
+                    localField: '_id',
+                    foreignField: 'collectionId',
+                    as: 'magazineFeatures'
+                }
+            }
+        ])
+
+        return features
     }
 
     static async findById(id: string | ObjectId) {

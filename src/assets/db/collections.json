@@ -3,7 +3,7 @@
     "$oid": "68c7e25e9bb388271ee43269"
   },
   "name": "Phấn mắt LV Ombers",
-  "slug": "/phan-mat-lv-ombers",
+  "slug": "phan-mat-lv-ombers",
   "bannerImg": {
     "desktopUrl": "/images/la-beaute-louis-vuitton/ombres/Beauty_banner.webp"
   },
@@ -23,7 +23,7 @@
     "$oid": "68c7e25e9bb388271ee4326a"
   },
   "name": "Son dưỡng LV Baume",
-  "slug": "/son-duong-lv-ombers",
+  "slug": "son-duong-lv-ombers",
   "bannerImg": {
     "desktopUrl": "/none-url"
   },
@@ -43,7 +43,7 @@
     "$oid": "68c7e25e9bb388271ee4326b"
   },
   "name": "Son môi LV Rouge",
-  "slug": "/son-moi-lv-rouge",
+  "slug": "son-moi-lv-rouge",
   "bannerImg": {
     "desktopUrl": "/none-url"
   },
@@ -63,7 +63,7 @@
     "$oid": "68c7e2fe9bb388271ee4326c"
   },
   "name": "la-beaute-louis-vuitton",
-  "slug": "/la-beaute-louis-vuitton",
+  "slug": "la-beaute-louis-vuitton",
   "bannerImg": {
     "desktopUrl": "/images/la-beaute-louis-vuitton/Masthead_BEAUTY_BEAUTYCAMPAIGN_MODELS_IMG06_LVCOM_1920x1080_ANIMATION.jpg"
   },

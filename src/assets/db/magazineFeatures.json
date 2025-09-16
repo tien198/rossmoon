@@ -11,7 +11,7 @@
         "$oid": "68c84ef65190463d50e43269"
       },
       "name": "LV Ombres - bảng phấn mất",
-      "slug": "/LV-Ombres",
+      "slug": "LV-Ombres",
       "price": 6500000,
       "attributes": {
         "medias": [
@@ -30,7 +30,7 @@
         "$oid": "68c84ef65190463d50e4326a"
       },
       "name": "Túi Nice BB",
-      "slug": "/nice-bb",
+      "slug": "nice-bb",
       "price": 46500000,
       "attributes": {
         "medias": [
@@ -49,7 +49,7 @@
         "$oid": "68c84ef65190463d50e4326c"
       },
       "name": "Khăn Lụa Vuông Paris En Beauté 90",
-      "slug": "/paris-en-beauté-90",
+      "slug": "paris-en-beauté-90",
       "price": 14300000,
       "attributes": {
         "medias": [
@@ -68,7 +68,7 @@
         "$oid": "68c84ef65190463d50e4326d"
       },
       "name": "Túi Eyeshadow Pouch",
-      "slug": "/eyeshadow-pouch",
+      "slug": "eyeshadow-pouch",
       "price": 13600000,
       "attributes": {
         "medias": [
@@ -87,7 +87,7 @@
         "$oid": "68c84ef65190463d50e4326b"
       },
       "name": "Vòng Tay LV Iconic Enamel",
-      "slug": "/lv-iconic-enamel",
+      "slug": "lv-iconic-enamel",
       "price": 13100000,
       "attributes": {
         "medias": [
@@ -106,7 +106,7 @@
         "$oid": "68c84ef65190463d50e4326f"
       },
       "name": "Túi Eyeshadow Pouch",
-      "slug": "/eyeshadow-pouch",
+      "slug": "eyeshadow-pouch",
       "price": 13600000,
       "attributes": {
         "medias": [
@@ -125,7 +125,7 @@
         "$oid": "68c84ef65190463d50e4326e"
       },
       "name": "Túi Eyeshadow Pouch",
-      "slug": "/eyeshadow-pouch",
+      "slug": "eyeshadow-pouch",
       "price": 13600000,
       "attributes": {
         "medias": [
@@ -144,7 +144,7 @@
         "$oid": "68c84ef65190463d50e43270"
       },
       "name": "Túi Eyeshadow Pouch",
-      "slug": "/eyeshadow-pouch",
+      "slug": "eyeshadow-pouch",
       "price": 13600000,
       "attributes": {
         "medias": [
