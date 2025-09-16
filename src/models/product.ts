@@ -2,7 +2,7 @@ import type { WithId, DeleteResult, Filter } from "mongodb";
 import type { Product, ProductPart } from "./product.zod";
 
 import { ObjectId } from "mongodb";
-import { productCollection } from "@/services/mongoDbCollections";
+import { productsCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
 import { ProductAttributes } from "./product.attributes.zod";
 
@@ -39,11 +39,11 @@ export default class ProductImp implements ProductPart {
     }
 
     async save() {
-        await productCollection.insertOne(this)
+        await productsCollection.insertOne(this)
     }
 
     async update() {
-        await productCollection.updateOne(
+        await productsCollection.updateOne(
             { _id: this._id },
             { $set: { ...this } }
         )
@@ -55,7 +55,7 @@ export default class ProductImp implements ProductPart {
     }
 
     static async find(skip?: number, limit?: number) {
-        let query = productCollection.find()
+        let query = productsCollection.find()
         if (skip)
             query = query.skip(skip)
         if (limit)
@@ -68,12 +68,12 @@ export default class ProductImp implements ProductPart {
         let query: WithId<ProductPart> | null = null
         switch (typeof id) {
             case 'string': {
-                query = await productCollection.findOne({ _id: ObjectId.createFromHexString(id) })
+                query = await productsCollection.findOne({ _id: ObjectId.createFromHexString(id) })
                 break
             }
             case 'object': {
                 if (id instanceof ObjectId)
-                    query = await productCollection.findOne({ _id: id })
+                    query = await productsCollection.findOne({ _id: id })
                 break
             }
             default: {
@@ -84,7 +84,7 @@ export default class ProductImp implements ProductPart {
     }
 
     static async update(filter: Filter<ProductPart>, prod: ProductPart) {
-        await productCollection.updateOne(
+        await productsCollection.updateOne(
             { ...filter },
             { ...prod }
         )
@@ -94,12 +94,12 @@ export default class ProductImp implements ProductPart {
         let query: DeleteResult | null = null
         switch (typeof id) {
             case 'string': {
-                query = await productCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
+                query = await productsCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
                 break
             }
             case 'object': {
                 if (id instanceof ObjectId)
-                    query = await productCollection.deleteOne({ _id: id })
+                    query = await productsCollection.deleteOne({ _id: id })
                 break
             }
             default: {
@@ -111,7 +111,7 @@ export default class ProductImp implements ProductPart {
 
 
     static async create(prod: Product) {
-        const result = await productCollection.insertOne({ ...prod, _id: undefined })
+        const result = await productsCollection.insertOne({ ...prod, _id: undefined })
         return result
     }
 

@@ -2,7 +2,7 @@ import type { WithId, DeleteResult, Filter } from "mongodb";
 import type { Collection, CollectionPart } from "./collection.zod";
 
 import { ObjectId } from "mongodb";
-import { collectionCollection } from "@/services/mongoDbCollections";
+import { collectionsCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
 import { BannerImage } from "./bannerImage.zod";
 
@@ -28,11 +28,11 @@ export default class CollectionImp implements CollectionPart {
     }
 
     async save() {
-        await collectionCollection.insertOne(this)
+        await collectionsCollection.insertOne(this)
     }
 
     async update() {
-        await collectionCollection.updateOne(
+        await collectionsCollection.updateOne(
             { _id: this._id },
             { $set: { ...this } }
         )
@@ -40,7 +40,7 @@ export default class CollectionImp implements CollectionPart {
 
     /*
     async addSubCollection(subCol: SubCollection) {
-        await collectionCollection.updateOne(
+        await collectionsCollection.updateOne(
             { _id: this._id },
             {
                 $push: {
@@ -56,7 +56,7 @@ export default class CollectionImp implements CollectionPart {
     */
 
     static async find(skip?: number, limit?: number) {
-        let query = collectionCollection.find()
+        let query = collectionsCollection.find()
         if (skip)
             query = query.skip(skip)
         if (limit)
@@ -69,12 +69,12 @@ export default class CollectionImp implements CollectionPart {
         let query: WithId<CollectionPart> | null = null
         switch (typeof id) {
             case 'string': {
-                query = await collectionCollection.findOne({ _id: ObjectId.createFromHexString(id) })
+                query = await collectionsCollection.findOne({ _id: ObjectId.createFromHexString(id) })
                 break
             }
             case 'object': {
                 if (id instanceof ObjectId)
-                    query = await collectionCollection.findOne({ _id: id })
+                    query = await collectionsCollection.findOne({ _id: id })
                 break
             }
             default: {
@@ -85,7 +85,7 @@ export default class CollectionImp implements CollectionPart {
     }
 
     static async update(filter: Filter<CollectionPart>, col: CollectionPart) {
-        await collectionCollection.updateOne(
+        await collectionsCollection.updateOne(
             { ...filter },
             { $set: { ...col } }
         )
@@ -97,12 +97,12 @@ export default class CollectionImp implements CollectionPart {
         let query: DeleteResult | null = null
         switch (typeof id) {
             case 'string': {
-                query = await collectionCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
+                query = await collectionsCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
                 break
             }
             case 'object': {
                 if (id instanceof ObjectId)
-                    query = await collectionCollection.deleteOne({ _id: id })
+                    query = await collectionsCollection.deleteOne({ _id: id })
                 break
             }
             default: {
@@ -113,7 +113,7 @@ export default class CollectionImp implements CollectionPart {
     }
 
     static async create(col: Collection) {
-        const result = await collectionCollection.insertOne({ ...col, _id: undefined })
+        const result = await collectionsCollection.insertOne({ ...col, _id: undefined })
         return result
     }
 }
