@@ -1,41 +1,33 @@
-import type { WithId, DeleteResult, Filter } from "mongodb";
-import type { Collection, CollectionPart } from "./collection.zod";
+import type { CollectionPart } from "./collection.zod";
 
-import { ObjectId } from "mongodb";
+import { Collection, DeleteResult, Filter, ObjectId, WithId } from "mongodb";
 import { collectionsCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
 import { BannerImage } from "./bannerImage.zod";
+import DocumentAbstract from "./document";
 
 
 
-export default class CollectionImp implements CollectionPart {
+export default class CollectionImp extends DocumentAbstract implements CollectionPart {
+    static collection = collectionsCollection
+    collection = collectionsCollection
+
     _id: ObjectId
     name?: string
     slug?: string
-    bannerImg?: BannerImage
     type?: 'collection' | 'edit'
+    bannerImg?: BannerImage
 
     category?: NestedCategory
     storyId?: ObjectId
     subCollections?: ObjectId[]
 
-
     createdAt?: string | number | Date
 
-    constructor(col?: CollectionPart) {
+    constructor(col: CollectionPart) {
+        super()
         this._id = col!._id!
         Object.assign(this, col)
-    }
-
-    async save() {
-        await collectionsCollection.insertOne(this)
-    }
-
-    async update() {
-        await collectionsCollection.updateOne(
-            { _id: this._id },
-            { $set: { ...this } }
-        )
     }
 
     static async find(filter?: Filter<CollectionPart>, skip?: number, limit?: number) {
@@ -50,24 +42,6 @@ export default class CollectionImp implements CollectionPart {
 
     static async findOne(filter?: Filter<CollectionPart>) {
         return await collectionsCollection.findOne(filter ? filter : {})
-    }
-
-    static async findFeatures(collectionSlug: string) {
-        const features = collectionsCollection.aggregate([
-            {
-                $match: { slug: collectionSlug }
-            },
-            {
-                $lookup: {
-                    from: 'magazineFeatures',
-                    localField: '_id',
-                    foreignField: 'collectionId',
-                    as: 'magazineFeatures'
-                }
-            }
-        ])
-
-        return features
     }
 
     static async findById(id: string | ObjectId) {
@@ -96,8 +70,6 @@ export default class CollectionImp implements CollectionPart {
         )
     }
 
-
-
     static async deleteById(id: string | ObjectId) {
         let query: DeleteResult | null = null
         switch (typeof id) {
@@ -121,4 +93,5 @@ export default class CollectionImp implements CollectionPart {
         const result = await collectionsCollection.insertOne({ ...col, _id: undefined })
         return result
     }
+
 }

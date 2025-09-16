@@ -15,7 +15,7 @@ export const magazineFeatureSchema = z.object({
     description: z.string().nullish(),
     bannerImage: bannerImageSchema.nullish(),
 
-    products: z.array(nestedProductSchema.nullish()),
+    products: z.array(nestedProductSchema),
 
     collection: nestedCollectionSchema,
     createdAt: zDate()

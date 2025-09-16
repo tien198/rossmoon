@@ -5,12 +5,14 @@ import { ObjectId } from "mongodb";
 import { productsCollection } from "@/services/mongoDbCollections";
 import { NestedCategory } from "./category.zod";
 import { ProductAttributes } from "./product.attributes.zod";
+import DocumentAbstract from "./document";
 
 
 
-export default class ProductImp implements ProductPart {
+export default class ProductImp extends DocumentAbstract implements ProductPart {
+    collection = productsCollection
+
     _id?: ObjectId
-
     name?: string
     slug?: string
     imageUrls?: string[]
@@ -30,23 +32,13 @@ export default class ProductImp implements ProductPart {
     createdAt?: Date
 
     constructor(prod?: ProductPart) {
+        super()
         Object.assign(this, prod)
     }
 
     get priceFormatted() {
         const [intPart, decimalPart] = String(this.price).split('.')
         return parseInt(intPart).toLocaleString('vi-VN') + (decimalPart ? (',' + parseInt(decimalPart).toLocaleString('vi-VN')) : '')
-    }
-
-    async save() {
-        await productsCollection.insertOne(this)
-    }
-
-    async update() {
-        await productsCollection.updateOne(
-            { _id: this._id },
-            { $set: { ...this } }
-        )
     }
 
     static standardizeProduct(prod: ProductImp) {

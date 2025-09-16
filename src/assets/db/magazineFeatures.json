@@ -2,6 +2,9 @@
   "_id": {
     "$oid": "68c8cd00af36274c8ce4326a"
   },
+  "bannerImage": {
+    "desktopUrl": "/images/la-beaute-louis-vuitton/ombres/Beauty_banner.webp"
+  },
   "collection": {
     "_id": {
       "$oid": "68c7e25e9bb388271ee43269"

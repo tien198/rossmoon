@@ -1,5 +1,5 @@
-import CollectionImp from "@/models/collection"
-import { collectionsCollection } from "@/services/mongoDbCollections"
+import MagazineFeatureImp from "@/models/magazineFeature"
+import Image from "next/image"
 
 type Props = {
     params: {
@@ -8,36 +8,26 @@ type Props = {
 }
 
 export default async function New({ params }: Props) {
-    const pars = await params
+    const collectionSlug = (await params)['collection-slug']
 
-    const col = await CollectionImp.findOne({ slug: pars['collection-slug'] })
+    const features = await MagazineFeatureImp.findByCollectionSlug(collectionSlug)
 
-    const docs = await collectionsCollection.aggregate([
-        {
-            $match: { slug: pars['collection-slug'] }
-        },
-        {
-            $lookup: {
-                from: 'magazineFeatures',
-                localField: '_id',
-                foreignField: 'collectionId',
-                as: 'magazineFeatures'
-            }
-        }
-    ]).toArray()
-    console.log(docs);
-    
-
-    // console.log(await CollectionImp.findFeatures(pars['collection-slug']));
-
-    const sub = col?.subCollections
-
-    return <>
-        <div className="grid grid-cols-4">
-            <div className="h-20 bg-amber-500">{sub?.[0]?.toString()}</div>
-            <div className="h-20 bg-amber-400">{sub?.[1]?.toString()}</div>
-            <div className="h-20 bg-amber-300">{sub?.[2]?.toString()}</div>
-            <div className="h-20 bg-amber-200">{sub?.[3]?.toString()}</div>
+    return (
+        <div >
+            {features.map(fea =>
+                <div key={fea._id?.toString()} className="grid grid-cols-4">
+                    {fea.bannerImage && <div className="col-span-2 row-span-2"><Image src={fea.bannerImage.desktopUrl!} alt={(fea.title ?? fea.products?.[0]?.name) || 'alt'} height={300} width={300} /></div>}
+                    {fea.products?.map((prod, idx) =>
+                        <>
+                            {idx === 0 && <div key={prod._id?.toString()} className="bg-amber-500">{prod.name}</div>}
+                            {idx === 1 && <div key={prod._id?.toString()} className="bg-amber-400">{prod.name}</div>}
+                            {idx === 2 && <div key={prod._id?.toString()} className="bg-amber-300">{prod.name}</div>}
+                            {idx === 3 && <div key={prod._id?.toString()} className="bg-amber-200">{prod.name}</div>}
+                            {idx > 3 && <div key={prod._id?.toString()} className="h-20 bg-amber-200">{prod.name}</div>}
+                        </>
+                    )}
+                </div>
+            )}
         </div>
-    </>
+    )
 }

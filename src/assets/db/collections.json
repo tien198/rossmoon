@@ -4,7 +4,7 @@
   },
   "name": "Phấn mắt LV Ombers",
   "slug": "phan-mat-lv-ombers",
-  "bannerImg": {
+  "bannerImage": {
     "desktopUrl": "/images/la-beaute-louis-vuitton/ombres/Beauty_banner.webp"
   },
   "category": {
@@ -24,7 +24,7 @@
   },
   "name": "Son dưỡng LV Baume",
   "slug": "son-duong-lv-ombers",
-  "bannerImg": {
+  "bannerImage": {
     "desktopUrl": "/none-url"
   },
   "category": {
@@ -44,7 +44,7 @@
   },
   "name": "Son môi LV Rouge",
   "slug": "son-moi-lv-rouge",
-  "bannerImg": {
+  "bannerImage": {
     "desktopUrl": "/none-url"
   },
   "category": {
@@ -64,7 +64,7 @@
   },
   "name": "la-beaute-louis-vuitton",
   "slug": "la-beaute-louis-vuitton",
-  "bannerImg": {
+  "bannerImage": {
     "desktopUrl": "/images/la-beaute-louis-vuitton/Masthead_BEAUTY_BEAUTYCAMPAIGN_MODELS_IMG06_LVCOM_1920x1080_ANIMATION.jpg"
   },
   "category": {

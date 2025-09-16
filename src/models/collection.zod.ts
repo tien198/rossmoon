@@ -32,4 +32,4 @@ export const nestedCollectionSchema = collectionShema.pick({
     slug: true
 })
 
-export type NestedCollection = z.infer<typeof nestedCategorySchema>
+export type NestedCollection = z.infer<typeof nestedCollectionSchema>
