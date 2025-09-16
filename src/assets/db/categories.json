@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "650f2d7c1234567890abcdef"
+  },
+  "name": "Điện tử",
+  "parentId": null
+},
+{
+  "_id": {
+    "$oid": "650f2d9a1234567890abcdee"
+  },
+  "name": "Điện thoại",
+  "parentId": {
+    "$oid": "650f2d7c1234567890abcdef"
+  }
+},
+{
+  "_id": {
+    "$oid": "650f2da81234567890abcded"
+  },
+  "name": "Laptop",
+  "parentId": {
+    "$oid": "650f2d7c1234567890abcdef"
+  }
+}]

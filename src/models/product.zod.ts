@@ -47,6 +47,7 @@ export type ProductPart = Partial<Product>
 export const nestedProductSchema = productSchema.pick({
     _id: true,
     name: true,
+    price: true,
     slug: true,
     attributes: true,
 })
