@@ -1,0 +1,14 @@
+.card {
+    background: linear-gradient(165deg, #c2c1c1, #fff, #fff);
+
+    &__container-border {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            border: 3px solid #fff;
+        }
+    }
+}
