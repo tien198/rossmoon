@@ -8,7 +8,7 @@ export const collectionShema = z.object({
     _id: z.instanceof(ObjectId).nullish(),
     name: z.string(),
     slug: z.string(),
-    bannerImg: bannerImageSchema.nullish(),
+    bannerImage: bannerImageSchema.nullish(),
     type: z.enum(['collection', 'sub-collection', 'edit']),
 
     category: nestedCategorySchema.nullish(),

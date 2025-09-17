@@ -10,7 +10,7 @@ import DocumentAbstract from "./document";
 
 
 export default class ProductImp extends DocumentAbstract implements ProductPart {
-    collection = productsCollection
+    dbCollection = productsCollection
 
     _id?: ObjectId
     name?: string

@@ -9,14 +9,14 @@ import DocumentAbstract from "./document";
 
 
 export default class CollectionImp extends DocumentAbstract implements CollectionPart {
-    static collection = collectionsCollection
-    collection = collectionsCollection
+    dbCollection = collectionsCollection
+
 
     _id: ObjectId
     name?: string
     slug?: string
     type?: 'collection' | 'edit'
-    bannerImg?: BannerImage
+    bannerImage?: BannerImage
 
     category?: NestedCategory
     storyId?: ObjectId

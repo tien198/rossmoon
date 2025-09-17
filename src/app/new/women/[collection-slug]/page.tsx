@@ -2,9 +2,9 @@ import MagazineFeatureImp from "@/models/magazineFeature"
 import Feature from "./comps/feature"
 
 type Props = {
-    params: {
+    params: Promise<{
         ['collection-slug']: string
-    }
+    }>
 }
 
 export default async function New({ params }: Props) {

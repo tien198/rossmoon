@@ -12,8 +12,8 @@ export default async function NewCollectionsSection() {
       <div className="flex justify-between flex-wrap px-[6.5vw] lg:px-[8.3333vw]">
         {collections.map((col, idx) =>
           <div className="p-2 w-1/2 md:w-1/4" key={idx} >
-            <Link href={col.url} >
-              <Image src={col.imageUrl} alt={col.name} width={1600} height={2000} sizes="100"
+            <Link href={col.slug!??''} >
+              <Image src={col.bannerImage?.desktopUrl??''} alt={col.name} width={1600} height={2000} sizes="100"
                 className="w-full" />
             </Link>
             <p className="py-2 md:py-4 text-center">{col.name}</p>
@@ -31,27 +31,35 @@ async function getNewCollections(): Promise<Collection[]> {
   return [
     {
       name: 'Son Môi LV Rouge',
-      url: '/collection-url',
-      imageUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg',
-      releaseDate: "2025-07-02T03:51:27.282Z"
+      slug: 'collection-url',
+      bannerImage: {
+        desktopUrl: '/images/2025/beauty/LV_Rouge_Matte_WW_HP_Category_DII.jpg'
+      },
+      createdAt: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Son Dưỡng LV Baume',
-      url: '/collection-url',
-      imageUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg',
-      releaseDate: "2025-07-02T03:51:27.282Z"
+      slug: 'collection-url',
+      bannerImage: {
+        desktopUrl: '/images/2025/beauty/LV_Balm_WW_HP_Category_DII.jpg'
+      },
+      createdAt: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Phấn mắt LV Ombres',
-      url: '/collection-url',
-      imageUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg',
-      releaseDate: "2025-07-02T03:51:27.282Z"
+      slug: 'collection-url',
+      bannerImage: {
+        desktopUrl: '/images/2025/beauty/LV_Ombres_WW_HP_Category_DII.jpg'
+      },
+      createdAt: "2025-07-02T03:51:27.282Z"
     },
     {
       name: 'Phụ Kiện Làm Đẹp',
-      url: '/collection-url',
-      imageUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg',
-      releaseDate: "2025-07-02T03:51:27.282Z",
+      slug: 'collection-url',
+      bannerImage: {
+        desktopUrl: '/images/2025/beauty/Beauty_Accessories_WW_HP_Category_DII.jpg'
+      },
+      createdAt: "2025-07-02T03:51:27.282Z",
     }
   ] as Collection[]
 }
