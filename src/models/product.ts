@@ -46,6 +46,14 @@ export default class ProductImp extends DocumentAbstract implements ProductPart 
         return prodCp
     }
 
+    static async findBySlug(slug: string) {
+        const query = productsCollection.findOne(
+            { 'slug': slug }
+            // { projection: { products: 1, title: 1, bannerImage: 1 } }
+        )
+        return await query
+    }
+
     static async find(skip?: number, limit?: number) {
         let query = productsCollection.find()
         if (skip)
@@ -54,6 +62,10 @@ export default class ProductImp extends DocumentAbstract implements ProductPart 
             query = query.limit(limit)
 
         return await query.toArray()
+    }
+
+    static async findOne(filter?: Filter<ProductPart>) {
+        return await productsCollection.findOne(filter ? filter : {})
     }
 
     static async findById(id: string | ObjectId) {
