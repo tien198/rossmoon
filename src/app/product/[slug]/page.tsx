@@ -12,11 +12,7 @@ type Props = {
 
 export default async function Product({ params }: Props) {
     const slug = (await params).slug
-    console.log(slug);
-    
     const prod = await ProductImp.findBySlug(slug)
-    console.log(prod);
-    
 
     return (
         <div className={
@@ -31,6 +27,7 @@ export default async function Product({ params }: Props) {
                                 src={i?.url ?? ''}
                                 alt={prod.name ?? ''} width={400} height={400}
                                 priority
+                                className='w-full h-full object-center object-cover'
                             />
                         </div>
                     )
