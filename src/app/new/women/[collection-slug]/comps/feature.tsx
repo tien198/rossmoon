@@ -3,6 +3,7 @@ import { ProductPart } from '@/models/product.zod';
 import Image from 'next/image';
 
 import styles from './productCard.module.scss'
+import Link from 'next/link';
 
 export default function Feature(fea: MagazineFeaturePart) {
     return (
@@ -21,8 +22,9 @@ export default function Feature(fea: MagazineFeaturePart) {
 
 function ProductCard(prod: ProductPart) {
     return (
-        <div className={'relative w-full aspect-[2.5/4] md:aspect-[3/4]' +
-            ' ' + styles['card']}
+        <Link href={'/product/' + (prod.slug ?? '')}
+            className={'relative w-full aspect-[2.5/4] md:aspect-[3/4]' +
+                ' ' + styles['card']}
         >
             <div className={styles['card__container-border']}></div>
             <Image
@@ -42,6 +44,6 @@ function ProductCard(prod: ProductPart) {
                     {prod.price?.toLocaleString()} <sup>đ</sup>
                 </span>
             </span>
-        </div>
+        </Link>
     )
 }

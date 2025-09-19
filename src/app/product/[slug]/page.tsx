@@ -12,7 +12,11 @@ type Props = {
 
 export default async function Product({ params }: Props) {
     const slug = (await params).slug
+    console.log(slug);
+    
     const prod = await ProductImp.findBySlug(slug)
+    console.log(prod);
+    
 
     return (
         <div className={
