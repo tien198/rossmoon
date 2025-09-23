@@ -8,6 +8,7 @@ export function useGetNavMenuItems(): MenuItem {
         display: 'cate',
         nameDisplay: '',
         categoryItems: [
+            /*
             {
                 display: 'cate',
                 nameDisplay: "Quà tặng và dịch vụ cá nhân hóa",
@@ -49,6 +50,7 @@ export function useGetNavMenuItems(): MenuItem {
                     },
                 ]
             },
+            */
             {
                 display: 'cate',
                 nameDisplay: "Sản phẩm mới",
@@ -59,14 +61,16 @@ export function useGetNavMenuItems(): MenuItem {
                         nameDisplay: "Đồ Nữ",
                         url: '/new/women/phan-mat-lv-ombers',
                     },
+                    /*
                     {
                         display: 'link',
                         nameDisplay: "Đồ Nam",
                         url: 'none',
                     },
+                    */
                 ]
             },
-
+/*
             {
                 display: 'link',
                 nameDisplay: "Túi xách và ví",
@@ -112,6 +116,7 @@ export function useGetNavMenuItems(): MenuItem {
                 nameDisplay: "Maison Louis Vuitton",
                 url: 'none',
             },
+            */
         ]
     }
 }
