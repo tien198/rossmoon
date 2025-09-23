@@ -18,23 +18,22 @@ export default async function Product({ params }: Props) {
 
     return (
         <div className={
-            styles['product-section'] +
-            ' ' + styles['product-section--relative']}
+            styles['product-detail'] +
+            ' ' + styles['product-detail--relative']}
         >
             <section className={styles["product-images"]}>
                 <ProductImages prod={prod} />
             </section >
             <section className={
                 styles['product-infors'] +
-                ' ' + styles['product-section--sticky']}
+                ' ' + styles['product-detail--sticky']}
             >
-                <div className="p-4 md:p-8 leading-8">
+                <div>
                     <div>[mã sản phẩm]: vd : MD007</div>
-                    <h1 className="text-lg tracking-tight leading-8">{prod.name}</h1>
+                    <h1>{prod.name}</h1>
                     <p className="text-sm">{prod.price?.toLocaleString()} <sup>đ</sup></p>
                     <a href="http://lonk.kd" target="_blank" rel="noopener noreferrer"
-                        className="mt-4 mb-10 bg-black text-white border border-black rounded-4xl p-3 text-center block
-                        hover:bg-white hover:text-black transition-colors">
+                        className={styles['cta-btn']}>
                         Liên hệ với Chuyên viên tư vấn
                     </a>
                     <div className="text-sm">
