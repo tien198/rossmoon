@@ -32,11 +32,12 @@ export default async function Product({ params }: Props) {
                     <div>[mã sản phẩm]: vd : MD007</div>
                     <h1>{prod.name}</h1>
                     <p className="text-sm">{prod.price?.toLocaleString()} <sup>đ</sup></p>
-                    <a href="http://lonk.kd" target="_blank" rel="noopener noreferrer"
-                        className={styles['cta-btn']}>
+                    <a className={styles['cta-btn']}
+                        href="http://lonk.kd" target="_blank" rel="noopener noreferrer"
+                    >
                         Liên hệ với Chuyên viên tư vấn
                     </a>
-                    <div className="text-sm">
+                    <div className={styles['description']}>
                         <p>{prod.description}</p>
                         <p>{prod.features}</p>
                     </div>

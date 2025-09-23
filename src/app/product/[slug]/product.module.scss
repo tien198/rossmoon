@@ -9,7 +9,7 @@
         flex-direction: row;
     }
 
-    @media(min-width: 768px) {
+    @media(min-width: 1080px) {
         &>* {
             width: 50%;
         }
@@ -33,9 +33,12 @@
 .product-images {
     display: flex;
     overflow-x: scroll;
+    position: sticky;
+    top: 0;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1080px) {
         flex-direction: column;
+        top: 0;
     }
 
     .image-container {
@@ -47,7 +50,9 @@
 }
 
 .product-infors {
-    height: 100vh;
+    min-height: 100vh;
+    max-height: max-content;
+    background: white;
 
     &>* {
         padding: 1rem;
@@ -79,5 +84,9 @@
         @media (min-width: 768px) {
             margin: 1.25rem 0 4rem 0;
         }
+    }
+
+    .description {
+        font-size: .875rem;
     }
 }
