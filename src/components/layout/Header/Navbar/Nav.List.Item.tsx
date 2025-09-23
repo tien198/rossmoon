@@ -37,19 +37,16 @@ export default function Item({ item, idx, layoutActive }: Props) {
                 onMouseEnter={() => setSelectedIndex(idx)}
                 onMouseLeave={() => setSelectedIndex(idx)}
             >
-                <div className={styles['item']}>
+                <Link
+                    href={item.url!}
+                    className={styles['item']}
+                >
                     <span
                         className={isSelectedCls}
                     >
-                        <Link
-                            href={item.url!}
-                        // target="_blank"
-                        // rel="noopener noreferrer"
-                        >
-                            {item.nameDisplay}
-                        </Link>
+                        {item.nameDisplay}
                     </span>
-                </div>
+                </Link>
             </li>
         )
 

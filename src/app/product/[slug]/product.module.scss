@@ -32,10 +32,11 @@
         flex-direction: column;
     }
 
-    .image {
+    .image-container {
         flex: none;
-        min-height: 70vh ;
+        min-height: 70vh;
         width: 100%;
+        background: linear-gradient(180deg, #dddddd, #fff);
     }
 }
 
