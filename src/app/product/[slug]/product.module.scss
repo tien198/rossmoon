@@ -57,6 +57,15 @@
     &>* {
         padding: 1rem;
         line-height: 2rem;
+
+        @media (min-width: 768px) {
+            padding: 1.5rem;
+        }
+
+        @media (min-width:1080px) {
+            max-width: 550px;
+            margin: 0 auto;
+        }
     }
 
     h1 {
