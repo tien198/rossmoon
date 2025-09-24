@@ -1,5 +1,5 @@
 import SearchBar from "@/components/layout/SearchBar";
-import StoryBanner from "../components/home/StoryBanner";
+import StoryBanner from "../../components/home/StoryBanner";
 import NewCollectionsSection from "@/components/home/NewCollections.Section";
 import ProductsGallery from "@/components/home/ProductsGallery.Section";
 import { getGallery_1st, getGallery_2nd } from "@/components/home/services/getGallery";

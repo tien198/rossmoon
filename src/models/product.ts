@@ -51,7 +51,11 @@ export default class ProductImp extends DocumentAbstract implements ProductPart 
             { 'slug': slug }
             // { projection: { products: 1, title: 1, bannerImage: 1 } }
         )
-        return await query
+        const prod = await query
+        if (!prod)
+            throw Error('Not found product with slug: "' + slug + '"')
+
+        return prod
     }
 
     static async find(skip?: number, limit?: number) {

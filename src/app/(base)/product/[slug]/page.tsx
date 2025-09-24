@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react";
-import Image from "next/image";
 import ProductImp from "@/models/product";
 
 import styles from './product.module.scss'
@@ -30,7 +29,7 @@ export default async function Product({ params }: Props) {
             >
                 <div>
                     <div>[mã sản phẩm]: vd : MD007</div>
-                    <h1>{prod.name}</h1>
+                    <h1>{prod.name ?? ''}</h1>
                     <p className="text-sm">{prod.price?.toLocaleString()} <sup>đ</sup></p>
                     <a className={styles['cta-btn']}
                         href="http://lonk.kd" target="_blank" rel="noopener noreferrer"
