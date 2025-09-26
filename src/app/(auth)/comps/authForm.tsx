@@ -1,8 +1,14 @@
 import { PropsWithChildren } from "react";
 
-function Form({ children }: PropsWithChildren) {
+type FormProps = React.FormHTMLAttributes<HTMLFormElement>
+    & PropsWithChildren
+
+function Form({ children, ...rest }: FormProps) {
     return (
-        <form className="flex flex-col justify-center gap-10 h-full">
+        <form
+            className="flex flex-col justify-center gap-10 h-full"
+            {...rest}
+        >
             {children}
         </form>
     )

@@ -11,3 +11,11 @@ export const userSchema = z.object({
 export type User = z.infer<typeof userSchema>
 
 export type UserPart = Partial<User>
+
+
+
+export const loginSchema = userSchema.pick({
+    email: true, password: true
+})
+
+export type Login = z.infer<typeof loginSchema>
