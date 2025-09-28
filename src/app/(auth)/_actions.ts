@@ -3,14 +3,13 @@
 import { Login, loginSchema } from "@/models/auth/user.zod"
 import { redirect } from "next/navigation"
 import z from "zod"
+import { Invalid } from "./reducer/authReducer";
 
-type ErrorMsg = {
-    errors: string[]
-}
 
 type ActionData = {
-    email?: ErrorMsg
-    password?: ErrorMsg
+    [key: string]: any
+    email?: Invalid
+    password?: Invalid
 }
 
 

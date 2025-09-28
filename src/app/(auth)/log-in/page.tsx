@@ -2,28 +2,37 @@
 
 import Link from "next/link";
 import F from "../comps/authForm";
-import { useAuthReducer } from "../hooks/useAuthReducer";
-import { useFormState } from "react-dom";
-import {  loginAction } from "../actions";
+import useAllLogic from "../hooks/useAllLogic";
 
 export default function Auth() {
-    const { authState, changeEmail, changePassword } = useAuthReducer()
-
-    const [actionState, formAction ] = useFormState(loginAction, {})
+    const {
+        authState, changeField, invalidMsgs,
+        actionState, formAction,
+        handleSubmit
+    } = useAllLogic()
 
     return (
-        <div className="h-full w-full max-w-3xl py-20 px-5 md:px-16 bg-black/50 backdrop-blur-md shadow-lg text-gray-950" >
-            <F.Form action={formAction}>
+        <div className="h-full max-w-3xl py-20 px-5 md:px-16 bg-black/50 backdrop-blur-md" >
+            <F.Form action={formAction} onSubmit={handleSubmit}>
                 <h2 className="text-2xl font-bold mb-6 text-center">Đăng Nhập</h2>
                 <F.Input
-                    type="email"
                     placeholder="Email"
-                    value={authState.email} onChange={changeEmail}
+                    value={authState.email} onChange={changeField('email')}
+                    invalidMsgs={
+                        authState.isSubmitted
+                            ? (invalidMsgs.email || actionState.email)
+                            : undefined
+                    }
                 />
                 <F.Input
                     type="password"
                     placeholder="Mật khẩu"
-                    value={authState.password} onChange={changePassword}
+                    value={authState.password} onChange={changeField('password')}
+                    invalidMsgs={
+                        authState.isSubmitted
+                            ? (invalidMsgs.password || actionState.password)
+                            : undefined
+                    }
                 />
                 <F.Submit >
                     Đăng Nhập
