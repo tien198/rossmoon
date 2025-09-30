@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { nestedCategorySchema } from './category.zod'
 import { productAttributesSchema } from './product.attributes.zod'
@@ -7,7 +6,6 @@ import zDate from '@/shared/zod.date'
 
 
 export const productSchema = z.object({
-    _id: z.instanceof(ObjectId).nullish(),
 
     name: z.string(),
     slug: z.string(),
@@ -45,7 +43,6 @@ export type ProductPart = Partial<Product>
 
 
 export const nestedProductSchema = productSchema.pick({
-    _id: true,
     name: true,
     price: true,
     slug: true,

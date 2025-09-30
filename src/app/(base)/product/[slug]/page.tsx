@@ -3,7 +3,7 @@ import ProductImp from "@/models/product";
 
 import styles from './product.module.scss'
 import ProductImages from "./comps/productImages";
-import { ProductPart } from "@/models/product.zod";
+import { ProductPart } from "@/schemas/client/product.zod";
 
 type Props = {
     params: Promise<{
@@ -47,14 +47,3 @@ export default async function Product({ params }: Props) {
 }
 
 
-
-function DivTest({ children }: PropsWithChildren) {
-    return (
-        <div className="flex items-center justify-center text-center
-            text-xl/8 md:text-4xl/16 font-bold uppercase 
-            border-[10px] border-amber-500 
-            h-screen">
-            {children}
-        </div>
-    )
-}

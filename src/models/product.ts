@@ -1,10 +1,10 @@
 import type { WithId, DeleteResult, Filter } from "mongodb";
-import type { Product, ProductPart } from "./product.zod";
+import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
 import { productsCollection } from "@/services/mongoDbCollections";
-import { NestedCategory } from "./category.zod";
-import { ProductAttributes } from "./product.attributes.zod";
+import { NestedCategory } from "../schemas/server/category.zod";
+import { ProductAttributes } from "../schemas/client/product.attributes.zod";
 import DocumentAbstract from "./document";
 
 

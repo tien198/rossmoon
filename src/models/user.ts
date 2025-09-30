@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
-import DocumentAbstract from "../document";
-import { User } from "./user.zod";
-import { usersCollection } from '../../services/mongoDbCollections'
+import DocumentAbstract from "./document";
+import { User } from "../schemas/server/user.zod";
+import { usersCollection } from '../services/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
 

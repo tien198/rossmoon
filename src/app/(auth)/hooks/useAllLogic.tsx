@@ -5,14 +5,10 @@ import { loginAction } from "../_actions";
 import z from "zod";
 import { FieldName, Invalid } from "../reducer/authReducer";
 import { useActionState } from "react";
+import { loginSchema } from "@/schemas/client/user.zod";
 
 
-export const loginSchema = z.object({
-    email: z.coerce.string().min(1, 'Nhập Email'),
-    password: z.coerce.string().min(1, 'Nhập mật khẩu')
-})
 
-export type Login = z.infer<typeof loginSchema>
 
 export default function useAllLogic() {
     const { authState, changeField, setField } = useAuthReducer()

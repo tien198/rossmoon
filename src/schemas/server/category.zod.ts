@@ -1,12 +1,9 @@
 import { ObjectId } from "mongodb";
 import z from "zod";
+import { categorySchema } from "../client/category.zod";
 
-export const categorySchema = z.object({
+export const categorySchema_Server = categorySchema.extend({
     _id: z.instanceof(ObjectId).nullish(),
-    name: z.string(),
-    slug: z.string(),
-    // category seperate 2 types, this feild specify the type of category
-    type: z.enum(['collection', 'product'])
 })
 
 export type Category = z.infer<typeof categorySchema>
@@ -20,9 +17,9 @@ export type CategoryPart = Partial<Category>
 
 
 //---- nestedCategorySchema ------------------------------------------------------
-export const nestedCategorySchema = categorySchema.pick({
+export const nestedCategorySchema_Server = categorySchema_Server.pick({
     _id: true,
     name: true
 })
 
-export type NestedCategory = z.infer<typeof nestedCategorySchema>
+export type NestedCategory = z.infer<typeof nestedCategorySchema_Server>

@@ -1,6 +1,6 @@
 'use server';
 
-import { Login, loginSchema } from "@/models/auth/user.zod"
+import { Login, loginSchema } from "@/schemas/client/user.zod"
 import { redirect } from "next/navigation"
 import z from "zod"
 import { Invalid } from "./reducer/authReducer";

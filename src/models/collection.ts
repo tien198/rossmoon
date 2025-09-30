@@ -1,9 +1,9 @@
-import type { CollectionPart } from "./collection.zod";
+import type { CollectionPart } from "../schemas/server/collection.zod";
 
 import { Collection, DeleteResult, Filter, ObjectId, WithId } from "mongodb";
 import { collectionsCollection } from "@/services/mongoDbCollections";
-import { NestedCategory } from "./category.zod";
-import { BannerImage } from "./bannerImage.zod";
+import { NestedCategory } from "../schemas/server/category.zod";
+import { BannerImage } from "../schemas/server/bannerImage.zod";
 import DocumentAbstract from "./document";
 
 

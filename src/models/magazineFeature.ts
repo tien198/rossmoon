@@ -2,10 +2,10 @@ import type { WithId, DeleteResult, Filter } from "mongodb"
 import { ObjectId } from "mongodb"
 import { magazineFeaturesCollection } from "@/services/mongoDbCollections"
 
-import type { MagazineFeature, MagazineFeaturePart } from "./magazineFeature.zod"
-import type { BannerImage } from "./bannerImage.zod"
-import type { NestedProduct } from "./product.zod"
-import type { NestedCollection } from "./collection.zod"
+import type { MagazineFeature, MagazineFeaturePart } from "../schemas/server/magazineFeature.zod"
+import type { BannerImage } from "../schemas/server/bannerImage.zod"
+import type { NestedProduct } from "../schemas/server/product.zod"
+import type { NestedCollection } from "../schemas/server/collection.zod"
 import DocumentAbstract from "./document"
 
 export default class MagazineFeatureImp extends DocumentAbstract implements MagazineFeature {

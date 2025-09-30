@@ -1,4 +1,4 @@
-import { Collection } from "@/models/collection.zod"
+import { Collection } from "@/schemas/client/collection.zod"
 import Image from "next/image"
 import Link from "next/link"
 
