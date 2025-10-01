@@ -13,7 +13,9 @@ export default function Auth() {
 
     return (
         <div className="h-full max-w-3xl py-20 px-5 md:px-16 bg-black/50 backdrop-blur-md" >
-            <F.Form action={formAction} onSubmit={handleSubmit}>
+            <F.Form action={formAction}
+                onSubmit={handleSubmit}
+            >
                 <h2 className="text-2xl font-bold mb-6 text-center">Đăng Nhập</h2>
                 <F.Input
                     placeholder="Email"
@@ -23,6 +25,7 @@ export default function Auth() {
                             ? (invalidMsgs.email || actionState.email)
                             : undefined
                     }
+                    name="email"
                 />
                 <F.Input
                     type="password"
@@ -33,6 +36,7 @@ export default function Auth() {
                             ? (invalidMsgs.password || actionState.password)
                             : undefined
                     }
+                    name="password"
                 />
                 <F.Submit >
                     Đăng Nhập

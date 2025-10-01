@@ -4,8 +4,8 @@ import { useAuthReducer } from "./useAuthReducer";
 import { loginAction } from "../_actions";
 import z from "zod";
 import { FieldName, Invalid } from "../reducer/authReducer";
-import { useActionState } from "react";
 import { loginSchema } from "@/schemas/client/user.zod";
+import { useFormState } from "react-dom";
 
 
 
@@ -13,10 +13,10 @@ import { loginSchema } from "@/schemas/client/user.zod";
 export default function useAllLogic() {
     const { authState, changeField, setField } = useAuthReducer()
 
-    const [actionState, formAction] = useActionState(loginAction, {})
+    const [actionState, formAction] = useFormState(loginAction, {})
 
-    const invalidMsgs: Record<FieldName, Invalid | undefined> = {
-        email: undefined, password: undefined, isSubmitted: undefined
+    const invalidMsgs: Record<string, Invalid | undefined> = {
+        email: undefined, password: undefined
     }
     const parser = loginSchema.safeParse(authState)
     if (!parser.success) {
@@ -33,10 +33,12 @@ export default function useAllLogic() {
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setField('isSubmitted', true)
+        console.log(Object.keys(invalidMsgs).some(key => invalidMsgs[key as FieldName]));
 
-        console.log('---------\n------------\nsubmited')
+        if (Object.keys(invalidMsgs).some(key => invalidMsgs[key as FieldName]))
+            return
 
-        // formAction(new FormData(e.currentTarget))
+        e.currentTarget.submit()
     }
 
     return {
@@ -44,5 +46,4 @@ export default function useAllLogic() {
         actionState, formAction,
         handleSubmit
     }
-
 }

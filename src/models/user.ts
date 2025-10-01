@@ -1,11 +1,12 @@
-import { ObjectId } from "mongodb";
+import { Abortable, Filter, FindOptions, ObjectId } from "mongodb";
 import DocumentAbstract from "./document";
 import { User } from "../schemas/server/user.zod";
 import { usersCollection } from '../services/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
 
-export default class UserImp extends DocumentAbstract implements User {
+export default class UserImp extends DocumentAbstract<User> implements User {
+    static dbCollection = usersCollection;
     dbCollection = usersCollection;
     _id?: ObjectId;
     email: string = ''
@@ -17,18 +18,42 @@ export default class UserImp extends DocumentAbstract implements User {
         Object.assign(this, user)
     }
 
-    async comparePassword(candidatePassword: string) {
-        const isMatched = bcrypt.compare(candidatePassword, this.password)
+    static async comparePassword(password: string, candidatePassword: string) {
+        const isMatched = bcrypt.compare(candidatePassword, password)
         return isMatched
     }
 
-    static async create(user: User) {
-        const newUser = { ...user }
-        newUser.password = await bcrypt.hash(
-            user.password!,
-            process.env.SALT_LENGTH ?? 10
+    static async login(userName: string, password: string) {
+        const user = await this.findOne(
+            { email: userName },
+            { email: 1, password: 1 }
         )
-        const result = await usersCollection.insertOne({ ...newUser, _id: undefined })
-        return result
+        if (!user)
+            throw new Error(`not found user "${userName}"`)
+
+        const isMathced = await this.comparePassword(user.password, password)
+    }
+
+
+
+    // Queries
+    static find<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return DocumentAbstract.find<T>(filter, findOptions)
+    }
+
+    static findOne<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return DocumentAbstract.findOne<T>(filter, findOptions)
+    }
+
+    static findById<T = User>(id: string | ObjectId) {
+        return DocumentAbstract.findById<T>(id)
+    }
+
+    static updateOne<T = User>(filter: Filter<T>, col: Partial<T>) {
+        return DocumentAbstract.updateOne<T>(filter, col)
+    }
+
+    static create<T = User>(col: T) {
+        return DocumentAbstract.create<T>(col)
     }
 }

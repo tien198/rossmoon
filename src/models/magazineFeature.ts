@@ -1,14 +1,14 @@
-import type { WithId, DeleteResult, Filter } from "mongodb"
+import type { Filter, FindOptions, Abortable } from "mongodb"
 import { ObjectId } from "mongodb"
 import { magazineFeaturesCollection } from "@/services/mongoDbCollections"
 
-import type { MagazineFeature, MagazineFeaturePart } from "../schemas/server/magazineFeature.zod"
+import type { MagazineFeature } from "../schemas/server/magazineFeature.zod"
 import type { BannerImage } from "../schemas/server/bannerImage.zod"
 import type { NestedProduct } from "../schemas/server/product.zod"
 import type { NestedCollection } from "../schemas/server/collection.zod"
 import DocumentAbstract from "./document"
 
-export default class MagazineFeatureImp extends DocumentAbstract implements MagazineFeature {
+export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature> implements MagazineFeature {
     dbCollection = magazineFeaturesCollection
 
     _id?: ObjectId
@@ -42,57 +42,27 @@ export default class MagazineFeatureImp extends DocumentAbstract implements Maga
         return await query.toArray()
     }
 
-    static async find(filter?: Filter<MagazineFeaturePart>, skip?: number, limit?: number) {
-        let query = magazineFeaturesCollection.find(filter ?? {})
-        if (skip)
-            query = query.skip(skip)
-        if (limit)
-            query = query.limit(limit)
-        return await query.toArray()
+
+
+
+    // Queries
+    static find<T = MagazineFeature>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return DocumentAbstract.find<T>(filter, findOptions)
     }
 
-    static async findOne(filter?: Filter<MagazineFeaturePart>) {
-        return await magazineFeaturesCollection.findOne(filter ?? {})
+    static findOne<T = MagazineFeature>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return DocumentAbstract.findOne<T>(filter, findOptions)
     }
 
-    static async findById(id: string | ObjectId) {
-        let query: WithId<MagazineFeaturePart> | null = null
-        switch (typeof id) {
-            case "string": {
-                query = await magazineFeaturesCollection.findOne({ _id: ObjectId.createFromHexString(id) })
-                break
-            }
-            case "object": {
-                if (id instanceof ObjectId) {
-                    query = await magazineFeaturesCollection.findOne({ _id: id })
-                }
-                break
-            }
-            default: break
-        }
-        return query
+    static findById<T = MagazineFeature>(id: string | ObjectId) {
+        return DocumentAbstract.findById<T>(id)
     }
 
-    static async deleteById(id: string | ObjectId) {
-        let result: DeleteResult | null = null
-        switch (typeof id) {
-            case "string": {
-                result = await magazineFeaturesCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
-                break
-            }
-            case "object": {
-                if (id instanceof ObjectId) {
-                    result = await magazineFeaturesCollection.deleteOne({ _id: id })
-                }
-                break
-            }
-            default: break
-        }
-        return result
+    static updateOne<T = MagazineFeature>(filter: Filter<T>, col: Partial<T>) {
+        return DocumentAbstract.updateOne<T>(filter, col)
     }
 
-    static async create(feature: MagazineFeature) {
-        const result = await magazineFeaturesCollection.insertOne({ ...feature, _id: undefined })
-        return result
+    static create<T = MagazineFeature>(col: T) {
+        return DocumentAbstract.create<T>(col)
     }
 }

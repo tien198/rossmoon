@@ -1,4 +1,4 @@
-import type { WithId, DeleteResult, Filter } from "mongodb";
+import type { Filter, FindOptions, Abortable } from "mongodb";
 import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
@@ -9,7 +9,7 @@ import DocumentAbstract from "./document";
 
 
 
-export default class ProductImp extends DocumentAbstract implements ProductPart {
+export default class ProductImp extends DocumentAbstract<Product> implements ProductPart {
     dbCollection = productsCollection
 
     _id?: ObjectId
@@ -58,70 +58,28 @@ export default class ProductImp extends DocumentAbstract implements ProductPart 
         return prod
     }
 
-    static async find(skip?: number, limit?: number) {
-        let query = productsCollection.find()
-        if (skip)
-            query = query.skip(skip)
-        if (limit)
-            query = query.limit(limit)
 
-        return await query.toArray()
+
+
+    // Queries
+    static find<T = Product>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return DocumentAbstract.find<T>(filter, findOptions)
     }
 
-    static async findOne(filter?: Filter<ProductPart>) {
-        return await productsCollection.findOne(filter ? filter : {})
+    static findOne<T = Product>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return DocumentAbstract.findOne<T>(filter, findOptions)
     }
 
-    static async findById(id: string | ObjectId) {
-        let query: WithId<ProductPart> | null = null
-        switch (typeof id) {
-            case 'string': {
-                query = await productsCollection.findOne({ _id: ObjectId.createFromHexString(id) })
-                break
-            }
-            case 'object': {
-                if (id instanceof ObjectId)
-                    query = await productsCollection.findOne({ _id: id })
-                break
-            }
-            default: {
-                break
-            }
-        }
-        return query
+    static findById<T = Product>(id: string | ObjectId) {
+        return DocumentAbstract.findById<T>(id)
     }
 
-    static async update(filter: Filter<ProductPart>, prod: ProductPart) {
-        await productsCollection.updateOne(
-            { ...filter },
-            { ...prod }
-        )
+    static updateOne<T = Product>(filter: Filter<T>, col: Partial<T>) {
+        return DocumentAbstract.updateOne<T>(filter, col)
     }
 
-    static async deleteById(id: string | ObjectId) {
-        let query: DeleteResult | null = null
-        switch (typeof id) {
-            case 'string': {
-                query = await productsCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
-                break
-            }
-            case 'object': {
-                if (id instanceof ObjectId)
-                    query = await productsCollection.deleteOne({ _id: id })
-                break
-            }
-            default: {
-                break
-            }
-        }
-        return query
+    static create<T = Product>(col: T) {
+        return DocumentAbstract.create<T>(col)
     }
-
-
-    static async create(prod: Product) {
-        const result = await productsCollection.insertOne({ ...prod, _id: undefined })
-        return result
-    }
-
 }
 

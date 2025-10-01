@@ -1,16 +1,17 @@
-import type { Document } from "mongodb";
+import type { Abortable, DeleteResult, Document, Filter, FindOptions, InsertOneResult, WithId } from "mongodb";
 import { Collection, ObjectId } from "mongodb";
 
 
 
 
-export default abstract class DocumentAbstract {
+export default abstract class DocumentAbstract<T> {
     abstract dbCollection: Collection<Document>
+    static dbCollection: Collection<any>
 
     abstract _id?: ObjectId
 
     async save() {
-        const coppy: Partial<DocumentAbstract> = { ...this }
+        const coppy: Partial<DocumentAbstract<T>> = { ...this }
         delete coppy.dbCollection
 
         if (!this._id) {
@@ -23,4 +24,64 @@ export default abstract class DocumentAbstract {
         )
         return updatedDoc
     }
+
+    static find<T>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return this.dbCollection.find(filter ? filter : {}, findOptions)
+    }
+
+    static findOne<T>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        return this.dbCollection.findOne(filter ? filter : {}, findOptions)
+    }
+
+    static findById<T>(id: string | ObjectId, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        let query: Promise<WithId<T> | null> = new Promise(() => null)
+        switch (typeof id) {
+            case 'string': {
+                query = this.dbCollection.findOne({ _id: ObjectId.createFromHexString(id) }, findOptions)
+                break
+            }
+            case 'object': {
+                if (id instanceof ObjectId)
+                    query = this.dbCollection.findOne({ _id: id }, findOptions)
+                break
+            }
+            default: {
+                break
+            }
+        }
+        return query
+    }
+
+    static updateOne<T = Document>(filter: Filter<T>, doc: Partial<T>) {
+        return this.dbCollection.updateOne(
+            { ...filter },
+            { ...doc }
+        )
+    }
+
+    static deleteById(id: string | ObjectId) {
+        let query: Promise<DeleteResult | null> = new Promise(() => null)
+        switch (typeof id) {
+            case 'string': {
+                query = this.dbCollection.deleteOne({ _id: ObjectId.createFromHexString(id) })
+                break
+            }
+            case 'object': {
+                if (id instanceof ObjectId)
+                    query = this.dbCollection.deleteOne({ _id: id })
+                break
+            }
+            default: {
+                break
+            }
+        }
+        return query
+    }
+
+
+    static create<T>(doc: T) {
+        const result = this.dbCollection.insertOne({ ...doc, _id: undefined })
+        return result as Promise<InsertOneResult<T>>
+    }
+
 }
