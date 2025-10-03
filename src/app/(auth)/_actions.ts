@@ -1,33 +1,35 @@
 'use server';
 
-import { Login, loginSchema } from "@/schemas/client/user.zod"
-import z from "zod"
 import { Invalid } from "./reducer/authReducer";
-import UserImp from "@/models/user";
 
-
-type ActionData = {
-    [key: string]: any
+export type ErrorRes = {
     email?: Invalid
     password?: Invalid
+    credential?: Invalid
 }
+
+export type SuccessRes = {
+    token?: string
+}
+
+export type ActionData = {
+    [key: string]: string | Invalid
+} & SuccessRes & ErrorRes
 
 export async function loginAction(prevState: ActionData, formData: FormData): Promise<ActionData> {
     // const submited= Object.fromEntries(formData.entries()) as User
+    const ORIGIN = process.env.ORIGIN
+    const res = await fetch(ORIGIN + '/api/auth/log-in', {
+        method: 'post',
+        body: formData
+    })
 
-    const submited: Login = {
-        email: formData.get('email')?.toString() ?? '',
-        password: formData.get('password')?.toString() ?? '',
+    if (!res.ok) {
+        return await res.json() as ErrorRes
     }
 
-    const parser = loginSchema.safeParse(submited)
-
-    if (!parser.success) {
-        const errorTree = z.treeifyError(parser.error).properties!
-        return errorTree
-    }
-
-    const lo = await UserImp.login(submited.email, submited.password)
-
-    return {}
+    const jwtToken = res.headers.get('Authorization')
+    return await {
+        token: jwtToken
+    } as SuccessRes
 }

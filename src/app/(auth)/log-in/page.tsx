@@ -3,11 +3,12 @@
 import Link from "next/link";
 import F from "../comps/authForm";
 import useAllLogic from "../hooks/useAllLogic";
+import { Invalid } from "../reducer/authReducer";
 
 export default function Auth() {
     const {
         authState, changeField, invalidMsgs,
-        actionState, formAction,
+        actionState, formAction, isPending,
         handleSubmit
     } = useAllLogic()
 
@@ -22,7 +23,7 @@ export default function Auth() {
                     value={authState.email} onChange={changeField('email')}
                     invalidMsgs={
                         authState.isSubmitted
-                            ? (invalidMsgs.email || actionState.email)
+                            ? (invalidMsgs.email || actionState.email) as Invalid
                             : undefined
                     }
                     name="email"
@@ -33,12 +34,15 @@ export default function Auth() {
                     value={authState.password} onChange={changeField('password')}
                     invalidMsgs={
                         authState.isSubmitted
-                            ? (invalidMsgs.password || actionState.password)
+                            ? (invalidMsgs.password || actionState.password) as Invalid
                             : undefined
                     }
                     name="password"
                 />
-                <F.Submit >
+                <span>{actionState.credential?.errors.map((msg, idx) =>
+                    <span key={idx}>{msg}</span>
+                )}</span>
+                <F.Submit disabled={isPending}>
                     Đăng Nhập
                 </F.Submit>
                 <p className="mt-4 text-center text-white/80">

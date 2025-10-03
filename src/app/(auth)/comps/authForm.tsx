@@ -28,18 +28,21 @@ function Input(props: InputProps) {
             />
             <div className="min-h-10 flex items-center text-red-800 font-bold">
                 {invalidMsgs?.errors.map((msg, id) =>
-                    <span className="pl-3" key={id}>{msg}</span>
+                    <span className="pl-3 capitalize" key={id}>{msg}</span>
                 )}
             </div>
         </div>
     )
 }
 
-function Submit({ children }: PropsWithChildren) {
+type SubmitProps = PropsWithChildren & React.ButtonHTMLAttributes<HTMLButtonElement>
+function Submit(props: SubmitProps) {
+    const { children, ...rest } = props
     return (
         <button
             type="submit"
             className="px-6 py-3 rounded-sm bg-gray-950 text-white hover:bg-white hover:text-black transition font-semibold"
+            {...rest}
         >
             {children}
         </button>

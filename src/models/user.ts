@@ -18,8 +18,8 @@ export default class UserImp extends DocumentAbstract<User> implements User {
         Object.assign(this, user)
     }
 
-    static async comparePassword(password: string, candidatePassword: string) {
-        const isMatched = bcrypt.compare(candidatePassword, password)
+    static async comparePassword(password: string, hash: string) {
+        const isMatched = await bcrypt.compare(password, hash)
         return isMatched
     }
 
@@ -31,29 +31,30 @@ export default class UserImp extends DocumentAbstract<User> implements User {
         if (!user)
             throw new Error(`not found user "${userName}"`)
 
-        const isMathced = await this.comparePassword(user.password, password)
+        const isMatched = await this.comparePassword(password, user.password)
+        return isMatched
     }
 
 
 
     // Queries
     static find<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return DocumentAbstract.find<T>(filter, findOptions)
+        return super.find<T>(filter, findOptions)
     }
 
     static findOne<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return DocumentAbstract.findOne<T>(filter, findOptions)
+        return super.findOne<T>(filter, findOptions)
     }
 
     static findById<T = User>(id: string | ObjectId) {
-        return DocumentAbstract.findById<T>(id)
+        return super.findById<T>(id)
     }
 
     static updateOne<T = User>(filter: Filter<T>, col: Partial<T>) {
-        return DocumentAbstract.updateOne<T>(filter, col)
+        return super.updateOne<T>(filter, col)
     }
 
     static create<T = User>(col: T) {
-        return DocumentAbstract.create<T>(col)
+        return super.create<T>(col)
     }
 }
