@@ -15,11 +15,11 @@ function Form({ children, ...rest }: FormProps) {
     )
 }
 
-type InputProps = { invalidMsgs?: Invalid }
+type InputProps = { invalid?: Invalid }
     & React.InputHTMLAttributes<HTMLInputElement>
 
 function Input(props: InputProps) {
-    const { invalidMsgs, ...rest } = props
+    const { invalid, ...rest } = props
     return (
         <div>
             <input
@@ -27,7 +27,7 @@ function Input(props: InputProps) {
                 {...rest}
             />
             <div className="min-h-10 flex items-center text-red-800 font-bold">
-                {invalidMsgs?.errors.map((msg, id) =>
+                {invalid?.errors.map((msg, id) =>
                     <span className="pl-3 capitalize" key={id}>{msg}</span>
                 )}
             </div>

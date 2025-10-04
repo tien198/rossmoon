@@ -10,6 +10,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
     dbCollection = usersCollection;
     _id?: ObjectId;
     email: string = ''
+    userName: string = ''
     name: string = ''
     password: string = ''
 
@@ -35,14 +36,36 @@ export default class UserImp extends DocumentAbstract<User> implements User {
         return isMatched
     }
 
+    static async singin(userName: string, password: string) {
+        const existed = await this.findOne<User>(
+            {
+                $or: [
+                    { email: userName },
+                    { userName: userName }
+                ]
+            },
+            {
+                email: 1
+            }
+        )
+        if (existed) {
+            throw new Error(`Tài khoản "${userName}" đã tồn tại`)
+        }
+        const hashed = await bcrypt.hash(password, Number(process.env.SALT_LENGTH) ?? 10)
+
+        const result = await this.inserOne({
+            email: userName, password: hashed
+        })
+        return result.acknowledged
+    }
 
 
     // Queries
-    static find<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+    static find<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
         return super.find<T>(filter, findOptions)
     }
 
-    static findOne<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+    static findOne<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
         return super.findOne<T>(filter, findOptions)
     }
 
@@ -54,7 +77,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
         return super.updateOne<T>(filter, col)
     }
 
-    static create<T = User>(col: T) {
-        return super.create<T>(col)
+    static inserOne<T = User>(doc: T) {
+        return super.inserOne<T>(doc)
     }
 }

@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import F from "../comps/authForm";
-import useAllLogic from "../hooks/useAllLogic";
+import useLogin from "../hooks/useLogin";
 import { Invalid } from "../reducer/authReducer";
 
 export default function Auth() {
     const {
-        authState, changeField, invalidMsgs,
+        authState, changeField, invalid,
         actionState, formAction, isPending,
         handleSubmit
-    } = useAllLogic()
+    } = useLogin()
 
     return (
         <div className="h-full max-w-3xl py-20 px-5 md:px-16 bg-black/50 backdrop-blur-md" >
@@ -21,9 +21,9 @@ export default function Auth() {
                 <F.Input
                     placeholder="Email"
                     value={authState.email} onChange={changeField('email')}
-                    invalidMsgs={
+                    invalid={
                         authState.isSubmitted
-                            ? (invalidMsgs.email || actionState.email) as Invalid
+                            ? (invalid.email || actionState.email) as Invalid
                             : undefined
                     }
                     name="email"
@@ -32,21 +32,18 @@ export default function Auth() {
                     type="password"
                     placeholder="Mật khẩu"
                     value={authState.password} onChange={changeField('password')}
-                    invalidMsgs={
+                    invalid={
                         authState.isSubmitted
-                            ? (invalidMsgs.password || actionState.password) as Invalid
+                            ? (invalid.password || actionState.password || actionState.credential) as Invalid
                             : undefined
                     }
                     name="password"
                 />
-                <span>{actionState.credential?.errors.map((msg, idx) =>
-                    <span key={idx}>{msg}</span>
-                )}</span>
                 <F.Submit disabled={isPending}>
                     Đăng Nhập
                 </F.Submit>
                 <p className="mt-4 text-center text-white/80">
-                    Chưa có tài khoản? <Link href="/auth/sign-in" className="text-gray-950 hover:underline">Đăng ký</Link>
+                    Chưa có tài khoản? <Link href="/sign-in" className="text-gray-950 hover:underline">Đăng ký</Link>
                 </p>
             </F.Form>
         </div >

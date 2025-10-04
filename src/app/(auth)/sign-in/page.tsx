@@ -1,31 +1,56 @@
 'use client'
 
+
 import F from "../comps/authForm";
-import { useAuthReducer } from "../hooks/useAuthReducer";
+import useSignin from "../hooks/useSignin";
+import { Invalid } from "../reducer/authReducer";
 
 export default function SingIn() {
-    const { authState, changeField } = useAuthReducer()
+    const {
+        authState, changeField, invalid,
+        actionState, formAction, isPending,
+        handleSubmit
+    } = useSignin()
 
     return (
         <div className="h-full w-full max-w-3xl py-20 px-5 md:px-16 bg-black/50 backdrop-blur-md shadow-lg " >
-            <F.Form>
+            <F.Form
+                onSubmit={handleSubmit}
+            >
                 <h2 className="text-2xl font-bold mb-6 text-center">Đăng Ký</h2>
                 <F.Input
-                    type="email"
                     placeholder="Email"
                     value={authState.email} onChange={changeField('email')}
+                    invalid={
+                        authState.isSubmitted
+                            ? (invalid.email || actionState.email) as Invalid
+                            : undefined
+                    }
+                    name="email"
                 />
                 <F.Input
                     type="password"
                     placeholder="Mật khẩu"
                     value={authState.password} onChange={changeField('password')}
+                    invalid={
+                        authState.isSubmitted
+                            ? (invalid.password || actionState.password) as Invalid
+                            : undefined
+                    }
+                    name="password"
                 />
                 <F.Input
                     type="password"
                     placeholder="Xác nhận mật khẩu"
-                    value={authState.password} onChange={changeField('password')}
+                    value={authState.passwordConfirm} onChange={changeField('passwordConfirm')}
+                    invalid={
+                        authState.isSubmitted
+                            ? (invalid.passwordConfirm || actionState.passwordConfirm || actionState.credential) as Invalid
+                            : undefined
+                    }
+                    name="passwordConfirm"
                 />
-                <F.Submit >
+                <F.Submit disabled={isPending}>
                     Đăng Ký
                 </F.Submit>
             </F.Form>

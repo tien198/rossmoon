@@ -8,9 +8,10 @@ type State = {
     isSubmitted?: boolean
     email: string
     password: string
+    passwordConfirm?: string
 }
 
-export type FieldName = 'isSubmitted' | 'email' | 'password'
+export type FieldName = keyof State
 
 export type InvalidFieldName = 'emailInvalid' | 'passwordInvalid'
 
@@ -20,10 +21,10 @@ type Action = {
     val?: string | boolean
 }
 
-
 export const state: State = {
     email: '',
-    password: ''
+    password: '',
+    // passwordConfirm: ''
 }
 
 export function reducer(state: State, action: Action): State {

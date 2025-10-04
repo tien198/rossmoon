@@ -1,20 +1,21 @@
-import { ErrorRes } from '@/app/(auth)/_actions'
-import { genJWT } from '@/lib/jwtToken'
-import { zodValidation } from '@/lib/zodValidate'
-import UserImp from '@/models/user'
-import { Login, loginSchemaServer } from '@/schemas/server/user.zod'
-import { NextResponse } from 'next/server'
+import { ErrorRes } from "@/app/(auth)/_actions"
+import { genJWT } from "@/lib/jwtToken"
+import { zodValidation } from "@/lib/zodValidate"
+import UserImp from "@/models/user"
+import { Signin, signinSchemaServer } from "@/schemas/server/user.zod"
+import { NextResponse } from "next/server"
 
-// POST: {doamin}/api/auth/log-in
+// POST: {doamin}/api/auth/sign-in
 export async function POST(req: Request) {
     const formData = await req.formData()
 
-    const submited: Login = {
+    const submited: Signin = {
         email: formData.get('email')?.toString() ?? '',
         password: formData.get('password')?.toString() ?? '',
+        passwordConfirm: formData.get('passwordConfirm')?.toString() ?? ''
     }
 
-    const invalid = zodValidation(submited, loginSchemaServer)
+    const invalid = zodValidation(submited, signinSchemaServer)
     if (Object.keys(invalid).length > 0)
         return NextResponse.json(
             invalid,
@@ -23,9 +24,9 @@ export async function POST(req: Request) {
 
     try {
 
-        const loginSuccess = await UserImp.login(submited.email, submited.password)
+        const signinSuccess = await UserImp.singin(submited.email, submited.password)
 
-        if (!loginSuccess) {
+        if (!signinSuccess) {
             return NextResponse.json(
                 {
                     credential: {
@@ -50,12 +51,10 @@ export async function POST(req: Request) {
         return NextResponse.json(
             {
                 credential: {
-                    errors: [error.message ?? 'fail to login']
+                    errors: [error.message ?? 'fail to signin']
                 }
             } as ErrorRes,
-            {
-                status: 500
-            }
+            { status: 500 }
         )
     }
 }
