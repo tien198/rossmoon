@@ -63,23 +63,23 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
 
     // Queries
     static find<T = Product>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return DocumentAbstract.find<T>(filter, findOptions)
+        return super.find<T>(filter, findOptions)
     }
 
     static findOne<T = Product>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return DocumentAbstract.findOne<T>(filter, findOptions)
+        return super.findOne<T>(filter, findOptions)
     }
 
     static findById<T = Product>(id: string | ObjectId) {
-        return DocumentAbstract.findById<T>(id)
+        return super.findById<T>(id)
     }
 
     static updateOne<T = Product>(filter: Filter<T>, col: Partial<T>) {
-        return DocumentAbstract.updateOne<T>(filter, col)
+        return super.updateOne<T>(filter, col)
     }
 
-    static create<T = Product>(col: T) {
-        return DocumentAbstract.create<T>(col)
+    static insertOne<T = Product>(col: T) {
+        return super.inserOne<T>(col)
     }
 }
 

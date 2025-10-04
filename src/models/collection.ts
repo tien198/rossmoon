@@ -30,27 +30,27 @@ export default class CollectionImp extends DocumentAbstract<Collection> implemen
         Object.assign(this, col)
     }
 
-    
+
 
 
     // Queries
     static find<T = Collection>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return DocumentAbstract.find<T>(filter, findOptions)
+        return super.find<T>(filter, findOptions)
     }
 
     static findOne<T = Collection>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return DocumentAbstract.findOne<T>(filter, findOptions)
+        return super.findOne<T>(filter, findOptions)
     }
 
     static findById<T = Collection>(id: string | ObjectId) {
-        return DocumentAbstract.findById<T>(id)
+        return super.findById<T>(id)
     }
 
     static updateOne<T = Collection>(filter: Filter<T>, col: Partial<T>) {
-        return DocumentAbstract.updateOne<T>(filter, col)
+        return super.updateOne<T>(filter, col)
     }
 
-    static create<T = Collection>(col: T) {
-        return DocumentAbstract.create<T>(col)
+    static inserOne<T = Collection>(col: T) {
+        return super.inserOne<T>(col)
     }
 }
