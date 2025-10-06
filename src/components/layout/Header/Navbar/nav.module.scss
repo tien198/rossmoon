@@ -32,6 +32,21 @@ $header-height-desktop: 5rem;
     visibility: hidden;
     transition: $transition-default;
 
+    &.active {
+        height: 100vh;
+    }
+
+     @media (min-width: 768px) {
+        inset: 0;
+        width: 0;
+        height: 100vh;
+
+        &.active {
+            width: min(33.3333vw, 441px);
+            height: 100vh;
+        }
+    }
+
     ::-webkit-scrollbar {
         width: .6rem;
         height: 4px;
@@ -45,10 +60,6 @@ $header-height-desktop: 5rem;
     ::-webkit-scrollbar-thumb {
         background-color: var(--dark-gray);
         border-radius: 3rem;
-    }
-
-    &.active {
-        height: 100vh;
     }
 
     .nav-root {
@@ -189,16 +200,7 @@ $header-height-desktop: 5rem;
         }
     }
 
-    @media (min-width: 768px) {
-        inset: 0;
-        width: 0;
-        height: 100vh;
-
-        &.active {
-            width: min(33.3333vw, 441px);
-            height: 100vh;
-        }
-    }
+   
 }
 
 /*
