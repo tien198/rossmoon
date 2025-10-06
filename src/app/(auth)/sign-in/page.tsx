@@ -8,7 +8,7 @@ import { Invalid } from "../reducer/authReducer";
 export default function SingIn() {
     const {
         authState, changeField, invalid,
-        actionState, formAction, isPending,
+        actionState, isPending,
         handleSubmit
     } = useSignin()
 

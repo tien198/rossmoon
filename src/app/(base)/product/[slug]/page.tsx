@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import ProductImp from "@/models/product";
 
 import styles from './product.module.scss'
