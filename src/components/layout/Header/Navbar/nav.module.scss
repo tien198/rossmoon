@@ -1,9 +1,4 @@
-$transition-ease: cubic-bezier(0.39, 0.575, 0.565, 1);
-$transition-default: all .3s $transition-ease;
-
-$header-height-mobile: 4rem;
-$header-height-desktop: 5rem;
-
+@use '@/assets/scss/variables' as *;
 
 .active {
     visibility: visible !important;

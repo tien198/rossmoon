@@ -1,42 +1,47 @@
 'use client'
 
 import React, { useState } from "react";
-import styles from "./Nav.module.scss";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import styles from "./Nav.module.scss";
 
 export default function Nav() {
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(true)
   return (
-    <nav className={
-      styles['sidebar']
-      + ' ' + (isActive ? styles['active'] : '')}
+    <aside className={
+      styles['sidebar-container']}
     >
-      <span
+      {!isActive && <button
         className={
           styles['activation-btn']
           + ' ' + styles['activate']}
         onClick={() => setIsActive(true)}
       >
-        <IoIosArrowForward />
-      </span>
-      <span
+        <IoIosArrowForward /><span className="hidden">show</span>
+      </button>}
+      <button
         className={
           styles['activation-btn']
           + ' ' + styles['deactivate']}
-        onClick={() => setIsActive(false  )}
-
+        onClick={() => setIsActive(false)}
       >
-        <IoIosArrowBack />
-      </span>
-      <div className={styles['logo']}>🛍️ Admin</div>
-      <nav className={styles['nav']}>
-        <a href="#">📦 Sản phẩm</a>
-        <a href="#">👥 Người dùng</a>
-        <a href="#">📈 Báo cáo</a>
-      </nav>
-      <div className={styles['footer']}>
-        <button>Đăng xuất</button>
+        <IoIosArrowBack /><span className="hidden">hide</span>
+      </button>
+      <div className={
+        styles['sidebar']
+        + ' ' + (isActive ? styles['active'] : '')
+
+      }>
+
+        <div className={styles['logo']}>🛍️ Admin</div>
+        <nav className={styles['nav']}>
+          <a href="#">📦 Sản phẩm</a>
+          <a href="#">👥 Người dùng</a>
+          <a href="#">📈 Báo cáo</a>
+        </nav>
+        <div className={styles['footer']}>
+          <button>Đăng xuất</button>
+        </div>
       </div>
-    </nav>
+    </aside>
   );
 };
