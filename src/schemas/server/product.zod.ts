@@ -9,11 +9,13 @@ export const productSchema_Server = productSchema.extend({
     _id: z.instanceof(ObjectId).nullish(),
     category: nestedCategorySchema_Server.nullish(),
 })
+    .omit({
+        id: true
+    })
 
 export type Product = z.infer<typeof productSchema_Server>
 
 export type ProductPart = Partial<Product>
-
 
 
 

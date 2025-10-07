@@ -6,7 +6,7 @@ import zDate from '@/shared/zod.date'
 
 
 export const productSchema = z.object({
-
+    id: z.string(),
     name: z.string(),
     slug: z.string(),
     price: z.number().positive(),
