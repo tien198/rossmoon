@@ -7,7 +7,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
             <Nav />
             {/* Main Content */}
             <main className="flex-1 shrink-[1] min-w-[0px] overflow-y-auto h-screen">
-                <div className="p-6">
+                <div className="px-2 py-4 md:p-6">
                     {children}
                 </div>
             </main>

@@ -27,7 +27,7 @@ const ProductTable = () => {
                 <h1>Quản lý sản phẩm</h1>
                 <button onClick={e => showAddModal()}>
                     <TiPlus />
-                    Thêm sản phẩm
+                    Thêm <span className="hidden md:inline-block">sản phẩm</span>
                 </button>
             </header>
             <div className={styles.tableContainer}>
