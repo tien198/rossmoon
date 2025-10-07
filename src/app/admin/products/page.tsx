@@ -6,7 +6,7 @@ import { TiPlus } from "react-icons/ti";
 import { useProducts } from "./hooks/useProducts";
 
 
-const ProductTable = () => {
+export default function ProductTable() {
     const {
         products, showAddModal, showDeleteModal
     } = useProducts()
@@ -57,5 +57,3 @@ const ProductTable = () => {
         </>
     );
 };
-
-export default ProductTable;
