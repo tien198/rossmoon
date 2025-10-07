@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styles from "./Nav.module.scss";
+import Link from "next/link";
 
 export default function Nav() {
   const [isActive, setIsActive] = useState(true)
+  const deactivate = () => setIsActive(false)
   return (
     <aside className={
       styles['sidebar-container']}
@@ -34,9 +36,24 @@ export default function Nav() {
 
         <div className={styles['logo']}>🛍️ Admin</div>
         <nav className={styles['nav']}>
-          <a href="#">📦 Sản phẩm</a>
-          <a href="#">👥 Người dùng</a>
-          <a href="#">📈 Báo cáo</a>
+          <Link
+            href="/admin/products"
+            onClick={deactivate}
+          >
+            📦 Sản phẩm
+          </Link>
+          <Link
+            href="#"
+            onClick={deactivate}
+          >
+            👥 Người dùng
+          </Link>
+          <Link
+            href="#"
+            onClick={deactivate}
+          >
+            📈 Báo cáo
+          </Link>
         </nav>
         <div className={styles['footer']}>
           <button>Đăng xuất</button>
