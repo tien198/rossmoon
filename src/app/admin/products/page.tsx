@@ -1,25 +1,15 @@
 'use client'
 
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
-import { Product } from "@/schemas/client/product.zod";
 import { TiPlus } from "react-icons/ti";
+import { useProducts } from "./hooks/useProducts";
 
 
 const ProductTable = () => {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const addProduct = (prod: Product) => {
-        setProducts((prev) => [...prev, prod]);
-    };
-
-    const deleteProduct = (id: string) => {
-        setProducts((prev) => prev.filter((p) => p.id !== id));
-    };
-    const showAddModal = () => { }
-    const showDeleteModal = (id: string) => { }
-
+    const {
+        products, showAddModal, showDeleteModal
+    } = useProducts()
 
     return (
         <>
