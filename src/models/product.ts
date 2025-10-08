@@ -11,6 +11,8 @@ import DocumentAbstract from "./document";
 
 export default class ProductImp extends DocumentAbstract<Product> implements ProductPart {
     dbCollection = productsCollection
+    static dbCollection = productsCollection
+
 
     _id?: ObjectId
     name?: string
@@ -58,7 +60,18 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
         return prod
     }
 
+    static async pagination(skip?: number, limit?: number) {
+        let query = this.find()
+        if (!skip)
+            skip = 0
+        if (!limit)
+            limit = 0
+        query = query.skip(skip).limit(limit + 1)
 
+        const prods = await query.toArray()
+        const hasNext = prods.length > limit
+        return { prods, hasNext }
+    }
 
 
     // Queries

@@ -1,5 +1,5 @@
 import type { Abortable, DeleteResult, Document, Filter, FindOptions, InsertOneResult, WithId } from "mongodb";
-import { Collection, ObjectId } from "mongodb";
+import { Collection, FindCursor, ObjectId } from "mongodb";
 
 
 
@@ -26,11 +26,11 @@ export default abstract class DocumentAbstract<T> {
     }
 
     static find<T>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
-        return this.dbCollection.find(filter ? filter : {}, findOptions)
+        return this.dbCollection.find(filter ? filter : {}, findOptions) as FindCursor<T>
     }
 
     static findOne<T>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
-        return this.dbCollection.findOne(filter ? filter : {}, findOptions)
+        return this.dbCollection.findOne(filter ? filter : {}, findOptions) as Promise<T | null>
     }
 
     static findById<T>(id: string | ObjectId, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
@@ -49,7 +49,7 @@ export default abstract class DocumentAbstract<T> {
                 break
             }
         }
-        return query
+        return query as Promise<WithId<T> | null>
     }
 
     static updateOne<T = Document>(filter: Filter<T>, doc: Partial<T>) {
