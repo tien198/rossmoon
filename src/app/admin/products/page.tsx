@@ -1,59 +1,23 @@
-'use client'
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query"
+import ProductTable from "./comps/productTable"
+import { getProducts } from "@/lib/api/products"
 
-import React from "react";
-import styles from "./styles.module.scss";
-import { TiPlus } from "react-icons/ti";
-import { useProducts } from "./hooks/useProducts";
+type Props = {
+    searchParams: Promise<{
+        page: string
+    }>
+}
 
+export default async function ProductPage({ searchParams }: Props) {
+    const page = Number((await searchParams).page) || 0
 
-export default function ProductTable() {
-    const {
-        products, showAddModal, showDeleteModal
-    } = useProducts()
+    const queryClient = new QueryClient()
+    await queryClient.fetchQuery({
+        queryKey: ['products'],
+        queryFn: getProducts.bind(null, page)
+    })
 
-    return (
-        <>
-            <header className={styles.header}>
-                <h1>Quản lý sản phẩm</h1>
-                <button onClick={e => showAddModal()}>
-                    <TiPlus />
-                    Thêm <span className="hidden md:inline-block">sản phẩm</span>
-                </button>
-            </header>
-            <div className={styles.tableContainer}>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            {/* <th>Tồn kho</th> */}
-                            <th className={styles.actions}>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.length === 0 ? (
-                            <tr>
-                                <td colSpan={5} className={styles.empty}>
-                                    Không có sản phẩm nào
-                                </td>
-                            </tr>
-                        ) : (
-                            products.map((p) => (
-                                <tr key={p.id}>
-                                    <td>{p.id}</td>
-                                    <td>{p.name}</td>
-                                    <td>{Number(p.price).toLocaleString()} ₫</td>
-                                    {/* <td>{p.stock}</td> */}
-                                    <td className={styles.actions}>
-                                        <button onClick={() => showDeleteModal(p.id)}>Xóa</button>
-                                    </td>
-                                </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </>
-    );
-};
+    return <HydrationBoundary state={dehydrate(queryClient)}>
+        <ProductTable />
+    </HydrationBoundary>
+}

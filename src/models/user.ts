@@ -32,7 +32,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
         if (!user)
             throw new Error(`not found user "${userName}"`)
 
-        const isMatched = await this.comparePassword(password, user.password)
+        const isMatched = await this.comparePassword(password, user.password as string)
         return isMatched
     }
 
