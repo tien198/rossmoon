@@ -1,12 +1,17 @@
+import { Pagination } from "@/schemas/base/pagination";
+import ProductDTO from "@/DTO/product";
 import ProductImp from "@/models/product";
+import { Product } from "@/schemas/server/product.zod";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const page = Number(searchParams.get('page')) ?? 0
-    const limit = 10
+    const limit = 2
     const skip = page * limit
-    const result = await ProductImp.pagination(skip, limit)
 
-    return NextResponse.json(result)
+    const pagination: Pagination<Product | ProductDTO> = await ProductImp.pagination(skip, limit)
+    pagination.results = pagination.results.map(i => new ProductDTO(i as Product))
+
+    return NextResponse.json(pagination)
 }

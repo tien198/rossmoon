@@ -6,6 +6,7 @@ import { productsCollection } from "@/services/mongoDbCollections";
 import type { ProductAttributes } from "../schemas/base/product.attributes.zod";
 import type { NestedCategory } from "../schemas/server/category.zod";
 import DocumentAbstract from "./document";
+import { Pagination } from "@/schemas/base/pagination";
 
 
 
@@ -69,8 +70,9 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
         query = query.skip(skip).limit(limit + 1)
 
         const prods = await query.toArray()
+        prods.pop()
         const hasNext = prods.length > limit
-        return { results: prods, hasNext }
+        return { results: prods, hasNext } as Pagination<Product>
     }
 
 

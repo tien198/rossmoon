@@ -53,7 +53,7 @@ export default function ProductTable() {
                             </tr>
                         ) : (
                             prodsQuery.data?.pages.map(page =>
-                                page.results.map((p:any) =>
+                                page.results.map(p =>
                                     <tr key={p.id}>
                                         <td>{p.id}</td>
                                         <td>{p.name}</td>
