@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { nestedCategorySchema_Server } from './category.zod'
-import { productSchema } from '../client/product.zod'
+import { productSchema } from '../base/product.zod'
 
 
 
@@ -9,9 +9,6 @@ export const productSchema_Server = productSchema.extend({
     _id: z.instanceof(ObjectId).nullish(),
     category: nestedCategorySchema_Server.nullish(),
 })
-    .omit({
-        id: true
-    })
 
 export type Product = z.infer<typeof productSchema_Server>
 

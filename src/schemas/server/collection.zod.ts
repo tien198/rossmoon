@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import z from "zod";
 import { nestedCategorySchema_Server } from "./category.zod";
-import { collectionShema } from "../client/collection.zod";
+import { collectionShema } from "../base/collection.zod";
 
 export const collectionShema_Server = collectionShema.extend({
     _id: z.instanceof(ObjectId).nullish(),

@@ -1,5 +1,5 @@
 import z from "zod";
-import { bannerImageSchema } from "../client/bannerImage.zod";
+import { bannerImageSchema } from "../base/bannerImage.zod";
 import { ObjectId } from "mongodb";
 
 export const bannerImageSchema_Server = bannerImageSchema.extend({

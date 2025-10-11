@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import z from "zod";
-import { categorySchema } from "../client/category.zod";
+import { categorySchema } from "../base/category.zod";
 
 export const categorySchema_Server = categorySchema.extend({
     _id: z.instanceof(ObjectId).nullish(),

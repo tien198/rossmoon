@@ -3,8 +3,8 @@ import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
 import { productsCollection } from "@/services/mongoDbCollections";
-import { NestedCategory } from "../schemas/server/category.zod";
-import { ProductAttributes } from "../schemas/client/product.attributes.zod";
+import type { ProductAttributes } from "../schemas/base/product.attributes.zod";
+import type { NestedCategory } from "../schemas/server/category.zod";
 import DocumentAbstract from "./document";
 
 
@@ -70,7 +70,7 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
 
         const prods = await query.toArray()
         const hasNext = prods.length > limit
-        return { prods, hasNext }
+        return { results: prods, hasNext }
     }
 
 

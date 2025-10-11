@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import z from "zod";
-import { loginSchema, signinSchema, userSchema } from "../client/user.zod";
+import { loginSchema, signinSchema, userSchema } from "../base/user.zod";
 
 export const userSchema_Server = userSchema.extend({
     _id: z.instanceof(ObjectId).nullish(),

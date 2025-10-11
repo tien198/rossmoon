@@ -3,7 +3,7 @@ import z from "zod";
 import { nestedCollectionSchema_Server } from "./collection.zod";
 import { nestedProductSchema_Server } from "./product.zod";
 import { bannerImageSchema_Server } from "./bannerImage.zod";
-import { magazineFeatureSchema } from "../client/magazineFeature.zod";
+import { magazineFeatureSchema } from "../base/magazineFeature.zod";
 
 
 

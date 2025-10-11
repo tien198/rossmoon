@@ -2,7 +2,7 @@ import ProductImp from "@/models/product";
 
 import styles from './product.module.scss'
 import ProductImages from "./comps/productImages";
-import { ProductPart } from "@/schemas/client/product.zod";
+import { ProductDTO } from "@/schemas/DTO/product.zod";
 
 type Props = {
     params: Promise<{
@@ -12,7 +12,7 @@ type Props = {
 
 export default async function Product({ params }: Props) {
     const slug = (await params).slug
-    const prod = await ProductImp.findBySlug(slug) as ProductPart
+    const prod = await ProductImp.findBySlug(slug) as Partial<ProductDTO>
 
     return (
         <div className={

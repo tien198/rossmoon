@@ -12,9 +12,10 @@ export default async function ProductPage({ searchParams }: Props) {
     const page = Number((await searchParams).page) || 0
 
     const queryClient = new QueryClient()
-    await queryClient.fetchQuery({
-        queryKey: ['products'],
-        queryFn: getProducts.bind(null, page)
+    await queryClient.prefetchInfiniteQuery({
+        queryKey: ['products', 'infinite'],
+        initialPageParam: page,
+        queryFn: ({ pageParam }) => getProducts(pageParam)
     })
 
     return <HydrationBoundary state={dehydrate(queryClient)}>

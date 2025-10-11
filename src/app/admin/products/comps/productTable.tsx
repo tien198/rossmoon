@@ -4,18 +4,24 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { TiPlus } from "react-icons/ti";
 import { useProducts } from "../hooks/useProducts";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/api/products";
-import { Product } from "@/schemas/client/product.zod";
+import { useSearchParams } from "next/navigation";
 
 
 export default function ProductTable() {
     const {
         products, showAddModal, showDeleteModal
     } = useProducts()
-    const prodsQuery = useQuery({
-        queryKey: ['products'],
-        queryFn: getProducts.bind(null, 1)
+
+    const searchQueries = useSearchParams()
+    const page = Number(searchQueries.get('page')) || 1
+
+    const prodsQuery = useInfiniteQuery({
+        queryKey: ['products', 'infinite'],
+        initialPageParam: page,
+        queryFn: ({ pageParam }) => getProducts(pageParam),
+        getNextPageParam: (last, all, lastPageParam) => lastPageParam + 1
     })
 
     return (
@@ -39,24 +45,26 @@ export default function ProductTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        {prodsQuery.data.prods.length === 0 ? (
+                        {prodsQuery.data?.pages.length === 0 ? (
                             <tr>
                                 <td colSpan={5} className={styles.empty}>
                                     Không có sản phẩm nào
                                 </td>
                             </tr>
                         ) : (
-                            prodsQuery.data.prods.map((p: Product) => (
-                                <tr key={p.id}>
-                                    <td>{p.id}</td>
-                                    <td>{p.name}</td>
-                                    <td>{Number(p.price).toLocaleString()} ₫</td>
-                                    {/* <td>{p.stock}</td> */}
-                                    <td className={styles.actions}>
-                                        <button onClick={() => showDeleteModal(p.id)}>Xóa</button>
-                                    </td>
-                                </tr>
-                            ))
+                            prodsQuery.data?.pages.map(page =>
+                                page.results.map((p:any) =>
+                                    <tr key={p.id}>
+                                        <td>{p.id}</td>
+                                        <td>{p.name}</td>
+                                        <td>{Number(p.price).toLocaleString()} ₫</td>
+                                        {/* <td>{p.stock}</td> */}
+                                        <td className={styles.actions}>
+                                            <button onClick={() => showDeleteModal(p.id)}>Xóa</button>
+                                        </td>
+                                    </tr>
+                                )
+                            )
                         )}
                     </tbody>
                 </table>

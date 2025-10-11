@@ -1,9 +1,9 @@
 import { VideoSource } from "@/components/Video"
-import { CategoryPart } from "@/schemas/client/category.zod"
-import { ProductPart } from "@/schemas/client/product.zod"
+import { CategoryDTO } from "@/schemas/DTO/category.zod"
+import { ProductDTO } from "@/schemas/DTO/product.zod"
 
 
-interface CategoryWithName extends CategoryPart {
+interface CategoryWithName extends Partial<CategoryDTO> {
     name: string
 }
 
@@ -22,7 +22,7 @@ export type Gallery = {
 
 
 
-export interface ProductWithUrl extends ProductPart {
+export interface ProductWithUrl extends Partial<ProductDTO> {
     name: string
     imageUrls: string[]
     productURL: string

@@ -1,10 +1,10 @@
 'use client'
 
-import { Product } from "@/schemas/client/product.zod";
+import { ProductDTO } from "@/schemas/DTO/product.zod";
 import { useState } from "react";
 
 export function useProducts() {
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ProductDTO[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showAddModal = () => { }
