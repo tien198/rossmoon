@@ -1,10 +1,10 @@
-import { ProductDTO } from "@/schemas/DTO/product.zod";
+import type { Product } from "@/schemas/client/product.zod";
 import Image from "next/image";
 
 import styles from '../product.module.scss'
 
 type Props = {
-    prod: Partial<ProductDTO>
+    prod: Partial<Product>
 }
 
 export default function ProductImages({ prod }: Props) {

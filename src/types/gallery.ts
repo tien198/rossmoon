@@ -1,6 +1,6 @@
 import { VideoSource } from "@/components/Video"
-import { CategoryDTO } from "@/schemas/DTO/category.zod"
-import { ProductDTO } from "@/schemas/DTO/product.zod"
+import type CategoryDTO from "@/DTO/category"
+import type ProductDTO from "@/DTO/product"
 
 
 interface CategoryWithName extends Partial<CategoryDTO> {

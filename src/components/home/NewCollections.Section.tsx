@@ -1,4 +1,4 @@
-import { CollectionDTO } from "@/schemas/DTO/collection.zod"
+import { CollectionDTO } from "@/schemas/client/collection.zod"
 import Image from "next/image"
 import Link from "next/link"
 

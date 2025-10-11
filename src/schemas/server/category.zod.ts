@@ -6,7 +6,7 @@ export const categorySchema_Server = categorySchema.extend({
     _id: z.instanceof(ObjectId).nullish(),
 })
 
-export type Category = z.infer<typeof categorySchema>
+export type Category = z.infer<typeof categorySchema_Server>
 
 export type CategoryPart = Partial<Category>
 
