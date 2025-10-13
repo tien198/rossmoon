@@ -76,7 +76,7 @@ export default function ProductTable() {
                             prodsQuery.data?.pages.map(page =>
                                 page.results.map(p =>
                                     <tr key={p.id}>
-                                        <td>{p.id}</td>
+                                        <td></td>
                                         <td>{p.name}</td>
                                         <td>{Number(p.price).toLocaleString()} ₫</td>
                                         {/* <td>{p.stock}</td> */}
