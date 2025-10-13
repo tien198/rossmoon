@@ -95,6 +95,7 @@ export default function ProductTable() {
                                 )
                             )
                         )}
+                        <tr className="h-[50vh]"></tr>
                     </tbody>
                 </table>
                 {/* <button className="border border-amber-800" onClick={() => prodsQuery.fetchNextPage()}>Load more ...</button> */}
