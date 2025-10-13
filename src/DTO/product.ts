@@ -8,7 +8,6 @@ export default class ProductDTO implements Partial<ProdClient> {
 
     name?: string
     slug?: string
-    imageUrls?: string[]
     price?: number
     description?: string
 

@@ -7,6 +7,7 @@ import { useProducts } from "../hooks/useProducts";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/api/products";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 
 export default function ProductTable() {
@@ -24,27 +25,27 @@ export default function ProductTable() {
         getNextPageParam: (last, all, lastPageParam) => last.hasNext ? lastPageParam + 1 : undefined
     })
 
-    const prodsTableDiv = useRef<HTMLTableSectionElement>(null)
+    const prodsTable = useRef<HTMLTableSectionElement>(null)
     useEffect(() => {
-        const container = prodsTableDiv.current!
+        const container = prodsTable.current!
         const scrollEvt = (e: Event) => {
-            const notInEgde = container.scrollHeight - container.scrollTop > container.clientHeight
-            if (notInEgde)
+
+            const inEgde = container.scrollHeight - container.scrollTop <= container.clientHeight
+            if (!inEgde)
                 return
 
             if (prodsQuery.isFetchingNextPage || prodsQuery.isFetchingPreviousPage)
                 return
 
+            container!.removeEventListener('scroll', scrollEvt)
             prodsQuery.fetchNextPage()
-            e.currentTarget!.removeEventListener('scroll', scrollEvt)
-            if (prodsQuery.hasNextPage)
-                console.log('has NExt');
 
             if (prodsQuery.hasNextPage || prodsQuery.hasPreviousPage)
-                container.addEventListener('scroll', scrollEvt)
+                e.currentTarget!.addEventListener('scroll', scrollEvt)
         }
         container.addEventListener('scroll', scrollEvt)
-    }, [prodsQuery])
+    }, [prodsTable])
+
     return (
         <div >
             <header className={styles['header']}>
@@ -65,7 +66,7 @@ export default function ProductTable() {
                             <th className={styles['actions']}>Hành động</th>
                         </tr>
                     </thead>
-                    <tbody ref={prodsTableDiv}>
+                    <tbody ref={prodsTable}>
                         {prodsQuery.data?.pages.length === 0 ? (
                             <tr>
                                 <td colSpan={5} className={styles['empty']}>
@@ -76,7 +77,13 @@ export default function ProductTable() {
                             prodsQuery.data?.pages.map(page =>
                                 page.results.map(p =>
                                     <tr key={p.id}>
-                                        <td></td>
+                                        <td>
+                                            <Image
+                                                src={process.env.ORIGIN ?? '' + p.attributes?.medias?.[0]?.url}
+                                                alt={p.name ?? ''}
+                                                width={550} height={550}
+                                            />
+                                        </td>
                                         <td>{p.name}</td>
                                         <td>{Number(p.price).toLocaleString()} ₫</td>
                                         {/* <td>{p.stock}</td> */}

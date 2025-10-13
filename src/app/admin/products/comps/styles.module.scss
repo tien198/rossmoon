@@ -38,10 +38,12 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+    text-align: center;
 
     thead {
         display: block;
         width: 100%;
+
     }
 
     tbody {
@@ -49,12 +51,14 @@
         overflow-y: scroll;
         max-height: 169.73px;
         width: 100%;
+        transition: none;
     }
 
     th,
     td {
-        text-align: left;
+        text-align: center;
         padding: 0.75rem;
+        width: 100%;
     }
 
     th {
@@ -63,6 +67,9 @@
     }
 
     tr {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         border-bottom: 1px solid #e5e7eb;
 
         &:hover {
