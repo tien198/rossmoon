@@ -83,7 +83,7 @@ export default function ProductTable() {
                                             <Image
                                                 src={(process.env.ORIGIN ?? '') + p.attributes?.medias?.[0]?.url}
                                                 alt={p.name ?? ''}
-                                                width={550} height={550}
+                                                width={350} height={350}
                                             />
                                         </td>
                                         <td>{p.name}</td>
@@ -97,7 +97,7 @@ export default function ProductTable() {
                             )
                         )}
                         {
-                            (prodsQuery.data!.pages.length <= 1) && <tr className="h-[70vh]"></tr>
+                            (prodsQuery.data!.pages.length <= 1) && <tr className="h-[70vh] md"></tr>
                         }
                     </tbody>
                 </table>

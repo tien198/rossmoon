@@ -41,8 +41,11 @@
     text-align: center;
 
     thead {
-        display: flex;
+        display: block;
         width: 100%;
+        height: 100%;
+        border-bottom: 2px solid #e5e7eb;
+        color: #374151;
 
     }
 
@@ -59,12 +62,7 @@
         text-align: center;
         padding: 0.75rem;
         width: 100%;
-        height:100%;
-    }
-
-    th {
-        border-bottom: 2px solid #e5e7eb;
-        color: #374151;
+        height: 100%;
     }
 
     tr {
@@ -72,6 +70,11 @@
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #e5e7eb;
+
+        th:first-child,
+        td:first-child {
+            max-width: 250px;
+        }
 
         &:hover {
             background-color: #f9fafb;
