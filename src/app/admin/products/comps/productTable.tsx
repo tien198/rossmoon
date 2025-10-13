@@ -26,6 +26,7 @@ export default function ProductTable() {
     })
 
     const prodsTable = useRef<HTMLTableSectionElement>(null)
+
     useEffect(() => {
         const container = prodsTable.current!
         const scrollEvt = (e: Event) => {
@@ -79,7 +80,7 @@ export default function ProductTable() {
                                     <tr key={p.id}>
                                         <td>
                                             <Image
-                                                src={process.env.ORIGIN ?? '' + p.attributes?.medias?.[0]?.url}
+                                                src={(process.env.ORIGIN ?? '') + p.attributes?.medias?.[0]?.url}
                                                 alt={p.name ?? ''}
                                                 width={550} height={550}
                                             />
@@ -96,7 +97,7 @@ export default function ProductTable() {
                         )}
                     </tbody>
                 </table>
-                <button className="border border-amber-800" onClick={() => prodsQuery.fetchNextPage()}>Load more ...</button>
+                {/* <button className="border border-amber-800" onClick={() => prodsQuery.fetchNextPage()}>Load more ...</button> */}
             </div>
         </div>
     );
