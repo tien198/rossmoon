@@ -15,7 +15,7 @@ export default async function ProductPage({ searchParams }: Props) {
     await queryClient.prefetchInfiniteQuery({
         queryKey: ['products', 'infinite'],
         initialPageParam: page,
-        queryFn: ({ pageParam }) => getProducts(pageParam)
+        queryFn: ({ pageParam }) => getProducts(pageParam),
     })
 
     return <HydrationBoundary state={dehydrate(queryClient)}>

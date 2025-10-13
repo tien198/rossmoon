@@ -8,7 +8,7 @@
         margin-left: 5rem;
         font-size: 1.875rem;
         font-weight: bold;
-        color:  #374151;
+        color: #374151;
     }
 
     button {
@@ -38,6 +38,18 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+
+    thead {
+        display: block;
+        width: 100%;
+    }
+
+    tbody {
+        display: block;
+        overflow-y: scroll;
+        max-height: 169.73px;
+        width: 100%;
+    }
 
     th,
     td {

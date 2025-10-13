@@ -1,6 +1,6 @@
 'use client'
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { TiPlus } from "react-icons/ti";
 import { useProducts } from "../hooks/useProducts";
@@ -21,33 +21,54 @@ export default function ProductTable() {
         queryKey: ['products', 'infinite'],
         initialPageParam: page,
         queryFn: ({ pageParam }) => getProducts(pageParam),
-        getNextPageParam: (last, all, lastPageParam) => lastPageParam + 1
+        getNextPageParam: (last, all, lastPageParam) => last.hasNext ? lastPageParam + 1 : undefined
     })
 
+    const prodsTableDiv = useRef<HTMLTableSectionElement>(null)
+    useEffect(() => {
+        const container = prodsTableDiv.current!
+        const scrollEvt = (e: Event) => {
+            const notInEgde = container.scrollHeight - container.scrollTop > container.clientHeight
+            if (notInEgde)
+                return
+
+            if (prodsQuery.isFetchingNextPage || prodsQuery.isFetchingPreviousPage)
+                return
+
+            prodsQuery.fetchNextPage()
+            e.currentTarget!.removeEventListener('scroll', scrollEvt)
+            if (prodsQuery.hasNextPage)
+                console.log('has NExt');
+
+            if (prodsQuery.hasNextPage || prodsQuery.hasPreviousPage)
+                container.addEventListener('scroll', scrollEvt)
+        }
+        container.addEventListener('scroll', scrollEvt)
+    }, [prodsQuery])
     return (
-        <>
-            <header className={styles.header}>
+        <div >
+            <header className={styles['header']}>
                 <h1>Quản lý sản phẩm</h1>
                 <button onClick={e => showAddModal()}>
                     <TiPlus />
                     Thêm <span className="hidden md:inline-block">sản phẩm</span>
                 </button>
             </header>
-            <div className={styles.tableContainer}>
-                <table className={styles.table}>
+            <div className={styles['tableContainer']}>
+                <table className={styles['table']}>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             {/* <th>Tồn kho</th> */}
-                            <th className={styles.actions}>Hành động</th>
+                            <th className={styles['actions']}>Hành động</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody ref={prodsTableDiv}>
                         {prodsQuery.data?.pages.length === 0 ? (
                             <tr>
-                                <td colSpan={5} className={styles.empty}>
+                                <td colSpan={5} className={styles['empty']}>
                                     Không có sản phẩm nào
                                 </td>
                             </tr>
@@ -59,7 +80,7 @@ export default function ProductTable() {
                                         <td>{p.name}</td>
                                         <td>{Number(p.price).toLocaleString()} ₫</td>
                                         {/* <td>{p.stock}</td> */}
-                                        <td className={styles.actions}>
+                                        <td className={styles['actions']}>
                                             <button onClick={() => showDeleteModal(p.id)}>Xóa</button>
                                         </td>
                                     </tr>
@@ -68,7 +89,8 @@ export default function ProductTable() {
                         )}
                     </tbody>
                 </table>
+                <button className="border border-amber-800" onClick={() => prodsQuery.fetchNextPage()}>Load more ...</button>
             </div>
-        </>
+        </div>
     );
 };

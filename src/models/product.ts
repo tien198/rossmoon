@@ -70,8 +70,8 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
         query = query.skip(skip).limit(limit + 1)
 
         const prods = await query.toArray()
-        prods.pop()
         const hasNext = prods.length > limit
+        prods.pop()
         return { results: prods, hasNext } as Pagination<Product>
     }
 
