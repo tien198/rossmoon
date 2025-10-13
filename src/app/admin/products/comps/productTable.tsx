@@ -16,7 +16,7 @@ export default function ProductTable() {
     } = useProducts()
 
     const searchQueries = useSearchParams()
-    const page = Number(searchQueries.get('page')) || 1
+    const page = Number(searchQueries.get('page')) || 0
 
     const prodsQuery = useInfiniteQuery({
         queryKey: ['products', 'infinite'],
