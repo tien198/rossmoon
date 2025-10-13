@@ -25,6 +25,7 @@ export default function ProductTable() {
         getNextPageParam: (last, all, lastPageParam) => last.hasNext ? lastPageParam + 1 : undefined
     })
 
+
     const prodsTable = useRef<HTMLTableSectionElement>(null)
 
     useEffect(() => {
@@ -95,7 +96,9 @@ export default function ProductTable() {
                                 )
                             )
                         )}
-                        <tr className="h-[50vh]"></tr>
+                        {
+                            (prodsQuery.data!.pages.length <= 1) && <tr className="h-[70vh]"></tr>
+                        }
                     </tbody>
                 </table>
                 {/* <button className="border border-amber-800" onClick={() => prodsQuery.fetchNextPage()}>Load more ...</button> */}
