@@ -73,7 +73,11 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
         const hasNext = prods.length > limit
         if (hasNext)
             prods.pop()
-        return { results: prods, hasNext } as Pagination<Product>
+        return {
+            results: prods,
+            hasNext,
+            hasPrevious: !!(skip > 0)
+        } as Pagination<Product>
     }
 
 

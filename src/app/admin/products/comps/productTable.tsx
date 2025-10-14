@@ -6,7 +6,7 @@ import { TiPlus } from "react-icons/ti";
 import { useProducts } from "../hooks/useProducts";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/api/products";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 
@@ -15,32 +15,45 @@ export default function ProductTable() {
         products, showAddModal, showDeleteModal
     } = useProducts()
 
-    const searchQueries = useSearchParams()
-    const page = Number(searchQueries.get('page')) || 0
+    const searchParams = useSearchParams()
+    const page = useRef(Number(searchParams.get('page')))
 
     const prodsQuery = useInfiniteQuery({
         queryKey: ['products', 'infinite'],
-        initialPageParam: page,
+        initialPageParam: page.current,
         queryFn: ({ pageParam }) => getProducts(pageParam),
-        getNextPageParam: (last, all, lastPageParam) => last.hasNext ? lastPageParam + 1 : undefined
+        getNextPageParam: (last, all, lastPageParam) => last.hasNext ? ++lastPageParam : undefined,
+        getPreviousPageParam: (last, all, lastPageParam) => last.hasPrevious ? --lastPageParam : undefined
     })
 
 
     const prodsTable = useRef<HTMLTableSectionElement>(null)
+    const lastScrollTop = useRef(0)
 
     useEffect(() => {
         const container = prodsTable.current!
+
         const scrollEvt = (e: Event) => {
-
-            const inEgde = container.scrollHeight - container.scrollTop <= container.clientHeight
-            if (!inEgde)
+            const currentScrollTop = container.scrollTop
+            if (prodsQuery.isFetching)
                 return
 
-            if (prodsQuery.isFetchingNextPage || prodsQuery.isFetchingPreviousPage)
-                return
+            // scroll down 
+            if (currentScrollTop > lastScrollTop.current) {
+
+                const inEgde = container.scrollHeight - container.scrollTop <= container.clientHeight
+                if (!inEgde)
+                    return
+
+                prodsQuery.fetchNextPage()
+            }
+            // scroll up
+            else if (currentScrollTop === 0) {
+                prodsQuery.fetchPreviousPage()
+            }
 
             container!.removeEventListener('scroll', scrollEvt)
-            prodsQuery.fetchNextPage()
+            lastScrollTop.current = currentScrollTop
 
             if (prodsQuery.hasNextPage || prodsQuery.hasPreviousPage)
                 e.currentTarget!.addEventListener('scroll', scrollEvt)
@@ -48,6 +61,32 @@ export default function ProductTable() {
         container.addEventListener('scroll', scrollEvt)
     }, [prodsTable])
 
+    /*
+        useEffect(() => {
+            const container = prodsTable.current!
+            const searchs = new URLSearchParams()
+            const registerEvt = (element: HTMLTableSectionElement, scrollTo: number, page: number) => {
+                searchs.set('page', String(page))
+    
+                element.addEventListener('scroll', e => {
+                    const currentScrollTop = container.scrollTop
+                    // scroll down
+                    if (currentScrollTop > lastScrollTop.current)
+                        if (container.scrollHeight - container.scrollTop - container.clientHeight === 0)
+                            history.replaceState(null, '', location.pathname + '?' + searchs.toString())
+                    lastScrollTop.current = container.scrollTop < 0 ? 0 : container.scrollTop
+                })
+            }
+    
+            if (prodsQuery.isFetchingNextPage)
+                searchs.set('page', String(++page.current))
+            else if (prodsQuery.isFetchingPreviousPage)
+                searchs.set('page', String(--page.current))
+    
+            history.replaceState(null, '', location.pathname + '?' + searchs.toString())
+    
+        }, [prodsQuery])
+    */
     return (
         <div >
             <header className={styles['header']}>
@@ -87,7 +126,9 @@ export default function ProductTable() {
                                             />
                                         </td>
                                         <td>{p.name}</td>
-                                        <td>{Number(p.price).toLocaleString()} ₫</td>
+                                        <td>
+                                            {Number(p.price).toLocaleString()}₫
+                                        </td>
                                         {/* <td>{p.stock}</td> */}
                                         <td className={styles['actions']}>
                                             <button onClick={() => showDeleteModal(p.id)}>Xóa</button>
@@ -97,7 +138,15 @@ export default function ProductTable() {
                             )
                         )}
                         {
-                            (prodsQuery.data!.pages.length <= 1) && <tr className="h-[70vh] md"></tr>
+                            prodsQuery.isFetching
+                            && <tr className="h-24">
+                                <td></td>
+                                <td colSpan={3} className="py-11 text-center text-xl">... Loading</td>
+                            </tr>
+                        }
+                        {
+                            (prodsQuery.data!.pages.length <= 1)
+                            && <tr className="h-[70vh] sm:h-[50vh] md:[20vh]"></tr>
                         }
                     </tbody>
                 </table>
