@@ -6,7 +6,7 @@ import { TiPlus } from "react-icons/ti";
 import { useProducts } from "../hooks/useProducts";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/api/products";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 
@@ -22,8 +22,16 @@ export default function ProductTable() {
         queryKey: ['products', 'infinite'],
         initialPageParam: page.current,
         queryFn: ({ pageParam }) => getProducts(pageParam),
-        getNextPageParam: (last, all, lastPageParam) => last.hasNext ? ++lastPageParam : undefined,
-        getPreviousPageParam: (last, all, lastPageParam) => last.hasPrevious ? --lastPageParam : undefined
+        getNextPageParam:
+            (last, all, lastPageParam) =>
+                last.hasNext
+                    ? ++lastPageParam
+                    : undefined,
+        getPreviousPageParam:
+            (last, all, lastPageParam) =>
+                last.hasPrevious
+                    ? --lastPageParam
+                    : undefined
     })
 
 
