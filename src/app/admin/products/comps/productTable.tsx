@@ -52,22 +52,46 @@ export default function ProductTable() {
                 const inEgde = container.scrollHeight - container.scrollTop <= container.clientHeight
                 if (!inEgde)
                     return
+                // consider the last page hasNext
+                if ((prodsQuery.data?.pages?.[prodsQuery.data?.pages?.length - 1].hasNext) === false)
+                    return
 
                 prodsQuery.fetchNextPage()
             }
+
             // scroll up
             else if (currentScrollTop === 0) {
+                // consider the first page hasPrevious
+                if ((prodsQuery.data?.pages?.[0].hasPrevious) === false)
+                    return
+
                 prodsQuery.fetchPreviousPage()
             }
 
             container!.removeEventListener('scroll', scrollEvt)
             lastScrollTop.current = currentScrollTop
 
-            if (prodsQuery.hasNextPage || prodsQuery.hasPreviousPage)
+            if (
+                prodsQuery.data?.pages?.[0].hasPrevious
+                || prodsQuery.data?.pages?.[prodsQuery.data?.pages.length - 1].hasNext
+            )
                 e.currentTarget!.addEventListener('scroll', scrollEvt)
         }
+        container.removeEventListener('scroll', scrollEvt)
         container.addEventListener('scroll', scrollEvt)
     }, [prodsTable])
+
+    useEffect(() => {
+        const searchs = new URLSearchParams()
+        searchs.set('page', String(++page.current))
+        searchs.set('page', String(--page.current))
+
+        // console.log('________ Query val change')
+        if (prodsQuery.isFetching === false)
+            console.log(prodsQuery.isSuccess);
+        // console.log(prodsQuery.isFetched);
+
+    }), [prodsQuery]
 
     /*
         useEffect(() => {

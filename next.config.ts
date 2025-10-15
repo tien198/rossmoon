@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     // formats: ["image/avif", "image/webp"],
     remotePatterns: [new URL('http://localhost:3000/**')],
   },
+  reactStrictMode: false
 };
 
 export default nextConfig;
