@@ -1,124 +1,18 @@
 'use client'
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import { TiPlus } from "react-icons/ti";
 import { useProducts } from "../hooks/useProducts";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { getProducts } from "@/lib/api/products";
-import { useSearchParams } from "next/navigation";
-import Image from "next/image";
+import ProdRows from "./productRows";
 
 
 export default function ProductTable() {
     const {
-        products, showAddModal, showDeleteModal
+        showAddModal, showDeleteModal,
+        prodsQuery, prodsTable, pageNumber
     } = useProducts()
 
-    const searchParams = useSearchParams()
-    const page = useRef(Number(searchParams.get('page')))
-
-    const prodsQuery = useInfiniteQuery({
-        queryKey: ['products', 'infinite'],
-        initialPageParam: page.current,
-        queryFn: ({ pageParam }) => getProducts(pageParam),
-        getNextPageParam:
-            (last, all, lastPageParam) =>
-                last.hasNext
-                    ? ++lastPageParam
-                    : undefined,
-        getPreviousPageParam:
-            (last, all, lastPageParam) =>
-                last.hasPrevious
-                    ? --lastPageParam
-                    : undefined
-    })
-
-
-    const prodsTable = useRef<HTMLTableSectionElement>(null)
-    const lastScrollTop = useRef(0)
-
-    useEffect(() => {
-        const container = prodsTable.current!
-
-        const scrollEvt = (e: Event) => {
-            const currentScrollTop = container.scrollTop
-            if (prodsQuery.isFetching)
-                return
-
-            // scroll down 
-            if (currentScrollTop > lastScrollTop.current) {
-
-                const inEgde = container.scrollHeight - container.scrollTop <= container.clientHeight
-                if (!inEgde)
-                    return
-                // consider the last page hasNext
-                if ((prodsQuery.data?.pages?.[prodsQuery.data?.pages?.length - 1].hasNext) === false)
-                    return
-
-                prodsQuery.fetchNextPage()
-            }
-
-            // scroll up
-            else if (currentScrollTop === 0) {
-                // consider the first page hasPrevious
-                if ((prodsQuery.data?.pages?.[0].hasPrevious) === false)
-                    return
-
-                prodsQuery.fetchPreviousPage()
-            }
-
-            container!.removeEventListener('scroll', scrollEvt)
-            lastScrollTop.current = currentScrollTop
-
-            if (
-                prodsQuery.data?.pages?.[0].hasPrevious
-                || prodsQuery.data?.pages?.[prodsQuery.data?.pages.length - 1].hasNext
-            )
-                e.currentTarget!.addEventListener('scroll', scrollEvt)
-        }
-        container.removeEventListener('scroll', scrollEvt)
-        container.addEventListener('scroll', scrollEvt)
-    }, [prodsTable])
-
-    useEffect(() => {
-        const searchs = new URLSearchParams()
-        searchs.set('page', String(++page.current))
-        searchs.set('page', String(--page.current))
-
-        // console.log('________ Query val change')
-        if (prodsQuery.isFetching === false)
-            console.log(prodsQuery.isSuccess);
-        // console.log(prodsQuery.isFetched);
-
-    }), [prodsQuery]
-
-    /*
-        useEffect(() => {
-            const container = prodsTable.current!
-            const searchs = new URLSearchParams()
-            const registerEvt = (element: HTMLTableSectionElement, scrollTo: number, page: number) => {
-                searchs.set('page', String(page))
-    
-                element.addEventListener('scroll', e => {
-                    const currentScrollTop = container.scrollTop
-                    // scroll down
-                    if (currentScrollTop > lastScrollTop.current)
-                        if (container.scrollHeight - container.scrollTop - container.clientHeight === 0)
-                            history.replaceState(null, '', location.pathname + '?' + searchs.toString())
-                    lastScrollTop.current = container.scrollTop < 0 ? 0 : container.scrollTop
-                })
-            }
-    
-            if (prodsQuery.isFetchingNextPage)
-                searchs.set('page', String(++page.current))
-            else if (prodsQuery.isFetchingPreviousPage)
-                searchs.set('page', String(--page.current))
-    
-            history.replaceState(null, '', location.pathname + '?' + searchs.toString())
-    
-        }, [prodsQuery])
-    */
     return (
         <div >
             <header className={styles['header']}>
@@ -132,6 +26,7 @@ export default function ProductTable() {
                 <table className={styles['table']}>
                     <thead>
                         <tr>
+                            <th>stt</th>
                             <th>#</th>
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
@@ -140,35 +35,25 @@ export default function ProductTable() {
                         </tr>
                     </thead>
                     <tbody ref={prodsTable}>
-                        {prodsQuery.data?.pages.length === 0 ? (
-                            <tr>
-                                <td colSpan={5} className={styles['empty']}>
-                                    Không có sản phẩm nào
-                                </td>
-                            </tr>
-                        ) : (
-                            prodsQuery.data?.pages.map(page =>
-                                page.results.map(p =>
-                                    <tr key={p.id}>
-                                        <td>
-                                            <Image
-                                                src={(process.env.ORIGIN ?? '') + p.attributes?.medias?.[0]?.url}
-                                                alt={p.name ?? ''}
-                                                width={350} height={350}
-                                            />
-                                        </td>
-                                        <td>{p.name}</td>
-                                        <td>
-                                            {Number(p.price).toLocaleString()}₫
-                                        </td>
-                                        {/* <td>{p.stock}</td> */}
-                                        <td className={styles['actions']}>
-                                            <button onClick={() => showDeleteModal(p.id)}>Xóa</button>
-                                        </td>
-                                    </tr>
+                        {
+                            prodsQuery.data?.pages.length === 0
+                                ?
+                                <tr>
+                                    <td colSpan={5} className={styles['empty']}>
+                                        Không có sản phẩm nào
+                                    </td>
+                                </tr>
+                                :
+                                prodsQuery.data?.pages.map((page, id) =>
+                                    <ProdRows
+                                        key={id}
+                                        prods={page.results}
+                                        pageNumber={pageNumber.current}
+                                        actions={{ showDeleteModal }}
+                                    />
                                 )
-                            )
-                        )}
+
+                        }
                         {
                             prodsQuery.isFetching
                             && <tr className="h-24">
