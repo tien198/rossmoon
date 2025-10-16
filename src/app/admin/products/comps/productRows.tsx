@@ -66,7 +66,7 @@ function Row({ prod, observedRows, actions }: RowProps) {
                 src={(process.env.ORIGIN ?? '') + prod.attributes?.medias?.[0]?.url}
                 alt={prod.name ?? ''}
                 width={350} height={350}
-                priority
+                loading="lazy"
             />
         </td>
         <td>{prod.name}</td>
