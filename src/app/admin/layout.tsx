@@ -21,7 +21,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
             <div className="flex max-w-screen">
                 <Nav />
                 {/* Main Content */}
-                <main className="flex-1 shrink-[1] min-w-[0px] overflow-hidden h-screen">
+                <main className="flex-1 shrink-[1] min-w-[0px] overflow-auto h-screen">
                     {children}
                 </main>
                 {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
