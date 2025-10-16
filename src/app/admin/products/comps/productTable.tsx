@@ -46,7 +46,7 @@ export default function ProductTable() {
                                 :
                                 prodsQuery.data?.pages.map((page, id) =>
                                     <ProdRows
-                                        key={id}
+                                        key={page.results[0].id}
                                         prods={page.results}
                                         pageNumber={pageNumber.current}
                                         actions={{ showDeleteModal }}

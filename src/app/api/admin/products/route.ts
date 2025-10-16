@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const page = Number(searchParams.get('page')) ?? 0
-    const limit = 2
+    const limit = 5
     const skip = page * limit
 
     const pagination: Pagination<Product | ProductDTO> = await ProductImp.pagination(skip, limit)

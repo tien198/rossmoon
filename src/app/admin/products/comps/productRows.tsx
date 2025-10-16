@@ -24,8 +24,7 @@ export default function ProdRows({ prods, pageNumber, actions }: Props) {
                         searchs.set('page', String(pageNumber))
                         history.replaceState(null, '', location.pathname + '?' + searchs.toString())
                     }
-                }
-                )
+                })
             })
             observedRows.forEach((i, id, arr) => {
                 // observe the first and the last
@@ -39,8 +38,8 @@ export default function ProdRows({ prods, pageNumber, actions }: Props) {
     )
 
     return <>{
-        prods.map((prod, id) =>
-            <Row stt={++id}
+        prods.map((prod) =>
+            <Row
                 key={prod.id}
                 prod={prod}
                 observedRows={observedRows}
@@ -56,13 +55,12 @@ type RowProps = {
     observedRows: (Element | null)[]
 } & Actions
 
-function Row({ prod, observedRows, actions, stt }: RowProps) {
+function Row({ prod, observedRows, actions }: RowProps) {
     const trRef = useRef<HTMLTableRowElement>(null)
     useEffect(() => {
         observedRows.push(trRef.current)
     })
     return <tr ref={trRef}>
-        <td>{stt}</td>
         <td>
             <Image
                 src={(process.env.ORIGIN ?? '') + prod.attributes?.medias?.[0]?.url}
