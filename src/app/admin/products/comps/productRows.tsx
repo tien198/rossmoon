@@ -70,7 +70,7 @@ function Row({ prod, observedRows, actions }: RowProps) {
         </td>
         <td>{prod.name}</td>
         <td>
-            {Number(prod.price).toLocaleString()}₫
+            {Number(prod.price).toLocaleString()} ₫
         </td>
         {/* <td>{p.stock}</td> */}
         <td className={styles['actions']}>

@@ -46,7 +46,7 @@ export function useProducts() {
                 return
 
             // scroll down 
-            if (currentScrollTop > lastScrollTop.current) {
+            else if (currentScrollTop > lastScrollTop.current) {
 
                 const inEgde = container.scrollHeight - container.scrollTop <= container.clientHeight
                 if (!inEgde)
