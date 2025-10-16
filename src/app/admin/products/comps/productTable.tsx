@@ -14,7 +14,7 @@ export default function ProductTable() {
     } = useProducts()
 
     return (
-        <div >
+        <div className="h-full py-4 md:py-6 md:px-1">
             <header className={styles['header']}>
                 <h1>Quản lý sản phẩm</h1>
                 <button onClick={e => showAddModal()}>
@@ -23,7 +23,7 @@ export default function ProductTable() {
                 </button>
             </header>
             <div className={styles['tableContainer']}>
-                <table className={styles['table']}>
+                <table className={styles['table'] + ' flex flex-col h-full'}>
                     <thead>
                         <tr>
                             <th>#</th>
