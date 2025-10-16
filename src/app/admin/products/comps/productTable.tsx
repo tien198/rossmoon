@@ -26,7 +26,6 @@ export default function ProductTable() {
                 <table className={styles['table']}>
                     <thead>
                         <tr>
-                            <th>stt</th>
                             <th>#</th>
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
@@ -36,6 +35,13 @@ export default function ProductTable() {
                     </thead>
                     <tbody ref={prodsTable}>
                         {
+                            prodsQuery.isFetchingPreviousPage
+                            && <tr className="h-24">
+                                <td></td>
+                                <td colSpan={3} className="py-11 text-center text-xl">... Loading</td>
+                            </tr>
+                        }
+                        {
                             prodsQuery.data?.pages.length === 0
                                 ?
                                 <tr>
@@ -44,7 +50,7 @@ export default function ProductTable() {
                                     </td>
                                 </tr>
                                 :
-                                prodsQuery.data?.pages.map((page, id) =>
+                                prodsQuery.data?.pages.map((page) =>
                                     <ProdRows
                                         key={page.results[0].id}
                                         prods={page.results}
@@ -55,7 +61,7 @@ export default function ProductTable() {
 
                         }
                         {
-                            prodsQuery.isFetching
+                            prodsQuery.isFetchingNextPage
                             && <tr className="h-24">
                                 <td></td>
                                 <td colSpan={3} className="py-11 text-center text-xl">... Loading</td>
