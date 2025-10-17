@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import styles from "./styles.module.scss";
 import { useEffect, useRef } from "react";
+import { Pagination } from "@/schemas/base/pagination";
 
 type Actions = {
     actions: {
@@ -10,10 +11,9 @@ type Actions = {
     }
 }
 type Props = {
-    prods: ProductDTO[]
-    pageNumber: number
+    page: Pagination<ProductDTO>
 } & Actions
-export default function ProdRows({ prods, pageNumber, actions }: Props) {
+export default function ProdRows({ page, actions }: Props) {
     const observedRows: (Element | null)[] = []
     useEffect(
         () => {
@@ -21,7 +21,7 @@ export default function ProdRows({ prods, pageNumber, actions }: Props) {
                 entries.forEach(i => {
                     if (i.isIntersecting) {
                         const searchs = new URLSearchParams()
-                        searchs.set('page', String(pageNumber))
+                        searchs.set('page', String(page.page))
                         history.replaceState(null, '', location.pathname + '?' + searchs.toString())
                     }
                 })
@@ -38,7 +38,7 @@ export default function ProdRows({ prods, pageNumber, actions }: Props) {
     )
 
     return <>{
-        prods.map((prod) =>
+        page.results.map((prod) =>
             <Row
                 key={prod.id}
                 prod={prod}

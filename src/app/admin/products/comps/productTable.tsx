@@ -53,8 +53,8 @@ export default function ProductTable() {
                                 prodsQuery.data?.pages.map((page) =>
                                     <ProdRows
                                         key={page.results[0].id}
-                                        prods={page.results}
-                                        pageNumber={pageNumber.current}
+                                        page={page}
+                                        // pageNumber={pageNumber.current}
                                         actions={{ showDeleteModal }}
                                     />
                                 )

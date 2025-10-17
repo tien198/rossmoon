@@ -54,8 +54,6 @@ export function useProducts() {
                 // consider the last page hasNext
                 if ((prodsQuery.data?.pages?.[prodsQuery.data?.pages?.length - 1].hasNext) === false)
                     return
-                const searchs = new URLSearchParams(location.search)
-                pageNumber.current = Number(searchs.get('page')) + 1
                 prodsQuery.fetchNextPage()
             }
 
@@ -64,10 +62,6 @@ export function useProducts() {
                 // consider the first page hasPrevious
                 if ((prodsQuery.data?.pages?.[0].hasPrevious) === false)
                     return
-                const searchs = new URLSearchParams(location.search)
-                pageNumber.current = Number(searchs.get('page')) - 1
-                if (pageNumber.current <= 0)
-                    pageNumber.current = 0
                 prodsQuery.fetchPreviousPage()
             }
 

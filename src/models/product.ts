@@ -71,13 +71,14 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
 
         const prods = await query.toArray()
         const hasNext = prods.length > limit
-        
+
         if (hasNext)
             prods.pop()
         return {
             results: prods,
             hasNext,
-            hasPrevious: !!(skip > 0)
+            hasPrevious: !!(skip > 0),
+            page: skip / limit
         } as Pagination<Product>
     }
 
