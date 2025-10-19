@@ -22,7 +22,7 @@ export function getQueryClient() {
     return browserQueryClient
 }
 
-export default function Providers({ children }: PropsWithChildren) {
+export default function TanProvider({ children }: PropsWithChildren) {
     const queryClient = getQueryClient()
     return (
         <QueryClientProvider client={queryClient}>
