@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import modalReducer from "./reduxSlices/modalSlice";
 
 export const makeStore = () =>
     configureStore({
-        reducer: {}
+        reducer: {
+            modal: modalReducer
+        }
     })
 
 export type AppStore = ReturnType<typeof makeStore>
