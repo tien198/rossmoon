@@ -4,8 +4,8 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { TiPlus } from "react-icons/ti";
 import { useProducts } from "../hooks/useProducts";
-import ProdRows from "./productRows";
-import Modal from "@/components/modals/Modal";
+import ProdRows from "./Rows";
+import ProductModal from "@/components/modals/ProductModal";
 
 
 export default function ProductTable() {
@@ -76,7 +76,7 @@ export default function ProductTable() {
                 </table>
                 {/* <button className="border border-amber-800" onClick={() => prodsQuery.fetchNextPage()}>Load more ...</button> */}
             </div>
-            <Modal />
+            <ProductModal />
         </div>
     );
 };

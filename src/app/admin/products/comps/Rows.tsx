@@ -1,11 +1,10 @@
 import ProductDTO from "@/DTO/product";
-import Image from "next/image";
 
-import styles from "./styles.module.scss";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Pagination } from "@/schemas/base/pagination";
+import Row from "./Row";
 
-type Actions = {
+export type Actions = {
     actions: {
         showDeleteModal: (id: string) => void
     }
@@ -47,34 +46,4 @@ export default function ProdRows({ page, actions }: Props) {
             />
         )
     }</>
-}
-
-
-type RowProps = {
-    prod: ProductDTO
-    observedRows: (Element | null)[]
-} & Actions
-
-function Row({ prod, observedRows, actions }: RowProps) {
-    const trRef = useRef<HTMLTableRowElement>(null)
-    useEffect(() => {
-        observedRows.push(trRef.current)
-    })
-    return <tr ref={trRef}>
-        <td>
-            <Image
-                src={(process.env.ORIGIN ?? '') + prod.attributes?.medias?.[0]?.url}
-                alt={prod.name ?? ''}
-                width={350} height={350}
-            />
-        </td>
-        <td>{prod.name}</td>
-        <td>
-            {Number(prod.price).toLocaleString()} ₫
-        </td>
-        {/* <td>{p.stock}</td> */}
-        <td className={styles['actions']}>
-            <button onClick={() => actions.showDeleteModal(prod.id)}>Xóa</button>
-        </td>
-    </tr>
 }
