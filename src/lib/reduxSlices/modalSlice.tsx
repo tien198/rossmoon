@@ -20,10 +20,10 @@ export const modalSlice = createSlice({
     reducers: {
         showModal(state) {
             state.isShow = true
+            state.isFirstRender = false
         },
         hideModal(state) {
             state.isShow = false
-            state.isFirstRender = false
         },
         toggleModal(state) {
             state.isShow = !state.isShow

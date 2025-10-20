@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { FaXmark } from "react-icons/fa6";
 
 import styles from './Modal.module.scss'
-import { hideModal, showModal } from "@/lib/reduxSlices/modalSlice";
+import { hideModal } from "@/lib/reduxSlices/modalSlice";
 
 export default function Modal({ children }: PropsWithChildren) {
     const isShow = useAppSelector(sel => sel.modal.isShow)
@@ -26,8 +26,6 @@ export default function Modal({ children }: PropsWithChildren) {
     useEffect(() => {
         setModalEl(document.getElementById('modal'))
 
-        dispatch(hideModal())
-        dispatch(showModal())
         const escapeEv = (e: KeyboardEvent) => {
             if (e.key == 'Escape')
                 dispatch(hideModal())
