@@ -1,17 +1,16 @@
-import { Product } from "@/schemas/client/product.zod";
-import Modal from "./Modal";
+import Modal from "../../../../components/modals/Modal";
 import { useAppSelector } from "@/lib/reducerhooks";
-import MediaGallery from "./comps/MediaGallery";
-import ProductFeatures from "./comps/ProductFeatures";
+import MediaGallery from "../comps/modalComps/MediaGallery";
+import ProductFeatures from "../comps/modalComps/ProductFeatures";
 
 
 export default function ProductModal() {
-    const p = useAppSelector(state => state.productDetailModal)
+  const p = useAppSelector(state => state.productDetailModal)
 
-    return <Modal>
-        <div className="min-h-screen bg-white text-gray-800 font-sans">
+  return <Modal>
+    <div className="min-h-screen bg-white text-gray-800 font-sans">
       <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
-        
+
         {/* Bộ sưu tập media */}
         <MediaGallery medias={p.attributes?.medias} />
 
@@ -43,5 +42,5 @@ export default function ProductModal() {
         </div>
       </div>
     </div>
-    </Modal>
+  </Modal>
 }
