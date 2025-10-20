@@ -1,7 +1,7 @@
 'use client'
 
 import { useAppDispatch, useAppSelector } from "@/lib/reducerhooks";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { FaXmark } from "react-icons/fa6";
 
@@ -12,6 +12,9 @@ export default function Modal({ children }: PropsWithChildren) {
     const isShow = useAppSelector(sel => sel.modal.isShow)
     const isFirstRender = useAppSelector(sel => sel.modal.isFirstRender)
 
+    // Next specifical, we need wait HTML index render finish to access DOM
+    const [modalEl, setModalEl] = useState<HTMLElement | null>(null)
+
     const dispatch = useAppDispatch()
     const onCloseFn = useAppSelector(sel => sel.modal.onCloseFn)
 
@@ -21,6 +24,9 @@ export default function Modal({ children }: PropsWithChildren) {
     }
 
     useEffect(() => {
+        setModalEl(document.getElementById('modal'))
+
+        dispatch(hideModal())
         dispatch(showModal())
         const escapeEv = (e: KeyboardEvent) => {
             if (e.key == 'Escape')
@@ -29,23 +35,26 @@ export default function Modal({ children }: PropsWithChildren) {
         addEventListener('keydown', escapeEv)
 
         return () => removeEventListener('keydown', escapeEv)
-    })
-    console.log(
-        document.getElementById('modal')!
-    );
+    }, [])
 
+    if (!modalEl)
+        return null
+
+    const hiddenCls = isFirstRender ? 'hidden' : (
+        isShow ? styles['fade-in'] : styles['fade-out']
+    )
 
     return createPortal(
-        <div className={
-            isFirstRender ? 'hidden' : (
-                isShow ? '' : styles['fade-in']
-            )
-        }>
+        <div >
             <div
-                className={styles['backdrop']}
+                className={styles['backdrop'] + ' ' + hiddenCls}
                 onClick={close}
             ></div>
-            <div className={styles['modal']}>
+            <div className={
+                styles['modal']
+                + ' ' + styles['slide-down']
+                + ' ' + hiddenCls
+            }>
                 <FaXmark
                     className={styles['x-mark']}
                     onClick={close}
@@ -53,6 +62,6 @@ export default function Modal({ children }: PropsWithChildren) {
                 {children}
             </div>
         </div>,
-        document.getElementById('modal')!
+        modalEl!
     )
 }

@@ -23,16 +23,13 @@ export const modalSlice = createSlice({
         },
         hideModal(state) {
             state.isShow = false
+            state.isFirstRender = false
         },
         toggleModal(state) {
             state.isShow = !state.isShow
         },
         setOnCloseFn(state, action: PayloadAction<() => void>) {
-            state.onCloseFn = () => {
-                action.payload()
-                //  set isFirstRender = false every time close modal
-                state.isFirstRender = false
-            }
+            state.onCloseFn = action.payload
         }
     }
 })

@@ -27,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div id="modal"></div>
         <ReduxProvider>
           {/* Tanstack Provider */}
           <TanProvider>{children}</TanProvider>
         </ReduxProvider>
+        <div id="modal" className=""></div>
       </body>
     </html>
   );
