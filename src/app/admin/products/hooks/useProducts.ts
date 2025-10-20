@@ -82,7 +82,6 @@ export function useProducts() {
 
     return {
         showAddModal, showDeleteModal,
-        prodsTable, prodsQuery,
-        pageNumber
+        prodsTable, prodsQuery
     }
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TanProvider from "./TanProvider";
+import ReduxProvider from "./ReduxProviderr";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -26,8 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* Tanstack Provider */}
-        <TanProvider>{children}</TanProvider>
+        <div id="modal"></div>
+        <ReduxProvider>
+          {/* Tanstack Provider */}
+          <TanProvider>{children}</TanProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

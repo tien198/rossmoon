@@ -1,7 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
-    show: false
+
+type State = {
+    isShow: boolean
+    // indicate that whether modal is rendered in the first time
+    isFirstRender: boolean
+    // function that will be call when the modal was closed
+    onCloseFn?: () => void
+}
+
+const initialState: State = {
+    isShow: false,
+    isFirstRender: true
 }
 
 export const modalSlice = createSlice({
@@ -9,13 +19,20 @@ export const modalSlice = createSlice({
     initialState,
     reducers: {
         showModal(state) {
-            state.show = true
+            state.isShow = true
         },
         hideModal(state) {
-            state.show = false
+            state.isShow = false
         },
         toggleModal(state) {
-            state.show = !state.show
+            state.isShow = !state.isShow
+        },
+        setOnCloseFn(state, action: PayloadAction<() => void>) {
+            state.onCloseFn = () => {
+                action.payload()
+                //  set isFirstRender = false every time close modal
+                state.isFirstRender = false
+            }
         }
     }
 })
