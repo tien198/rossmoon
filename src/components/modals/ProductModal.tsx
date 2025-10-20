@@ -1,118 +1,47 @@
 import { Product } from "@/schemas/client/product.zod";
 import Modal from "./Modal";
 import { useAppSelector } from "@/lib/reducerhooks";
+import MediaGallery from "./comps/MediaGallery";
+import ProductFeatures from "./comps/ProductFeatures";
 
 
 export default function ProductModal() {
-    const product = useAppSelector(state => state.productDetailModal)
-
-    const { name, price, description, attributes, features, origin, notice, sustainability, productCare, category } = product;
+    const p = useAppSelector(state => state.productDetailModal)
 
     return <Modal>
-        <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-            {/* Title + Price */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 mb-4">
-                <h1 className="text-3xl font-semibold text-gray-900">{name}</h1>
-                <p className="text-xl text-gray-700 font-medium mt-2 md:mt-0">
-                    {price?.toLocaleString("vi-VN")} ₫
-                </p>
-            </div>
+        <div className="min-h-screen bg-white text-gray-800 font-sans">
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        {/* Bộ sưu tập media */}
+        <MediaGallery medias={p.attributes?.medias} />
 
-            {/* Media Section */}
-            {attributes?.medias && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                    {attributes.medias.map((media, i) =>
-                        media?.type === "image" ? (
-                            <img
-                                key={i}
-                                src={media.url}
-                                alt={name}
-                                className="rounded-lg w-full h-64 object-cover shadow-sm"
-                            />
-                        ) : (
-                            <video key={i} controls className="rounded-lg w-full h-64 object-cover shadow-sm">
-                                <source src={media?.url} />
-                            </video>
-                        )
-                    )}
-                </div>
-            )}
+        {/* Thông tin sản phẩm */}
+        <div>
+          <h1 className="text-3xl font-bold mb-2">{p.name}</h1>
+          <p className="text-gray-500 mb-6">{p.category?.name}</p>
+          <p className="text-2xl font-semibold mb-4">
+            {p.price?.toLocaleString('vi-VN')}₫
+          </p>
+          <p className="mb-6 leading-relaxed text-gray-700">{p.description}</p>
 
-            {/* Description */}
-            <p className="text-gray-700 mb-6">{description}</p>
+          {/* Thuộc tính */}
+          <div className="space-y-2 mb-8">
+            <p><strong>Màu sắc:</strong> {p.attributes?.color}</p>
+            <p><strong>Kích thước (cm):</strong> {p.attributes?.width} x {p.attributes?.height} x {p.attributes?.depth}</p>
+            <p><strong>Xuất xứ:</strong> {p.origin}</p>
+          </div>
 
-            {/* Attributes */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-                {attributes?.color && (
-                    <div>
-                        <p className="text-gray-500 text-sm">Màu sắc</p>
-                        <p className="font-medium">{attributes.color}</p>
-                    </div>
-                )}
-                {attributes?.width && (
-                    <div>
-                        <p className="text-gray-500 text-sm">Chiều ngang</p>
-                        <p className="font-medium">{attributes.width} cm</p>
-                    </div>
-                )}
-                {attributes?.height && (
-                    <div>
-                        <p className="text-gray-500 text-sm">Chiều cao</p>
-                        <p className="font-medium">{attributes.height} cm</p>
-                    </div>
-                )}
-                {attributes?.depth && (
-                    <div>
-                        <p className="text-gray-500 text-sm">Chiều rộng</p>
-                        <p className="font-medium">{attributes.depth} cm</p>
-                    </div>
-                )}
-            </div>
+          {/* Tính năng */}
+          <ProductFeatures features={p.features} />
 
-            {/* Features */}
-            {features && (
-                <div className="mb-6">
-                    <h2 className="text-lg font-semibold mb-2">Đặc điểm nổi bật</h2>
-                    <ul className="list-disc list-inside text-gray-700 space-y-1">
-                        {features.map((f, i) => (
-                            <li key={i}>{f}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-
-            {/* Extra Info */}
-            <div className="space-y-3 text-gray-700">
-                {origin && (
-                    <p>
-                        <span className="font-semibold">Xuất xứ:</span> {origin}
-                    </p>
-                )}
-                {notice && (
-                    <p>
-                        <span className="font-semibold">Lưu ý:</span> {notice}
-                    </p>
-                )}
-                {sustainability && (
-                    <p>
-                        <span className="font-semibold">Tính bền vững:</span> {sustainability}
-                    </p>
-                )}
-                {productCare && (
-                    <p>
-                        <span className="font-semibold">Chăm sóc sản phẩm:</span> {productCare}
-                    </p>
-                )}
-                {category && (
-                    <p>
-                        <span className="font-semibold">Danh mục:</span> {category.name}
-                    </p>
-                )}
-            </div>
-
-            <p className="text-sm text-gray-500 mt-6">
-                Ngày tạo: {new Date(product.createdAt ?? '').toLocaleDateString("vi-VN")}
-            </p>
+          {/* Các ghi chú */}
+          <div className="mt-8 space-y-3 text-sm text-gray-600">
+            <p><strong>🔔 Lưu ý:</strong> {p.notice}</p>
+            <p><strong>🌱 Bền vững:</strong> {p.sustainability}</p>
+            <p><strong>🧴 Bảo quản:</strong> {p.productCare}</p>
+          </div>
         </div>
+      </div>
+    </div>
     </Modal>
 }
