@@ -31,7 +31,7 @@ export default function RootLayout({
           {/* Tanstack Provider */}
           <TanProvider>{children}</TanProvider>
         </ReduxProvider>
-        <div id="modal" className=""></div>
+        <div id="modal"></div>
       </body>
     </html>
   );

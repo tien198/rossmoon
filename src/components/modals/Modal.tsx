@@ -40,28 +40,23 @@ export default function Modal({ children }: PropsWithChildren) {
     if (!modalEl)
         return null
 
-    const hiddenCls = isFirstRender ? 'hidden' : (
-        isShow ? styles['fade-in'] : styles['fade-out']
+    const hiddenModalCls = isFirstRender ? 'hidden' : (
+        isShow ? styles['show'] : styles['hidden']
     )
 
     return createPortal(
-        <div >
-            <div
-                className={styles['backdrop'] + ' ' + hiddenCls}
-                onClick={close}
-            ></div>
-            <div className={
+        <div
+            className={
                 styles['modal']
-                + ' ' + styles['slide-down']
-                + ' ' + hiddenCls
+                + ' ' + hiddenModalCls
             }>
-                <FaXmark
-                    className={styles['x-mark']}
-                    onClick={close}
-                />
-                {children}
-            </div>
+            <FaXmark
+                className={styles['x-mark']}
+                onClick={close}
+            />
+            {children}
         </div>,
         modalEl!
     )
 }
+
