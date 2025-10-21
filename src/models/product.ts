@@ -1,4 +1,4 @@
-import type { Filter, FindOptions, Abortable } from "mongodb";
+import type { Filter, FindOptions, Abortable, FindCursor } from "mongodb";
 import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
@@ -61,8 +61,11 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
         return prod
     }
 
-    static async pagination(skip?: number, limit?: number) {
-        let query = this.find()
+    static async pagination<T = Product>(skip?: number, limit?: number, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+        let query: FindCursor
+        if (findOptions)
+            query = this.find({}, findOptions)
+        query = this.find()
         if (!skip)
             skip = 0
         if (!limit)

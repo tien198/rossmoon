@@ -10,7 +10,12 @@ export async function GET(req: Request) {
     const limit = 5
     const skip = page * limit
 
-    const pagination: Pagination<Product | ProductDTO> = await ProductImp.pagination(skip, limit)
+    const pagination: Pagination<Product | ProductDTO>
+        = await ProductImp.pagination(
+            skip, limit,
+            { name: 1, attributes: 1, price: 1 }
+        )
+
     pagination.results = pagination.results.map(i => new ProductDTO(i as Product))
 
     return NextResponse.json(pagination)
