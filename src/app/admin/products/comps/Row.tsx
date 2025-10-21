@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { useAppDispatch } from "@/lib/reducerhooks";
 import { showModal } from "@/lib/reduxSlices/modalSlice";
 import { setProduct } from "@/lib/reduxSlices/productDetailModalSlice";
+import { useRouter } from "next/navigation";
 
 type RowProps = {
     prod: ProductDTO
@@ -25,16 +26,21 @@ export default function Row({ prod, observedRows, actions }: RowProps) {
         dispatch(setProduct(prod))
     }
 
-    return <tr ref={trRef} onClick={showProductModal}>
-        <td>
+    const nav = useRouter()
+    const navigateToDetail = () => nav.push('products/' + prod.id)
+
+    return <tr ref={trRef}
+    // onClick={showProductModal}
+    >
+        <td onClick={navigateToDetail}>
             <Image
                 src={(process.env.ORIGIN ?? '') + prod.attributes?.medias?.[0]?.url}
                 alt={prod.name ?? ''}
                 width={350} height={350}
             />
         </td>
-        <td>{prod.name}</td>
-        <td>
+        <td onClick={navigateToDetail}>{prod.name}</td>
+        <td onClick={navigateToDetail}>
             {Number(prod.price).toLocaleString()} ₫
         </td>
         {/* <td>{p.stock}</td> */}
