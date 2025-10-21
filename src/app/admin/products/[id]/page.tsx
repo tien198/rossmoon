@@ -3,9 +3,8 @@
 import { useQuery } from "@tanstack/react-query";
 import MediaGallery from "./comps/MediaGallery";
 import ProductFeatures from "./comps/ProductFeatures";
-import { useParams } from "next/navigation";
+import {  useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
-import ProductDTO from "@/DTO/product";
 
 
 export default function Product() {
@@ -14,9 +13,13 @@ export default function Product() {
 
   const productQuery = useQuery({
     queryKey: ['products', prodId],
-    initialData: {} as ProductDTO,
     queryFn: () => getProduct(prodId)
   })
+
+  if(productQuery.isPending)
+    return <div className="h-screen flex justify-center items-center">Loading ... </div>
+    else if (productQuery.isError)
+      return <div className="h-screen flex justify-center items-center">Fail to load product</div>
 
   const p = productQuery.data
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
