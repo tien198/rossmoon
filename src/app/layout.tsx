@@ -14,12 +14,12 @@ import ReduxProvider from "./ReduxProviderr";
 //   subsets: ["latin"],
 // });
 
+export const revalidate = false
+
 export const metadata: Metadata = {
   title: "Rossmoon",
   description: "Thời trang thời thượng, tinh tế trong từng đường khâu mũi chỉ",
 };
-
-export const revalidate = false
 
 export default function RootLayout({
   children,

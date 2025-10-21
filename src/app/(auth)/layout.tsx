@@ -1,5 +1,7 @@
 import { PropsWithChildren } from "react";
 
+export const revalidate = false
+
 export default function AuthLayout({ children }: PropsWithChildren) {
     return (
         <div className="h-screen w-screen bg-cover bg-center"

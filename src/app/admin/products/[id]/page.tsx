@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import MediaGallery from "./comps/MediaGallery";
 import ProductFeatures from "./comps/ProductFeatures";
-import {  useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
 
 
@@ -16,12 +16,15 @@ export default function Product() {
     queryFn: () => getProduct(prodId)
   })
 
-  if(productQuery.isPending)
+  // Fallback
+  if (productQuery.isPending)
     return <div className="h-screen flex justify-center items-center">Loading ... </div>
-    else if (productQuery.isError)
-      return <div className="h-screen flex justify-center items-center">Fail to load product</div>
+  else if (productQuery.isError)
+    return <div className="h-screen flex justify-center items-center">Fail to load product</div>
 
+  // UI
   const p = productQuery.data
+
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
     <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
 
@@ -35,10 +38,10 @@ export default function Product() {
         <p className="text-2xl font-semibold mb-4">
           {p.price?.toLocaleString('vi-VN')}₫
         </p>
-        <p className="mb-6 leading-relaxed text-gray-700">{p.description}</p>
 
         {/* Thuộc tính */}
         <div className="space-y-2 mb-8">
+          <p ><strong>Mô tả:</strong><br /><div className="ml-3 leading-relaxed text-gray-700">{p.description}</div></p>
           <p><strong>Màu sắc:</strong> {p.attributes?.color}</p>
           <p><strong>Kích thước (cm):</strong> {p.attributes?.width} x {p.attributes?.height} x {p.attributes?.depth}</p>
           <p><strong>Xuất xứ:</strong> {p.origin}</p>

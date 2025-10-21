@@ -14,6 +14,8 @@ import Footer from "@/components/layout/Footer";
 //   subsets: ["latin"],
 // });
 
+export const revalidate = false
+
 export const metadata: Metadata = {
   title: "Rossmoon",
   description: "Thời trang thời thượng, tinh tế trong từng đường khâu mũi chỉ",
