@@ -47,10 +47,10 @@ body {
   overflow: hidden;
   background: linear-gradient(#e6e6e6, #fff);
 }
-
+/* 
 img {
   width: 100%;
-}
+} */
 /* 
 .product-picture-backgound::after {
   content: '';
