@@ -2,7 +2,7 @@ import ProductImp from "@/models/product";
 import { NextResponse } from "next/server";
 
 type Context = {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }
 
 export async function GET(req: Request, context: Context) {
