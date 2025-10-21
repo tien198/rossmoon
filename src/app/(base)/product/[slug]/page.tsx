@@ -1,4 +1,4 @@
-import type{ Product } from "@/schemas/client/product.zod";
+import type { Product } from "@/schemas/client/product.zod";
 import ProductImp from "@/models/product";
 
 import styles from './product.module.scss'
@@ -9,6 +9,8 @@ type Props = {
         slug: string
     }>
 }
+
+export const revalidate = false
 
 export default async function Product({ params }: Props) {
     const slug = (await params).slug
