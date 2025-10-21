@@ -35,12 +35,12 @@ export default function HeaderButtons({ isNavActive, handleNavActive }: Props) {
             {/* Logo */}
             <div className="ojuju text-3xl h-full
                             z-50 md:z-0">
-                <h1 className="-translate-1/2 absolute left-1/2 top-[100%]">
-                    <Image 
-                    src={(process.env.ORIGIN??'')+'/images/logo.jpg'} 
-                    alt="rossmoon"
-                     width={100} height={100}
-                     />
+                <h1 className="-translate-1/2 absolute left-1/2 top-1/2">
+                    <Image
+                        src={(process.env.ORIGIN ?? '') + '/images/logo.jpg'}
+                        alt="rossmoon"
+                        width={100} height={100}
+                    />
                 </h1>
             </div>
 

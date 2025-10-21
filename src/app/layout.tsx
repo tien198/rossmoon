@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "Thời trang thời thượng, tinh tế trong từng đường khâu mũi chỉ",
 };
 
+export const revalidate = false
+
 export default function RootLayout({
   children,
 }: Readonly<{
