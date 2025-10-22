@@ -7,6 +7,8 @@ type Props = {
     }>
 }
 
+export const revalidate = false
+
 export default async function New({ params }: Props) {
     const collectionSlug = (await params)['collection-slug']
 
