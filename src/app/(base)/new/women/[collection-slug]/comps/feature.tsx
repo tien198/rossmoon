@@ -28,7 +28,7 @@ function ProductCard(prod: ProductPart) {
         >
             <div className={styles['card__container-border']}></div>
             <Image
-                src={prod.attributes?.medias[0]?.url ?? ''}
+                src={prod?.medias?.[0]?.url ?? ''}
                 alt={prod.name!} width={300} height={300}
                 priority
             />

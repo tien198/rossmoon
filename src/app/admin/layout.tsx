@@ -1,8 +1,7 @@
-'use client'
-
 import { PropsWithChildren } from "react";
 import Nav from "./comps/Nav";
 
+export const revalidate = false
 
 export default function AdminLayout({ children }: PropsWithChildren) {
     return (
