@@ -1,8 +1,8 @@
 'use client'
 
+import { Media } from '@/schemas/base/product.properties.zod';
 import React, { useEffect, useState } from 'react';
 
-type Media = { type: 'image' | 'video'; url: string };
 
 type Props = { medias: (Media | null | undefined)[] | undefined }
 

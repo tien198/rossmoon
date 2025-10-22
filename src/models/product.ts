@@ -3,7 +3,7 @@ import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
 import { productsCollection } from "@/services/mongoDbCollections";
-import type { ProductAttributes } from "../schemas/base/product.attributes.zod";
+import type { MediasArray, ProductAttributes } from "../schemas/base/product.properties.zod";
 import type { NestedCategory } from "../schemas/server/category.zod";
 import DocumentAbstract from "./document";
 import { Pagination } from "@/schemas/base/pagination";
@@ -23,6 +23,7 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
     description?: string
 
     attributes?: ProductAttributes
+    medias?: MediasArray
 
     features?: string[]
     origin?: string

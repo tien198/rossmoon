@@ -29,12 +29,10 @@ export default function Row({ prod, observedRows, actions }: RowProps) {
     const nav = useRouter()
     const navigateToDetail = () => nav.push('products/' + prod.id)
 
-    return <tr ref={trRef}
-    // onClick={showProductModal}
-    >
+    return <tr ref={trRef}>
         <td onClick={navigateToDetail}>
             <Image
-                src={(process.env.ORIGIN ?? '') + prod.attributes?.medias?.[0]?.url}
+                src={(process.env.ORIGIN ?? '') + prod?.medias?.[0]?.url}
                 alt={prod.name ?? ''}
                 width={350} height={350}
             />

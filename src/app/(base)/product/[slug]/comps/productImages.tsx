@@ -10,7 +10,7 @@ type Props = {
 export default function ProductImages({ prod }: Props) {
     return <>
         {
-            prod?.attributes?.medias.map((i, idx) =>
+            prod?.medias?.map((i, idx) =>
                 <div key={idx} className={styles['image-container']}>
                     <Image
                         src={i?.url ?? ''}

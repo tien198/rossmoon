@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { nestedCategorySchema } from './category.zod'
-import { productAttributesSchema } from './product.attributes.zod'
+import { mediasArraySchema, productAttributesSchema } from './product.properties.zod'
 import zDate from '@/shared/zod.date'
 
 
@@ -11,8 +11,8 @@ export const productSchema = z.object({
     price: z.number().positive(),
     description: z.string().min(10),
 
-
     attributes: productAttributesSchema,
+    medias: mediasArraySchema,
 
     /* List of detail features
     [ 

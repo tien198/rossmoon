@@ -1,5 +1,5 @@
 import { NestedCategory } from "@/schemas/base/category.zod";
-import { ProductAttributes } from "@/schemas/base/product.attributes.zod";
+import { MediasArray, ProductAttributes } from "@/schemas/base/product.properties.zod";
 import { Product as ProdClient } from "@/schemas/client/product.zod";
 import { Product as ProdServer } from "@/schemas/server/product.zod";
 
@@ -12,6 +12,7 @@ export default class ProductDTO implements Partial<ProdClient> {
     description?: string
 
     attributes?: ProductAttributes
+    medias?: MediasArray
 
     features?: string[]
     origin?: string

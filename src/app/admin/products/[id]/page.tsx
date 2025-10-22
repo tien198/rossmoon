@@ -29,7 +29,7 @@ export default function Product() {
     <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
 
       {/* Bộ sưu tập media */}
-      <MediaGallery medias={p.attributes?.medias} />
+      <MediaGallery medias={p.medias} />
 
       {/* Thông tin sản phẩm */}
       <div>
