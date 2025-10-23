@@ -1,11 +1,10 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query";
-import MediaGallery from "../../comps/MediaGallery";
-import ProductFeatures from "../../comps/Product.Features";
+import MediaGallery from "../../../comps/MediaGallery";
+import ProductFeatures from "../../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
-import Field from "../../comps/Product.Field";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
@@ -106,4 +105,15 @@ export default function Product() {
       </div>
     </div>
   </div>
+}
+
+
+
+
+type FieldProps = { field: string; content?: string | null; className?: string }
+function Field({ field, content, className }: FieldProps) {
+  return <p className={"flex justify-between items-center flex-wrap w-full hover:bg-gray-300 p-4 rounded-sm" + (className ?? '')}>
+    <strong>{field}:</strong>
+    <span className="ml-3 leading-relaxed text-gray-700">{content||'?'}</span>
+  </p>
 }
