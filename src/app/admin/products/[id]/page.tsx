@@ -5,7 +5,7 @@ import MediaGallery from "../../comps/MediaGallery";
 import ProductFeatures from "../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
-import F from "../../comps/Product.Form";
+import F from "../../comps/productForm";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
@@ -74,13 +74,13 @@ export default function Product() {
       {/* Thông tin sản phẩm */}
       <div >
         <h1 className="text-3xl font-bold">{p.name}</h1>
-        <F.Input name="Danh mục" value={p.category?.name} />
-        <F.Input name="Giá" value={p.price?.toLocaleString('vi-VN') + '₫'} className="text-2xl" />
+        <F.Input name="Danh mục" value={p.category?.name} disable />
+        <F.Input name="Giá" value={p.price?.toLocaleString('vi-VN') + '₫'} className="text-2xl" disable />
 
         {/* Thuộc tính */}
         <div >
-          <F.Input name='Mô tả' value={p.description} />
-          <F.Input name='Màu sắc' value={p.attributes?.color} />
+          <F.TextArea name='Mô tả' value={p.description} disable />
+          <F.Input name='Màu sắc' value={p.attributes?.color} disable />
           <F.Input
             name='Kích thước (cm)'
             value={
@@ -91,7 +91,7 @@ export default function Product() {
                 : '')
             }
           />
-          <F.Input name="Xuất xứ" value={p.origin} />
+          <F.Input name="Xuất xứ" value={p.origin} disable />
         </div>
 
         {/* Tính năng */}
@@ -99,9 +99,9 @@ export default function Product() {
 
         {/* Các ghi chú */}
         <div className="text-sm">
-          <F.Input name="🔔 Lưu ý" value={p.notice} />
-          <F.Input name="🌱 Bền vững" value={p.sustainability} />
-          <F.Input name="🧴 Bảo quản" value={p.productCare} />
+          <F.Input name="🔔 Lưu ý" value={p.notice} disable />
+          <F.Input name="🌱 Bền vững" value={p.sustainability} disable />
+          <F.Input name="🧴 Bảo quản" value={p.productCare} disable />
         </div>
       </div>
     </div>

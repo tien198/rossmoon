@@ -5,7 +5,7 @@ import MediaGallery from "../../../comps/MediaGallery";
 import ProductFeatures from "../../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
-import F from "@/app/admin/comps/Product.Form";
+import F from "@/app/admin/comps/productForm";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
