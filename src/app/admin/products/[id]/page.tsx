@@ -5,7 +5,7 @@ import MediaGallery from "../../comps/MediaGallery";
 import ProductFeatures from "../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
-import Field from "../../comps/Product.Field";
+import F from "../../comps/Product.Form";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
@@ -74,16 +74,16 @@ export default function Product() {
       {/* Thông tin sản phẩm */}
       <div >
         <h1 className="text-3xl font-bold">{p.name}</h1>
-        <Field field="Danh mục" content={p.category?.name} />
-        <Field field="Giá" content={p.price?.toLocaleString('vi-VN') + '₫'} className="text-2xl" />
+        <F.Input name="Danh mục" value={p.category?.name} />
+        <F.Input name="Giá" value={p.price?.toLocaleString('vi-VN') + '₫'} className="text-2xl" />
 
         {/* Thuộc tính */}
         <div >
-          <Field field='Mô tả' content={p.description} />
-          <Field field='Màu sắc' content={p.attributes?.color} />
-          <Field
-            field='Kích thước (cm)'
-            content={
+          <F.Input name='Mô tả' value={p.description} />
+          <F.Input name='Màu sắc' value={p.attributes?.color} />
+          <F.Input
+            name='Kích thước (cm)'
+            value={
               (p.attributes?.width || '?') + ' x ' +
               (p.attributes?.height || '?') +
               (p.attributes?.depth
@@ -91,7 +91,7 @@ export default function Product() {
                 : '')
             }
           />
-          <Field field="Xuất xứ" content={p.origin} />
+          <F.Input name="Xuất xứ" value={p.origin} />
         </div>
 
         {/* Tính năng */}
@@ -99,9 +99,9 @@ export default function Product() {
 
         {/* Các ghi chú */}
         <div className="text-sm">
-          <Field field="🔔 Lưu ý" content={p.notice} />
-          <Field field="🌱 Bền vững" content={p.sustainability} />
-          <Field field="🧴 Bảo quản" content={p.productCare} />
+          <F.Input name="🔔 Lưu ý" value={p.notice} />
+          <F.Input name="🌱 Bền vững" value={p.sustainability} />
+          <F.Input name="🧴 Bảo quản" value={p.productCare} />
         </div>
       </div>
     </div>
