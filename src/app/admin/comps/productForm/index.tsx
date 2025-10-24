@@ -1,7 +1,8 @@
-import Input from "./Input"
-import TextArea from "./TextArea"
+import InlineInp from "./InlineInput"
+import Inp from "./Input"
+import Text from "./TextArea"
 
 const F = {
-    Input, TextArea
+    InlineInp, Inp, Text
 }
 export default F

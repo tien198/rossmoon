@@ -8,7 +8,7 @@
             "type": "msedge",
             "request": "launch",
             "name": "Launch Edge against localhost",
-            "url": "http://localhost:3000/admin/products/68c84ef65190463d50e43269",
+            "url": "http://localhost:3000/admin/products/edit/68c84ef65190463d50e43269",
             // "preLaunchTask": "start-server",
             "sourceMaps": true,
             "webRoot": "${workspaceFolder}"

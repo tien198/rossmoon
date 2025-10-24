@@ -73,35 +73,31 @@ export default function Product() {
 
       {/* Thông tin sản phẩm */}
       <div >
-        <h1 className="text-3xl font-bold">{p.name}</h1>
-        <F.Input name="Danh mục" value={p.category?.name} />
-        <F.Input name="Giá" type="number" value={p.price?.toString()} isCurrency className="text-2xl" />
+        <F.Inp displayName="Tên SP" name="name" value={p.name} />
+        <F.Inp displayName="Danh mục" name="category" value={p.category?.name} />
+        <F.Inp displayName="Giá" name="price" type="number" value={p.price?.toString()} suffix="₫" className="text-2xl" />
 
         {/* Thuộc tính */}
-        <div >
-          <F.TextArea name='Mô tả' value={p.description} />
-          <F.Input name='Màu sắc' value={p.attributes?.color} />
-          <F.Input
-            name='Kích thước (cm)'
-            value={
-              (p.attributes?.width || '?') + ' x ' +
-              (p.attributes?.height || '?') +
-              (p.attributes?.depth
-                ? (' x ' + p.attributes?.depth)
-                : '')
-            }
-          />
-          <F.Input name="Xuất xứ" value={p.origin} />
+        <F.Text name='Mô tả' value={p.description} />
+        <div className="grid grid-cols-2 p-4 rounded-sm">
+          <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
+          <F.InlineInp displayName="x" name="attributes.width" type="number" value={p.attributes?.width?.toString()} />
+          <F.InlineInp displayName="y" name="attributes.height" type="number" value={p.attributes?.height?.toString()} />
+          <F.InlineInp displayName="z" name="attributes.depth" type="number" value={p.attributes?.depth?.toString()} />
         </div>
+        <F.Inp displayName='Màu sắc' name="attributes.color" value={p.attributes?.color} />
+        <F.Inp displayName='Chất liệu' name="attributes.material" value={p.attributes?.material} />
+
+        <F.Inp displayName="Xuất xứ" name="origin" value={p.origin} />
 
         {/* Tính năng */}
         <ProductFeatures features={p.features} />
 
         {/* Các ghi chú */}
         <div className="text-sm">
-          <F.Input name="🔔 Lưu ý" value={p.notice} />
-          <F.Input name="🌱 Bền vững" value={p.sustainability} />
-          <F.Input name="🧴 Bảo quản" value={p.productCare} />
+          <F.Inp displayName="🔔 Lưu ý" name="notice" value={p.notice} />
+          <F.Inp displayName="🌱 Bền vững" name="sustainability" value={p.sustainability} />
+          <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.productCare} />
         </div>
       </div>
     </div>

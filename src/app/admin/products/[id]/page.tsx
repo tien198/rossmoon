@@ -5,7 +5,7 @@ import MediaGallery from "../../comps/MediaGallery";
 import ProductFeatures from "../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
-import F from "../../comps/productForm";
+import F from "@/app/admin/comps/productForm";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
@@ -73,35 +73,31 @@ export default function Product() {
 
       {/* Thông tin sản phẩm */}
       <div >
-        <h1 className="text-3xl font-bold">{p.name}</h1>
-        <F.Input name="Danh mục" value={p.category?.name} disable />
-        <F.Input name="Giá" value={p.price?.toLocaleString('vi-VN') + '₫'} className="text-2xl" disable />
+        <F.Inp displayName="Tên SP" name="name" value={p.name} disable/>
+        <F.Inp displayName="Danh mục" name="category" value={p.category?.name} disable/>
+        <F.Inp displayName="Giá" name="price" type="number" value={p.price?.toString()} suffix="₫" className="text-2xl" disable/>
 
         {/* Thuộc tính */}
-        <div >
-          <F.TextArea name='Mô tả' value={p.description} disable />
-          <F.Input name='Màu sắc' value={p.attributes?.color} disable />
-          <F.Input
-            name='Kích thước (cm)'
-            value={
-              (p.attributes?.width || '?') + ' x ' +
-              (p.attributes?.height || '?') +
-              (p.attributes?.depth
-                ? (' x ' + p.attributes?.depth)
-                : '')
-            }
-          />
-          <F.Input name="Xuất xứ" value={p.origin} disable />
+        <F.Text name='Mô tả' value={p.description} />
+        <div className="grid grid-cols-2 p-4 rounded-sm">
+          <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
+          <F.InlineInp displayName="x" name="attributes.width" type="number" value={p.attributes?.width?.toString()} disable />
+          <F.InlineInp displayName="y" name="attributes.height" type="number" value={p.attributes?.height?.toString()} disable />
+          <F.InlineInp displayName="z" name="attributes.depth" type="number" value={p.attributes?.depth?.toString()} disable />
         </div>
+        <F.Inp displayName='Màu sắc' name="attributes.color" value={p.attributes?.color} disable/>
+        <F.Inp displayName='Chất liệu' name="attributes.material" value={p.attributes?.material} disable/>
+
+        <F.Inp displayName="Xuất xứ" name="origin" value={p.origin} disable/>
 
         {/* Tính năng */}
         <ProductFeatures features={p.features} />
 
         {/* Các ghi chú */}
         <div className="text-sm">
-          <F.Input name="🔔 Lưu ý" value={p.notice} disable />
-          <F.Input name="🌱 Bền vững" value={p.sustainability} disable />
-          <F.Input name="🧴 Bảo quản" value={p.productCare} disable />
+          <F.Inp displayName="🔔 Lưu ý" name="notice" value={p.notice} disable/>
+          <F.Inp displayName="🌱 Bền vững" name="sustainability" value={p.sustainability} disable/>
+          <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.productCare} disable/>
         </div>
       </div>
     </div>
