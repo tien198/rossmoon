@@ -30,16 +30,16 @@ export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature
         this.createdAt = feature.createdAt
     }
 
-    static async findByCollectionSlug(collectionSlug: string, skip?: number, limit?: number) {
+    static findByCollectionSlug<T = MagazineFeature>(collectionSlug: string, skip?: number, limit?: number, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
         let query = magazineFeaturesCollection.find(
             { 'collection.slug': collectionSlug },
-            { projection: { products: 1, title: 1, bannerImage: 1 } }
+            { projection: findOptions }
         )
         if (skip)
             query = query.skip(skip)
         if (limit)
             query = query.limit(limit)
-        return await query.toArray()
+        return query.toArray()
     }
 
 

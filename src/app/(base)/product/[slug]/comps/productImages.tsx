@@ -14,7 +14,7 @@ export default function ProductImages({ prod }: Props) {
                 <div key={idx} className={styles['image-container']}>
                     <Image
                         src={i?.url ?? ''}
-                        alt={prod.name ?? ''} width={400} height={400}
+                        alt={prod.name ?? ''} width={1100} height={1100}
                         priority
                         className='w-full h-full object-center object-contain'
                         draggable='false'

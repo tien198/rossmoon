@@ -10,7 +10,9 @@ export default function Feature(fea: MagazineFeaturePart) {
         <>
             {
                 fea.bannerImage
-                && <div className='col-span-2 row-span-2 overflow-hidden aspect-[3/4]'><Image src={fea.bannerImage.desktopUrl!} alt={(fea.title ?? fea.products?.[0]?.name) || 'alt'} height={300} width={300} className='h-full w-full object-cover' /></div>
+                && <div className='col-span-2 row-span-2 overflow-hidden aspect-[3/4]'>
+                    <Image src={fea.bannerImage.desktopUrl!} alt={(fea.title ?? fea.products?.[0]?.name) || 'alt'} height={800} width={800} className='h-full w-full object-cover' />
+                </div>
             }
             {fea.products?.map(prod =>
                 <ProductCard {...prod} key={prod._id?.toString()} />
@@ -29,7 +31,8 @@ function ProductCard(prod: ProductPart) {
             <div className={styles['card__container-border']}></div>
             <Image
                 src={prod?.medias?.[0]?.url ?? ''}
-                alt={prod.name!} width={300} height={300}
+                alt={prod.name!} width={800} height={800}
+                className='w-full'
                 priority
             />
             <span

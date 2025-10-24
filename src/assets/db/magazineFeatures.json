@@ -1,171 +1,157 @@
-[{
-  "_id": {
-    "$oid": "68c8cd00af36274c8ce4326a"
-  },
-  "bannerImage": {
-    "desktopUrl": "/images/la-beaute-louis-vuitton/ombres/Beauty_banner.webp"
-  },
-  "collection": {
+[
+  {
     "_id": {
-      "$oid": "68c7e25e9bb388271ee43269"
+      "$oid": "68c8cd00af36274c8ce4326a"
     },
-    "slug": "phan-mat-lv-ombers"
-  },
-  "products": [
-    {
+    "bannerImage": {
+      "desktopUrl": "/images/la-beaute-louis-vuitton/ombres/Beauty_banner.webp"
+    },
+    "collection": {
       "_id": {
-        "$oid": "68c84ef65190463d50e43269"
+        "$oid": "68c7e25e9bb388271ee43269"
       },
-      "name": "LV Ombres - bảng phấn mất",
-      "slug": "LV-Ombres",
-      "price": 6500000,
-      "attributes": {
+      "slug": "phan-mat-lv-ombers"
+    },
+    "products": [
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e43269"
+        },
+        "name": "LV Ombres - bảng phấn mất",
+        "slug": "LV-Ombres",
+        "price": 6500000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e4326a"
-      },
-      "name": "Túi Nice BB",
-      "slug": "nice-bb",
-      "price": 46500000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e4326a"
+        },
+        "name": "Túi Nice BB",
+        "slug": "nice-bb",
+        "price": 46500000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-nice-bb--M25856_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e4326c"
-      },
-      "name": "Khăn Lụa Vuông Paris En Beauté 90",
-      "slug": "paris-en-beauté-90",
-      "price": 14300000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e4326c"
+        },
+        "name": "Khăn Lụa Vuông Paris En Beauté 90",
+        "slug": "paris-en-beauté-90",
+        "price": 14300000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-paris-en-beaute-square-90--M97623_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e4326d"
-      },
-      "name": "Túi Eyeshadow Pouch",
-      "slug": "eyeshadow-pouch",
-      "price": 13600000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e4326d"
+        },
+        "name": "Túi Eyeshadow Pouch",
+        "slug": "eyeshadow-pouch",
+        "price": 13600000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-eyeshadow-pouch--LBC002_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e4326b"
-      },
-      "name": "Vòng Tay LV Iconic Enamel",
-      "slug": "lv-iconic-enamel",
-      "price": 13100000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e4326b"
+        },
+        "name": "Vòng Tay LV Iconic Enamel",
+        "slug": "lv-iconic-enamel",
+        "price": 13100000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-iconic-enamel-bracelet--M1008A_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e4326f"
-      },
-      "name": "Túi Eyeshadow Pouch",
-      "slug": "eyeshadow-pouch",
-      "price": 13600000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e4326f"
+        },
+        "name": "Túi Eyeshadow Pouch",
+        "slug": "eyeshadow-pouch",
+        "price": 13600000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-eyeshadow-pouch--LBC002_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e4326e"
-      },
-      "name": "Túi Eyeshadow Pouch",
-      "slug": "eyeshadow-pouch",
-      "price": 13600000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e4326e"
+        },
+        "name": "Túi Eyeshadow Pouch",
+        "slug": "eyeshadow-pouch",
+        "price": 13600000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-eyeshadow-pouch--LBC002_PM2_Front view.avif"
           }
-        ]
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
-      }
-    },
-    {
-      "_id": {
-        "$oid": "68c84ef65190463d50e43270"
-      },
-      "name": "Túi Eyeshadow Pouch",
-      "slug": "eyeshadow-pouch",
-      "price": 13600000,
-      "attributes": {
+      {
+        "_id": {
+          "$oid": "68c84ef65190463d50e43270"
+        },
+        "name": "Túi Eyeshadow Pouch",
+        "slug": "eyeshadow-pouch",
+        "price": 13600000,
         "medias": [
           {
             "type": "image",
             "url": "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-eyeshadow-pouch--LBC002_PM2_Front view.avif"
           }
-        ]
-      },
-      "createdAt": {
-        "$date": "2025-08-29T13:54:05.000Z"
+        ],
+        "createdAt": {
+          "$date": "2025-08-29T13:54:05.000Z"
+        }
       }
+    ],
+    "createdAt": {
+      "$date": "2025-08-29T13:54:05.000Z"
     }
-  ],
-  "createdAt": {
-    "$date": "2025-08-29T13:54:05.000Z"
   }
-}]
+]
