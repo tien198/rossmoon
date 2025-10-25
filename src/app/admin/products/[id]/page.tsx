@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query";
-import MediaGallery from "../../comps/MediaGallery";
+import MediaGallery from "../../comps/productForm/MediaGallery";
 import ProductFeatures from "../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";

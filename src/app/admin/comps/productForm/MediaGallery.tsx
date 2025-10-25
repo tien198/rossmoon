@@ -3,6 +3,7 @@
 import { Media } from '@/schemas/base/product.properties.zod';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import MediaComp from './Media';
 
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 
 export default function MediaGallery({ medias, prodName }: Props) {
     const [selected, setSelected] = useState<Media | null>(medias?.[0] as any);
+    const [selectedIndex, setSelectedIndex] = useState(0)
 
     useEffect(() => {
         return () => setSelected(null)
@@ -32,20 +34,16 @@ export default function MediaGallery({ medias, prodName }: Props) {
 
             <div className="flex gap-3 overflow-x-auto">
                 {medias?.map((m, i) => (
-                    <button
+                    <MediaComp
                         key={i}
-                        onClick={() => m && setSelected(m)}
-                        className={`border rounded-md overflow-hidden w-20 h-20 flex-shrink-0 hover:opacity-80 transition ${selected?.url === m?.url ? 'border-black' : 'border-gray-200'
-                            }`}
-                    >
-                        {m?.type === 'image' ? (
-                            <Image src={m.url} alt={prodName ?? ''} className="object-cover w-full h-full" width={550} height={550}/>
-                        ) : (
-                            <video className="object-cover w-full h-full">
-                                <source src={m?.url} type="video/mp4" />
-                            </video>
-                        )}
-                    </button>
+                        media={m}
+                        alt={prodName ?? ''}
+                        handleSelected={() => {
+                            setSelected(m ?? null)
+                            setSelectedIndex(i)
+                        }}
+                        isSelected={selectedIndex === i}
+                    />
                 ))}
             </div>
         </div>
