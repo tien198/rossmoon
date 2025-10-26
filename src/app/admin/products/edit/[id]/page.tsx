@@ -66,7 +66,7 @@ export default function Product() {
   // const p = rawProd
 
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
-    <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
 
       {/* Bộ sưu tập media */}
       <MediaGallery medias={p.medias} prodName={p.name} />
@@ -100,6 +100,6 @@ export default function Product() {
           <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.productCare} />
         </div>
       </div>
-    </div>
+    </form>
   </div>
 }

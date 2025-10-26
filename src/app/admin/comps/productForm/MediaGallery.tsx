@@ -49,5 +49,3 @@ export default function MediaGallery({ medias, prodName }: Props) {
         </div>
     );
 };
-
-

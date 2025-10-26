@@ -78,7 +78,7 @@ export default function Product() {
         <F.Inp displayName="Giá" name="price" type="number" value={p.price?.toString()} suffix="₫" className="text-2xl" disable/>
 
         {/* Thuộc tính */}
-        <F.Text name='Mô tả' value={p.description} />
+        <F.Text name='Mô tả' value={p.description} disable />
         <div className="grid grid-cols-2 p-4 rounded-sm">
           <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
           <F.InlineInp displayName="x" name="attributes.width" type="number" value={p.attributes?.width?.toString()} disable />
