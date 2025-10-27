@@ -73,31 +73,81 @@ export default function Product() {
 
       {/* Thông tin sản phẩm */}
       <div >
-        <F.Inp displayName="Tên SP" name="name" value={p.name} />
-        <F.Inp displayName="Danh mục" name="category" value={p.category?.name} />
-        <F.Inp displayName="Giá" name="price" type="number" value={p.price?.toString()} suffix="₫" className="text-2xl" />
+        <F.Inp
+          displayName="Tên SP"
+          name="name"
+          value={p.name}
+        />
+        <F.Inp
+          displayName="Danh mục"
+          name="category"
+          value={p.category?.name}
+        />
+        <F.Inp
+          displayName="Giá"
+          type="number"
+          name="price"
+          value={p.price?.toString()} suffix="₫" className="text-2xl"
+        />
 
         {/* Thuộc tính */}
-        <F.Text name='Mô tả' value={p.description} />
+        <F.Text
+          name='Mô tả'
+          value={p.description}
+        />
         <div className="grid grid-cols-2 p-4 rounded-sm">
           <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
-          <F.InlineInp displayName="x" name="attributes.width" type="number" value={p.attributes?.width?.toString()} />
-          <F.InlineInp displayName="y" name="attributes.height" type="number" value={p.attributes?.height?.toString()} />
-          <F.InlineInp displayName="z" name="attributes.depth" type="number" value={p.attributes?.depth?.toString()} />
+          <F.InlineInp
+            displayName="x"
+            name="attributes.width" type="number"
+            value={p.attributes?.width?.toString()}
+          />
+          <F.InlineInp
+            displayName="y"
+            name="attributes.height" type="number"
+            value={p.attributes?.height?.toString()}
+          />
+          <F.InlineInp
+            displayName="z"
+            name="attributes.depth" type="number"
+            value={p.attributes?.depth?.toString()}
+          />
         </div>
-        <F.Inp displayName='Màu sắc' name="attributes.color" value={p.attributes?.color} />
-        <F.Inp displayName='Chất liệu' name="attributes.material" value={p.attributes?.material} />
+        <F.Inp
+          displayName='Màu sắc' name="attributes.color"
+          value={p.attributes?.color}
+        />
+        <F.Inp
+          displayName='Chất liệu' name="attributes.material"
+          value={p.attributes?.material}
+        />
 
-        <F.Inp displayName="Xuất xứ" name="origin" value={p.additionalInfors?.origin} />
 
-        {/* Tính năng */}
-        <ProductFeatures features={p.additionalInfors?.features} />
 
-        {/* Các ghi chú */}
+        {/* Các thông tin bộ trợ */}
         <div className="text-sm">
-          <F.Inp displayName="🔔 Lưu ý" name="notice" value={p.additionalInfors?.notice} />
-          <F.Inp displayName="🌱 Bền vững" name="sustainability" value={p.additionalInfors?.sustainability} />
-          <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.additionalInfors?.productCare} />
+          {/* Tính năng */}
+          <ProductFeatures features={p.additionalInfors?.features} />
+          <F.Inp
+            displayName="Xuất xứ"
+            name="additionalInfors.origin"
+            value={p.additionalInfors?.origin}
+          />
+          <F.Inp
+            displayName="🔔 Lưu ý"
+            name="additionalInfors.notice"
+            value={p.additionalInfors?.notice}
+          />
+          <F.Inp
+            displayName="🌱 Bền vững"
+            name="additionalInfors.sustainability"
+            value={p.additionalInfors?.sustainability}
+          />
+          <F.Inp
+            displayName="🧴 Bảo quản"
+            name="additionalInfors.productCare"
+            value={p.additionalInfors?.productCare}
+          />
         </div>
       </div>
     </form>

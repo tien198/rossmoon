@@ -1,15 +1,17 @@
 import type { ProductMedia } from "@/schemas/base/product.properties.zod";
 import Image from "next/image";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useRef } from "react";
 
 type Props = {
+    idx: number
     media?: ProductMedia | null
     alt: string
     handleSelected: MouseEventHandler
     isSelected: boolean
 }
 
-export default function Media({ media, alt, handleSelected, isSelected }: Props) {
+export default function Media({ idx, media, alt, handleSelected, isSelected }: Props) {
+    const fileRef = useRef<HTMLInputElement>(null)
     return <div>
         <button type="button"
             onClick={handleSelected}
@@ -26,6 +28,10 @@ export default function Media({ media, alt, handleSelected, isSelected }: Props)
                 </video>
             )}
         </button>
-        <input type="file" name="" id="" hidden />
+        <input
+            ref={fileRef}
+            type="file"
+            name={`media[${idx}]`}
+            hidden />
     </div>
 }

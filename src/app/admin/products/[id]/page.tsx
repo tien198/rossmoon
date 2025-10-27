@@ -66,40 +66,90 @@ export default function Product() {
   // const p = rawProd
 
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
-    <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
 
       {/* Bộ sưu tập media */}
       <MediaGallery medias={p.medias} prodName={p.name} />
 
       {/* Thông tin sản phẩm */}
       <div >
-        <F.Inp displayName="Tên SP" name="name" value={p.name} disable/>
-        <F.Inp displayName="Danh mục" name="category" value={p.category?.name} disable/>
-        <F.Inp displayName="Giá" name="price" type="number" value={p.price?.toString()} suffix="₫" className="text-2xl" disable/>
+        <F.Inp disable
+          displayName="Tên SP"
+          name="name"
+          value={p.name}
+        />
+        <F.Inp disable
+          displayName="Danh mục"
+          name="category"
+          value={p.category?.name}
+        />
+        <F.Inp disable
+          displayName="Giá"
+          type="number"
+          name="price"
+          value={p.price?.toString()} suffix="₫" className="text-2xl"
+        />
 
         {/* Thuộc tính */}
-        <F.Text name='Mô tả' value={p.description} disable />
+        <F.Text disable
+          name='Mô tả'
+          value={p.description}
+        />
         <div className="grid grid-cols-2 p-4 rounded-sm">
           <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
-          <F.InlineInp displayName="x" name="attributes.width" type="number" value={p.attributes?.width?.toString()} disable />
-          <F.InlineInp displayName="y" name="attributes.height" type="number" value={p.attributes?.height?.toString()} disable />
-          <F.InlineInp displayName="z" name="attributes.depth" type="number" value={p.attributes?.depth?.toString()} disable />
+          <F.InlineInp disable
+            displayName="x"
+            name="attributes.width" type="number"
+            value={p.attributes?.width?.toString()}
+          />
+          <F.InlineInp disable
+            displayName="y"
+            name="attributes.height" type="number"
+            value={p.attributes?.height?.toString()}
+          />
+          <F.InlineInp disable
+            displayName="z"
+            name="attributes.depth" type="number"
+            value={p.attributes?.depth?.toString()}
+          />
         </div>
-        <F.Inp displayName='Màu sắc' name="attributes.color" value={p.attributes?.color} disable/>
-        <F.Inp displayName='Chất liệu' name="attributes.material" value={p.attributes?.material} disable/>
+        <F.Inp disable
+          displayName='Màu sắc' name="attributes.color"
+          value={p.attributes?.color}
+        />
+        <F.Inp disable
+          displayName='Chất liệu' name="attributes.material"
+          value={p.attributes?.material}
+        />
 
-        <F.Inp displayName="Xuất xứ" name="origin" value={p.additionalInfors?.origin} disable/>
 
-        {/* Tính năng */}
-        <ProductFeatures features={p.additionalInfors?.features} />
 
-        {/* Các ghi chú */}
+        {/* Các thông tin bộ trợ */}
         <div className="text-sm">
-          <F.Inp displayName="🔔 Lưu ý" name="notice" value={p.additionalInfors?.notice} disable/>
-          <F.Inp displayName="🌱 Bền vững" name="sustainability" value={p.additionalInfors?.sustainability} disable/>
-          <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.additionalInfors?.productCare} disable/>
+          {/* Tính năng */}
+          <ProductFeatures features={p.additionalInfors?.features} />
+          <F.Inp disable
+            displayName="Xuất xứ"
+            name="additionalInfors.origin"
+            value={p.additionalInfors?.origin}
+          />
+          <F.Inp disable
+            displayName="🔔 Lưu ý"
+            name="additionalInfors.notice"
+            value={p.additionalInfors?.notice}
+          />
+          <F.Inp disable
+            displayName="🌱 Bền vững"
+            name="additionalInfors.sustainability"
+            value={p.additionalInfors?.sustainability}
+          />
+          <F.Inp disable
+            displayName="🧴 Bảo quản"
+            name="additionalInfors.productCare"
+            value={p.additionalInfors?.productCare}
+          />
         </div>
       </div>
-    </div>
+    </form>
   </div>
 }

@@ -36,6 +36,7 @@ export default function MediaGallery({ medias, prodName }: Props) {
                 {medias?.map((m, i) => (
                     <MediaComp
                         key={i}
+                        idx={i}
                         media={m}
                         alt={prodName ?? ''}
                         handleSelected={() => {
