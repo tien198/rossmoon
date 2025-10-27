@@ -1,12 +1,12 @@
 'use client'
 
-import { useAppDispatch, useAppSelector } from "@/lib/store/reducerhooks";
+import { useAppDispatch, useAppSelector } from "@/store/reducerhooks";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { FaXmark } from "react-icons/fa6";
 
 import styles from './Modal.module.scss'
-import { hideModal } from "@/lib/store/reduxSlices/modalSlice";
+import { hideModal } from "@/store/reduxSlices/modalSlice";
 
 export default function Modal({ children }: PropsWithChildren) {
     const isShow = useAppSelector(sel => sel.modal.isShow)

@@ -1,6 +1,6 @@
 import { ErrorRes } from '@/app/(auth)/_actions'
-import { genJWT } from '@/lib/jwtToken'
-import { zodValidation } from '@/lib/zodValidate'
+import { genJWT } from '@/services/jwtToken'
+import { zodValidation } from '@/services/zodValidate'
 import UserImp from '@/models/user'
 import { Login, loginSchemaServer } from '@/schemas/server/user.zod'
 import { NextResponse } from 'next/server'
