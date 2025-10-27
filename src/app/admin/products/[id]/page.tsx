@@ -114,11 +114,13 @@ export default function Product() {
           />
         </div>
         <F.Inp disable
-          displayName='Màu sắc' name="attributes.color"
+          displayName='Màu sắc'
+          name="attributes.color"
           value={p.attributes?.color}
         />
         <F.Inp disable
-          displayName='Chất liệu' name="attributes.material"
+          displayName='Chất liệu'
+          name="attributes.material"
           value={p.attributes?.material}
         />
 
