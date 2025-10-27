@@ -2,7 +2,7 @@ import type { Filter, FindOptions, Abortable, FindCursor } from "mongodb";
 import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
-import { productsCollection } from "@/models/db/mongoDbCollections";
+import { productsCollection } from "@/db/mongoDbCollections";
 import type { ProductAdditionalInfors, ProductMediasArray, ProductAttributes } from "../schemas/base/product.properties.zod";
 import type { NestedCategory } from "../schemas/server/category.zod";
 import DocumentAbstract from "./document";
