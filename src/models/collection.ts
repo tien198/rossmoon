@@ -1,7 +1,7 @@
 import type { CollectionPart } from "../schemas/server/collection.zod";
 
 import { Abortable, Collection, Filter, FindOptions, ObjectId } from "mongodb";
-import { collectionsCollection } from "@/services/mongoDbCollections";
+import { collectionsCollection } from "@/models/db/mongoDbCollections";
 import { NestedCategory } from "../schemas/server/category.zod";
 import { BannerImage } from "../schemas/server/bannerImage.zod";
 import DocumentAbstract from "./document";

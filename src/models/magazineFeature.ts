@@ -1,6 +1,6 @@
 import type { Filter, FindOptions, Abortable } from "mongodb"
 import { ObjectId } from "mongodb"
-import { magazineFeaturesCollection } from "@/services/mongoDbCollections"
+import { magazineFeaturesCollection } from "@/models/db/mongoDbCollections"
 
 import type { MagazineFeature } from "../schemas/server/magazineFeature.zod"
 import type { BannerImage } from "../schemas/server/bannerImage.zod"

@@ -1,7 +1,7 @@
 import { Abortable, Filter, FindOptions, ObjectId } from "mongodb";
 import DocumentAbstract from "./document";
 import { User } from "../schemas/server/user.zod";
-import { usersCollection } from '../services/mongoDbCollections'
+import { usersCollection } from './db/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
 
