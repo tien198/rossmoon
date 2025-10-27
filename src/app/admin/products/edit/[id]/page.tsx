@@ -6,6 +6,7 @@ import ProductFeatures from "../../../comps/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/products";
 import F from "@/app/admin/comps/productForm";
+import Fallback from "@/app/admin/comps/Fallback";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
@@ -57,13 +58,12 @@ export default function Product() {
 
   // Fallback
   if (productQuery.isPending)
-    return <div className="h-screen flex justify-center items-center">Loading ... </div>
+    return <Fallback>Loading ... </Fallback>
   else if (productQuery.isError)
-    return <div className="h-screen flex justify-center items-center">Fail to load product</div>
+    return <Fallback>Fail to load product</Fallback>
 
   // UI
   const p = productQuery.data
-  // const p = rawProd
 
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
     <form className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
