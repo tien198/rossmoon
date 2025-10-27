@@ -1,18 +1,18 @@
 'use client'
 
-import { Media } from '@/schemas/base/product.properties.zod';
+import { ProductMedia } from '@/schemas/base/product.properties.zod';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import MediaComp from './Media';
 
 
 type Props = {
-    medias?: (Media | null | undefined)[]
+    medias?: (ProductMedia | null | undefined)[]
     prodName?: string
 }
 
 export default function MediaGallery({ medias, prodName }: Props) {
-    const [selected, setSelected] = useState<Media | null>(medias?.[0] as any);
+    const [selected, setSelected] = useState<ProductMedia | null>(medias?.[0] as any);
     const [selectedIndex, setSelectedIndex] = useState(0)
 
     useEffect(() => {

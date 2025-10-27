@@ -39,7 +39,7 @@ export default async function Product({ params }: Props) {
                     </a>
                     <div className={styles['description']}>
                         <p>{prod.description}</p>
-                        <p>{prod.features}</p>
+                        <p>{prod.additionalInfors?.features}</p>
                     </div>
                 </div>
             </section >

@@ -1,9 +1,9 @@
-import type { Media } from "@/schemas/base/product.properties.zod";
+import type { ProductMedia } from "@/schemas/base/product.properties.zod";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 
 type Props = {
-    media?: Media | null
+    media?: ProductMedia | null
     alt: string
     handleSelected: MouseEventHandler
     isSelected: boolean

@@ -12,16 +12,34 @@ export type ProductAttributes = z.infer<typeof productAttributesSchema>
 
 
 
-export const mediaSchema = z.object({
+export const productMediaSchema = z.object({
     type: z.enum(['image', 'video']),
     url: z.url()
 })
-export type Media = z.infer<typeof mediaSchema>
+export type ProductMedia = z.infer<typeof productMediaSchema>
 
 
 
 // products's image or video 
-export const mediasArraySchema = z.array(
-    mediaSchema.nullish()
+export const productMediasArraySchema = z.array(
+    productMediaSchema.nullish()
 )
-export type MediasArray = z.infer<typeof mediasArraySchema>
+export type ProductMediasArray = z.infer<typeof productMediasArraySchema>
+
+
+
+export const productAdditionalInfors = z.object({
+    /* List of detail features
+    [ 
+        "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở" 
+        ]     */
+    features: z.array(z.string()).nullish(),
+    // "Sản phẩm được sản xuất tại Pháp, Tây Ban Nha, Ý hoặc Mỹ."
+    origin: z.string().nullish(),
+    // "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng"
+    notice: z.string().nullish(),
+    sustainability: z.string().nullish(),
+    productCare: z.string().nullish(),
+})
+
+export type ProductAdditionalInfors = z.infer<typeof productAdditionalInfors>

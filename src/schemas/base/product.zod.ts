@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { nestedCategorySchema } from './category.zod'
-import { mediasArraySchema, productAttributesSchema } from './product.properties.zod'
+import { productAdditionalInfors, productMediasArraySchema, productAttributesSchema } from './product.properties.zod'
 import zDate from '@/shared/zod.date'
 
 
@@ -12,19 +12,8 @@ export const productSchema = z.object({
     description: z.string().min(10),
 
     attributes: productAttributesSchema,
-    medias: mediasArraySchema,
-
-    /* List of detail features
-    [ 
-        "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở" 
-        ]     */
-    features: z.array(z.string()).nullish(),
-    // "Sản phẩm được sản xuất tại Pháp, Tây Ban Nha, Ý hoặc Mỹ."
-    origin: z.string().nullish(),
-    // "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng"
-    notice: z.string().nullish(),
-    sustainability: z.string().nullish(),
-    productCare: z.string().nullish(),
+    medias: productMediasArraySchema,
+    additionalInfors: productAdditionalInfors,
 
     category: nestedCategorySchema.nullish(),
 

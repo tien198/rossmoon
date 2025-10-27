@@ -88,16 +88,16 @@ export default function Product() {
         <F.Inp displayName='Màu sắc' name="attributes.color" value={p.attributes?.color} />
         <F.Inp displayName='Chất liệu' name="attributes.material" value={p.attributes?.material} />
 
-        <F.Inp displayName="Xuất xứ" name="origin" value={p.origin} />
+        <F.Inp displayName="Xuất xứ" name="origin" value={p.additionalInfors?.origin} />
 
         {/* Tính năng */}
-        <ProductFeatures features={p.features} />
+        <ProductFeatures features={p.additionalInfors?.features} />
 
         {/* Các ghi chú */}
         <div className="text-sm">
-          <F.Inp displayName="🔔 Lưu ý" name="notice" value={p.notice} />
-          <F.Inp displayName="🌱 Bền vững" name="sustainability" value={p.sustainability} />
-          <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.productCare} />
+          <F.Inp displayName="🔔 Lưu ý" name="notice" value={p.additionalInfors?.notice} />
+          <F.Inp displayName="🌱 Bền vững" name="sustainability" value={p.additionalInfors?.sustainability} />
+          <F.Inp displayName="🧴 Bảo quản" name="productCare" value={p.additionalInfors?.productCare} />
         </div>
       </div>
     </form>

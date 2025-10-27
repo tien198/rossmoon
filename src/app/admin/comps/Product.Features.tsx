@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductFeatures: React.FC<{ features: string[] | undefined }> = ({ features }) => {
+const ProductFeatures: React.FC<{ features: string[] | undefined | null }> = ({ features }) => {
     return (
         <div className='p-4 hover:bg-gray-300'>
             <h2 className="text-lg font-semibold mb-2">Đặc điểm nổi bật</h2>
