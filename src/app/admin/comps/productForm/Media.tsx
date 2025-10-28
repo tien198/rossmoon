@@ -12,6 +12,10 @@ type Props = {
 
 export default function Media({ idx, media, alt, handleSelected, isSelected }: Props) {
     const fileRef = useRef<HTMLInputElement>(null)
+
+    function handleImageChange() {
+        fileRef.current?.click()
+    }
     return <div>
         <button type="button"
             onClick={handleSelected}
@@ -28,10 +32,17 @@ export default function Media({ idx, media, alt, handleSelected, isSelected }: P
                 </video>
             )}
         </button>
+        <div
+            onClick={handleImageChange}
+            className="text-center text-sm"
+        >
+            Đổi ảnh
+        </div>
         <input
             ref={fileRef}
             type="file"
             name={`media[${idx}]`}
-            hidden />
+            hidden
+        />
     </div>
 }

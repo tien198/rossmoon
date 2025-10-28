@@ -74,55 +74,55 @@ export default function Product() {
 
       {/* Thông tin sản phẩm */}
       <div >
-        <F.Inp disable
+        <F.Inp disabled
           displayName="Tên SP"
           name="name"
-          value={p.name}
+          defaultValue={p.name}
         />
-        <F.Inp disable
+        <F.Inp disabled
           displayName="Danh mục"
           name="category"
-          value={p.category?.name}
+          defaultValue={p.category?.name}
         />
-        <F.Inp disable
+        <F.Inp disabled
           displayName="Giá"
           type="number"
           name="price"
-          value={p.price?.toString()} suffix="₫" className="text-2xl"
+          defaultValue={p.price?.toString()} suffix="₫" className="text-2xl"
         />
 
         {/* Thuộc tính */}
-        <F.Text disable
+        <F.Text disabled
           name='Mô tả'
-          value={p.description}
+          defaultValue={p.description}
         />
         <div className="grid grid-cols-2 p-4 rounded-sm">
           <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
-          <F.InlineInp disable
+          <F.InlineInp disabled
             displayName="x"
             name="attributes.width" type="number"
-            value={p.attributes?.width?.toString()}
+            defaultValue={p.attributes?.width?.toString()}
           />
-          <F.InlineInp disable
+          <F.InlineInp disabled
             displayName="y"
             name="attributes.height" type="number"
-            value={p.attributes?.height?.toString()}
+            defaultValue={p.attributes?.height?.toString()}
           />
-          <F.InlineInp disable
+          <F.InlineInp disabled
             displayName="z"
             name="attributes.depth" type="number"
-            value={p.attributes?.depth?.toString()}
+            defaultValue={p.attributes?.depth?.toString()}
           />
         </div>
-        <F.Inp disable
+        <F.Inp disabled
           displayName='Màu sắc'
           name="attributes.color"
-          value={p.attributes?.color}
+          defaultValue={p.attributes?.color ?? ''}
         />
-        <F.Inp disable
+        <F.Inp disabled
           displayName='Chất liệu'
           name="attributes.material"
-          value={p.attributes?.material}
+          defaultValue={p.attributes?.material ?? ''}
         />
 
 
@@ -131,25 +131,25 @@ export default function Product() {
         <div className="text-sm">
           {/* Tính năng */}
           <ProductFeatures features={p.additionalInfors?.features} />
-          <F.Inp disable
+          <F.Inp disabled
             displayName="Xuất xứ"
             name="additionalInfors.origin"
-            value={p.additionalInfors?.origin}
+            defaultValue={p.additionalInfors?.origin ?? ''}
           />
-          <F.Inp disable
+          <F.Inp disabled
             displayName="🔔 Lưu ý"
             name="additionalInfors.notice"
-            value={p.additionalInfors?.notice}
+            defaultValue={p.additionalInfors?.notice ?? ''}
           />
-          <F.Inp disable
+          <F.Inp disabled
             displayName="🌱 Bền vững"
             name="additionalInfors.sustainability"
-            value={p.additionalInfors?.sustainability}
+            defaultValue={p.additionalInfors?.sustainability ?? ''}
           />
-          <F.Inp disable
+          <F.Inp disabled
             displayName="🧴 Bảo quản"
             name="additionalInfors.productCare"
-            value={p.additionalInfors?.productCare}
+            defaultValue={p.additionalInfors?.productCare ?? ''}
           />
         </div>
       </div>

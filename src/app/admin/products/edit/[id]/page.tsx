@@ -1,60 +1,15 @@
 'use client'
 
-import { useQuery } from "@tanstack/react-query";
 import MediaGallery from "../../../comps/productForm/MediaGallery";
 import ProductFeatures from "../../../comps/Product.Features";
-import { useParams } from "next/navigation";
-import { getProduct } from "@/api/products";
 import F from "@/app/admin/comps/productForm";
 import Fallback from "@/app/admin/comps/Fallback";
-/*
-const rawProd: ProductDTO = {
-  id: "68c84ef65190463d50e43269",
-  name: "LV Ombres - bảng phấn mất",
-  slug: "LV-Ombres",
-  price: 6_500_000,
-  description: "cái mô tả này rất chất lượng , Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro natus itaque ab quis eius quasi tempore debitis doloremque impedit eos? Commodi expedita exercitationem necessitatibus ab repellendus laudantium incidunt sit molestias!",
-  attributes: {
-    color: 'Xanh',
-    width: 1,
-    height: 1,
-    depth: 1
-  },
-  category: {
-    name: 'ffklsdjf'
-  },
-  medias: [
-    {
-      type: "image",
-      url: "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
-    },
-    {
-      type: "image",
-      url: "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
-    },
-    {
-      type: "image",
-      url: "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
-    }
-  ],
-  origin: 'viet nam',
-  features: [
-    'nhacj trẩu vl', ' halo in hall', 'fire the hold'
-  ],
-  notice: 'cố gắng',
-  sustainability: 'làm ăn cho đàng hoàng lão già Trump, laão đểu ma lanh, quái ác.',
-  productCare: 'Đồ đắt, giữ cho kỹ',
-  createdAt: new Date("2025-08-29T13:54:05.000Z")
-}
-*/
-export default function Product() {
-  const params = useParams()
-  const prodId = params['id'] as string
+import useEditProduct from "../../hooks/useEditProduct";
 
-  const productQuery = useQuery({
-    queryKey: ['products', prodId],
-    queryFn: () => getProduct(prodId)
-  })
+
+
+export default function Product() {
+  const { productQuery, actionState, formRef, handleSubmit } = useEditProduct()
 
   // Fallback
   if (productQuery.isPending)
@@ -66,8 +21,11 @@ export default function Product() {
   const p = productQuery.data
 
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
-    <form className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4"
+    >
       {/* Bộ sưu tập media */}
       <MediaGallery medias={p.medias} prodName={p.name} />
 
@@ -114,14 +72,14 @@ export default function Product() {
           />
         </div>
         <F.Inp
-          displayName='Màu sắc' 
+          displayName='Màu sắc'
           name="attributes.color"
-          value={p.attributes?.color}
+          defaultValue={p.attributes?.color ?? ''}
         />
         <F.Inp
           displayName='Chất liệu'
           name="attributes.material"
-          value={p.attributes?.material}
+          defaultValue={p.attributes?.material ?? ''}
         />
 
 
@@ -130,25 +88,29 @@ export default function Product() {
         <div className="text-sm">
           {/* Tính năng */}
           <ProductFeatures features={p.additionalInfors?.features} />
-          <F.Inp
+          <F.Text
             displayName="Xuất xứ"
             name="additionalInfors.origin"
-            value={p.additionalInfors?.origin}
+            defaultValue={p.additionalInfors?.origin ?? ''}
           />
-          <F.Inp
+          <F.Text
             displayName="🔔 Lưu ý"
             name="additionalInfors.notice"
-            value={p.additionalInfors?.notice}
+            defaultValue={p.additionalInfors?.notice ?? ''}
           />
-          <F.Inp
+          <F.Text
             displayName="🌱 Bền vững"
             name="additionalInfors.sustainability"
-            value={p.additionalInfors?.sustainability}
+            defaultValue={p.additionalInfors?.sustainability ?? ''}
           />
-          <F.Inp
+          <F.Text
             displayName="🧴 Bảo quản"
             name="additionalInfors.productCare"
-            value={p.additionalInfors?.productCare}
+            defaultValue={p.additionalInfors?.productCare ?? ''}
+          />
+          <F.Inp hidden
+            name="jwtToken"
+            value={localStorage.getItem('jwtToken') ?? ''}
           />
         </div>
       </div>

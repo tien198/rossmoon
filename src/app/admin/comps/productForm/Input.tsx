@@ -1,32 +1,31 @@
-import { HTMLInputTypeAttribute, useEffect, useRef } from "react";
+import { InputHTMLAttributes, useEffect, useRef } from "react";
 
 type InputProps = {
-    name: string, value?: string | null, type?: HTMLInputTypeAttribute, className?: string,
     displayName?: string,
     suffix?: string,
     disable?: boolean
-}
+} & InputHTMLAttributes<HTMLInputElement>
 
-export default function Input({ name, value, type, className, displayName, suffix, disable }: InputProps) {
+export default function Input({ displayName, suffix, ...rest }: InputProps) {
     const inputRef = useRef<HTMLInputElement>(null)
     useEffect(() => {
         const suffixEl = document.createElement('span')
         suffixEl.textContent = suffix || ''
-        suffixEl.style.right='0px'
-        suffixEl.style.position='absolute'
+        suffixEl.style.right = '0px'
+        suffixEl.style.position = 'absolute'
         inputRef.current?.before(suffixEl)
     }, [])
-    return <label className={"flex gap-4 justify-between items-center flex-wrap w-full hover:bg-gray-300 p-4 rounded-sm" + (className ?? '')}>
-        <strong>{displayName ?? name}:</strong>
+
+    return <label
+        className="flex gap-4 justify-between items-center flex-wrap w-full hover:bg-gray-300 p-4 rounded-sm"
+    >
+        <strong>{displayName ?? rest.name}:</strong>
         <span className="flex-1 text-gray-700 relative">
             <input ref={inputRef}
-                name={name}
-                type={type ?? 'text'}
-                value={value || ''}
                 placeholder="???"
                 className="w-full px-4 py-1 outline-0 text-right focus:shadow shadow-amber-800"
-                disabled={disable}
-            /> 
+                {...rest}
+            />
         </span>
     </label>
 }
