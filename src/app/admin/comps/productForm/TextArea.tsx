@@ -1,9 +1,7 @@
 import { TextareaHTMLAttributes, useEffect, useRef } from "react";
+import { AppInpBase } from ".";
 
-type TextAreaProps = {
-    displayName?: string,
-    suffix?: string,
-} & TextareaHTMLAttributes<HTMLTextAreaElement>
+type TextAreaProps = AppInpBase & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export default function TextArea({ displayName, suffix, ...rest }: TextAreaProps) {
     const textAreaRef = useRef<HTMLTextAreaElement>(null)

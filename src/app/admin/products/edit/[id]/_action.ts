@@ -5,6 +5,6 @@ type ActionData = {
 }
 
 export async function editProductAction(prevState: ActionData, formData: FormData) {
-
+    
     return {}
 }

@@ -1,10 +1,7 @@
 import { InputHTMLAttributes, useEffect, useRef } from "react";
+import { AppInpBase } from ".";
 
-type Props = {
-    displayName?: string,
-    suffix?: string,
-    disable?: boolean
-} & InputHTMLAttributes<HTMLInputElement>
+type Props = AppInpBase & InputHTMLAttributes<HTMLInputElement>
 
 export default function InlineInput({ displayName, suffix, ...rest }: Props) {
     const inputRef = useRef<HTMLInputElement>(null)
