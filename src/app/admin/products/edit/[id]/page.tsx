@@ -83,7 +83,6 @@ export default function Product() {
         />
 
 
-
         {/* Các thông tin bộ trợ */}
         <div className="text-sm">
           {/* Tính năng */}
@@ -108,11 +107,18 @@ export default function Product() {
             name="additionalInfors.productCare"
             defaultValue={p.additionalInfors?.productCare ?? ''}
           />
-          <F.Inp hidden
-            name="jwtToken"
-            value={localStorage.getItem('jwtToken') ?? ''}
+
+
+          {/* Token */}
+          <input hidden
+            name="token"
+            value={
+              'bearer '
+              + (localStorage.getItem('jwtToken') ?? '')
+            }
           />
         </div>
+        <button>Gửi</button>
       </div>
     </form>
   </div>

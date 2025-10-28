@@ -1,7 +1,7 @@
 import { getProduct } from "@/api/products"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "next/navigation"
-import { useActionState, useRef } from "react"
+import { FormEvent, useActionState, useRef } from "react"
 import { editProductAction } from "../edit/[id]/_action"
 
 export default function useEditProduct() {
@@ -13,11 +13,13 @@ export default function useEditProduct() {
         queryFn: () => getProduct(prodId)
     })
 
-    const [actionState, formAction] = useActionState(editProductAction, {})
+    const actionWithParams = editProductAction.bind(null, prodId)
+    const [actionState, formAction] = useActionState(actionWithParams, {})
 
     const formRef = useRef<HTMLFormElement>(null)
 
-    function handleSubmit() {
+    function handleSubmit(e: FormEvent) {
+        e.preventDefault()
         const formData = new FormData(formRef.current!)
         formAction(formData)
     }

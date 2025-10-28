@@ -19,11 +19,13 @@ export type ActionData = {
 
 export async function loginAction(prevState: ActionData, formData: FormData): Promise<ActionData> {
     // const submited= Object.fromEntries(formData.entries()) as User
-    const ORIGIN = process.env.ORIGIN
-    const res = await fetch(ORIGIN + '/api/auth/log-in', {
-        method: 'post',
-        body: formData
-    })
+    const res = await fetch(
+        process.env.ORIGIN + '/api/auth/log-in',
+        {
+            method: 'post',
+            body: formData
+        }
+    )
 
     if (!res.ok) {
         return await res.json() as ErrorRes
@@ -37,11 +39,13 @@ export async function loginAction(prevState: ActionData, formData: FormData): Pr
 
 
 export async function signinAction(prevState: ActionData, formData: FormData): Promise<ActionData> {
-    const ORIGIN = process.env.ORIGIN
-    const res = await fetch(ORIGIN + '/api/auth/sign-in', {
-        method: 'post',
-        body: formData
-    })
+    const res = await fetch(
+        process.env.ORIGIN + '/api/auth/sign-in',
+        {
+            method: 'post',
+            body: formData
+        }
+    )
 
     if (!res.ok) {
         return await res.json() as ErrorRes
