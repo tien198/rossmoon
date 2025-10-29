@@ -1,9 +1,9 @@
 'use client'
 
+import type { Z_Invalid } from "@/types/zod.ErrorTree";
 
 import F from "../comps/authForm";
 import useSignin from "../hooks/useSignin";
-import { Invalid } from "../reducer/authReducer";
 
 export default function SingIn() {
     const {
@@ -23,7 +23,7 @@ export default function SingIn() {
                     value={authState.email} onChange={changeField('email')}
                     invalid={
                         authState.isSubmitted
-                            ? (invalid.email || actionState.email) as Invalid
+                            ? (invalid.email || actionState.email) as Z_Invalid
                             : undefined
                     }
                     name="email"
@@ -34,7 +34,7 @@ export default function SingIn() {
                     value={authState.password} onChange={changeField('password')}
                     invalid={
                         authState.isSubmitted
-                            ? (invalid.password || actionState.password) as Invalid
+                            ? (invalid.password || actionState.password) as Z_Invalid
                             : undefined
                     }
                     name="password"
@@ -45,7 +45,7 @@ export default function SingIn() {
                     value={authState.passwordConfirm} onChange={changeField('passwordConfirm')}
                     invalid={
                         authState.isSubmitted
-                            ? (invalid.passwordConfirm || actionState.passwordConfirm || actionState.credential) as Invalid
+                            ? (invalid.passwordConfirm || actionState.passwordConfirm || actionState.credential) as Z_Invalid
                             : undefined
                     }
                     name="passwordConfirm"

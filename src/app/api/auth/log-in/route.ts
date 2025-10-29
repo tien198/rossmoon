@@ -1,9 +1,10 @@
-import { ErrorRes } from '@/app/(auth)/_actions'
+import type { ErrorRes } from '@/lib/api/authen'
+
 import { genJWT } from '@/services/jwtToken'
 import { zodValidation } from '@/services/zodValidate'
-import UserImp from '@/models/user'
 import { Login, loginSchemaServer } from '@/schemas/server/user.zod'
 import { NextResponse } from 'next/server'
+import UserImp from '@/models/user'
 
 // POST: {doamin}/api/auth/log-in
 export async function POST(req: Request) {

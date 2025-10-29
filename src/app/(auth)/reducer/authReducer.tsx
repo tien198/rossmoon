@@ -1,7 +1,3 @@
-// zod errorTree
-export type Invalid = {
-    errors: string[]
-}
 
 // state may be value of field or error tree when validating
 type State = {

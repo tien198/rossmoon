@@ -1,5 +1,5 @@
+import { Z_Invalid } from "@/types/zod.ErrorTree";
 import { PropsWithChildren } from "react";
-import { Invalid } from "../reducer/authReducer";
 
 type FormProps = React.FormHTMLAttributes<HTMLFormElement>
     & PropsWithChildren
@@ -15,7 +15,7 @@ function Form({ children, ...rest }: FormProps) {
     )
 }
 
-type InputProps = { invalid?: Invalid }
+type InputProps = { invalid?: Z_Invalid }
     & React.InputHTMLAttributes<HTMLInputElement>
 
 function Input(props: InputProps) {

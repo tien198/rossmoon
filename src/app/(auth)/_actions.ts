@@ -1,58 +1,40 @@
 'use server';
 
-import { Invalid } from "./reducer/authReducer";
+import { ErrorRes, login, signin, SuccessRes } from "@/lib/api/authen";
+import { Z_Invalid } from "@/types/zod.ErrorTree";
 
-export type ErrorRes = {
-    email?: Invalid
-    password?: Invalid
-    passwordConfirm?: Invalid
-    credential?: Invalid
-}
-
-export type SuccessRes = {
-    token?: string
-}
 
 export type ActionData = {
-    [key: string]: string | Invalid
+    [key: string]: string | Z_Invalid
 } & SuccessRes & ErrorRes
 
 export async function loginAction(prevState: ActionData, formData: FormData): Promise<ActionData> {
-    // const submited= Object.fromEntries(formData.entries()) as User
-    const res = await fetch(
-        process.env.ORIGIN + '/api/auth/log-in',
-        {
-            method: 'post',
-            body: formData
-        }
-    )
+    try {
+        const result = await login(formData)
+        return result
 
-    if (!res.ok) {
-        return await res.json() as ErrorRes
+    } catch (error) {
+        const errorResult = {
+            credential: {
+                errors: ['Lỗi khi gửi yêu cầu. Xin hãy kiểm tra đường truyền mạng']
+            }
+        }
+        return errorResult
     }
 
-    const jwtToken = res.headers.get('Authorization')
-    return await {
-        token: jwtToken
-    } as SuccessRes
 }
 
 
 export async function signinAction(prevState: ActionData, formData: FormData): Promise<ActionData> {
-    const res = await fetch(
-        process.env.ORIGIN + '/api/auth/sign-in',
-        {
-            method: 'post',
-            body: formData
+    try {
+        const result = signin(formData)
+        return result
+    } catch (error) {
+        const errorResult = {
+            credential: {
+                errors: ['Lỗi khi gửi yêu cầu. Xin hãy kiểm tra đường truyền mạng']
+            }
         }
-    )
-
-    if (!res.ok) {
-        return await res.json() as ErrorRes
+        return errorResult
     }
-
-    const jwtToken = res.headers.get('Authorization')
-    return await {
-        token: jwtToken
-    } as SuccessRes
 }

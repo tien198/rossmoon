@@ -3,7 +3,7 @@
 import Link from "next/link";
 import F from "../comps/authForm";
 import useLogin from "../hooks/useLogin";
-import { Invalid } from "../reducer/authReducer";
+import { Z_Invalid } from "@/types/zod.ErrorTree";
 
 export default function Auth() {
     const {
@@ -23,7 +23,7 @@ export default function Auth() {
                     value={authState.email} onChange={changeField('email')}
                     invalid={
                         authState.isSubmitted
-                            ? (invalid.email || actionState.email) as Invalid
+                            ? (invalid.email || actionState.email) as Z_Invalid
                             : undefined
                     }
                     name="email"
@@ -34,7 +34,7 @@ export default function Auth() {
                     value={authState.password} onChange={changeField('password')}
                     invalid={
                         authState.isSubmitted
-                            ? (invalid.password || actionState.password || actionState.credential) as Invalid
+                            ? (invalid.password || actionState.password || actionState.credential) as Z_Invalid
                             : undefined
                     }
                     name="password"
