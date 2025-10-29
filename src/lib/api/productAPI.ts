@@ -3,10 +3,11 @@ import { Pagination } from "@/schemas/base/pagination"
 
 // <Whether> is involked in SERVER <or> CLIENT
 
-/**
- * pagination Products
- */
 const ORIGIN = process.env.ORIGIN
+
+/**
+ * get product pagination
+ */
 export async function getProducts(page?: number) {
     const res = await fetch((ORIGIN ?? '') + '/api/admin/products?page=' + (page ?? 1))
     if (!res.ok)
@@ -14,6 +15,10 @@ export async function getProducts(page?: number) {
     return await res.json() as Pagination<ProductDTO>
 }
 
+
+/**
+ * get single product
+ */
 export async function getProduct(id: string) {
     const res = await fetch((ORIGIN ?? '') + '/api/admin/products/' + id)
     if (!res.ok)
@@ -21,9 +26,13 @@ export async function getProduct(id: string) {
     return await res.json() as ProductDTO
 }
 
-export async function editProduct(prodId: string, formData: FormData, accessToken: string) {
+
+/**
+ * update single product
+ */
+export async function putProduct(prodId: string, formData: FormData, accessToken: string) {
     const res = await fetch(
-        process.env.ORIGIN + '/api/admin/products/edit/' + prodId,
+        ORIGIN + '/api/admin/products/edit/' + prodId,
         {
             method: 'PUT',
             body: formData,
@@ -34,7 +43,7 @@ export async function editProduct(prodId: string, formData: FormData, accessToke
     )
 
     if (!res.ok)
-        throw new Error('failed to edti product with id: "' + prodId + '"')
+        throw new Error('failed to edit product with id: "' + prodId + '"')
 
     console.log('__________________________')
     console.log('YOU ARE HERE')

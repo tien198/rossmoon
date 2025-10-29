@@ -1,16 +1,20 @@
 'use server';
 
-import { editProduct } from "@/lib/api/products";
+import { putProduct } from "@/lib/api/productAPI";
 
 type ActionData = {
     [key: string]: string
-}
+} | { error: string }
 
-export async function editProductAction(prodId: string, prevState: ActionData, formData: FormData) {
+export async function editProductAction(prodId: string, prevState: ActionData, formData: FormData): Promise<ActionData> {
     const jwtToken = formData.get('token')?.toString() ?? ''
     formData.delete('token')
-
-    const res = await editProduct(prodId, formData, jwtToken)
-
-    return {}
+    try {
+        const result = await putProduct(prodId, formData, jwtToken)
+        return result
+    } catch (error: any) {
+        return {
+            error: error.message
+        }
+    }
 }

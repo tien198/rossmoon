@@ -4,7 +4,7 @@ import { useActionState, useEffect } from "react"
 import { useAuthReducer } from "./useAuthReducer"
 import { signinAction } from "../_actions"
 import { signinSchema } from "@/schemas/base/user.zod"
-import { zodValidation } from "@/services/zodValidate"
+import { zodValidation } from "@/services/zod.Validate"
 import { useRouter } from "next/navigation"
 import { FieldName } from "../reducer/authReducer"
 
