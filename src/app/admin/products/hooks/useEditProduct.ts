@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query"
 import { useParams } from "next/navigation"
 import { FormEvent, useActionState, useRef } from "react"
 import { editProductAction } from "../edit/[id]/_action"
-import { encodeBase64 } from "bcryptjs"
 
 export default function useEditProduct() {
     const params = useParams()
@@ -22,11 +21,9 @@ export default function useEditProduct() {
     function handleSubmit(e: FormEvent) {
         e.preventDefault()
         const formData = new FormData(formRef.current!)
-        const entries = formData.entries()
-        console.log(Object.fromEntries(entries))
+        const propertiesArr = Array.from(formData.entries())
 
-
-        for (const [k, val] of formData.entries()) {
+        for (const [k, val] of propertiesArr) {
             if (k.startsWith('medias')) {
                 const i = Number(
                     k.split('[')[1].split(']')[0]
