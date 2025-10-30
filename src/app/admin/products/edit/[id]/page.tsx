@@ -50,7 +50,8 @@ export default function Product() {
 
         {/* Thuộc tính */}
         <F.Text
-          name='Mô tả'
+          displayName='Mô tả'
+          name="description"
           value={p.description}
         />
         <div className="grid grid-cols-2 p-4 rounded-sm">

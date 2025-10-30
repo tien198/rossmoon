@@ -41,7 +41,7 @@ export default function Media({ idx, media, alt, handleSelected, isSelected }: P
         <input
             ref={fileRef}
             type="file"
-            name={`media[${idx}]`}
+            name={`medias[${idx}]`}
             hidden
         />
     </div>
