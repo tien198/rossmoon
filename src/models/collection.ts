@@ -1,14 +1,14 @@
-import type { CollectionPart } from "../schemas/server/collection.zod";
+import type { CollectionPart } from "../shared/schemas/server/collection.zod";
 
 import { Abortable, Collection, Filter, FindOptions, ObjectId } from "mongodb";
 import { collectionsCollection } from "@/db/mongoDbCollections";
-import { NestedCategory } from "../schemas/server/category.zod";
-import { BannerImage } from "../schemas/server/bannerImage.zod";
-import DocumentAbstract from "./document";
+import { NestedCategory } from "../shared/schemas/server/category.zod";
+import { BannerImage } from "../shared/schemas/server/bannerImage.zod";
+import DocumentAbstract from "../respo/document";
 
 
 
-export default class CollectionImp extends DocumentAbstract<Collection> implements CollectionPart {
+export default class CollectionImp extends DocumentAbstract<CollectionPart> implements CollectionPart {
     static dbCollection = collectionsCollection
     dbCollection = collectionsCollection
 
@@ -25,7 +25,7 @@ export default class CollectionImp extends DocumentAbstract<Collection> implemen
     createdAt?: string | number | Date
 
     constructor(col: CollectionPart) {
-        super()
+        super(col)
         this._id = col!._id!
         Object.assign(this, col)
     }

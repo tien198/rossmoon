@@ -4,22 +4,22 @@ import { Collection, FindCursor, ObjectId } from "mongodb";
 
 
 
-export default abstract class DocumentAbstract<T> {
+export default abstract class DocumentAbstract<T extends { _id?: ObjectId | null }> {
     abstract dbCollection: Collection<Document>
     static dbCollection: Collection<any>
 
-    abstract _id?: ObjectId
+    constructor(public model: T) { }
 
     async save() {
         const coppy: Partial<DocumentAbstract<T>> = { ...this }
         delete coppy.dbCollection
 
-        if (!this._id) {
+        if (!this.model._id) {
             return await this.dbCollection.insertOne(coppy)
         }
 
         const updatedDoc = await this.dbCollection.updateOne(
-            { _id: this._id },
+            { _id: this.model._id },
             { $set: { ...coppy } }
         )
         return updatedDoc

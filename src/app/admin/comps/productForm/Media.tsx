@@ -1,4 +1,4 @@
-import type { ProductMedia } from "@/schemas/base/product.properties.zod";
+import type { ProductMedia } from "@/shared/schemas/base/product.properties.zod";
 import Image from "next/image";
 import { MouseEventHandler, useRef } from "react";
 

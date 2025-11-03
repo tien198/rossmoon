@@ -1,5 +1,5 @@
 import { unflatten } from "@/lib/unflatten";
-import { Product } from "@/schemas/base/product.zod";
+import { Product } from "@/shared/schemas/base/product.zod";
 import ProductRespo from "@/respo/product.respo";
 import { NextResponse } from "next/server";
 
@@ -20,7 +20,7 @@ export async function PUT(req: Request, context: Context) {
     const prod = unflatten<Product>(flattenData)
 
     try {
-        const result = await ProductRespo.editProduct(prodId, prod)
+        const result = await ProductRespo.edit(prodId, prod)
         return NextResponse.json({})
     } catch (error) {
         console.error(error)

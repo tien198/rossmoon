@@ -1,6 +1,6 @@
 'use client'
 
-import { ProductMedia } from '@/schemas/base/product.properties.zod';
+import { ProductMedia } from '@/shared/schemas/base/product.properties.zod';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import MediaComp from './Media';

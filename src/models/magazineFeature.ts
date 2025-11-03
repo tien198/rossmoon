@@ -2,11 +2,11 @@ import type { Filter, FindOptions, Abortable } from "mongodb"
 import { ObjectId } from "mongodb"
 import { magazineFeaturesCollection } from "@/db/mongoDbCollections"
 
-import type { MagazineFeature } from "../schemas/server/magazineFeature.zod"
-import type { BannerImage } from "../schemas/server/bannerImage.zod"
-import type { NestedProduct } from "../schemas/server/product.zod"
-import type { NestedCollection } from "../schemas/server/collection.zod"
-import DocumentAbstract from "./document"
+import type { MagazineFeature } from "../shared/schemas/server/magazineFeature.zod"
+import type { BannerImage } from "../shared/schemas/server/bannerImage.zod"
+import type { NestedProduct } from "../shared/schemas/server/product.zod"
+import type { NestedCollection } from "../shared/schemas/server/collection.zod"
+import DocumentAbstract from "../respo/document"
 
 export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature> implements MagazineFeature {
     dbCollection = magazineFeaturesCollection
@@ -22,7 +22,7 @@ export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature
     createdAt: Date | string | number
 
     constructor(feature: MagazineFeature) {
-        super()
+        super(feature)
         this._id = feature._id!
         Object.assign(this, feature)
         this.products = feature.products

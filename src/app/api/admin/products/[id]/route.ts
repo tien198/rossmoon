@@ -1,4 +1,4 @@
-import ProductImp from "@/models/product";
+import ProductRespo from "@/respo/product.respo";
 import { NextResponse } from "next/server";
 
 type Context = {
@@ -9,7 +9,7 @@ export async function GET(req: Request, context: Context) {
     const prodId = (await context.params)['id']
 
     try {
-        const prod = await ProductImp.findById(prodId)
+        const prod = await ProductRespo.findById(prodId)
         if (!prod)
             throw Error('Not found product "' + prodId + '"')
         console.log('---------- product getted');

@@ -1,6 +1,6 @@
 import { Abortable, Filter, FindOptions, ObjectId } from "mongodb";
-import DocumentAbstract from "./document";
-import { User } from "../schemas/server/user.zod";
+import DocumentAbstract from "../respo/document";
+import { User } from "../shared/schemas/server/user.zod";
 import { usersCollection } from '../db/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
@@ -15,7 +15,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
     password: string = ''
 
     constructor(user: User) {
-        super()
+        super(user)
         Object.assign(this, user)
     }
 

@@ -2,7 +2,7 @@ import type { ErrorRes } from '@/lib/api/authenAPI'
 
 import { genJWT } from '@/services/jwtToken'
 import { zodValidation } from '@/services/zod.Validate'
-import { Login, loginSchemaServer } from '@/schemas/server/user.zod'
+import { Login, loginSchemaServer } from '@/shared/schemas/server/user.zod'
 import { NextResponse } from 'next/server'
 import UserImp from '@/models/user'
 

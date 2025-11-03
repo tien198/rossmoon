@@ -1,7 +1,7 @@
-import { Pagination } from "@/schemas/base/pagination";
+import { Pagination } from "@/shared/schemas/base/pagination";
 import ProductDTO from "@/DTO/product";
-import ProductImp from "@/models/product";
-import { Product } from "@/schemas/server/product.zod";
+import ProductRespo from "@/respo/product.respo";
+import { Product } from "@/shared/schemas/server/product.zod";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -11,7 +11,7 @@ export async function GET(req: Request) {
     const skip = page * limit
 
     const pagination: Pagination<Product | ProductDTO>
-        = await ProductImp.pagination(
+        = await ProductRespo.pagination(
             skip, limit,
             { name: 1, attributes: 1, price: 1 }
         )
