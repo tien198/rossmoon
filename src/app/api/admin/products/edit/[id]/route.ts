@@ -1,6 +1,6 @@
 import { unflatten } from "@/lib/unflatten";
 import { Product } from "@/schemas/base/product.zod";
-import ProductServices from "@/services/product.service";
+import ProductRespo from "@/respo/product.respo";
 import { NextResponse } from "next/server";
 
 type Context = {
@@ -20,7 +20,7 @@ export async function PUT(req: Request, context: Context) {
     const prod = unflatten<Product>(flattenData)
 
     try {
-        const result = await ProductServices.editProduct(prodId, prod)
+        const result = await ProductRespo.editProduct(prodId, prod)
         return NextResponse.json({})
     } catch (error) {
         console.error(error)

@@ -12,8 +12,8 @@ async function editProduct(prodId: string, prod: Product) {
 
 
 
-const ProductServices = {
+const ProductRespo = {
     editProduct
 }
 
-export default ProductServices
+export default ProductRespo
