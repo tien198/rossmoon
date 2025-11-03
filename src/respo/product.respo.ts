@@ -9,8 +9,8 @@ import { Pagination } from "@/shared/schemas/base/pagination";
 
 
 export default class ProductRespo extends DocumentAbstract<ProductPart> {
-    dbCollection = productsCollection
-    static dbCollection: Collection<ProductPart>
+    dbCollection: Collection<ProductPart>
+    static dbCollection = productsCollection
 
     constructor(model: ProductImp) {
         super(model)
