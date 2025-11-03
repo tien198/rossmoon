@@ -1,4 +1,4 @@
-import type { Filter, FindOptions, Abortable, FindCursor } from "mongodb";
+import type { Filter, FindOptions, Abortable, FindCursor, UpdateFilter, Document } from "mongodb";
 import type { Product, ProductPart } from "../schemas/server/product.zod";
 
 import { ObjectId } from "mongodb";
@@ -94,8 +94,11 @@ export default class ProductImp extends DocumentAbstract<Product> implements Pro
         return super.findById<T>(id)
     }
 
-    static updateOne<T = Product>(filter: Filter<T>, col: Partial<T>) {
-        return super.updateOne<T>(filter, col)
+    static updateOne<T = Product>(
+        filter: Filter<T>,
+        update: UpdateFilter<T> | Document[]
+    ) {
+        return super.updateOne<T>(filter, update)
     }
 
     static insertOne<T = Product>(col: T) {

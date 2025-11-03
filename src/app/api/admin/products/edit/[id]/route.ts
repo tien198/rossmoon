@@ -1,88 +1,33 @@
+import { unflatten } from "@/lib/unflatten";
 import { Product } from "@/schemas/base/product.zod";
+import ProductServices from "@/services/product.service";
 import { NextResponse } from "next/server";
 
-export async function PUT(req: Request) {
-    // Bussiness Logic
-    // ...
-    const token = req.headers.get('authorization')
-    console.log('-------- PUT')
-    console.log(token)
-    const formData = await req.formData()
-    const data = Object.fromEntries(formData.entries())
-    const prod = unflatten<Product>(data)
-    console.log(prod)
-    
-    return NextResponse.json({
-
-    })
+type Context = {
+    params: Promise<{
+        id: string
+    }>
 }
 
+export async function PUT(req: Request, context: Context) {
 
+    const prodId = (await context.params).id
 
-type AnyObject = Record<string, any>;
+    const token = req.headers.get('authorization')
 
-function unflatten<T extends AnyObject>(flat: AnyObject) {
-    const result: AnyObject = {};
+    const formData = await req.formData()
+    const flattenData = Object.fromEntries(formData.entries())
+    const prod = unflatten<Product>(flattenData)
 
-    const tokenRe = /([^\.\[\]]+)|\[(\d+)\]/g;
-
-    for (const key in flat) {
-        if (!Object.prototype.hasOwnProperty.call(flat, key)) continue;
-        const value = flat[key];
-
-        // parse tokens: e.g. "medias[0].url" -> ["medias", 0, "url"]
-        const parts: (string | number)[] = [];
-        let m: RegExpExecArray | null;
-        while ((m = tokenRe.exec(key)) !== null) {
-            if (m[1] !== undefined) parts.push(m[1]);
-            else parts.push(Number(m[2]));
-        }
-
-        let curr: any = result;
-        for (let i = 0; i < parts.length; i++) {
-            const part = parts[i];
-            const isLast = i === parts.length - 1;
-            const nextPart = parts[i + 1];
-
-            if (typeof part === 'string') {
-                // ensure container exists
-                if (isLast) {
-                    curr[part] = value;
-                } else {
-                    if (!(part in curr) || typeof curr[part] !== 'object') {
-                        // decide array or object based on next token
-                        curr[part] = typeof nextPart === 'number' ? [] : {};
-                    }
-                    curr = curr[part];
-                }
-            } else { // number index
-                // curr must be an array (it should have been created when we saw the string key before the [index])
-                if (!Array.isArray(curr)) {
-                    // replace empty object with array if safe
-                    // (this handles rare cases where structure was not pre-created)
-                    const newArr: any[] = [];
-                    // copy existing enumerable props if any (edge-case)
-                    for (const k in curr) {
-                        if (Object.prototype.hasOwnProperty.call(curr, k)) {
-                            (newArr as any)[k] = (curr as any)[k];
-                        }
-                    }
-                    // find parent and reassign would be complicated here; to keep simple,
-                    // assume well-formed flattened keys (string before [index]) so this rarely runs.
-                    curr = newArr;
-                }
-
-                if (isLast) {
-                    curr[part] = value;
-                } else {
-                    if (curr[part] == null || typeof curr[part] !== 'object') {
-                        curr[part] = typeof nextPart === 'number' ? [] : {};
-                    }
-                    curr = curr[part];
-                }
-            }
-        }
+    try {
+        const result = await ProductServices.editProduct(prodId, prod)
+        return NextResponse.json({})
+    } catch (error) {
+        console.error(error)
+        return NextResponse.json(
+            'Fail to edit product with id: ' + prodId,
+            { status: 500 }
+        )
     }
 
-    return result as T;
 }

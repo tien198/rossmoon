@@ -34,42 +34,42 @@ export default function Product() {
         <F.Inp
           displayName="Tên SP"
           name="name"
-          value={p.name}
+          defaultValue={p.name}
         />
         <F.Inp
           displayName="Danh mục"
           name="category"
-          value={p.category?.name}
+          defaultValue={p.category?.name}
         />
         <F.Inp
           displayName="Giá"
           type="number"
           name="price"
-          value={p.price?.toString()} suffix="₫" className="text-2xl"
+          defaultValue={p.price?.toString()} suffix="₫" className="text-2xl"
         />
 
         {/* Thuộc tính */}
         <F.Text
           displayName='Mô tả'
           name="description"
-          value={p.description}
+          defaultValue={p.description}
         />
         <div className="grid grid-cols-2 p-4 rounded-sm">
           <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
           <F.InlineInp
             displayName="x"
             name="attributes.width" type="number"
-            value={p.attributes?.width?.toString()}
+            defaultValue={p.attributes?.width?.toString()}
           />
           <F.InlineInp
             displayName="y"
             name="attributes.height" type="number"
-            value={p.attributes?.height?.toString()}
+            defaultValue={p.attributes?.height?.toString()}
           />
           <F.InlineInp
             displayName="z"
             name="attributes.depth" type="number"
-            value={p.attributes?.depth?.toString()}
+            defaultValue={p.attributes?.depth?.toString()}
           />
         </div>
         <F.Inp
@@ -113,7 +113,7 @@ export default function Product() {
           {/* Token */}
           <input hidden
             name="token"
-            value={
+            defaultValue={
               'bearer '
               + (localStorage.getItem('jwtToken') ?? '')
             }

@@ -1,4 +1,4 @@
-import type { Abortable, DeleteResult, Document, Filter, FindOptions, InsertOneResult, WithId } from "mongodb";
+import type { Abortable, DeleteResult, Document, Filter, FindOptions, InsertOneResult, UpdateFilter, WithId } from "mongodb";
 import { Collection, FindCursor, ObjectId } from "mongodb";
 
 
@@ -52,10 +52,13 @@ export default abstract class DocumentAbstract<T> {
         return query as Promise<WithId<T> | null>
     }
 
-    static updateOne<T = Document>(filter: Filter<T>, doc: Partial<T>) {
+    static updateOne<T = Document>(
+        filter: Filter<T>,
+        update: UpdateFilter<T> | Document[]
+    ) {
         return this.dbCollection.updateOne(
             { ...filter },
-            { ...doc }
+            update as UpdateFilter<any> | Document[]
         )
     }
 
