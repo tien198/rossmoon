@@ -1,7 +1,7 @@
 import { getProduct } from "@/lib/api/productAPI"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "next/navigation"
-import { FormEvent, useActionState, useRef } from "react"
+import { FormEvent, startTransition, useActionState, useRef } from "react"
 import { editProductAction } from "../edit/[id]/_action"
 
 export default function useEditProduct() {
@@ -36,7 +36,10 @@ export default function useEditProduct() {
                 }
             }
         }
-        formAction(formData)
+
+        startTransition(() =>
+            formAction(formData)
+        )
     }
 
     return {
