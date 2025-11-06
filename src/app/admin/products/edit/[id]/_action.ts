@@ -11,7 +11,7 @@ export async function editProductAction(prodId: string, prevState: ActionData, f
     const jwtToken = formData.get('token')?.toString() ?? ''
     formData.delete('token')
     try {
-        putProduct(prodId, formData, jwtToken)
+        await putProduct(prodId, formData, jwtToken)
     } catch (error: any) {
         return {
             error: error.message

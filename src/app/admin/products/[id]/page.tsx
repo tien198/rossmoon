@@ -7,6 +7,8 @@ import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/productAPI";
 import F from "@/app/admin/comps/productForm";
 import Fallback from "@/app/admin/comps/Fallback";
+import { getQueryClient } from "@/app/TanProvider";
+import { useEffect } from "react";
 /*
 const rawProd: ProductDTO = {
   id: "68c84ef65190463d50e43269",
@@ -50,7 +52,9 @@ const rawProd: ProductDTO = {
 export default function Product() {
   const params = useParams()
   const prodId = params['id'] as string
-
+  getQueryClient().invalidateQueries({
+    queryKey: ['products', prodId]
+  })
   const productQuery = useQuery({
     queryKey: ['products', prodId],
     queryFn: () => getProduct(prodId)
@@ -77,52 +81,52 @@ export default function Product() {
         <F.Inp disabled
           displayName="Tên SP"
           name="name"
-          defaultValue={p.name}
+          value={p.name}
         />
         <F.Inp disabled
           displayName="Danh mục"
           name="category"
-          defaultValue={p.category?.name}
+          value={p.category?.name}
         />
         <F.Inp disabled
           displayName="Giá"
           type="number"
           name="price"
-          defaultValue={p.price?.toString()} suffix="₫" className="text-2xl"
+          value={p.price?.toString()} suffix="₫" className="text-2xl"
         />
 
         {/* Thuộc tính */}
         <F.Text disabled
           name='Mô tả'
-          defaultValue={p.description}
+          value={p.description}
         />
         <div className="grid grid-cols-2 p-4 rounded-sm">
           <b className="col-start-1 -col-end-1">Kích thước (cm)</b>
           <F.InlineInp disabled
             displayName="x"
             name="attributes.width" type="number"
-            defaultValue={p.attributes?.width?.toString()}
+            value={p.attributes?.width?.toString()}
           />
           <F.InlineInp disabled
             displayName="y"
             name="attributes.height" type="number"
-            defaultValue={p.attributes?.height?.toString()}
+            value={p.attributes?.height?.toString()}
           />
           <F.InlineInp disabled
             displayName="z"
             name="attributes.depth" type="number"
-            defaultValue={p.attributes?.depth?.toString()}
+            value={p.attributes?.depth?.toString()}
           />
         </div>
         <F.Inp disabled
           displayName='Màu sắc'
           name="attributes.color"
-          defaultValue={p.attributes?.color ?? ''}
+          value={p.attributes?.color ?? ''}
         />
         <F.Inp disabled
           displayName='Chất liệu'
           name="attributes.material"
-          defaultValue={p.attributes?.material ?? ''}
+          value={p.attributes?.material ?? ''}
         />
 
 
@@ -134,22 +138,22 @@ export default function Product() {
           <F.Inp disabled
             displayName="Xuất xứ"
             name="additionalInfors.origin"
-            defaultValue={p.additionalInfors?.origin ?? ''}
+            value={p.additionalInfors?.origin ?? ''}
           />
           <F.Inp disabled
             displayName="🔔 Lưu ý"
             name="additionalInfors.notice"
-            defaultValue={p.additionalInfors?.notice ?? ''}
+            value={p.additionalInfors?.notice ?? ''}
           />
           <F.Inp disabled
             displayName="🌱 Bền vững"
             name="additionalInfors.sustainability"
-            defaultValue={p.additionalInfors?.sustainability ?? ''}
+            value={p.additionalInfors?.sustainability ?? ''}
           />
           <F.Inp disabled
             displayName="🧴 Bảo quản"
             name="additionalInfors.productCare"
-            defaultValue={p.additionalInfors?.productCare ?? ''}
+            value={p.additionalInfors?.productCare ?? ''}
           />
         </div>
       </div>

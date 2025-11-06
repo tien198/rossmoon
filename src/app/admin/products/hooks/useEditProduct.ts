@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { useParams } from "next/navigation"
 import { FormEvent, startTransition, useActionState, useRef } from "react"
 import { editProductAction } from "../edit/[id]/_action"
+import { getQueryClient } from "@/app/TanProvider"
 
 export default function useEditProduct() {
     const params = useParams()
@@ -36,8 +37,8 @@ export default function useEditProduct() {
                 }
             }
         }
-        await productQuery.refetch()
-        startTransition(() =>
+
+        startTransition(async () =>
             formAction(formData)
         )
     }
