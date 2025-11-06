@@ -1,5 +1,5 @@
 
-import { Z_Invalid } from "@/types/zod.ErrorTree";
+import { Z_Invalid } from "@/type/zod.ErrorTree";
 
 
 export type ErrorRes = {

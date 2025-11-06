@@ -1,10 +1,10 @@
 'use client'
 
-import MediaGallery from "../../../comps/productForm/MediaGallery";
-import ProductFeatures from "../../../comps/Product.Features";
-import F from "@/app/admin/comps/productForm";
-import Fallback from "@/app/admin/comps/Fallback";
-import useEditProduct from "../../hooks/useEditProduct";
+import MediaGallery from "../../../comp/productForm/MediaGallery";
+import ProductFeatures from "../../../comp/Product.Features";
+import F from "@/app/admin/comp/productForm";
+import Fallback from "@/app/admin/comp/Fallback";
+import useEditProduct from "../../hook/useEditProduct";
 
 
 

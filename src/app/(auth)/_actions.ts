@@ -1,7 +1,7 @@
 'use server';
 
 import { ErrorRes, login, signin, SuccessRes } from "@/lib/api/authenAPI";
-import { Z_Invalid } from "@/types/zod.ErrorTree";
+import { Z_Invalid } from "@/type/zod.ErrorTree";
 
 
 export type ActionData = {

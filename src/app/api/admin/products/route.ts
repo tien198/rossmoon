@@ -1,7 +1,7 @@
-import { Pagination } from "@/shared/schemas/base/pagination";
+import { Pagination } from "@/shared/schema/base/pagination";
 import ProductDTO from "@/DTO/product";
-import ProductRespo from "@/respo/product.respo";
-import { Product } from "@/shared/schemas/server/product.zod";
+import ProductRespo from "@/respository/product.respo";
+import { Product } from "@/shared/schema/server/product.zod";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

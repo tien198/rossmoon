@@ -1,0 +1,95 @@
+@use '@/asset/scss/variables' as *;
+
+.sidebar-container {
+  position: relative;
+  z-index: 40;
+
+  .sidebar {
+    height: 100vh;
+    width: 0;
+    overflow: hidden;
+    background-color: #1f2937;
+    font-size: 1.25rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: $transition-default;
+
+    &.active {
+      width: 100vw;
+
+      @media (min-width: 768px) {
+        width: min(33vw, 320px);
+      }
+    }
+  }
+
+  .activation-btn {
+    position: absolute;
+    top: 1rem;
+    font-size: 2rem;
+    border-radius: .25rem;
+  }
+
+  .activate {
+    right: -3rem;
+    color: #1f2937;
+    background: #fff;
+    border: 3px solid #1f2937;
+
+    @media (min-width: 768px) {
+      right: -3rem;
+      font-size: 3rem;
+
+    }
+  }
+
+  .deactivate {
+    right: 1rem;
+    color: #fff;
+    border: 3px solid #fff;
+  }
+
+  .logo {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid #374151;
+  }
+
+  .nav {
+    flex: 1;
+    padding: 1rem;
+
+    a {
+      display: block;
+      padding: 1.25rem 0.75rem;
+      border-radius: 0.25rem;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #374151;
+      }
+    }
+  }
+
+  .footer {
+    padding: 1rem;
+    border-top: 1px solid #374151;
+
+    button {
+      width: 100%;
+      background-color: #dc2626;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 0.25rem;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #b91c1c;
+      }
+    }
+  }
+}

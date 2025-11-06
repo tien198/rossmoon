@@ -1,7 +1,7 @@
-import { NestedCategory } from "@/shared/schemas/base/category.zod";
-import { ProductMediasArray, ProductAttributes, ProductAdditionalInfors } from "@/shared/schemas/base/product.properties.zod";
-import { Product as ProdClient } from "@/shared/schemas/client/product.zod";
-import { Product as ProdServer } from "@/shared/schemas/server/product.zod";
+import { NestedCategory } from "@/shared/schema/base/category.zod";
+import { ProductMediasArray, ProductAttributes, ProductAdditionalInfors } from "@/shared/schema/base/product.properties.zod";
+import { Product as ProdClient } from "@/shared/schema/client/product.zod";
+import { Product as ProdServer } from "@/shared/schema/server/product.zod";
 
 export default class ProductDTO implements Partial<ProdClient> {
     id: string

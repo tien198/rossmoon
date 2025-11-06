@@ -1,8 +1,8 @@
-import type { Product } from "@/shared/schemas/client/product.zod";
-import ProductRespo from "@/respo/product.respo";
+import type { Product } from "@/shared/schema/client/product.zod";
+import ProductRespo from "@/respository/product.respo";
 
 import styles from './product.module.scss'
-import ProductImages from "./comps/productImages";
+import ProductImages from "./comp/productImages";
 
 type Props = {
     params: Promise<{

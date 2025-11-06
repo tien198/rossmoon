@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import Nav from "./comps/Nav";
+import Nav from "./comp/Nav";
 
 export const revalidate = false
 

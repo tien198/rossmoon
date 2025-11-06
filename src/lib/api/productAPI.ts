@@ -1,5 +1,5 @@
 import ProductDTO from "@/DTO/product"
-import { Pagination } from "@/shared/schemas/base/pagination"
+import { Pagination } from "@/shared/schema/base/pagination"
 
 // <Whether> is involked in SERVER <or> CLIENT
 

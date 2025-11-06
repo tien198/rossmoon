@@ -1,5 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query"
-import ProductTable from "./comps/Table"
+import ProductTable from "./comp/Table"
 import { getProducts } from "@/lib/api/productAPI"
 
 type Props = {

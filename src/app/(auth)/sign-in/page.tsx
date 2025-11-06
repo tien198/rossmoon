@@ -1,6 +1,6 @@
 'use client'
 
-import type { Z_Invalid } from "@/types/zod.ErrorTree";
+import type { Z_Invalid } from "@/type/zod.ErrorTree";
 
 import F from "../comps/authForm";
 import useSignin from "../hooks/useSignin";

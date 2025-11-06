@@ -1,8 +1,8 @@
 import { getDb } from "./mongoDB";
-import { CollectionPart } from "@/shared/schemas/server/collection.zod";
-import { ProductPart } from "@/shared/schemas/server/product.zod";
-import { MagazineFeaturePart } from "@/shared/schemas/server/magazineFeature.zod";
-import { UserPart } from "@/shared/schemas/server/user.zod";
+import { CollectionPart } from "@/shared/schema/server/collection.zod";
+import { ProductPart } from "@/shared/schema/server/product.zod";
+import { MagazineFeaturePart } from "@/shared/schema/server/magazineFeature.zod";
+import { UserPart } from "@/shared/schema/server/user.zod";
 
 
 

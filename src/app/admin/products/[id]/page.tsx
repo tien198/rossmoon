@@ -1,54 +1,16 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query";
-import MediaGallery from "../../comps/productForm/MediaGallery";
-import ProductFeatures from "../../comps/Product.Features";
+import MediaGallery from "../../comp/productForm/MediaGallery";
+import ProductFeatures from "../../comp/Product.Features";
 import { useParams } from "next/navigation";
 import { getProduct } from "@/lib/api/productAPI";
-import F from "@/app/admin/comps/productForm";
-import Fallback from "@/app/admin/comps/Fallback";
+import F from "@/app/admin/comp/productForm";
+import Fallback from "@/app/admin/comp/Fallback";
 import { getQueryClient } from "@/app/TanProvider";
-import { useEffect } from "react";
-/*
-const rawProd: ProductDTO = {
-  id: "68c84ef65190463d50e43269",
-  name: "LV Ombres - bảng phấn mất",
-  slug: "LV-Ombres",
-  price: 6_500_000,
-  description: "cái mô tả này rất chất lượng , Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro natus itaque ab quis eius quasi tempore debitis doloremque impedit eos? Commodi expedita exercitationem necessitatibus ab repellendus laudantium incidunt sit molestias!",
-  attributes: {
-    color: 'Xanh',
-    width: 1,
-    height: 1,
-    depth: 1
-  },
-  category: {
-    name: 'ffklsdjf'
-  },
-  medias: [
-    {
-      type: "image",
-      url: "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
-    },
-    {
-      type: "image",
-      url: "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
-    },
-    {
-      type: "image",
-      url: "/images/la-beaute-louis-vuitton/ombres/louis-vuitton-lv-ombres---eyeshadow-palette--LYA006_PM2_Front view.avif"
-    }
-  ],
-  origin: 'viet nam',
-  features: [
-    'nhacj trẩu vl', ' halo in hall', 'fire the hold'
-  ],
-  notice: 'cố gắng',
-  sustainability: 'làm ăn cho đàng hoàng lão già Trump, laão đểu ma lanh, quái ác.',
-  productCare: 'Đồ đắt, giữ cho kỹ',
-  createdAt: new Date("2025-08-29T13:54:05.000Z")
-}
-*/
+
+
+
 export default function Product() {
   const params = useParams()
   const prodId = params['id'] as string
@@ -68,13 +30,12 @@ export default function Product() {
 
   // UI
   const p = productQuery.data
-  // const p = rawProd
 
   return <div className="min-h-screen bg-white text-gray-800 font-sans">
     <form className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-4">
 
       {/* Bộ sưu tập media */}
-      <MediaGallery medias={p.medias} prodName={p.name} />
+      <MediaGallery medias={p.medias} prodName={p.name} disabled />
 
       {/* Thông tin sản phẩm */}
       <div >

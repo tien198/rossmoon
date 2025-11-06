@@ -1,4 +1,4 @@
-import ProductRespo from "@/respo/product.respo";
+import ProductRespo from "@/respository/product.respo";
 import { NextResponse } from "next/server";
 
 type Context = {
