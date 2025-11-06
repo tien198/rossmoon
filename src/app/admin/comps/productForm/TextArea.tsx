@@ -1,9 +1,9 @@
-import { TextareaHTMLAttributes, useEffect, useRef } from "react";
-import { AppInpBase } from ".";
+import { TextareaHTMLAttributes, useEffect, useRef } from 'react';
+import { AppInpBase } from '.';
 
 type TextAreaProps = AppInpBase & TextareaHTMLAttributes<HTMLTextAreaElement>
 
-export default function TextArea({ displayName, suffix, ...rest }: TextAreaProps) {
+export default function TextArea({ displayName, suffix, className, ...rest }: TextAreaProps) {
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
     useEffect(() => {
         const areaEl = textAreaRef.current!
@@ -23,13 +23,13 @@ export default function TextArea({ displayName, suffix, ...rest }: TextAreaProps
         areaEl.style.height = areaEl.scrollHeight.toString() + 'px'
     }
 
-    return <label className={"flex justify-between items-center flex-wrap w-full relative hover:bg-gray-300 p-4 rounded-sm"}>
+    return <label className={'flex justify-between items-center flex-wrap w-full relative hover:bg-gray-300 p-4 rounded-sm'}>
         <strong>{displayName ?? rest.name}:</strong>
-        <span className="leading-relaxed text-gray-700 w-full">
+        <span className='leading-relaxed text-gray-700 w-full'>
             <textarea ref={textAreaRef}
                 name={rest.name}
-                placeholder="???"
-                className="w-full px-4 py-2 outline-0 overflow-clip focus:shadow shadow-amber-800"
+                placeholder='?'
+                className={'w-full px-4 py-2 outline-0 overflow-clip focus:shadow shadow-amber-800 ' + className}
                 {...rest}
                 onInput={handleInput}
             />

@@ -1,9 +1,9 @@
-import { InputHTMLAttributes, useEffect, useRef } from "react";
-import { AppInpBase } from ".";
+import { InputHTMLAttributes, useEffect, useRef } from 'react';
+import { AppInpBase } from '.';
 
 type Props = AppInpBase & InputHTMLAttributes<HTMLInputElement>
 
-export default function InlineInput({ displayName, suffix, ...rest }: Props) {
+export default function InlineInput({ displayName, suffix, className, ...rest }: Props) {
     const inputRef = useRef<HTMLInputElement>(null)
     useEffect(() => {
         const suffixEl = document.createElement('span')
@@ -14,13 +14,13 @@ export default function InlineInput({ displayName, suffix, ...rest }: Props) {
     }, [])
 
     return <label
-        className="flex gap-4 items-center w-full hover:bg-gray-300 p-4 rounded-sm relative"
+        className='flex gap-4 items-center w-full hover:bg-gray-300 p-4 rounded-sm relative'
     >
         <strong>{displayName ?? rest.name}:</strong>
-        <span className=" text-gray-700">
+        <span className=' text-gray-700'>
             <input ref={inputRef}
-                placeholder="???"
-                className="px-4 py-1 w-full outline-0 text-right focus:shadow shadow-amber-800"
+                placeholder='?'
+                className={'px-4 py-1 w-full outline-0 focus:shadow shadow-amber-800 ' + className}
                 {...rest}
             />
         </span>

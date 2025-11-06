@@ -9,6 +9,8 @@ type ActionData = {
 
 export async function editProductAction(prodId: string, prevState: ActionData, formData: FormData): Promise<ActionData> {
     const jwtToken = formData.get('token')?.toString() ?? ''
+    console.log(jwtToken)
+    
     formData.delete('token')
     try {
         await putProduct(prodId, formData, jwtToken)
