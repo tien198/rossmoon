@@ -21,7 +21,7 @@ export default function Input({ displayName, suffix, className, ...rest }: Input
             <input ref={inputRef}
                 placeholder='?'
                 className={
-                    'w-full px-4 py-1 outline-0 text-right rounded-sm '
+                    'w-full px-4 py-1 outline-0 text-right '
                     + (rest.disabled ? '' : 'border-b border-transparent focus:border-b focus:border-b-amber-800 ')
                     + className
                 }

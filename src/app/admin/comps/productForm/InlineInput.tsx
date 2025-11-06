@@ -21,7 +21,7 @@ export default function InlineInput({ displayName, suffix, className, ...rest }:
             <input ref={inputRef}
                 placeholder='?'
                 className={
-                    'w-full px-4 py-1 outline-0 rounded-sm '
+                    'w-full px-4 py-1 outline-0 '
                     + (rest.disabled ? '' : 'border-b border-transparent focus:border-b focus:border-b-amber-800 ')
                     + className
                 }
