@@ -1,6 +1,7 @@
 'use server';
 
 import { putProduct } from "@/lib/api/productAPI";
+import { redirect } from "next/navigation";
 
 type ActionData = {
     [key: string]: string
@@ -10,11 +11,11 @@ export async function editProductAction(prodId: string, prevState: ActionData, f
     const jwtToken = formData.get('token')?.toString() ?? ''
     formData.delete('token')
     try {
-        const result = await putProduct(prodId, formData, jwtToken)
-        return result
+        putProduct(prodId, formData, jwtToken)
     } catch (error: any) {
         return {
             error: error.message
         }
     }
+    redirect('/admin/products/' + prodId)
 }

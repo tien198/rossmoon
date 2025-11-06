@@ -25,7 +25,13 @@ export default function Media({ idx, media, alt, handleSelected, isSelected }: P
             }
         >
             {media?.type === 'image' ? (
-                <Image src={media.url} alt={alt ?? ''} className="object-cover w-full h-full" width={550} height={550} />
+                <Image
+                    src={media.url}
+                    alt={alt ?? ''}
+                    className="object-cover w-full h-full"
+                    width={550} height={550}
+                    priority
+                />
             ) : (
                 <video className="object-cover w-full h-full">
                     <source src={media?.url} type="video/mp4" />

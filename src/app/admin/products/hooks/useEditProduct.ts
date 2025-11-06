@@ -18,7 +18,7 @@ export default function useEditProduct() {
 
     const formRef = useRef<HTMLFormElement>(null)
 
-    function handleSubmit(e: FormEvent) {
+    async function handleSubmit(e: FormEvent) {
         e.preventDefault()
         const formData = new FormData(formRef.current!)
         const propertiesArr = Array.from(formData.entries())
@@ -36,7 +36,7 @@ export default function useEditProduct() {
                 }
             }
         }
-
+        await productQuery.refetch()
         startTransition(() =>
             formAction(formData)
         )

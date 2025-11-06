@@ -23,7 +23,14 @@ export default function MediaGallery({ medias, prodName }: Props) {
         <div className="space-y-4">
             <div className="border rounded-lg overflow-hidden">
                 {selected?.type === 'image' ? (
-                    <Image src={selected.url} alt={prodName ?? ''} className="w-full h-auto object-cover" width={550} height={550} />
+                    <Image
+                        src={selected.url}
+                        alt={prodName ?? ''}
+                        className="w-full h-auto object-cover"
+                        width={550}
+                        height={550}
+                        priority
+                    />
                 ) : (
                     <video controls className="w-full rounded-lg">
                         <source src={selected?.url} type="video/mp4" />
