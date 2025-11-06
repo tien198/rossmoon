@@ -45,7 +45,8 @@ export default function Product() {
           displayName="Giá"
           type="number"
           name="price"
-          defaultValue={p.price?.toString()} suffix="₫" className="text-2xl"
+          defaultValue={p.price?.toString()} className="text-2xl"
+          suffix="đ"
         />
 
         {/* Thuộc tính */}

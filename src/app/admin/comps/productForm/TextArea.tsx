@@ -29,7 +29,10 @@ export default function TextArea({ displayName, suffix, className, ...rest }: Te
             <textarea ref={textAreaRef}
                 name={rest.name}
                 placeholder='?'
-                className={'w-full px-4 py-2 outline-0 overflow-clip focus:shadow shadow-amber-800 ' + className}
+                className={'w-full px-4 py-2 outline-0 overflow-hidden rounded-sm '
+                    + (rest.disabled ? ' ' : 'border border-transparent focus:border focus:border-amber-800 ')
+                    + className
+                }
                 {...rest}
                 onInput={handleInput}
             />

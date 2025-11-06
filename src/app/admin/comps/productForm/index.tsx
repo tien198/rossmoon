@@ -3,7 +3,7 @@ import Inp from "./Input"
 import Text from "./TextArea"
 
 export type AppInpBase = {
-    displayName?: string,
+    displayName?: string| React.ReactNode,
     suffix?: string,
 }
 

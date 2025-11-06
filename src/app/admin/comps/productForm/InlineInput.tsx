@@ -20,7 +20,11 @@ export default function InlineInput({ displayName, suffix, className, ...rest }:
         <span className=' text-gray-700'>
             <input ref={inputRef}
                 placeholder='?'
-                className={'px-4 py-1 w-full outline-0 focus:shadow shadow-amber-800 ' + className}
+                className={
+                    'w-full px-4 py-1 outline-0 rounded-sm '
+                    + (rest.disabled ? '' : 'border-b border-transparent focus:border-b focus:border-b-amber-800 ')
+                    + className
+                }
                 {...rest}
             />
         </span>
