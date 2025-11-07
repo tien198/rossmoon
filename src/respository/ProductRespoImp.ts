@@ -1,31 +1,33 @@
-import type { Filter, FindOptions, Abortable, FindCursor, UpdateFilter, Document } from "mongodb";
+import type { Filter, FindOptions, Abortable, UpdateFilter, Document } from "mongodb";
 import { productsCollection } from "@/db/mongoDbCollections";
 import ProductImp from "@/model/product";
 import { Product, ProductPart } from "@/shared/schema/server/product.zod";
 import { Collection, ObjectId } from "mongodb";
 import DocumentAbstract from "@/respository/document";
 import { Pagination } from "@/shared/schema/base/pagination";
+import ProductRespositoryConstructor from "./ProductRespo";
 
 
 
-export default class ProductRespo extends DocumentAbstract<ProductPart> {
+
+const ProductRespoImp: ProductRespositoryConstructor = class extends DocumentAbstract<ProductPart> {
     dbCollection: Collection<ProductPart>
     static dbCollection = productsCollection
 
-    constructor(model: ProductImp) {
-        super(model)
+    constructor(product: ProductPart) {
+        super(product)
         this.dbCollection = productsCollection
     }
 
-    static async edit(prodId: string, update: Product) {
+    async edit(prodId: string, updated: Product) {
         const result = await this.dbCollection.updateOne(
             { _id: ObjectId.createFromHexString(prodId) },
-            { $set: update }
+            { $set: updated }
         )
         return result
     }
 
-    static async findBySlug(slug: string) {
+    async findBySlug(slug: string) {
         const query = this.dbCollection.findOne(
             { 'slug': slug }
             // { projection: { products: 1, title: 1, bannerImage: 1 } }
@@ -37,16 +39,9 @@ export default class ProductRespo extends DocumentAbstract<ProductPart> {
         return new ProductImp(prod)
     }
 
-    static async pagination<T = Product>(skip?: number, limit?: number, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        let query: FindCursor
-        if (findOptions)
-            query = this.find({}, findOptions)
-        query = this.find()
-        if (!skip)
-            skip = 0
-        if (!limit)
-            limit = 0
-        query = query.skip(skip).limit(limit + 1)
+    async pagination(skip: number = 0, limit: number = 0) {
+        const query = this.dbCollection.find()
+            .skip(skip).limit(limit + 1)
 
         const prods = await query.toArray()
         const hasNext = prods.length > limit
@@ -87,3 +82,5 @@ export default class ProductRespo extends DocumentAbstract<ProductPart> {
     }
 
 }
+
+export default ProductRespoImp

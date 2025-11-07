@@ -1,6 +1,6 @@
 import { Pagination } from "@/shared/schema/base/pagination";
 import ProductDTO from "@/DTO/product";
-import ProductRespo from "@/respository/product.respo";
+import ProductRespo from "@/respository/ProductRespoImp";
 import { Product } from "@/shared/schema/server/product.zod";
 import { NextResponse } from "next/server";
 

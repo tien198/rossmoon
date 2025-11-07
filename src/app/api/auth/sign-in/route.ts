@@ -1,6 +1,6 @@
 import type { ErrorRes } from "@/lib/api/authenAPI"
 
-import { genJWT } from "@/service/jwtToken"
+import { genJWT } from "@/shared/jwtToken"
 import { zodValidation } from "@/shared/zod.Validate"
 import { Signin, signinSchemaServer } from "@/shared/schema/server/user.zod"
 import { NextResponse } from "next/server"

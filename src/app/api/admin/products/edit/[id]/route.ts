@@ -1,6 +1,6 @@
-import { unflatten } from "@/lib/unflatten";
+import { unflatten } from "@/shared/unflatten";
 import { Product } from "@/shared/schema/base/product.zod";
-import ProductRespo from "@/respository/product.respo";
+import ProductRespo from "@/respository/ProductRespoImp";
 import { NextResponse } from "next/server";
 
 type Context = {
