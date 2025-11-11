@@ -1,10 +1,10 @@
-import type { ErrorRes } from '@/lib/api/authenAPI'
+import type { ErrorRes } from '@/client/lib/api/authenAPI'
 
 import { genJWT } from '@/shared/jwtToken'
 import { zodValidation } from '@/shared/zod.Validate'
-import { Login, loginSchemaServer } from '@/shared/schema/server/user.zod'
+import { Login, loginSchemaServer } from '@/server/schema/user.zod'
 import { NextResponse } from 'next/server'
-import UserImp from '@/model/user'
+import UserImp from '@/server/model/user'
 
 // POST: {doamin}/api/auth/log-in
 export async function POST(req: Request) {
@@ -23,7 +23,6 @@ export async function POST(req: Request) {
         )
 
     try {
-
         const loginSuccess = await UserImp.login(submited.email, submited.password)
 
         if (!loginSuccess) {

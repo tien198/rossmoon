@@ -3,7 +3,7 @@
 import Link from "next/link";
 import F from "../comps/authForm";
 import useLogin from "../hooks/useLogin";
-import { Z_Invalid } from "@/type/zod.ErrorTree";
+import { Z_Invalid } from "@/client/type/zod.ErrorTree";
 
 export default function Auth() {
     const {

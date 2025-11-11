@@ -1,6 +1,6 @@
 'use client'
 
-import { AppStore, makeStore } from "@/store/store"
+import { AppStore, makeStore } from "@/client/store/store"
 import { PropsWithChildren, useRef } from "react"
 import { Provider } from "react-redux"
 

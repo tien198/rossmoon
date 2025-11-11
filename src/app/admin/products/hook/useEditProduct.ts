@@ -1,4 +1,4 @@
-import { getProduct } from "@/lib/api/productAPI"
+import { getProduct } from "@/client/lib/api/productAPI"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "next/navigation"
 import { FormEvent, startTransition, useActionState, useRef } from "react"

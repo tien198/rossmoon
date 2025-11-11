@@ -1,4 +1,4 @@
-import { UserPart } from '@/shared/schema/base/user.zod';
+import { UserPart } from '@/shared/schema/user.zod';
 import jwt from 'jsonwebtoken'
 
 

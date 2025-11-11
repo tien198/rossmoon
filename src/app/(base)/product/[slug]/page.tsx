@@ -1,5 +1,5 @@
-import type { Product } from "@/shared/schema/client/product.zod";
-import ProductRespo from "@/respository/ProductRespo.Imp";
+import type { Product } from "@/client/schema/product.zod";
+import ProductRespo from "@/server/respository/ProductRespo.Imp";
 
 import styles from './product.module.scss'
 import ProductImages from "./comp/productImages";

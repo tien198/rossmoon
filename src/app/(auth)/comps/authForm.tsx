@@ -1,4 +1,4 @@
-import { Z_Invalid } from "@/type/zod.ErrorTree";
+import { Z_Invalid } from "@/client/type/zod.ErrorTree";
 import { PropsWithChildren } from "react";
 
 type FormProps = React.FormHTMLAttributes<HTMLFormElement>

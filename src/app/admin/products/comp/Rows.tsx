@@ -1,7 +1,7 @@
 import ProductDTO from "@/DTO/product";
 
 import { useEffect } from "react";
-import { Pagination } from "@/shared/schema/base/pagination";
+import { Pagination } from "@/shared/schema/pagination";
 import Row from "./Row";
 
 export type Actions = {

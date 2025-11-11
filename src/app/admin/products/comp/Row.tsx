@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 
 import styles from "./styles.module.scss";
-import { useAppDispatch } from "@/store/reducerhooks";
-import { showModal } from "@/store/reduxSlices/modalSlice";
-import { setProduct } from "@/store/reduxSlices/productDetailModalSlice";
+import { useAppDispatch } from "@/client/store/reducerhooks";
+import { showModal } from "@/client/store/reduxSlices/modalSlice";
+import { setProduct } from "@/client/store/reduxSlices/productDetailModalSlice";
 import { useRouter } from "next/navigation";
 
 type RowProps = {

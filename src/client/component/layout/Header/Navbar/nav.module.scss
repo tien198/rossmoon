@@ -1,0 +1,203 @@
+@use '@/client/asset/scss/variables' as *;
+
+.active {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+
+.disabled {
+    opacity: 1;
+
+    @media (min-width: 768px) {
+        opacity: .6;
+    }
+}
+
+
+.nav {
+    position: fixed;
+    z-index: 40;
+    inset: 0;
+    color: var(--dark-gray);
+    background-color: var(--white);
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition-default;
+
+    &.active {
+        height: 100vh;
+    }
+
+     @media (min-width: 768px) {
+        inset: 0;
+        width: 0;
+        height: 100vh;
+
+        &.active {
+            width: min(33.3333vw, 441px);
+            height: 100vh;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: .6rem;
+        height: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: var(--light-gray);
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--dark-gray);
+        border-radius: 3rem;
+    }
+
+    .nav-root {
+        font-size: 1.5rem;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        .item {
+            padding: 1.25rem 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            color: #000;
+            transition: border-bottom 0.09s $transition-ease;
+
+            @media (min-width: 768px) {
+
+                span,
+                a {
+                    background: linear-gradient(#000, #000) no-repeat 0 100% / 0 1px;
+                    transition: background-size .3s $transition-ease;
+
+                    &.is-selected {
+                        background-size: 100% 1px;
+                        /* đường kẻ trải rộng */
+                    }
+                }
+            }
+        }
+
+        .back-button {
+            padding: 1.5rem 2.5rem;
+            border-bottom: 1px solid var(--light-gray);
+
+            @media (min-width: 768px) {
+                display: none;
+            }
+        }
+    }
+
+    &__list--services {
+        padding-bottom: 8rem;
+
+        .service {
+            padding: 2.5rem 2.5rem;
+            border-top: 1px solid var(--light-gray);
+        }
+    }
+
+    &__list {
+        padding: 0 2.5rem;
+        visibility: hidden;
+        opacity: 0;
+        transition: $transition-default;
+    }
+
+    &__list__panel {
+        position: absolute;
+        inset: 0 0 0 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: $transition-default;
+        font-size: 1rem;
+
+        &.active {
+            inset: 0 0 0 0;
+        }
+
+        @media (min-width: 768px) {
+            width: min(33.3333vw, 441px);
+
+            &.active {
+                inset: 0 0 0 100%;
+            }
+        }
+    }
+
+    &__list__panel--content {
+        transform: translateY(-2.5rem);
+        height: 100vh;
+        opacity: 0;
+        transition: $transition-default;
+
+        &.active {
+            transform: translateY(0);
+        }
+    }
+
+    &__list__panel--layout {
+        position: absolute;
+        inset: 0 0 0 100%;
+        background-color: var(--white);
+        visibility: hidden;
+        opacity: 0;
+        transition: $transition-default;
+
+        &.active {
+            inset: 0 0 0 0;
+        }
+
+        @media (min-width: 768px) {
+            width: min(33.3333vw, 441px);
+            inset: 0 0 0 30%;
+
+            &.active {
+                inset: 0 0 0 100%;
+            }
+        }
+    }
+
+    .wrapper {
+        padding: $header-height-mobile 0;
+        transition: $transition-default;
+        height: 100%;
+        border-left: 1px solid var(--light-gray);
+        
+        .scrollable {
+            height: 100%;
+            overflow-y: auto;
+            border-top: 1px solid var(--light-gray);
+            @media (min-width: 768px) {
+            border-top: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+            padding: $header-height-desktop 0;
+        }
+    }
+
+   
+}
+
+/*
+    transition: all .3s cubic-bezier(.39,.575,.565,1)
+*/

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import MediaGallery from "../../comp/productForm/MediaGallery";
 import ProductFeatures from "../../comp/Product.Features";
 import { useParams } from "next/navigation";
-import { getProduct } from "@/lib/api/productAPI";
+import { getProduct } from "@/client/lib/api/productAPI";
 import F from "@/app/admin/comp/productForm";
 import Fallback from "@/app/admin/comp/Fallback";
 import { getQueryClient } from "@/app/TanProvider";

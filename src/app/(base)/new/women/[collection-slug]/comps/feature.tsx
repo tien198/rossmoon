@@ -1,5 +1,5 @@
-import { MagazineFeaturePart } from '@/shared/schema/server/magazineFeature.zod';
-import { ProductPart } from '@/shared/schema/server/product.zod';
+import { MagazineFeaturePart } from '@/server/schema/magazineFeature.zod';
+import { ProductPart } from '@/server/schema/product.zod';
 import Image from 'next/image';
 
 import styles from './productCard.module.scss'

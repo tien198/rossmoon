@@ -1,4 +1,4 @@
-import MagazineFeatureImp from "@/model/magazineFeature"
+import MagazineFeatureImp from "@/server/model/magazineFeature"
 import Feature from "./comps/feature"
 
 type Props = {

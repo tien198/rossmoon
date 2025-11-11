@@ -1,8 +1,8 @@
-import SearchBar from "@/component/layout/SearchBar";
-import StoryBanner from "../../component/home/StoryBanner";
-import NewCollectionsSection from "@/component/home/NewCollections.Section";
-import ProductsGallery from "@/component/home/ProductsGallery.Section";
-import { getGallery_1st, getGallery_2nd } from "@/component/home/services/getGallery";
+import SearchBar from "@/client/component/layout/SearchBar";
+import StoryBanner from "../../client/component/home/StoryBanner";
+import NewCollectionsSection from "@/client/component/home/NewCollections.Section";
+import ProductsGallery from "@/client/component/home/ProductsGallery.Section";
+import { getGallery_1st, getGallery_2nd } from "@/client/component/home/services/getGallery";
 
 export const revalidate = false
 

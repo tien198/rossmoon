@@ -1,6 +1,6 @@
 'use client'
 
-import { getProducts } from "@/lib/api/productAPI";
+import { getProducts } from "@/client/lib/api/productAPI";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";

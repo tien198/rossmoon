@@ -1,6 +1,6 @@
 'use server';
 
-import { putProduct } from "@/lib/api/productAPI";
+import { putProduct } from "@/client/lib/api/productAPI";
 import { redirect } from "next/navigation";
 
 type ActionData = {
