@@ -32,7 +32,7 @@ export default function Row({ prod, observedRows, actions }: RowProps) {
     return <tr ref={trRef}>
         <td onClick={navigateToDetail}>
             <Image
-                src={(process.env.ORIGIN ?? '') + prod?.medias?.[0]?.url}
+                src={(process.env.ORIGIN ?? '') + (prod?.medias?.[0]?.url??'/')}
                 alt={prod.name ?? ''}
                 width={350} height={350}
             />

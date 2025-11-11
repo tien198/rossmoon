@@ -4,7 +4,7 @@ import { nestedCategorySchema_Server } from "./category.zod";
 import { collectionShema } from "../base/collection.zod";
 
 export const collectionShema_Server = collectionShema.extend({
-    _id: z.instanceof(ObjectId).nullish(),
+    _id: z.instanceof(ObjectId).optional(),
     storyId: z.instanceof(ObjectId).nullish(),
     // if collection hash sub-collections, subCollections was existed
     subCollections: z.array(z.instanceof(ObjectId)).nullish(),

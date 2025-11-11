@@ -1,12 +1,12 @@
 import type { Abortable, Collection, DeleteResult, Document, Filter, FindCursor, FindOptions, InsertOneResult, OptionalUnlessRequiredId, UpdateFilter, WithId } from "mongodb";
 import { ObjectId } from "mongodb";
 
-import { AppDocumentStatic } from "./AppDocumentStatic";
+import { AppDocumentConstructor } from "./AppDocumentConstructor";
 
 
 
-export default function AppDocStaticFactory<T extends { _id?: ObjectId }>(): AppDocumentStatic<T> {
-    class Dynamic {
+export default function AppDocConstructorFactory<T extends { _id?: ObjectId }>(): AppDocumentConstructor<T> {
+    return class {
 
         static dbCollection: Collection<T>
 
@@ -73,6 +73,4 @@ export default function AppDocStaticFactory<T extends { _id?: ObjectId }>(): App
         }
 
     }
-
-    return Dynamic
 }

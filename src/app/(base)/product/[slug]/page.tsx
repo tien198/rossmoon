@@ -1,5 +1,5 @@
 import type { Product } from "@/shared/schema/client/product.zod";
-import ProductRespo from "@/respository/ProductRespoImp";
+import ProductRespo from "@/respository/ProductRespo.Imp";
 
 import styles from './product.module.scss'
 import ProductImages from "./comp/productImages";
@@ -14,8 +14,7 @@ export const revalidate = false
 
 export default async function Product({ params }: Props) {
     const slug = (await params).slug
-    const prod = await ProductRespo.findBySlug(slug) as Partial<Product>
-
+    const prod = await ProductRespo.findBySlug(slug)
     return (
         <div className={
             styles['product-detail'] +

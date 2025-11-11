@@ -1,6 +1,6 @@
 import type { Abortable, Collection, DeleteResult, Document, Filter, FindCursor, FindOptions, InsertOneResult, ObjectId, UpdateFilter, UpdateResult, WithId } from "mongodb";
 
-export interface AppDocumentStatic<T> {
+export interface AppDocumentConstructor<T> {
     new(): any
     dbCollection: Collection<any>
 

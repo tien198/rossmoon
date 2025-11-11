@@ -1,4 +1,4 @@
-import type { Filter, FindOptions, Abortable } from "mongodb"
+import type { FindOptions, Abortable } from "mongodb"
 import { ObjectId } from "mongodb"
 import { magazineFeaturesCollection } from "@/db/mongoDbCollections"
 
@@ -6,10 +6,8 @@ import type { MagazineFeature } from "../shared/schema/server/magazineFeature.zo
 import type { BannerImage } from "../shared/schema/server/bannerImage.zod"
 import type { NestedProduct } from "../shared/schema/server/product.zod"
 import type { NestedCollection } from "../shared/schema/server/collection.zod"
-import DocumentAbstract from "../respository/AppDocumentImp"
 
-export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature> implements MagazineFeature {
-    dbCollection = magazineFeaturesCollection
+export default class MagazineFeatureImp implements MagazineFeature {
 
     _id?: ObjectId
     title?: string
@@ -22,7 +20,6 @@ export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature
     createdAt: Date | string | number
 
     constructor(feature: MagazineFeature) {
-        super(feature)
         this._id = feature._id!
         Object.assign(this, feature)
         this.products = feature.products
@@ -40,29 +37,5 @@ export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature
         if (limit)
             query = query.limit(limit)
         return query.toArray()
-    }
-
-
-
-
-    // Queries
-    static find<T = MagazineFeature>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return super.find<T>(filter, findOptions)
-    }
-
-    static findOne<T = MagazineFeature>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
-        return super.findOne<T>(filter, findOptions)
-    }
-
-    static findById<T = MagazineFeature>(id: string | ObjectId) {
-        return super.findById<T>(id)
-    }
-
-    static updateOne<T = MagazineFeature>(filter: Filter<T>, col: Partial<T>) {
-        return super.updateOne<T>(filter, col)
-    }
-
-    static inserOne<T = MagazineFeature>(col: T) {
-        return super.inserOne<T>(col)
     }
 }

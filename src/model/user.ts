@@ -1,13 +1,11 @@
-import { Abortable, Collection, Document, Filter, FindOptions, ObjectId, WithId } from "mongodb";
-import AppDocumentImp from "../respository/AppDocumentImp";
-import { User, UserPart } from "../shared/schema/server/user.zod";
+import { Abortable, FindOneOptions, ObjectId } from "mongodb";
+import { User } from "../shared/schema/server/user.zod";
 import { usersCollection } from '../db/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
 
 
-export default class UserImp extends AppDocumentImp<User> implements User {
-    dbCollection: Collection<UserPart>
+export default class UserImp implements User {
     static dbCollection = usersCollection;
     _id?: ObjectId;
     email: string = ''
@@ -16,9 +14,7 @@ export default class UserImp extends AppDocumentImp<User> implements User {
     password: string = ''
 
     constructor(user: User) {
-        super(user)
         Object.assign(this, user)
-        this.dbCollection = usersCollection
     }
 
     static async comparePassword(password: string, hash: string) {
@@ -27,9 +23,10 @@ export default class UserImp extends AppDocumentImp<User> implements User {
     }
 
     static async login(userName: string, password: string) {
-        const user = await this.findOne<User>(
+        const user = await this.dbCollection.findOne(
             { email: userName },
-            { email: 1, password: 1 }
+            { email: 1, password: 1 } as Omit<FindOneOptions, "timeoutMode"> & Abortable
+
         )
         if (!user)
             throw new Error(`not found user "${userName}"`)
@@ -39,23 +36,21 @@ export default class UserImp extends AppDocumentImp<User> implements User {
     }
 
     static async singin(userName: string, password: string) {
-        const existed = await this.findOne(
+        const existed = await this.dbCollection.findOne(
             {
                 $or: [
                     { email: userName },
                     { userName: userName }
                 ]
             },
-            {
-                email: 1
-            }
+            { email: 1 } as Omit<FindOneOptions, "timeoutMode"> & Abortable
         )
         if (existed) {
             throw new Error(`Tài khoản "${userName}" đã tồn tại`)
         }
         const hashed = await bcrypt.hash(password, Number(process.env.SALT_LENGTH) ?? 10)
 
-        const result = await this.insertOne<UserPart>({
+        const result = await this.dbCollection.insertOne({
             email: userName, password: hashed
         })
         return result.acknowledged

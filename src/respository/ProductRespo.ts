@@ -1,15 +1,14 @@
 import { Pagination } from "@/shared/schema/base/pagination";
-import { Product, ProductPart } from "@/shared/schema/base/product.zod";
+import { ProductPart } from "@/shared/schema/server/product.zod";
 
 
-export default interface ProductRespositoryConstructor {
-    new(model: ProductPart): ProductRespositoryInstance
-}
-
-interface ProductRespositoryInstance {
-    edit: (prodId: string, updated: Product) => Promise<any>
-    findBySlug: (slug: string) => Promise<ProductPart>
+export default interface ProductRespositoryConstructor<T extends ProductPart> {
+    new(model: T): any
+    edit: (prodId: string, updated: T) => Promise<any>
+    findBySlug: (slug: string) => Promise<T>
     pagination: (
         skip?: number, limit?: number
-    ) => Promise<Pagination<Product>>
+    ) => Promise<Pagination<T>>
 }
+// 
+// interface ProductRespositoryInstance {}
