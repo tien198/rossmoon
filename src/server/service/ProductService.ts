@@ -1,10 +1,11 @@
 import ProductRespository from "@/server/respository/ProductRespo";
 import { ProductPart } from "@/server/schema/product.zod";
 
-export default class ProductService {
-    private productRespo: ProductRespository<ProductPart>
+export interface ProductServiceConstructor {
 
-    constructor(productRespo: ProductRespository<ProductPart>) {
-        this.productRespo = productRespo
-    }
+    new(productRespo: ProductRespository<ProductPart>): ProductServiceInstance
+}
+
+export interface ProductServiceInstance {
+    productRespo: ProductRespository<ProductPart>
 }
