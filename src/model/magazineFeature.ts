@@ -6,7 +6,7 @@ import type { MagazineFeature } from "../shared/schema/server/magazineFeature.zo
 import type { BannerImage } from "../shared/schema/server/bannerImage.zod"
 import type { NestedProduct } from "../shared/schema/server/product.zod"
 import type { NestedCollection } from "../shared/schema/server/collection.zod"
-import DocumentAbstract from "../respository/document"
+import DocumentAbstract from "../respository/AppDocumentImp"
 
 export default class MagazineFeatureImp extends DocumentAbstract<MagazineFeature> implements MagazineFeature {
     dbCollection = magazineFeaturesCollection

@@ -3,7 +3,7 @@ import z from "zod";
 import { loginSchema, signinSchema, userSchema } from "../base/user.zod";
 
 export const userSchema_Server = userSchema.extend({
-    _id: z.instanceof(ObjectId).nullish(),
+    _id: z.instanceof(ObjectId).optional(),
 })
 
 export type User = z.infer<typeof userSchema_Server>

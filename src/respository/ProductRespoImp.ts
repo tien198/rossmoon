@@ -3,7 +3,7 @@ import { productsCollection } from "@/db/mongoDbCollections";
 import ProductImp from "@/model/product";
 import { Product, ProductPart } from "@/shared/schema/server/product.zod";
 import { Collection, ObjectId } from "mongodb";
-import DocumentAbstract from "@/respository/document";
+import DocumentAbstract from "@/respository/AppDocumentImp";
 import { Pagination } from "@/shared/schema/base/pagination";
 import ProductRespositoryConstructor from "./ProductRespo";
 

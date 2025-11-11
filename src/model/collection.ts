@@ -4,7 +4,7 @@ import { Abortable, Collection, Filter, FindOptions, ObjectId } from "mongodb";
 import { collectionsCollection } from "@/db/mongoDbCollections";
 import { NestedCategory } from "../shared/schema/server/category.zod";
 import { BannerImage } from "../shared/schema/server/bannerImage.zod";
-import DocumentAbstract from "../respository/document";
+import DocumentAbstract from "../respository/AppDocumentImp";
 
 
 

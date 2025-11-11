@@ -1,13 +1,14 @@
-import { Abortable, Filter, FindOptions, ObjectId } from "mongodb";
-import DocumentAbstract from "../respository/document";
-import { User } from "../shared/schema/server/user.zod";
+import { Abortable, Collection, Document, Filter, FindOptions, ObjectId, WithId } from "mongodb";
+import AppDocumentImp from "../respository/AppDocumentImp";
+import { User, UserPart } from "../shared/schema/server/user.zod";
 import { usersCollection } from '../db/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
 
-export default class UserImp extends DocumentAbstract<User> implements User {
+
+export default class UserImp extends AppDocumentImp<User> implements User {
+    dbCollection: Collection<UserPart>
     static dbCollection = usersCollection;
-    dbCollection = usersCollection;
     _id?: ObjectId;
     email: string = ''
     userName: string = ''
@@ -17,6 +18,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
     constructor(user: User) {
         super(user)
         Object.assign(this, user)
+        this.dbCollection = usersCollection
     }
 
     static async comparePassword(password: string, hash: string) {
@@ -25,7 +27,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
     }
 
     static async login(userName: string, password: string) {
-        const user = await this.findOne(
+        const user = await this.findOne<User>(
             { email: userName },
             { email: 1, password: 1 }
         )
@@ -37,7 +39,7 @@ export default class UserImp extends DocumentAbstract<User> implements User {
     }
 
     static async singin(userName: string, password: string) {
-        const existed = await this.findOne<User>(
+        const existed = await this.findOne(
             {
                 $or: [
                     { email: userName },
@@ -53,31 +55,9 @@ export default class UserImp extends DocumentAbstract<User> implements User {
         }
         const hashed = await bcrypt.hash(password, Number(process.env.SALT_LENGTH) ?? 10)
 
-        const result = await this.inserOne({
+        const result = await this.insertOne<UserPart>({
             email: userName, password: hashed
         })
         return result.acknowledged
-    }
-
-
-    // Queries
-    static find<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
-        return super.find<T>(filter, findOptions)
-    }
-
-    static findOne<T = User>(filter?: Filter<T>, findOptions?: FindOptions & Abortable & Partial<Record<keyof T, (0 | 1)>>) {
-        return super.findOne<T>(filter, findOptions)
-    }
-
-    static findById<T = User>(id: string | ObjectId) {
-        return super.findById<T>(id)
-    }
-
-    static updateOne<T = User>(filter: Filter<T>, col: Partial<T>) {
-        return super.updateOne<T>(filter, col)
-    }
-
-    static inserOne<T = User>(doc: T) {
-        return super.inserOne<T>(doc)
     }
 }

@@ -6,7 +6,7 @@ import { productSchema } from '../base/product.zod'
 
 
 export const productSchema_Server = productSchema.extend({
-    _id: z.instanceof(ObjectId).nullish(),
+    _id: z.instanceof(ObjectId).optional(),
     category: nestedCategorySchema_Server.nullish(),
 })
 
