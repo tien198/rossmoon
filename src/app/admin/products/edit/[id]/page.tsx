@@ -119,6 +119,10 @@ export default function Product() {
               + (localStorage.getItem('jwtToken') ?? '')
             }
           />
+          <input hidden
+            name="id"
+            defaultValue={p.id}
+          />
         </div>
         <button>Gửi</button>
       </div>

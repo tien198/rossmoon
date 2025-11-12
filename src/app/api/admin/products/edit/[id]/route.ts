@@ -1,7 +1,8 @@
 import { unflatten } from "@/shared/unflatten";
-import { Product } from "@/shared/schema/product.zod";
-import ProductRespo from "@/server/respository/ProductRespo.Imp";
 import { NextResponse } from "next/server";
+import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
+import ProductImp from "@/server/model/product";
+import ProductDTO from "@/DTO/product";
 
 type Context = {
     params: Promise<{
@@ -17,10 +18,11 @@ export async function PUT(req: Request, context: Context) {
 
     const formData = await req.formData()
     const flattenData = Object.fromEntries(formData.entries())
-    const prod = unflatten<Product>(flattenData)
+    const prod = unflatten<ProductDTO>(flattenData)
 
     try {
-        const result = await ProductRespo.edit(prodId, prod)
+        const prodRespo = new ProductRespoImp(new ProductImp(prod))
+        const result = await prodRespo.save()
         return NextResponse.json({})
     } catch (error) {
         console.error(error)

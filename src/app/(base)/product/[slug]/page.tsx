@@ -1,8 +1,9 @@
 import type { Product } from "@/client/schema/product.zod";
-import ProductRespo from "@/server/respository/ProductRespo.Imp";
+import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
 
 import styles from './product.module.scss'
 import ProductImages from "./comp/productImages";
+import ProductImp from "@/server/model/product";
 
 type Props = {
     params: Promise<{
@@ -14,7 +15,9 @@ export const revalidate = false
 
 export default async function Product({ params }: Props) {
     const slug = (await params).slug
-    const prod = await ProductRespo.findBySlug(slug)
+    const prodRespo = new ProductRespoImp(new ProductImp())
+    const prod = await prodRespo.findBySlug(slug)
+
     return (
         <div className={
             styles['product-detail'] +

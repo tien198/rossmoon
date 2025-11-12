@@ -6,7 +6,7 @@ import { AppDocumentConstructor } from "./AppDocumentConstructor";
 
 
 export default function AppDocConstructorFactory<T extends { _id?: ObjectId }>(): AppDocumentConstructor<T> {
-    return class {
+    return class AppDocConstructor {
 
         static dbCollection: Collection<T>
 

@@ -11,9 +11,9 @@ export const productSchema = z.object({
     price: z.number().positive(),
     description: z.string().min(10),
 
-    attributes: productAttributesSchema,
-    medias: productMediasArraySchema,
-    additionalInfors: productAdditionalInfors,
+    attributes: productAttributesSchema.nullish(),
+    medias: productMediasArraySchema.nullish(),
+    additionalInfors: productAdditionalInfors.nullish(),
 
     category: nestedCategorySchema.nullish(),
 

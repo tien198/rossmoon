@@ -5,14 +5,14 @@ import AppDocConstructorFactory from "./AppDocumentConstructor.Factory";
 
 
 export default function AppDocumenFactory<T extends { _id?: ObjectId }>() {
-    return class AppDocConstructor extends AppDocConstructorFactory<T>() implements AppDocument<T> {
+    return class AppDoc extends AppDocConstructorFactory<T>() implements AppDocument<T> {
 
         constructor(public model: T, public dbCollection: Collection<Document>) {
             super()
         }
 
         async save() {
-            const coppy: Partial<T> = { ...this.model }
+            const coppy: T = { ...this.model }
 
             if (!this.model._id) {
                 const insertOneResult = await this.dbCollection.insertOne(coppy)
@@ -27,5 +27,4 @@ export default function AppDocumenFactory<T extends { _id?: ObjectId }>() {
             return this.model
         }
     }
-
 }

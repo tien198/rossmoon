@@ -1,4 +1,5 @@
-import type { ProductPart } from "@/server/schema/product.zod";
+import type { Product } from "@/server/schema/product.zod";
+import type ProductDTO from "@/DTO/product";
 import type { NestedCategory } from "@/server/schema/category.zod";
 
 import { ObjectId } from "mongodb";
@@ -6,23 +7,32 @@ import type { ProductAdditionalInfors, ProductMediasArray, ProductAttributes } f
 
 
 
-export default class ProductImp implements ProductPart {
+export default class ProductImp implements Product {
     _id?: ObjectId
-    name?: string
-    slug?: string
-    price?: number
-    description?: string
+    name: string
+    slug: string
+    price: number
+    description: string
 
-    attributes?: ProductAttributes
-    medias?: ProductMediasArray
-    additionalInfors?: ProductAdditionalInfors
+    attributes?: ProductAttributes | null
+    medias?: ProductMediasArray | null
+    additionalInfors?: ProductAdditionalInfors | null
 
-    category?: NestedCategory
+    category?: NestedCategory | null
 
-    createdAt?: Date
+    createdAt: Date | number | string
 
-    constructor(prod?: ProductPart) {
-        Object.assign(this, prod)
+    constructor(prod?: ProductDTO) {
+        this._id = ObjectId.createFromHexString(prod?.id ?? '')
+        this.name = prod?.name || ''
+        this.slug = prod?.slug || ''
+        this.price = prod?.price || 0
+        this.description = prod?.description || ''
+        this.attributes = prod?.attributes
+        this.medias = prod?.medias
+        this.additionalInfors = prod?.additionalInfors
+        this.category = prod?.category
+        this.createdAt = prod?.createdAt || new Date()
     }
 
     get priceFormatted() {
