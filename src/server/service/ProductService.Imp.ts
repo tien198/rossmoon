@@ -9,7 +9,7 @@ type ProductRespo = InstanceType<typeof ProductRespoImp>
 export default class ProductServiceImp {
     // Singleton ( Constructor Return Overide )
     private static instance?: InstanceType<typeof ProductServiceImp>
-    productRespo: ProductRespo= new ProductRespoImp(new ProductImp())
+    productRespo: ProductRespo = new ProductRespoImp(new ProductImp())
     constructor(productRespo: ProductRespo) {
         if (!ProductServiceImp.instance) {
             this.productRespo = productRespo
@@ -20,16 +20,22 @@ export default class ProductServiceImp {
             return ProductServiceImp.instance
         }
     }
+
+    async findById(id: string) {
+        return await this.productRespo.findByid(id)
+    }
+
     async findBySlug(slug: string) {
-        return await this.productRespo.findBySlug(slug)
+        return await this.productRespo.fin1dBySlug(slug)
     }
 
     async pagination(skip: number = 0, limit: number = 0) {
         return await this.productRespo.pagination(skip, limit)
-
     }
+        
 }
-const _check = ProductServiceImp satisfies ProductServiceConstructor<Product, ProductRespo>
+
+ProductServiceImp satisfies ProductServiceConstructor<Product, ProductRespo>
 
 
 // const service = new ProductServiceImp(new ProductRespoImp(new ProductImp()))

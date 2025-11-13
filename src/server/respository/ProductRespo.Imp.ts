@@ -1,6 +1,6 @@
 import { productsCollection } from "@/server/db/mongoDbCollections";
 import { Product } from "@/server/schema/product.zod";
-import { Abortable, FindOptions } from "mongodb";
+import { Abortable, FindOptions, ObjectId } from "mongodb";
 import AppDocumentFactory from "@/server/db/AppDocument/AppDocument.Factory";
 import { Pagination } from "@/shared/schema/pagination";
 import { ProductRespositoryConstructor } from "./ProductRespo";
@@ -20,13 +20,17 @@ function ProductRespoFactory<T extends Product>() {
             super(product, productsCollection)
         }
 
-        // async edit(prodId: string, updated: T) {
-        //     const result = await ProductRespoImp.findOne(
-        //         { _id: ObjectId.createFromHexString(prodId) } as Filter<T>,
-        //         { $set: { ...updated } }
-        //     )
-        //     return result as T | null
-        // }
+        async findById(id: string) {
+            const query = this.dbCollection.findOne(
+                { '_id': ObjectId.createFromHexString(id) }
+                // { projection: { products: 1, title: 1, bannerImage: 1 } }
+            )
+            const prod = await query
+            if (!prod)
+                throw Error('Not found product with id: "' + id + '"')
+
+            return prod as T
+        }
 
         async findBySlug(slug: string) {
             const query = this.dbCollection.findOne(

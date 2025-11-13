@@ -1,3 +1,4 @@
+import ProductDTO from "@/DTO/product";
 import ProductRespo from "@/server/respository/ProductRespo.Imp";
 import { NextResponse } from "next/server";
 
@@ -14,7 +15,8 @@ export async function GET(req: Request, context: Context) {
             throw Error('Not found product "' + prodId + '"')
         console.log('---------- product getted');
         
-        return NextResponse.json(prod)
+        const prodDTO = new ProductDTO(prod)
+        return NextResponse.json(prodDTO)
 
     } catch (error: any) {
         console.error({

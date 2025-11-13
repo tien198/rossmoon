@@ -3,13 +3,13 @@ import { Product } from "@/server/schema/product.zod";
 
 
 export interface ProductRespositoryConstructor<T extends Product> {
-    new(model: T): ProductRespositoryInstance
+    new(model: T): ProductRespositoryInstance<T>
 }
 
-export interface ProductRespositoryInstance {
-    // edit: (prodId: string, updated: Product) => Promise<Product | null>
-    findBySlug: (slug: string) => Promise<Product>
+export interface ProductRespositoryInstance<T extends Product>  {
+    findById: (id: string) => Promise<T>
+    findBySlug: (slug: string) => Promise<T>
     pagination: (
         skip?: number, limit?: number
-    ) => Promise<Pagination<Product>>
+    ) => Promise<Pagination<T>>
 }
