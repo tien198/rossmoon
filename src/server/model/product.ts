@@ -46,4 +46,3 @@ export default class ProductImp implements Product {
     }
 
 }
-
