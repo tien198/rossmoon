@@ -9,10 +9,10 @@ export interface ProductServiceConstructor<T extends Product, TProdRespo extends
 
 export interface ProductServiceInstance<T extends Product, TProdRespo extends ProductRespositoryInstance<T>> {
     productRespo: TProdRespo
-    // save: (prod: T) => Promise<T>
     findById: (id: string) => Promise<T>
     findBySlug: (slug: string) => Promise<T>
     pagination: (
         skip?: number, limit?: number
     ) => Promise<Pagination<T>>
+    save: (prod: T) => Promise<T>
 }
