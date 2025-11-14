@@ -1,16 +1,17 @@
-import ProductDTO from "@/DTO/product"
+import type { Product } from "@/client/schema/product.zod";
+
 import { Actions } from "./Rows"
 import { useEffect, useRef } from "react"
+import { useRouter } from "next/navigation";
 import Image from "next/image"
 
-import styles from "./styles.module.scss";
 import { useAppDispatch } from "@/client/store/reducerhooks";
 import { showModal } from "@/client/store/reduxSlices/modalSlice";
 import { setProduct } from "@/client/store/reduxSlices/productDetailModalSlice";
-import { useRouter } from "next/navigation";
+import styles from "./styles.module.scss";
 
 type RowProps = {
-    prod: ProductDTO
+    prod: Product
     observedRows: (Element | null)[]
 } & Actions
 
@@ -32,7 +33,7 @@ export default function Row({ prod, observedRows, actions }: RowProps) {
     return <tr ref={trRef}>
         <td onClick={navigateToDetail}>
             <Image
-                src={(process.env.ORIGIN ?? '') + (prod?.medias?.[0]?.url??'/')}
+                src={(process.env.ORIGIN ?? '') + (prod?.medias?.[0]?.url ?? '/')}
                 alt={prod.name ?? ''}
                 width={350} height={350}
             />
@@ -43,7 +44,7 @@ export default function Row({ prod, observedRows, actions }: RowProps) {
         </td>
         {/* <td>{p.stock}</td> */}
         <td className={styles['actions']}>
-            <button onClick={() => actions.showDeleteModal(prod.id)}>Xóa</button>
+            <button onClick={() => actions.showDeleteModal(prod.id ?? '')}>Xóa</button>
         </td>
     </tr>
 }

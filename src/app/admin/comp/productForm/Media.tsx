@@ -1,10 +1,11 @@
-import type { ProductMedia } from '@/shared/schema/product.properties.zod';
-import Image from 'next/image';
+import type { ProductMediaData } from '@/shared/schema/product.properties.zod';
+
 import { MouseEventHandler, useRef } from 'react';
+import Image from 'next/image';
 
 type Props = {
     id: number
-    media?: ProductMedia | null
+    media?: ProductMediaData | null
     alt: string
     handleSelected: MouseEventHandler
     isSelected: boolean
@@ -27,7 +28,7 @@ export default function Media({ id, media, alt, handleSelected, isSelected, disa
         >
             {media?.type === 'image' ? (
                 <Image
-                    src={media.url}
+                    src={media?.url}
                     alt={alt ?? ''}
                     className='object-cover w-full h-full'
                     width={550} height={550}

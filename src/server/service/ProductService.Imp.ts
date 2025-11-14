@@ -1,5 +1,5 @@
 // import { ProductRespo } from "@/server/respository/ProductRespo";
-import { ProductServiceConstructor, ProductServiceInstance } from "./ProductService";
+import { ProductServiceConstructor } from "./ProductService";
 import ProductRespoImp from "../respository/ProductRespo.Imp";
 import ProductImp from "../model/product";
 import { Product } from "../schema/product.zod";

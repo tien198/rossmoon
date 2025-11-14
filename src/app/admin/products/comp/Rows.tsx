@@ -1,7 +1,7 @@
-import ProductDTO from "@/DTO/product";
+import type { Product } from "@/client/schema/product.zod";
+import type { Pagination } from "@/shared/schema/pagination";
 
 import { useEffect } from "react";
-import { Pagination } from "@/shared/schema/pagination";
 import Row from "./Row";
 
 export type Actions = {
@@ -10,7 +10,7 @@ export type Actions = {
     }
 }
 type Props = {
-    page: Pagination<ProductDTO>
+    page: Pagination<Product>
 } & Actions
 export default function ProdRows({ page, actions }: Props) {
     const observedRows: (Element | null)[] = []

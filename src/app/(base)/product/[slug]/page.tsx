@@ -4,6 +4,8 @@ import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
 import styles from './product.module.scss'
 import ProductImages from "./comp/productImages";
 import ProductImp from "@/server/model/product";
+import ProductServiceImp from "@/server/service/ProductService.Imp";
+import ProductDTO from "@/DTO/product";
 
 type Props = {
     params: Promise<{
@@ -13,10 +15,12 @@ type Props = {
 
 export const revalidate = false
 
-export default async function Product({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
     const slug = (await params).slug
-    const prodRespo = new ProductRespoImp(new ProductImp())
-    const prod = await prodRespo.findBySlug(slug)
+
+    const prodSevice = new ProductServiceImp(new ProductRespoImp(new ProductImp()))
+    const prod = await prodSevice.productRespo.findBySlug(slug)
+    const prodDTO = new ProductDTO(prod) as Product
 
     return (
         <div className={
@@ -24,7 +28,7 @@ export default async function Product({ params }: Props) {
             ' ' + styles['product-detail--relative']}
         >
             <section className={styles["product-images"]}>
-                <ProductImages prod={prod} />
+                <ProductImages prod={prodDTO} />
             </section >
             <section className={
                 styles['product-infors'] +

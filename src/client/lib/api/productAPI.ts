@@ -1,4 +1,4 @@
-import ProductDTO from "@/DTO/product"
+import { Product } from "@/client/schema/product.zod"
 import { Pagination } from "@/shared/schema/pagination"
 
 // <Whether> is involked in SERVER <or> CLIENT
@@ -12,7 +12,7 @@ export async function getProducts(page?: number) {
     const res = await fetch((ORIGIN ?? '') + '/api/admin/products?page=' + (page ?? 1))
     if (!res.ok)
         throw new Error('fail to fetch products')
-    return await res.json() as Pagination<ProductDTO>
+    return await res.json() as Pagination<Product>
 }
 
 
@@ -23,7 +23,7 @@ export async function getProduct(id: string) {
     const res = await fetch((ORIGIN ?? '') + '/api/admin/products/' + id)
     if (!res.ok)
         throw new Error('fail to fetch product "' + id + '"')
-    return await res.json() as ProductDTO
+    return await res.json() as Product
 }
 
 

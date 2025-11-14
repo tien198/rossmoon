@@ -11,11 +11,16 @@ export const productAttributesSchema = z.object({
 export type ProductAttributes = z.infer<typeof productAttributesSchema>
 
 
-
-export const productMediaSchema = z.object({
+export const prodMediaDataSchema = z.object({
     type: z.enum(['image', 'video']),
-    url: z.url()
+    url: z.url(),
 })
+export type ProductMediaData = z.infer<typeof prodMediaDataSchema>
+
+export const productMediaSchema = z.union([
+    prodMediaDataSchema,
+    z.file()
+])
 export type ProductMedia = z.infer<typeof productMediaSchema>
 
 

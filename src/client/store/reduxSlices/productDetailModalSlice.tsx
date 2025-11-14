@@ -1,13 +1,13 @@
-import ProductDTO from "@/DTO/product";
+import type { Product } from "@/client/schema/product.zod";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState:Partial<ProductDTO> = {}
+const initialState:Partial<Product> = {}
 
 const productModalSlice = createSlice({
     name: 'productDetail',
     initialState,
     reducers: {
-        setProduct(state, action: PayloadAction<ProductDTO>) {
+        setProduct(state, action: PayloadAction<Product>) {
             return action.payload
         }
     }

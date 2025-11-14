@@ -121,7 +121,7 @@ export default function Product() {
           />
           <input hidden
             name="id"
-            defaultValue={p.id}
+            defaultValue={p.id ?? ''}
           />
         </div>
         <button>Gửi</button>

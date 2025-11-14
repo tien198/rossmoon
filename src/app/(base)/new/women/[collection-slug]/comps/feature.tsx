@@ -1,9 +1,10 @@
-import { MagazineFeaturePart } from '@/server/schema/magazineFeature.zod';
-import { ProductPart } from '@/server/schema/product.zod';
-import Image from 'next/image';
+import type { ProductMediaData } from '@/shared/schema/product.properties.zod';
+import type { ProductPart } from '@/server/schema/product.zod';
+import type { MagazineFeaturePart } from '@/server/schema/magazineFeature.zod';
 
-import styles from './productCard.module.scss'
+import Image from 'next/image';
 import Link from 'next/link';
+import styles from './productCard.module.scss'
 
 export default function Feature(fea: MagazineFeaturePart) {
     return (
@@ -30,7 +31,7 @@ function ProductCard(prod: ProductPart) {
         >
             <div className={styles['card__container-border']}></div>
             <Image
-                src={prod?.medias?.[0]?.url ?? ''}
+                src={(prod?.medias?.[0]as ProductMediaData )?.url ?? ''}
                 alt={prod.name!} width={800} height={800}
                 className='w-full'
                 priority

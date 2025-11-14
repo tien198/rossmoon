@@ -1,4 +1,5 @@
 import type { Product } from "@/client/schema/product.zod";
+
 import Image from "next/image";
 
 import styles from '../product.module.scss'
