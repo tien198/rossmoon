@@ -8,8 +8,8 @@ export interface ProductServiceConstructor<T extends _Product, TProdRespo extend
 }
 
 export interface ProductServiceInstance<T extends _Product, TProdRespo extends ProductRespositoryInstance<T>> {
-    productRespo: TProdRespo
-    readonly product: T | null
+    productRespo?: TProdRespo
+    readonly product?: T
     findById: (id: string) => Promise<T>
     findBySlug: (slug: string) => Promise<T>
     pagination: (

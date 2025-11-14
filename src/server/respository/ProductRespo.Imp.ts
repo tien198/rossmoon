@@ -17,8 +17,8 @@ function ProductRespoFactory<T extends _Product>() {
     const ProductRespoImp = class extends BaseClass {
         static dbCollection = productsCollection
 
-        constructor(product: T) {
-            super(product, productsCollection)
+        constructor(product?: T) {
+            super(productsCollection, product)
         }
 
         async findById(id: string) {

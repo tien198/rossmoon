@@ -33,7 +33,9 @@ export default class ProductServiceImp {
         return await this.productRespo.save()
     }
 
-    get product() {
+
+    // Getter and Setter for product
+    get product(): _Product | undefined {
         return this.productRespo.model
     }
     set product(prod: _Product) {
