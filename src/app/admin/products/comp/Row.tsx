@@ -1,4 +1,4 @@
-import type { Product } from "@/client/schema/product.zod";
+import type { _Product } from "@/client/type/product";
 
 import { Actions } from "./Rows"
 import { useEffect, useRef } from "react"
@@ -11,7 +11,7 @@ import { setProduct } from "@/client/store/reduxSlices/productDetailModalSlice";
 import styles from "./styles.module.scss";
 
 type RowProps = {
-    prod: Product
+    prod: _Product
     observedRows: (Element | null)[]
 } & Actions
 

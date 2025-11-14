@@ -1,4 +1,5 @@
-import { CollectionDTO } from "@/client/schema/collection.zod"
+import type { Collection } from "@/shared/type/collection"
+
 import Image from "next/image"
 import Link from "next/link"
 
@@ -27,7 +28,7 @@ export default async function NewCollectionsSection() {
 
 
 
-async function getNewCollections(): Promise<CollectionDTO[]> {
+async function getNewCollections(): Promise<Collection[]> {
   return [
     {
       name: 'Son Môi LV Rouge',
@@ -61,5 +62,5 @@ async function getNewCollections(): Promise<CollectionDTO[]> {
       },
       createdAt: "2025-07-02T03:51:27.282Z",
     }
-  ] as CollectionDTO[]
+  ] as Collection[]
 }

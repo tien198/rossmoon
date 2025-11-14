@@ -1,4 +1,4 @@
-import type { Product } from "@/client/schema/product.zod";
+import type { _Product } from "@/client/type/product";
 import type { Pagination } from "@/shared/type/pagination";
 
 import { useEffect } from "react";
@@ -10,7 +10,7 @@ export type Actions = {
     }
 }
 type Props = {
-    page: Pagination<Product>
+    page: Pagination<_Product>
 } & Actions
 export default function ProdRows({ page, actions }: Props) {
     const observedRows: (Element | null)[] = []

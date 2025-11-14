@@ -1,11 +1,12 @@
-import type { Product } from "@/client/schema/product.zod";
-import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
+import type { _Product } from "@/client/type/product";
 
-import styles from './product.module.scss'
+import ProductServiceImp from "@/server/service/ProductService.Imp";
+import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
+import ProductDTO from "@/DTO/product";
+
 import ProductImages from "./comp/productImages";
 import ProductImp from "@/server/model/product";
-import ProductServiceImp from "@/server/service/ProductService.Imp";
-import ProductDTO from "@/DTO/product";
+import styles from './product.module.scss'
 
 type Props = {
     params: Promise<{
@@ -20,7 +21,7 @@ export default async function ProductPage({ params }: Props) {
 
     const prodSevice = new ProductServiceImp(new ProductRespoImp(new ProductImp()))
     const prod = await prodSevice.productRespo.findBySlug(slug)
-    const prodDTO = new ProductDTO(prod) as Product
+    const prodDTO = new ProductDTO(prod) as _Product
 
     return (
         <div className={

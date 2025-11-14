@@ -1,4 +1,5 @@
-import { Gallery } from "@/client/type/gallery";
+import type { Gallery } from "@/client/type/gallery";
+
 import Image from "next/image";
 import Link from "next/link";
 

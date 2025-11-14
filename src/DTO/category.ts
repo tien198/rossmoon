@@ -1,7 +1,7 @@
-import type { Category as CateClient } from "@/client/schema/category.zod";
+import type { Category } from "@/shared/type/category";
 import type { _Category as CateServer } from "@/server/type/category";
 
-export default class CategoryDTO implements CateClient {
+export default class CategoryDTO implements Category {
     id: string
     name: string
     slug: string
