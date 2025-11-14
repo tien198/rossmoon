@@ -1,25 +1,25 @@
-import type { CollectionPart } from "@/server/schema/collection.zod";
 import type { ObjectId } from "mongodb";
-import type { NestedCategory } from "@/server/schema/category.zod";
-import type { BannerImage } from "@/server/schema/bannerImage.zod";
+import type { _CollectionPart } from "@/server/type/collection";
+import type { _NestedCategory } from "@/server/type/category";
+import type { _BannerImage } from "@/server/type/bannerImage";
 
 
 
-export default class CollectionImp implements CollectionPart {
+export default class CollectionImp implements _CollectionPart {
 
     _id: ObjectId
     name?: string
     slug?: string
     type?: 'collection' | 'edit'
-    bannerImage?: BannerImage
+    bannerImage?: _BannerImage
 
-    category?: NestedCategory
+    category?: _NestedCategory
     storyId?: ObjectId
     subCollections?: ObjectId[]
 
     createdAt?: string | number | Date
 
-    constructor(col: CollectionPart) {
+    constructor(col: _CollectionPart) {
         this._id = col!._id!
         Object.assign(this, col)
     }

@@ -1,8 +1,8 @@
 import type { Pagination } from "@/shared/type/pagination";
 import type { ProductRespositoryConstructor } from "./ProductRespo";
+import type { _Product } from "@/server/type/product";
 
 import { productsCollection } from "@/server/db/mongoDbCollections";
-import { Product } from "@/server/schema/product.zod";
 import { Abortable, FindOptions, ObjectId } from "mongodb";
 import AppDocumentFactory from "@/server/db/AppDocument/AppDocument.Factory";
 
@@ -12,7 +12,7 @@ const ProductRespoImp = ProductRespoFactory()
 export default ProductRespoImp
 
 
-function ProductRespoFactory<T extends Product>() {
+function ProductRespoFactory<T extends _Product>() {
     const BaseClass = AppDocumentFactory<T>()
     const ProductRespoImp = class extends BaseClass {
         static dbCollection = productsCollection

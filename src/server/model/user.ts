@@ -1,11 +1,11 @@
 import { Abortable, FindOneOptions, ObjectId } from "mongodb";
-import { User } from "@/server/schema/user.zod";
+import { _User } from "@/server/type/user";
 import { usersCollection } from '../db/mongoDbCollections'
 import bcrypt from "bcryptjs";
 
 
 
-export default class UserImp implements User {
+export default class UserImp implements _User {
     static dbCollection = usersCollection;
     _id?: ObjectId;
     email: string = ''
@@ -13,7 +13,7 @@ export default class UserImp implements User {
     name: string = ''
     password: string = ''
 
-    constructor(user: User) {
+    constructor(user: _User) {
         Object.assign(this, user)
     }
 

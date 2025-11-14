@@ -1,5 +1,5 @@
 import type { Pagination } from "@/shared/type/pagination";
-import type { Product } from "@/server/schema/product.zod";
+import type { _Product } from "@/server/type/product";
 
 import { NextResponse } from "next/server";
 import ProductDTO from "@/DTO/product";
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
 
     const prodService = new ProductServiceImp(new ProductRespoImp(new ProductImp()))
 
-    const pagination: Pagination<Product>
+    const pagination: Pagination<_Product>
         = await prodService.pagination(skip, limit)
 
     const paginationDTO: Pagination<ProductDTO> = {

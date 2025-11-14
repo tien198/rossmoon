@@ -1,13 +1,13 @@
 import type { Pagination } from "@/shared/type/pagination";
+import type { _Product } from "@/server/type/product";
 
-import { Product } from "@/server/schema/product.zod";
 
 
-export interface ProductRespositoryConstructor<T extends Product> {
+export interface ProductRespositoryConstructor<T extends _Product> {
     new(model: T): ProductRespositoryInstance<T>
 }
 
-export interface ProductRespositoryInstance<T extends Product>  {
+export interface ProductRespositoryInstance<T extends _Product>  {
     findById: (id: string) => Promise<T>
     findBySlug: (slug: string) => Promise<T>
     pagination: (

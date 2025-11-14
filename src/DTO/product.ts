@@ -1,6 +1,6 @@
 import type { Product } from "@/shared/type/product";
 import type { NestedCategory } from "@/shared/type/category";
-import type { Product as ProdServer } from "@/server/schema/product.zod";
+import type { _Product as ProdServer } from "@/server/type/product";
 import type { ProductAdditionalInfors, ProductAttributes, ProductMediasArray } from "@/shared/type/product.properties";
 
 

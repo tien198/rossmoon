@@ -1,3 +1,5 @@
+import type { _Collection, _NestedCollection } from "../type/collection";
+
 import { ObjectId } from "mongodb";
 import z from "zod";
 import { nestedCategorySchema_Server } from "./category.zod";
@@ -9,11 +11,10 @@ export const collectionShema_Server = collectionShema.extend({
     // if collection hash sub-collections, subCollections was existed
     subCollections: z.array(z.instanceof(ObjectId)).nullish(),
     category: nestedCategorySchema_Server.nullish(),
-})
+}) satisfies z.ZodType<_Collection>;
 
-export type Collection = z.infer<typeof collectionShema_Server>
 
-export type CollectionPart = Partial<Collection>
+
 
 
 
@@ -22,6 +23,4 @@ export type CollectionPart = Partial<Collection>
 export const nestedCollectionSchema_Server = collectionShema_Server.pick({
     _id: true,
     slug: true
-})
-
-export type NestedCollection = z.infer<typeof nestedCollectionSchema_Server>
+}) satisfies z.ZodType<_NestedCollection>

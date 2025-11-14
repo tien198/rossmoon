@@ -1,12 +1,12 @@
-import type { ProductPart } from '@/server/schema/product.zod';
-import type { MagazineFeaturePart } from '@/server/schema/magazineFeature.zod';
+import type { _ProductPart } from '@/server/type/product';
+import type { _MagazineFeaturePart } from '@/server/type/magazineFeature';
 import type { ProductMediaData } from '@/shared/type/product.properties';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './productCard.module.scss'
 
-export default function Feature(fea: MagazineFeaturePart) {
+export default function Feature(fea: _MagazineFeaturePart) {
     return (
         <>
             {
@@ -23,7 +23,7 @@ export default function Feature(fea: MagazineFeaturePart) {
 }
 
 
-function ProductCard(prod: ProductPart) {
+function ProductCard(prod: _ProductPart) {
     return (
         <Link href={'/product/' + (prod.slug ?? '')}
             className={'relative w-full aspect-[2.5/4] md:aspect-[3/4]' +

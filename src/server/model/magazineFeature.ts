@@ -1,24 +1,24 @@
 import type {ObjectId, FindOptions, Abortable } from "mongodb"
-import type { MagazineFeature } from "@/server/schema/magazineFeature.zod"
-import type { BannerImage } from "@/server/schema/bannerImage.zod"
-import type { NestedProduct } from "@/server/schema/product.zod"
-import type { NestedCollection } from "@/server/schema/collection.zod"
+import type { _MagazineFeature } from "@/server/type/magazineFeature"
+import type { _BannerImage } from "@/server/type/bannerImage"
+import type { _NestedProduct } from "@/server/type/product"
+import type { _NestedCollection } from "@/server/type/collection"
 
 import { magazineFeaturesCollection } from "@/server/db/mongoDbCollections"
 
 
-export default class MagazineFeatureImp implements MagazineFeature {
+export default class MagazineFeatureImp implements _MagazineFeature {
     _id?: ObjectId
     title?: string
     description?: string
-    bannerImage?: BannerImage
+    bannerImage?: _BannerImage
 
-    products: NestedProduct[]
+    products: _NestedProduct[]
 
-    collection: NestedCollection
+    collection: _NestedCollection
     createdAt: Date | string | number
 
-    constructor(feature: MagazineFeature) {
+    constructor(feature: _MagazineFeature) {
         this._id = feature._id!
         Object.assign(this, feature)
         this.products = feature.products
@@ -26,7 +26,7 @@ export default class MagazineFeatureImp implements MagazineFeature {
         this.createdAt = feature.createdAt
     }
 
-    static findByCollectionSlug<T = MagazineFeature>(collectionSlug: string, skip?: number, limit?: number, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
+    static findByCollectionSlug<T = _MagazineFeature>(collectionSlug: string, skip?: number, limit?: number, findOptions?: FindOptions & Abortable & Record<keyof T, (0 | 1)>) {
         let query = magazineFeaturesCollection.find(
             { 'collection.slug': collectionSlug },
             { projection: findOptions }

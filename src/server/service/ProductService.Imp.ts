@@ -2,7 +2,7 @@
 import { ProductServiceConstructor } from "./ProductService";
 import ProductRespoImp from "../respository/ProductRespo.Imp";
 import ProductImp from "../model/product";
-import { Product } from "@/server/schema/product.zod";
+import { _Product } from "@/server/type/product";
 
 type ProductRespo = InstanceType<typeof ProductRespoImp>
 
@@ -26,7 +26,7 @@ export default class ProductServiceImp {
     }
 
     // saving the product if it was passing. Otherwise, save product existed in productRespo
-    async save(prod?: Product) {
+    async save(prod?: _Product) {
         if (prod) {
             this.productRespo.model = prod
         }
@@ -36,12 +36,12 @@ export default class ProductServiceImp {
     get product() {
         return this.productRespo.model
     }
-    set product(prod: Product) {
+    set product(prod: _Product) {
         this.productRespo.model = prod
     }
 }
 
-ProductServiceImp satisfies ProductServiceConstructor<Product, ProductRespo>
+ProductServiceImp satisfies ProductServiceConstructor<_Product, ProductRespo>
 
 
 // const service = new ProductServiceImp(new ProductRespoImp(new ProductImp()))

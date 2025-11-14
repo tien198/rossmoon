@@ -1,13 +1,13 @@
-import type { Product } from "@/server/schema/product.zod";
+import type { _Product } from "@/server/type/product";
+import type { _NestedCategory } from "@/server/type/category";
 import type ProductDTO from "@/DTO/product";
 import type { ProductAdditionalInfors, ProductMediasArray, ProductAttributes } from "@/shared/type/product.properties";
-import type { NestedCategory } from "@/server/schema/category.zod";
 
 import { ObjectId } from "mongodb";
 
 
 
-export default class ProductImp implements Product {
+export default class ProductImp implements _Product {
     _id?: ObjectId
     name: string
     slug: string
@@ -18,7 +18,7 @@ export default class ProductImp implements Product {
     medias?: ProductMediasArray | null
     additionalInfors?: ProductAdditionalInfors | null
 
-    category?: NestedCategory | null
+    category?: _NestedCategory | null
 
     createdAt: Date | number | string
 

@@ -1,5 +1,5 @@
-import { Category as CateClient } from "@/client/schema/category.zod";
-import { Category as CateServer } from "@/server/schema/category.zod";
+import type { Category as CateClient } from "@/client/schema/category.zod";
+import type { _Category as CateServer } from "@/server/type/category";
 
 export default class CategoryDTO implements CateClient {
     id: string
