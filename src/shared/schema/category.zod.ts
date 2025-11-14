@@ -1,5 +1,5 @@
 import z from "zod";
-import { Category, NestedCategory } from "./category";
+import { Category, NestedCategory } from "../type/category";
 
 export const categorySchema = z.object({
     name: z.string(),

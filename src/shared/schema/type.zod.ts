@@ -1,4 +1,4 @@
-import type { Type } from "./type";
+import type { Type } from "../type/type";
 
 import z from "zod";
 

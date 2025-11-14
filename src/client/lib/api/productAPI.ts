@@ -1,5 +1,6 @@
+import type { Pagination } from "@/shared/type/pagination"
+
 import { Product } from "@/client/schema/product.zod"
-import { Pagination } from "@/shared/schema/pagination"
 
 // <Whether> is involked in SERVER <or> CLIENT
 

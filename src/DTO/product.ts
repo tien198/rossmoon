@@ -1,7 +1,7 @@
-import type { Product } from "@/shared/schema/product";
+import type { Product } from "@/shared/type/product";
+import type { NestedCategory } from "@/shared/type/category";
 import type { Product as ProdServer } from "@/server/schema/product.zod";
-import type { ProductAdditionalInfors, ProductAttributes, ProductMediasArray } from "@/shared/schema/product.properties";
-import type { NestedCategory } from "@/shared/schema/category";
+import type { ProductAdditionalInfors, ProductAttributes, ProductMediasArray } from "@/shared/type/product.properties";
 
 
 

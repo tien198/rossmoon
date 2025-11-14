@@ -1,5 +1,5 @@
 import type { Product } from "@/client/schema/product.zod";
-import type { Pagination } from "@/shared/schema/pagination";
+import type { Pagination } from "@/shared/type/pagination";
 
 import { useEffect } from "react";
 import Row from "./Row";

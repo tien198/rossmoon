@@ -1,4 +1,4 @@
-import type { NestedProduct, Product } from './product'
+import type { NestedProduct, Product } from '../type/product'
 
 import { z } from 'zod'
 import { nestedCategorySchema } from './category.zod'

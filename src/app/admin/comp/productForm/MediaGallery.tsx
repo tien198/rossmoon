@@ -1,6 +1,6 @@
 'use client'
 
-import type { ProductMediaData } from '@/shared/schema/product.properties';
+import type { ProductMediaData } from '@/shared/type/product.properties';
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';

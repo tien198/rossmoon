@@ -1,4 +1,5 @@
-import { Pagination } from "@/shared/schema/pagination";
+import type { Pagination } from "@/shared/type/pagination";
+
 import { Product } from "@/server/schema/product.zod";
 
 

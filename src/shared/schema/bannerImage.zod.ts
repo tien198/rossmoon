@@ -1,5 +1,5 @@
 import z from "zod";
-import { BannerImage } from "./bannerImage";
+import { BannerImage } from "../type/bannerImage";
 
 export const bannerImageSchema = z.object({
     mobileUrl: z.url().nullish(),

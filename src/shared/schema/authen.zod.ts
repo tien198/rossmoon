@@ -1,6 +1,6 @@
 import z from "zod"
 import { userSchema } from "./user.zod"
-import { Login, Signin } from "./authen"
+import { Login, Signin } from "../type/authen"
 
 
 

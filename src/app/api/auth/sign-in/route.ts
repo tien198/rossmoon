@@ -1,4 +1,4 @@
-import type { Signin } from "@/shared/schema/authen"
+import type { Signin } from "@/shared/type/authen"
 import type { ErrorRes } from "@/client/lib/api/authenAPI"
 
 import { genJWT } from "@/shared/jwtToken"

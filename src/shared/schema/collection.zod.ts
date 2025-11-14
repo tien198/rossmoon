@@ -2,7 +2,7 @@ import zDate from "@/shared/zod.date";
 import z from "zod";
 import { nestedCategorySchema } from "./category.zod";
 import { bannerImageSchema } from "./bannerImage.zod";
-import { Collection, NestedCollection } from "./collection";
+import { Collection, NestedCollection } from "../type/collection";
 
 export const collectionShema = z.object({
     name: z.string(),

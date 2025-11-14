@@ -1,7 +1,8 @@
-import { Pagination } from "@/shared/schema/pagination";
-import ProductDTO from "@/DTO/product";
-import { Product } from "@/server/schema/product.zod";
+import type { Pagination } from "@/shared/type/pagination";
+import type { Product } from "@/server/schema/product.zod";
+
 import { NextResponse } from "next/server";
+import ProductDTO from "@/DTO/product";
 import ProductServiceImp from "@/server/service/ProductService.Imp";
 import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
 import ProductImp from "@/server/model/product";

@@ -1,6 +1,6 @@
 import type { ProductPart } from '@/server/schema/product.zod';
 import type { MagazineFeaturePart } from '@/server/schema/magazineFeature.zod';
-import type { ProductMediaData } from '@/shared/schema/product.properties';
+import type { ProductMediaData } from '@/shared/type/product.properties';
 
 import Image from 'next/image';
 import Link from 'next/link';

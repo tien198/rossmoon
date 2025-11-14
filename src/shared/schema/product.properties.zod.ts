@@ -1,5 +1,5 @@
 import z from "zod";
-import { ProductAdditionalInfors, ProductAttributes, ProductMedia, ProductMediaData, ProductMediasArray } from "./product.properties";
+import { ProductAdditionalInfors, ProductAttributes, ProductMedia, ProductMediaData, ProductMediasArray } from "../type/product.properties";
 
 
 
