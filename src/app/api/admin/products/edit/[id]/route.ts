@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
 import ProductImp from "@/server/model/product";
 import ProductDTO from "@/DTO/product";
+import ProductServiceImp from "@/server/service/ProductService.Imp";
 
 type Context = {
     params: Promise<{
@@ -21,8 +22,13 @@ export async function PUT(req: Request, context: Context) {
     const prod = unflatten<ProductDTO>(flattenData)
 
     try {
-        const prodRespo = new ProductRespoImp(new ProductImp(prod))
-        const result = await prodRespo.save()
+        const prodService = new ProductServiceImp(
+            new ProductRespoImp(
+                new ProductImp(prod)
+            )
+        )
+        const result = await prodService.save()
+
         return NextResponse.json({})
     } catch (error) {
         console.error(error)

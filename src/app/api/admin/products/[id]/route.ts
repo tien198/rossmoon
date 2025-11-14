@@ -1,5 +1,7 @@
 import ProductDTO from "@/DTO/product";
+import ProductImp from "@/server/model/product";
 import ProductRespo from "@/server/respository/ProductRespo.Imp";
+import ProductServiceImp from "@/server/service/ProductService.Imp";
 import { NextResponse } from "next/server";
 
 type Context = {
@@ -10,11 +12,12 @@ export async function GET(req: Request, context: Context) {
     const prodId = (await context.params)['id']
 
     try {
-        const prod = await ProductRespo.findById(prodId)
+        const prodService = new ProductServiceImp(new ProductRespo(new ProductImp()))
+        const prod = await prodService.findById(prodId)
         if (!prod)
             throw Error('Not found product "' + prodId + '"')
         console.log('---------- product getted');
-        
+
         const prodDTO = new ProductDTO(prod)
         return NextResponse.json(prodDTO)
 
