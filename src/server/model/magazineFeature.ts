@@ -1,14 +1,13 @@
-import type { FindOptions, Abortable } from "mongodb"
-import { ObjectId } from "mongodb"
-import { magazineFeaturesCollection } from "@/server/db/mongoDbCollections"
-
+import type {ObjectId, FindOptions, Abortable } from "mongodb"
 import type { MagazineFeature } from "@/server/schema/magazineFeature.zod"
 import type { BannerImage } from "@/server/schema/bannerImage.zod"
 import type { NestedProduct } from "@/server/schema/product.zod"
 import type { NestedCollection } from "@/server/schema/collection.zod"
 
-export default class MagazineFeatureImp implements MagazineFeature {
+import { magazineFeaturesCollection } from "@/server/db/mongoDbCollections"
 
+
+export default class MagazineFeatureImp implements MagazineFeature {
     _id?: ObjectId
     title?: string
     description?: string

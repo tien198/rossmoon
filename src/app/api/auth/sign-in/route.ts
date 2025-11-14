@@ -1,22 +1,23 @@
+import type { Signin } from "@/shared/schema/authen"
 import type { ErrorRes } from "@/client/lib/api/authenAPI"
 
 import { genJWT } from "@/shared/jwtToken"
 import { zodValidation } from "@/shared/zod.Validate"
-import { Signin, signinSchemaServer } from "@/server/schema/user.zod"
 import { NextResponse } from "next/server"
 import UserImp from "@/server/model/user"
+import { signinSchema } from "@/shared/schema/authen.zod"
 
 // POST: {doamin}/api/auth/sign-in
 export async function POST(req: Request) {
     const formData = await req.formData()
-
+    
     const submited: Signin = {
         email: formData.get('email')?.toString() ?? '',
         password: formData.get('password')?.toString() ?? '',
         passwordConfirm: formData.get('passwordConfirm')?.toString() ?? ''
     }
 
-    const invalid = zodValidation(submited, signinSchemaServer)
+    const invalid = zodValidation(submited, signinSchema)
     if (Object.keys(invalid).length > 0)
         return NextResponse.json(
             invalid,

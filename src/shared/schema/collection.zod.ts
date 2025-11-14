@@ -2,6 +2,7 @@ import zDate from "@/shared/zod.date";
 import z from "zod";
 import { nestedCategorySchema } from "./category.zod";
 import { bannerImageSchema } from "./bannerImage.zod";
+import { Collection, NestedCollection } from "./collection";
 
 export const collectionShema = z.object({
     name: z.string(),
@@ -12,11 +13,9 @@ export const collectionShema = z.object({
     category: nestedCategorySchema.nullish(),
 
     createdAt: zDate(),
-})
+}) satisfies z.ZodType<Collection>
 
-export type Collection = z.infer<typeof collectionShema>
 
-export type CollectionPart = Partial<Collection>
 
 
 
@@ -24,6 +23,4 @@ export type CollectionPart = Partial<Collection>
 
 export const nestedCollectionSchema = collectionShema.pick({
     slug: true
-})
-
-export type NestedCollection = z.infer<typeof nestedCollectionSchema>
+}) satisfies z.ZodType<NestedCollection>

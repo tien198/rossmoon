@@ -1,9 +1,9 @@
 import type { Product } from "@/server/schema/product.zod";
 import type ProductDTO from "@/DTO/product";
+import type { ProductAdditionalInfors, ProductMediasArray, ProductAttributes } from "@/shared/schema/product.properties";
 import type { NestedCategory } from "@/server/schema/category.zod";
 
 import { ObjectId } from "mongodb";
-import type { ProductAdditionalInfors, ProductMediasArray, ProductAttributes } from "@/shared/schema/product.properties.zod";
 
 
 

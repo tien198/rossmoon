@@ -1,5 +1,6 @@
+import type { AppInpBase } from '.';
+
 import { InputHTMLAttributes, useEffect, useRef } from 'react';
-import { AppInpBase } from '.';
 
 type InputProps = AppInpBase & InputHTMLAttributes<HTMLInputElement>
 

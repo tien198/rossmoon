@@ -1,4 +1,8 @@
 import z from "zod";
+import { ProductAdditionalInfors, ProductAttributes, ProductMedia, ProductMediaData, ProductMediasArray } from "./product.properties";
+
+
+
 
 export const productAttributesSchema = z.object({
     // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )
@@ -7,29 +11,50 @@ export const productAttributesSchema = z.object({
     depth: z.number().positive().nullish(),
     color: z.string().nullish(),
     material: z.string().nullish()
-})
-export type ProductAttributes = z.infer<typeof productAttributesSchema>
+}) satisfies z.ZodType<ProductAttributes>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const prodMediaDataSchema = z.object({
     type: z.enum(['image', 'video']),
     url: z.url(),
-})
-export type ProductMediaData = z.infer<typeof prodMediaDataSchema>
+}) satisfies z.ZodType<ProductMediaData>
+
+
 
 export const productMediaSchema = z.union([
     prodMediaDataSchema,
     z.file()
-])
-export type ProductMedia = z.infer<typeof productMediaSchema>
+]) satisfies z.ZodType<ProductMedia>
 
 
 
 // products's image or video 
 export const productMediasArraySchema = z.array(
     productMediaSchema.nullish()
-)
-export type ProductMediasArray = z.infer<typeof productMediasArraySchema>
+) satisfies z.ZodType<ProductMediasArray>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -45,6 +70,4 @@ export const productAdditionalInfors = z.object({
     notice: z.string().nullish(),
     sustainability: z.string().nullish(),
     productCare: z.string().nullish(),
-})
-
-export type ProductAdditionalInfors = z.infer<typeof productAdditionalInfors>
+}) satisfies z.ZodType<ProductAdditionalInfors>

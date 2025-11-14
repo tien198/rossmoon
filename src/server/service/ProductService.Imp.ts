@@ -2,7 +2,7 @@
 import { ProductServiceConstructor } from "./ProductService";
 import ProductRespoImp from "../respository/ProductRespo.Imp";
 import ProductImp from "../model/product";
-import { Product } from "../schema/product.zod";
+import { Product } from "@/server/schema/product.zod";
 
 type ProductRespo = InstanceType<typeof ProductRespoImp>
 
@@ -25,9 +25,19 @@ export default class ProductServiceImp {
         return await this.productRespo.pagination(skip, limit)
     }
 
-    async save(prod: Product) {
+    // saving the product if it was passing. Otherwise, save product existed in productRespo
+    async save(prod?: Product) {
+        if (prod) {
+            this.productRespo.model = prod
+        }
+        return await this.productRespo.save()
+    }
+
+    get product() {
+        return this.productRespo.model
+    }
+    set product(prod: Product) {
         this.productRespo.model = prod
-        return this.productRespo.save()
     }
 }
 

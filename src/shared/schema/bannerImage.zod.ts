@@ -1,11 +1,9 @@
 import z from "zod";
+import { BannerImage } from "./bannerImage";
 
 export const bannerImageSchema = z.object({
     mobileUrl: z.url().nullish(),
     desktopUrl: z.url().nullish(),
     // if false, half width viewport
     isFullWidth: z.boolean().default(true).nullish()
-})
-
-
-export type BannerImage = z.infer<typeof bannerImageSchema>
+}) satisfies z.ZodType<BannerImage>

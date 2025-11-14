@@ -1,3 +1,5 @@
+import type { NestedProduct, Product } from './product'
+
 import { z } from 'zod'
 import { nestedCategorySchema } from './category.zod'
 import { productAdditionalInfors, productMediasArraySchema, productAttributesSchema } from './product.properties.zod'
@@ -18,11 +20,7 @@ export const productSchema = z.object({
     category: nestedCategorySchema.nullish(),
 
     createdAt: zDate(),
-})
-
-export type Product = z.infer<typeof productSchema>
-
-export type ProductPart = Partial<Product>
+}) satisfies z.ZodType<Product>
 
 
 
@@ -35,6 +33,4 @@ export const nestedProductSchema = productSchema.pick({
     price: true,
     slug: true,
     attributes: true,
-})
-
-export type NestedProduct = z.infer<typeof nestedProductSchema>
+}) satisfies z.ZodType<NestedProduct>

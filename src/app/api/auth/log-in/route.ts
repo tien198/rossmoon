@@ -1,10 +1,11 @@
+import type { Login } from '@/shared/schema/authen'
 import type { ErrorRes } from '@/client/lib/api/authenAPI'
 
 import { genJWT } from '@/shared/jwtToken'
 import { zodValidation } from '@/shared/zod.Validate'
-import { Login, loginSchemaServer } from '@/server/schema/user.zod'
 import { NextResponse } from 'next/server'
 import UserImp from '@/server/model/user'
+import { loginSchema } from '@/shared/schema/authen.zod'
 
 // POST: {doamin}/api/auth/log-in
 export async function POST(req: Request) {
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
         password: formData.get('password')?.toString() ?? '',
     }
 
-    const invalid = zodValidation(submited, loginSchemaServer)
+    const invalid = zodValidation(submited, loginSchema)
     if (Object.keys(invalid).length > 0)
         return NextResponse.json(
             invalid,

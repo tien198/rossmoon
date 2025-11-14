@@ -3,7 +3,7 @@
 import { useActionState, useEffect } from "react"
 import { useAuthReducer } from "./useAuthReducer"
 import { loginAction } from "../_actions"
-import { loginSchema } from "@/shared/schema/user.zod"
+import { loginSchema } from "@/shared/schema/authen.zod"
 import { zodValidation } from "@/shared/zod.Validate"
 import { useRouter } from "next/navigation"
 import { FieldName } from "../reducer/authReducer"

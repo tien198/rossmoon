@@ -1,8 +1,7 @@
 import type { CollectionPart } from "@/server/schema/collection.zod";
-
 import type { ObjectId } from "mongodb";
-import { NestedCategory } from "@/server/schema/category.zod";
-import { BannerImage } from "@/server/schema/bannerImage.zod";
+import type { NestedCategory } from "@/server/schema/category.zod";
+import type { BannerImage } from "@/server/schema/bannerImage.zod";
 
 
 

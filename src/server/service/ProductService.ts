@@ -1,6 +1,6 @@
-import { ProductRespositoryInstance } from "@/server/respository/ProductRespo";
-import { Product } from "@/server/schema/product.zod";
-import { Pagination } from "@/shared/schema/pagination";
+import type { ProductRespositoryInstance } from "@/server/respository/ProductRespo";
+import type { Product } from "@/server/schema/product.zod";
+import type { Pagination } from "@/shared/schema/pagination";
 
 export interface ProductServiceConstructor<T extends Product, TProdRespo extends ProductRespositoryInstance<T>> {
     // instance:ProductServiceInstance<T, TProdRespo>
@@ -9,6 +9,7 @@ export interface ProductServiceConstructor<T extends Product, TProdRespo extends
 
 export interface ProductServiceInstance<T extends Product, TProdRespo extends ProductRespositoryInstance<T>> {
     productRespo: TProdRespo
+    readonly product: T | null
     findById: (id: string) => Promise<T>
     findBySlug: (slug: string) => Promise<T>
     pagination: (

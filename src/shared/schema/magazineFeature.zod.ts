@@ -3,6 +3,7 @@ import z from "zod";
 import { bannerImageSchema } from "./bannerImage.zod";
 import { nestedProductSchema } from "./product.zod";
 import { nestedCollectionSchema } from "./collection.zod";
+import { MagazineFeature } from "./magazineFeature";
 
 
 
@@ -17,8 +18,4 @@ export const magazineFeatureSchema = z.object({
 
     collection: nestedCollectionSchema,
     createdAt: zDate()
-})
-
-export type MagazineFeature = z.infer<typeof magazineFeatureSchema>
-
-export type MagazineFeaturePart = Partial<MagazineFeature>
+}) satisfies z.ZodType<MagazineFeature>
