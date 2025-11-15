@@ -1,6 +1,6 @@
 import { unflatten } from "@/shared/unflatten";
 import { NextResponse } from "next/server";
-import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
+import ProductRespoImp from "@/server/respository/productRespo.imp";
 import ProductImp from "@/server/model/product";
 import ProductDTO from "@/DTO/product";
 

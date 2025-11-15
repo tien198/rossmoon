@@ -3,8 +3,8 @@ import type { _Product } from "@/server/type/product";
 
 import { NextResponse } from "next/server";
 import ProductDTO from "@/DTO/product";
-import ProductServiceImp from "@/server/service/ProductService.Imp";
-import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
+import ProductServiceImp from "@/server/service/productService.imp";
+import ProductRespoImp from "@/server/respository/productRespo.imp";
 import ProductImp from "@/server/model/product";
 
 export async function GET(req: Request) {
