@@ -1,7 +1,7 @@
 import ProductDTO from "@/DTO/product";
 import ProductImp from "@/server/model/product";
-import ProductRespo from "@/server/respository/ProductRespo.Imp";
-import ProductServiceImp from "@/server/service/ProductService.Imp";
+import ProductRespo from "@/server/respository/productRespo.imp";
+import ProductServiceImp from "@/server/service/productService.imp";
 import { NextResponse } from "next/server";
 
 type Context = {

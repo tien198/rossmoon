@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import ProductRespoImp from "@/server/respository/productRespo.imp";
 import ProductImp from "@/server/model/product";
 import ProductDTO from "@/DTO/product";
-import ProductServiceImp from "@/server/service/ProductService.Imp";
+import ProductServiceImp from "@/server/service/productService.imp";
 
 type Context = {
     params: Promise<{
