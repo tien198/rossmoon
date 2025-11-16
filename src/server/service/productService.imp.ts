@@ -1,6 +1,6 @@
 // import { ProductRespo } from "@/server/respository/ProductRespo";
-import { ProductServiceConstructor } from "./ProductService";
-import ProductRespoImp from "../respository/ProductRespo.Imp";
+import { ProductServiceConstructor } from "./productService";
+import ProductRespoImp from "../respository/productRespo.imp";
 import ProductImp from "../model/product";
 import { _Product } from "@/server/type/product";
 

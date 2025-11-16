@@ -1,4 +1,4 @@
-import type { ProductRespositoryInstance } from "@/server/respository/ProductRespo";
+import type { ProductRespositoryInstance } from "@/server/respository/productRespo";
 import type { _Product } from "@/server/type/product";
 import type { Pagination } from "@/shared/type/pagination";
 

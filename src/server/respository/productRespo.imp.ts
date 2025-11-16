@@ -1,5 +1,5 @@
 import type { Pagination } from "@/shared/type/pagination";
-import type { ProductRespositoryConstructor } from "./ProductRespo";
+import type { ProductRespositoryConstructor } from "./productRespo";
 import type { _Product } from "@/server/type/product";
 
 import { productsCollection } from "@/server/db/mongoDbCollections";

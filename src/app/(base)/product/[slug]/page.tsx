@@ -1,7 +1,7 @@
 import type { _Product } from "@/client/type/product";
 
-import ProductServiceImp from "@/server/service/ProductService.Imp";
-import ProductRespoImp from "@/server/respository/ProductRespo.Imp";
+import ProductServiceImp from "@/server/service/productService.imp";
+import ProductRespoImp from "@/server/respository/productRespo.imp";
 import ProductDTO from "@/DTO/product";
 
 import ProductImages from "./comp/productImages";
