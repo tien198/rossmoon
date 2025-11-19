@@ -1,6 +1,6 @@
 import type { _ProductPart } from '@/server/type/product';
 import type { _MagazineFeaturePart } from '@/server/type/magazineFeature';
-import type { ProductMediaData } from '@/shared/type/product.properties';
+import type { MediaData } from '@/shared/type/product.properties';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,7 +31,7 @@ function ProductCard(prod: _ProductPart) {
         >
             <div className={styles['card__container-border']}></div>
             <Image
-                src={(prod?.medias?.[0]as ProductMediaData )?.url ?? ''}
+                src={(prod?.medias?.[0]as MediaData )?.url ?? ''}
                 alt={prod.name!} width={800} height={800}
                 className='w-full'
                 priority

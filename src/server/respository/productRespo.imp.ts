@@ -10,11 +10,12 @@ import AppDocumentFactory from "@/server/db/AppDocument/AppDocument.Factory";
 
 const ProductRespoImp = ProductRespoFactory()
 export default ProductRespoImp
+export type ProductRespo = InstanceType<typeof ProductRespoImp>
 
 
 function ProductRespoFactory<T extends _Product>() {
-    const BaseClass = AppDocumentFactory<T>()
-    const ProductRespoImp = class extends BaseClass {
+
+    const ProductRespoImp = class extends AppDocumentFactory<T>() {
         static dbCollection = productsCollection
 
         constructor(product?: T) {

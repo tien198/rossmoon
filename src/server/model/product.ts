@@ -14,11 +14,11 @@ export default class ProductImp implements _Product {
     price: number
     description: string
 
-    attributes?: ProductAttributes | null
-    medias?: ProductMediasArray | null
-    additionalInfors?: ProductAdditionalInfors | null
+    attributes?: ProductAttributes
+    medias?: ProductMediasArray
+    additionalInfors?: ProductAdditionalInfors
 
-    category?: _NestedCategory | null
+    category?: _NestedCategory
 
     createdAt: Date | number | string
 

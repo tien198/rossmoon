@@ -13,11 +13,11 @@ export const productSchema = z.object({
     price: z.number().positive(),
     description: z.string().min(10),
 
-    attributes: productAttributesSchema.nullish(),
-    medias: productMediasArraySchema.nullish(),
-    additionalInfors: productAdditionalInfors.nullish(),
+    attributes: productAttributesSchema.optional(),
+    medias: productMediasArraySchema.optional(),
+    additionalInfors: productAdditionalInfors.optional(),
 
-    category: nestedCategorySchema.nullish(),
+    category: nestedCategorySchema.optional(),
 
     createdAt: zDate(),
 }) satisfies z.ZodType<Product>

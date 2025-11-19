@@ -1,6 +1,6 @@
 'use client'
 
-import type { ProductMediaData } from '@/shared/type/product.properties';
+import type { MediaData } from '@/shared/type/product.properties';
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -8,13 +8,13 @@ import Media from './Media';
 
 
 type Props = {
-    medias?: (ProductMediaData | null | undefined)[]
+    medias?: (MediaData | undefined)[]
     prodName?: string
     disabled?: boolean
 }
 
 export default function MediaGallery({ medias, prodName, disabled }: Props) {
-    const [selected, setSelected] = useState<ProductMediaData | null>(medias?.[0] as any);
+    const [selected, setSelected] = useState<MediaData | null>(medias?.[0] as any);
     const [selectedIndex, setSelectedIndex] = useState(0)
 
     useEffect(() => {

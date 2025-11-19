@@ -8,7 +8,7 @@ import { _NestedProduct, _Product } from '../type/product'
 
 export const productSchema_Server = productSchema.extend({
     _id: z.instanceof(ObjectId).optional(),
-    category: nestedCategorySchema_Server.nullish(),
+    category: nestedCategorySchema_Server.optional(),
 }) satisfies z.ZodType<_Product>
 
 

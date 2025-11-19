@@ -1,16 +1,17 @@
+import type { ProductAdditionalInfors, ProductAttributes, ProductMedia, MediaData, ProductMediasArray } from "../type/product.properties";
+
 import z from "zod";
-import { ProductAdditionalInfors, ProductAttributes, ProductMedia, ProductMediaData, ProductMediasArray } from "../type/product.properties";
 
 
 
 
 export const productAttributesSchema = z.object({
     // 16 x 27 x 16 cm ( Chiều ngang x Chiều cao x Chiều rộng )
-    width: z.number().positive().nullish(),
-    height: z.number().positive().nullish(),
-    depth: z.number().positive().nullish(),
-    color: z.string().nullish(),
-    material: z.string().nullish()
+    width: z.number().positive().optional(),
+    height: z.number().positive().optional(),
+    depth: z.number().positive().optional(),
+    color: z.string().optional(),
+    material: z.string().optional()
 }) satisfies z.ZodType<ProductAttributes>
 
 
@@ -30,7 +31,7 @@ export const productAttributesSchema = z.object({
 export const prodMediaDataSchema = z.object({
     type: z.enum(['image', 'video']),
     url: z.url(),
-}) satisfies z.ZodType<ProductMediaData>
+}) satisfies z.ZodType<MediaData>
 
 
 
@@ -43,7 +44,7 @@ export const productMediaSchema = z.union([
 
 // products's image or video 
 export const productMediasArraySchema = z.array(
-    productMediaSchema.nullish()
+    productMediaSchema.optional()
 ) satisfies z.ZodType<ProductMediasArray>
 
 
@@ -63,11 +64,11 @@ export const productAdditionalInfors = z.object({
     [ 
         "Màu xám/vàng", "Chất liệu Monogram Glow Canvas", "Lớp lót bằng da bò", "4 khe đựng thẻ", "Ngăn phụ", "2 ngăn mở" 
         ]     */
-    features: z.array(z.string()).nullish(),
+    features: z.array(z.string()).optional(),
     // "Sản phẩm được sản xuất tại Pháp, Tây Ban Nha, Ý hoặc Mỹ."
-    origin: z.string().nullish(),
+    origin: z.string().optional(),
     // "Lưu ý: Vui lòng đọc kỹ hướng dẫn sử dụng"
-    notice: z.string().nullish(),
-    sustainability: z.string().nullish(),
-    productCare: z.string().nullish(),
+    notice: z.string().optional(),
+    sustainability: z.string().optional(),
+    productCare: z.string().optional(),
 }) satisfies z.ZodType<ProductAdditionalInfors>

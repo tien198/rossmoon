@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
   },
   images: {
     // formats: ["image/avif", "image/webp"],
-    remotePatterns: [new URL('http://localhost:3000/**')],
+    remotePatterns: [
+      new URL('http://localhost:3000/**'),
+      new URL('https://yslw5kny2flxpn0p.public.blob.vercel-storage.com')
+    ],
   },
   reactStrictMode: false
 };

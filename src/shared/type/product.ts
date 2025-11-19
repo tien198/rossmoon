@@ -7,11 +7,11 @@ export type Product = {
     price: number
     description: string
 
-    attributes?: ProductAttributes | null
-    medias?: ProductMediasArray | null
-    additionalInfors?: ProductAdditionalInfors | null
+    attributes?: ProductAttributes
+    medias?: ProductMediasArray
+    additionalInfors?: ProductAdditionalInfors
 
-    category?: NestedCategory | null
+    category?: NestedCategory
 
     createdAt: Date | string | number
 }
@@ -23,5 +23,5 @@ export type NestedProduct = {
     name: string
     price: number
     slug: string
-    attributes?: ProductAttributes | null | undefined
+    attributes?: ProductAttributes | undefined
 }

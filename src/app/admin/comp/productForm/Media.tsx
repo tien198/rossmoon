@@ -1,11 +1,11 @@
-import type { ProductMediaData } from '@/shared/type/product.properties';
+import type { MediaData } from '@/shared/type/product.properties';
 
 import { MouseEventHandler, useRef } from 'react';
 import Image from 'next/image';
 
 type Props = {
     id: number
-    media?: ProductMediaData | null
+    media?: MediaData
     alt: string
     handleSelected: MouseEventHandler
     isSelected: boolean

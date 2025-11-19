@@ -1,14 +1,14 @@
 export interface ProductAttributes {
-    width?: number | null;
-    height?: number | null;
-    depth?: number | null;
-    color?: string | null;
-    material?: string | null;
+    width?: number;
+    height?: number;
+    depth?: number;
+    color?: string;
+    material?: string;
 }
 
 
 
-export type ProductMediaData = {
+export type MediaData = {
     type: 'image' | 'video',
     url: string
 }
@@ -16,19 +16,18 @@ export type ProductMediaData = {
 
 
 export type ProductMedia =
-    | ProductMediaData
-    | File;
+    MediaData | File;
 
 
 
-export type ProductMediasArray = (ProductMedia | null | undefined)[]
+export type ProductMediasArray = (ProductMedia | undefined)[]
 
 
 
 export type ProductAdditionalInfors = {
-    features?: string[] | null;
-    origin?: string | null;
-    notice?: string | null;
-    sustainability?: string | null;
-    productCare?: string | null;
+    features?: string[];
+    origin?: string;
+    notice?: string;
+    sustainability?: string;
+    productCare?: string;
 };
