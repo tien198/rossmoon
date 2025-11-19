@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 import ProductDTO from "@/DTO/product";
 import ProductServiceImp from "@/server/service/productService.imp";
 import ProductRespoImp from "@/server/respository/productRespo.imp";
-import ProductImp from "@/server/model/product";
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
@@ -13,7 +12,7 @@ export async function GET(req: Request) {
     const limit = 5
     const skip = page * limit
 
-    const prodService = new ProductServiceImp(new ProductRespoImp(new ProductImp()))
+    const prodService = new ProductServiceImp(new ProductRespoImp())
 
     const pagination: Pagination<_Product>
         = await prodService.pagination(skip, limit)

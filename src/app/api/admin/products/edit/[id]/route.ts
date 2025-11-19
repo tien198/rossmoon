@@ -4,6 +4,7 @@ import ProductRespoImp from "@/server/respository/productRespo.imp";
 import ProductImp from "@/server/model/product";
 import ProductDTO from "@/DTO/product";
 import ProductServiceImp from "@/server/service/productService.imp";
+import MediaServiceImp from "@/server/service/MediaService.imp";
 
 type Context = {
     params: Promise<{
@@ -25,7 +26,8 @@ export async function PUT(req: Request, context: Context) {
         const prodService = new ProductServiceImp(
             new ProductRespoImp(
                 new ProductImp(prod)
-            )
+            ),
+            new MediaServiceImp()
         )
         const result = await prodService.save()
 

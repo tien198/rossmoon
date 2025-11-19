@@ -5,7 +5,6 @@ import ProductRespoImp from "@/server/respository/productRespo.imp";
 import ProductDTO from "@/DTO/product";
 
 import ProductImages from "./comp/productImages";
-import ProductImp from "@/server/model/product";
 import styles from './product.module.scss'
 
 type Props = {
@@ -19,7 +18,7 @@ export const revalidate = false
 export default async function ProductPage({ params }: Props) {
     const slug = (await params).slug
 
-    const prodSevice = new ProductServiceImp(new ProductRespoImp(new ProductImp()))
+    const prodSevice = new ProductServiceImp(new ProductRespoImp())
     const prod = await prodSevice.productRespo.findBySlug(slug)
     const prodDTO = new ProductDTO(prod) as _Product
 

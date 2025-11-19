@@ -18,11 +18,11 @@ export default class ProductServiceImp {
     }
 
     async findById(id: string) {
-        return await this.productRespo.findByid(id)
+        return await this.productRespo.findById(id)
     }
 
     async findBySlug(slug: string) {
-        return await this.productRespo.fin1dBySlug(slug)
+        return await this.productRespo.findBySlug(slug)
     }
 
     async pagination(skip: number = 0, limit: number = 0) {
