@@ -45,7 +45,7 @@ export default class ProductServiceImp {
                 const pathName = await this.mediaServie?.uploadFile(i)
                 mediasCoppy[id] = {
                     type: i.type,
-                    url: pathName
+                    url: '/' + pathName
                 } as MediaData
             }
             ++id
