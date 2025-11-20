@@ -1,10 +1,12 @@
 import { unflatten } from "@/shared/unflatten";
 import { NextResponse } from "next/server";
 import ProductRespoImp from "@/server/respository/productRespo.imp";
-import ProductImp from "@/server/model/product";
 import ProductDTO from "@/DTO/product";
+import ProductImp from "@/server/model/product";
 import ProductServiceImp from "@/server/service/productService.imp";
 import MediaServiceImp from "@/server/service/MediaService.imp";
+import ReservedProductRespoImp from "@/server/respository/resevedProductRespo.imp";
+import ReservedProductImp from "@/server/model/reservedProduct.";
 
 type Context = {
     params: Promise<{
@@ -27,7 +29,10 @@ export async function PUT(req: Request, context: Context) {
             new ProductRespoImp(
                 new ProductImp(prod)
             ),
-            new MediaServiceImp()
+            new MediaServiceImp(),
+            new ReservedProductRespoImp(
+                new ReservedProductImp(prod)
+            )
         )
         const result = await prodService.save()
 

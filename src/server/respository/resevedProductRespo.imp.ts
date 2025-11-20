@@ -16,9 +16,9 @@ export function RevervesProductRespoFactory<T extends ReservedProduct>() {
             super(reservedProductsCollection, prod);
         }
 
-        async findById(id: string) {
+        async findByProdId(id: string) {
             const query = this.dbCollection.findOne(
-                { _id: ObjectId.createFromHexString(id) }
+                { prodId: ObjectId.createFromHexString(id) } satisfies Partial<ReservedProduct>
             )
             const reserved = await query
             if (!reserved)

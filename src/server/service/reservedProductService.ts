@@ -7,5 +7,5 @@ export interface ReservedProductServiceConstructor<T extends ReservedProduct> {
 
 export interface ReservedProductServiceInstance<T extends ReservedProduct> {
     reservedProdRespo: ReservedProductRespo
-    findById: (id: string) => Promise<T>
+    findByProdId: (id: string) => Promise<T>
 }

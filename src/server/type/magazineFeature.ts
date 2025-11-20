@@ -7,7 +7,7 @@ import type { _NestedProduct } from "./product";
 export interface _MagazineFeature
     extends MagazineFeature {
     _id?: ObjectId
-    bannerImage?: _BannerImage | null
+    bannerImage?: _BannerImage
     products: _NestedProduct[]
     collection: _NestedCollection
 };

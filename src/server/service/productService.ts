@@ -1,20 +1,24 @@
 import type { ProductRespositoryInstance } from "@/server/respository/productRespo";
 import type { _Product } from "@/server/type/product";
 import type { Pagination } from "@/shared/type/pagination";
-import type ReservedProductServiceImp from "./reservedProductService.imp";
-import type MediaServiceImp from "./MediaService.imp";
+import type { MediaServiceInstance } from "./MediaService";
+import { ReservedProductRespo } from "../respository/resevedProductRespo.imp";
 
 export interface ProductServiceConstructor<T extends _Product, TProdRespo extends ProductRespositoryInstance<T>> {
     // instance:ProductServiceInstance<T, TProdRespo>
-    new(productRespo: TProdRespo, mediaServie?: MediaServiceImp): ProductServiceInstance<T, TProdRespo>
+    new(
+        productRespo: TProdRespo,
+        mediaServie?: MediaServiceInstance,
+        reservedProductRespo?: ReservedProductRespo
+    ): ProductServiceInstance<T, TProdRespo>
 }
 
 export interface ProductServiceInstance<T extends _Product, TProdRespo extends ProductRespositoryInstance<T>> {
     productRespo: TProdRespo
 
     readonly product?: T
-    mediaServie?: MediaServiceImp
-    reservedProductService?: ReservedProductServiceImp
+    mediaServie?: MediaServiceInstance
+    reservedProductRespo?: ReservedProductRespo
 
     findById: (id: string) => Promise<T>
     findBySlug: (slug: string) => Promise<T>

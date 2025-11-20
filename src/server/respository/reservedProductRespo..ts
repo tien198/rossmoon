@@ -7,6 +7,6 @@ export interface ReservedProductRespositoryConstructor<T extends ReservedProduct
 }
 
 export interface ReservedProductRespositoryInstance<T extends ReservedProduct> {
-    findById: (id: string) => Promise<T>
+    findByProdId: (id: string) => Promise<T>
 
 }

@@ -11,9 +11,11 @@ export default class ReservedProductServiceImp {
         this.reservedProdRespo = reservedProdRespo
     }
 
-    async findById(id: string) {
-        return await this.reservedProdRespo.findById(id)
+    async findByProdId(id: string) {
+        return await this.reservedProdRespo.findByProdId(id)
     }
 }
+
+export type ReservedProductService = InstanceType<typeof ReservedProductServiceImp>
 
 ReservedProductServiceImp satisfies ReservedProductServiceConstructor<ReservedProduct>

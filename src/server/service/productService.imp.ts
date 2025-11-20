@@ -3,8 +3,7 @@ import type { ProductServiceConstructor } from "./productService";
 import type { MediaData } from "@/shared/type/product.properties";
 import type { MediaServiceInstance } from "./MediaService";
 import type { ProductRespo } from "../respository/productRespo.imp";
-
-// import { ProductRespo } from "@/server/respository/ProductRespo";
+import { ReservedProductRespo } from "../respository/resevedProductRespo.imp";
 
 
 
@@ -12,9 +11,12 @@ export default class ProductServiceImp {
     // Singleton ( Constructor Return Overide )
     productRespo: ProductRespo
     mediaServie?: MediaServiceInstance
-    constructor(productRespo: ProductRespo, mediaService?: MediaServiceInstance) {
+    reservedProductRespo?: ReservedProductRespo
+
+    constructor(productRespo: ProductRespo, mediaService?: MediaServiceInstance, reservedProductRespo?: ReservedProductRespo) {
         this.productRespo = productRespo
         this.mediaServie = mediaService
+        this.reservedProductRespo = reservedProductRespo
     }
 
     async findById(id: string) {
