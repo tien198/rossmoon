@@ -10,9 +10,9 @@ import { MagazineFeature } from "../type/magazineFeature";
 
 
 export const magazineFeatureSchema = z.object({
-    title: z.string().nullish(),
-    description: z.string().nullish(),
-    bannerImage: bannerImageSchema.nullish(),
+    title: z.string().optional(),
+    description: z.string().optional(),
+    bannerImage: bannerImageSchema.optional(),
 
     products: z.array(nestedProductSchema),
 

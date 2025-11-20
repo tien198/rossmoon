@@ -7,10 +7,10 @@ import { collectionShema } from "@/shared/schema/collection.zod";
 
 export const collectionShema_Server = collectionShema.extend({
     _id: z.instanceof(ObjectId).optional(),
-    storyId: z.instanceof(ObjectId).nullish(),
+    storyId: z.instanceof(ObjectId).optional(),
     // if collection hash sub-collections, subCollections was existed
-    subCollections: z.array(z.instanceof(ObjectId)).nullish(),
-    category: nestedCategorySchema_Server.nullish(),
+    subCollections: z.array(z.instanceof(ObjectId)).optional(),
+    category: nestedCategorySchema_Server.optional(),
 }) satisfies z.ZodType<_Collection>;
 
 

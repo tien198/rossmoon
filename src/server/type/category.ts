@@ -10,4 +10,4 @@ export type CategoryPart = Partial<_Category>
 
 
 
-export type _NestedCategory = Pick<_Category, "_id" | "name">  
+export type _NestedCategory = Pick<_Category, "_id" | "name">

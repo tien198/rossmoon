@@ -1,8 +1,8 @@
 import type { _Product } from "@/server/type/product";
 import type { ProductServiceConstructor } from "./productService";
+import type { MediaData } from "@/shared/type/product.properties";
+import type { MediaServiceInstance } from "./MediaService";
 import type { ProductRespo } from "../respository/productRespo.imp";
-import type { MediaService } from "./MediaService.imp";
-import { MediaData } from "@/shared/type/product.properties";
 
 // import { ProductRespo } from "@/server/respository/ProductRespo";
 
@@ -11,8 +11,8 @@ import { MediaData } from "@/shared/type/product.properties";
 export default class ProductServiceImp {
     // Singleton ( Constructor Return Overide )
     productRespo: ProductRespo
-    mediaServie?: MediaService
-    constructor(productRespo: ProductRespo, mediaService?: MediaService) {
+    mediaServie?: MediaServiceInstance
+    constructor(productRespo: ProductRespo, mediaService?: MediaServiceInstance) {
         this.productRespo = productRespo
         this.mediaServie = mediaService
     }

@@ -4,9 +4,9 @@ import { NestedCategory } from "./category";
 export type Collection = {
     name: string;
     slug: string;
-    bannerImage?: BannerImage | null | undefined;
+    bannerImage?: BannerImage;
     type: 'collection' | 'sub-collection' | 'edit';
-    category?: NestedCategory | null | undefined;
+    category?: NestedCategory;
     createdAt: Date | string | number;
 }
 

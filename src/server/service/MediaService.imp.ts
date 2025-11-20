@@ -7,11 +7,12 @@ export default class MediaServiceImp {
      * return pathName of the uploaded
      */
     async uploadFile(file: File) {
-        const date = new Date(Date.now())
+        const timeStamp = Date.now()
+        const date = new Date(timeStamp)
         const dir = date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate() + '/'
 
         const result = await put(
-            dir + file.name,
+            dir + timeStamp + file.name,
             file,
             {
                 access: 'public'

@@ -12,7 +12,7 @@ import { magazineFeatureSchema } from "@/shared/schema/magazineFeature.zod";
 export const magazineFeatureSchema_Server = magazineFeatureSchema.extend({
     _id: z.instanceof(ObjectId).optional(),
 
-    bannerImage: bannerImageSchema_Server.nullish(),
+    bannerImage: bannerImageSchema_Server.optional(),
     products: z.array(nestedProductSchema_Server),
     collection: nestedCollectionSchema_Server,
 }) satisfies z.ZodType<_MagazineFeature>

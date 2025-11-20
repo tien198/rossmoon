@@ -3,9 +3,9 @@ import { NestedCollection } from "./collection";
 import { NestedProduct } from "./product";
 
 export type MagazineFeature = {
-    title?: string | null;
-    description?: string | null;
-    bannerImage?: BannerImage| null;
+    title?: string;
+    description?: string;
+    bannerImage?: BannerImage;
     products: NestedProduct[];
     collection: NestedCollection;
     createdAt: Date | string | number;

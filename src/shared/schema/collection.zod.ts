@@ -7,10 +7,10 @@ import { Collection, NestedCollection } from "../type/collection";
 export const collectionShema = z.object({
     name: z.string(),
     slug: z.string(),
-    bannerImage: bannerImageSchema.nullish(),
+    bannerImage: bannerImageSchema.optional(),
     type: z.enum(['collection', 'sub-collection', 'edit']),
 
-    category: nestedCategorySchema.nullish(),
+    category: nestedCategorySchema.optional(),
 
     createdAt: zDate(),
 }) satisfies z.ZodType<Collection>

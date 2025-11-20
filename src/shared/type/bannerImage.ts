@@ -1,7 +1,7 @@
 
 export type BannerImage = {
-    mobileUrl?: string | null,
-    desktopUrl?: string | null,
+    mobileUrl?: string
+    desktopUrl?: string
     // if false, half width viewport
-    isFullWidth?: boolean | null
+    isFullWidth?: boolean
 }
