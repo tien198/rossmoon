@@ -1,18 +1,18 @@
 import type { ReservedProductServiceConstructor } from "./reservedProductService";
-import { ReservedProductRespo } from "../respository/resevedProductRespo.imp";
+import { ReservedProductRespo } from "../respository/reservedProductRespo.imp";
 import { ReservedProduct } from "../type/reservedProduct";
 
 
 
 export default class ReservedProductServiceImp {
-    reservedProdRespo: ReservedProductRespo
+    _reservedProdRespo: ReservedProductRespo
 
     constructor(reservedProdRespo: ReservedProductRespo) {
-        this.reservedProdRespo = reservedProdRespo
+        this._reservedProdRespo = reservedProdRespo
     }
 
     async findByProdId(id: string) {
-        return await this.reservedProdRespo.findByProdId(id)
+        return await this._reservedProdRespo.findByProdId(id)
     }
 }
 

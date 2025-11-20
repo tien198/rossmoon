@@ -3,48 +3,48 @@ import type { ProductServiceConstructor } from "./productService";
 import type { MediaData } from "@/shared/type/product.properties";
 import type { MediaServiceInstance } from "./MediaService";
 import type { ProductRespo } from "../respository/productRespo.imp";
-import { ReservedProductRespo } from "../respository/resevedProductRespo.imp";
+import { ReservedProductRespo } from "../respository/reservedProductRespo.imp";
 
 
 
 export default class ProductServiceImp {
     // Singleton ( Constructor Return Overide )
-    productRespo: ProductRespo
-    mediaServie?: MediaServiceInstance
-    reservedProductRespo?: ReservedProductRespo
+    _productRespo: ProductRespo
+    _mediaServie?: MediaServiceInstance
+    _reservedProductRespo?: ReservedProductRespo
 
     constructor(productRespo: ProductRespo, mediaService?: MediaServiceInstance, reservedProductRespo?: ReservedProductRespo) {
-        this.productRespo = productRespo
-        this.mediaServie = mediaService
-        this.reservedProductRespo = reservedProductRespo
+        this._productRespo = productRespo
+        this._mediaServie = mediaService
+        this._reservedProductRespo = reservedProductRespo
     }
 
     async findById(id: string) {
-        return await this.productRespo.findById(id)
+        return await this._productRespo.findById(id)
     }
 
     async findBySlug(slug: string) {
-        return await this.productRespo.findBySlug(slug)
+        return await this._productRespo.findBySlug(slug)
     }
 
     async pagination(skip: number = 0, limit: number = 0) {
-        return await this.productRespo.pagination(skip, limit)
+        return await this._productRespo.pagination(skip, limit)
     }
 
     // saving the product if it was passing. Otherwise, save product existed in productRespo
     async save(prod?: _Product) {
         if (prod)
-            this.productRespo.model = prod
+            this._productRespo.model = prod
 
-        if (!this.mediaServie)
+        if (!this._mediaServie)
             throw new Error('inject initialized mediaService before interact with product\'s file upload !')
 
-        const p = this.productRespo.model!
+        const p = this._productRespo.model!
         const mediasCoppy = [...(p.medias ?? [])]
         let id = 0
         for (const i of mediasCoppy) {
             if (i instanceof File) {
-                const pathName = await this.mediaServie?.uploadFile(i)
+                const pathName = await this._mediaServie?.uploadFile(i)
                 mediasCoppy[id] = {
                     type: i.type.split('/')[0],
                     url: '/' + pathName
@@ -54,16 +54,16 @@ export default class ProductServiceImp {
         }
         p.medias = mediasCoppy
 
-        return await this.productRespo.save()
+        return await this._productRespo.save()
     }
 
 
     // Getter and Setter for product
     get product(): _Product | undefined {
-        return this.productRespo.model
+        return this._productRespo.model
     }
     set product(prod: _Product) {
-        this.productRespo.model = prod
+        this._productRespo.model = prod
     }
 }
 

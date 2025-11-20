@@ -1,4 +1,4 @@
-import type { ReservedProductRespo } from "../respository/resevedProductRespo.imp";
+import type { ReservedProductRespo } from "../respository/reservedProductRespo.imp";
 import type { ReservedProduct } from "../type/reservedProduct";
 
 export interface ReservedProductServiceConstructor<T extends ReservedProduct> {
@@ -6,6 +6,6 @@ export interface ReservedProductServiceConstructor<T extends ReservedProduct> {
 }
 
 export interface ReservedProductServiceInstance<T extends ReservedProduct> {
-    reservedProdRespo: ReservedProductRespo
+    _reservedProdRespo: ReservedProductRespo
     findByProdId: (id: string) => Promise<T>
 }

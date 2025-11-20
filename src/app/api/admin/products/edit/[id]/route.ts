@@ -5,7 +5,7 @@ import ProductDTO from "@/DTO/product";
 import ProductImp from "@/server/model/product";
 import ProductServiceImp from "@/server/service/productService.imp";
 import MediaServiceImp from "@/server/service/MediaService.imp";
-import ReservedProductRespoImp from "@/server/respository/resevedProductRespo.imp";
+import ReservedProductRespoImp from "@/server/respository/reservedProductRespo.imp";
 import ReservedProductImp from "@/server/model/reservedProduct.";
 
 type Context = {

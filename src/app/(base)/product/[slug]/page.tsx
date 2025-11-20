@@ -19,7 +19,7 @@ export default async function ProductPage({ params }: Props) {
     const slug = (await params).slug
 
     const prodSevice = new ProductServiceImp(new ProductRespoImp())
-    const prod = await prodSevice.productRespo.findBySlug(slug)
+    const prod = await prodSevice.findBySlug(slug)
     const prodDTO = new ProductDTO(prod) as _Product
 
     return (
