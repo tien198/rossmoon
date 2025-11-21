@@ -22,18 +22,6 @@ function ProductRespoFactory<T extends _Product>() {
             super(productsCollection, product)
         }
 
-        async findById(id: string) {
-            const query = this.dbCollection.findOne(
-                { '_id': ObjectId.createFromHexString(id) }
-                // { projection: { products: 1, title: 1, bannerImage: 1 } }
-            )
-            const prod = await query
-            if (!prod)
-                throw Error('Not found product with id: "' + id + '"')
-
-            return prod as T
-        }
-
         async findBySlug(slug: string) {
             const query = this.dbCollection.findOne(
                 { 'slug': slug }

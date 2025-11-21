@@ -3,7 +3,9 @@ import type { ProductServiceConstructor } from "./productService";
 import type { MediaData } from "@/shared/type/product.properties";
 import type { MediaServiceInstance } from "./MediaService";
 import type { ProductRespo } from "../respository/productRespo.imp";
-import { ReservedProductRespo } from "../respository/reservedProductRespo.imp";
+import type { ReservedProductRespo } from "../respository/reservedProductRespo.imp";
+import type { TransactionService } from "./transactionService";
+import { ClientSession } from "mongodb";
 
 
 
@@ -12,11 +14,13 @@ export default class ProductServiceImp {
     _productRespo: ProductRespo
     _mediaServie?: MediaServiceInstance
     _reservedProductRespo?: ReservedProductRespo
+    _transactionService?: TransactionService
 
-    constructor(productRespo: ProductRespo, mediaService?: MediaServiceInstance, reservedProductRespo?: ReservedProductRespo) {
+    constructor(productRespo: ProductRespo, mediaService?: MediaServiceInstance, reservedProductRespo?: ReservedProductRespo, transactionService?: TransactionService) {
         this._productRespo = productRespo
         this._mediaServie = mediaService
         this._reservedProductRespo = reservedProductRespo
+        this._transactionService = transactionService
     }
 
     async findById(id: string) {
@@ -53,8 +57,15 @@ export default class ProductServiceImp {
             ++id
         }
         p.medias = mediasCoppy
-
-        return await this._productRespo.save()
+        const queriesInTransaction = async (session?: ClientSession) => {
+            await this._reservedProductRespo?.save(session)
+            await this._productRespo.save(session)
+        }
+        if(!this._transactionService)
+            throw new Error('inject initialized transactionService before interact with product\'s transaction !')
+        this._transactionService.queriesFnc = queriesInTransaction
+        this._transactionService?.execTransaction()
+        return this.product!
     }
 
 

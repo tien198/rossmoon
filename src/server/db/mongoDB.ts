@@ -30,6 +30,8 @@ switch (NODE_ENV) {
     }
 }
 
+export { client }
+
 export function getDb() {
     return client.db('rossmoon')
 }
