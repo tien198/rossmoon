@@ -28,5 +28,6 @@ export interface ProductServiceInstance<T extends _Product, TProdRespo extends P
     pagination: (
         skip?: number, limit?: number
     ) => Promise<Pagination<T>>
-    save: (prod: T) => Promise<T>
+    create: (prod: T) => Promise<T>
+    update: (prod: T) => Promise<T>
 }

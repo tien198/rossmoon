@@ -34,9 +34,7 @@ export default class ProductServiceImp {
     async pagination(skip: number = 0, limit: number = 0) {
         return await this._productRespo.pagination(skip, limit)
     }
-
-    // saving the product if it was passing. Otherwise, save product existed in productRespo
-    async save(prod?: _Product) {
+    async create(prod?: _Product) {
         if (prod)
             this._productRespo.model = prod
 
@@ -57,12 +55,41 @@ export default class ProductServiceImp {
             ++id
         }
         p.medias = mediasCoppy
-        const queriesInTransaction = async (session?: ClientSession) => {
-            await this._reservedProductRespo?.save(session)
-            await this._productRespo.save(session)
-        }
-        if(!this._transactionService)
+        return await this._productRespo.save()
+    }
+    // saving the product if it was passing. Otherwise, save product existed in productRespo
+    async update(prod?: _Product) {
+        if (prod)
+            this._productRespo.model = prod
+
+        if (!this._mediaServie)
+            throw new Error('inject initialized mediaService before interact with product\'s file upload !')
+
+        if (!this._reservedProductRespo)
+            throw new Error('inject initialized reservedProductRespo before interact with product\'s reserved product !')
+
+        if (!this._transactionService)
             throw new Error('inject initialized transactionService before interact with product\'s transaction !')
+
+        const p = this._productRespo.model!
+        const mediasCoppy = [...(p.medias ?? [])]
+        let id = 0
+        for (const i of mediasCoppy) {
+            if (i instanceof File) {
+                const pathName = await this._mediaServie?.uploadFile(i)
+                mediasCoppy[id] = {
+                    type: i.type.split('/')[0],
+                    url: '/' + pathName
+                } as MediaData
+            }
+            ++id
+        }
+        p.medias = mediasCoppy
+        const queriesInTransaction = async (session?: ClientSession) => {
+            await this._productRespo.save(session)
+            await this._reservedProductRespo!.save(session)
+        }
+
         this._transactionService.queriesFnc = queriesInTransaction
         this._transactionService?.execTransaction()
         return this.product!

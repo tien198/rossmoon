@@ -7,6 +7,7 @@ import ProductServiceImp from "@/server/service/productService.imp";
 import MediaServiceImp from "@/server/service/MediaService.imp";
 import ReservedProductRespoImp from "@/server/respository/reservedProductRespo.imp";
 import ReservedProductImp from "@/server/model/reservedProduct.";
+import TransactionService from "@/server/service/transactionService.imp";
 
 type Context = {
     params: Promise<{
@@ -32,9 +33,10 @@ export async function PUT(req: Request, context: Context) {
             new MediaServiceImp(),
             new ReservedProductRespoImp(
                 new ReservedProductImp(prod)
-            )
+            ),
+            new TransactionService()
         )
-        const result = await prodService.save()
+        const result = await prodService.create()
 
         return NextResponse.json({})
     } catch (error) {

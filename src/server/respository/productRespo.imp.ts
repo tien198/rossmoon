@@ -1,9 +1,9 @@
+import type { Abortable, FindOptions } from "mongodb";
 import type { Pagination } from "@/shared/type/pagination";
 import type { ProductRespositoryConstructor } from "./productRespo";
 import type { _Product } from "@/server/type/product";
 
 import { productsCollection } from "@/server/db/mongoDbCollections";
-import { Abortable, FindOptions, ObjectId } from "mongodb";
 import AppDocumentFactory from "@/server/db/AppDocument/AppDocument.Factory";
 
 
