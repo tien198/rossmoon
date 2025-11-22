@@ -1,3 +1,4 @@
+import type { ClientSession } from "mongodb";
 import type { _Product } from "@/server/type/product";
 import type { ProductServiceConstructor } from "./productService";
 import type { MediaData } from "@/shared/type/product.properties";
@@ -5,7 +6,6 @@ import type { MediaServiceInstance } from "./MediaService";
 import type { ProductRespo } from "../respository/productRespo.imp";
 import type { ReservedProductRespo } from "../respository/reservedProductRespo.imp";
 import type { TransactionService } from "./transactionService";
-import { ClientSession } from "mongodb";
 
 
 
@@ -41,20 +41,9 @@ export default class ProductServiceImp {
         if (!this._mediaServie)
             throw new Error('inject initialized mediaService before interact with product\'s file upload !')
 
-        const p = this._productRespo.model!
-        const mediasCoppy = [...(p.medias ?? [])]
-        let id = 0
-        for (const i of mediasCoppy) {
-            if (i instanceof File) {
-                const pathName = await this._mediaServie?.uploadFile(i)
-                mediasCoppy[id] = {
-                    type: i.type.split('/')[0],
-                    url: '/' + pathName
-                } as MediaData
-            }
-            ++id
-        }
-        p.medias = mediasCoppy
+        // upload File will convert media File instances to MediaData (media infors that save to db) after upload
+        await this.uploadMedia()
+
         return await this._productRespo.save()
     }
     // saving the product if it was passing. Otherwise, save product existed in productRespo
@@ -71,6 +60,21 @@ export default class ProductServiceImp {
         if (!this._transactionService)
             throw new Error('inject initialized transactionService before interact with product\'s transaction !')
 
+        // upload File will convert media File instances to MediaData (media infors that save to db) after upload
+        await this.uploadMedia()
+
+        const queriesInTransaction = async (session?: ClientSession) => {
+            await this._productRespo.save(session)
+            await this._reservedProductRespo!.save(session)
+        }
+
+        this._transactionService.queriesFnc = queriesInTransaction
+        this._transactionService?.execTransaction()
+        return this.product!
+    }
+
+    // upload File instances and replace them with MediaData after upload
+    async uploadMedia() {
         const p = this._productRespo.model!
         const mediasCoppy = [...(p.medias ?? [])]
         let id = 0
@@ -85,16 +89,7 @@ export default class ProductServiceImp {
             ++id
         }
         p.medias = mediasCoppy
-        const queriesInTransaction = async (session?: ClientSession) => {
-            await this._productRespo.save(session)
-            await this._reservedProductRespo!.save(session)
-        }
-
-        this._transactionService.queriesFnc = queriesInTransaction
-        this._transactionService?.execTransaction()
-        return this.product!
     }
-
 
     // Getter and Setter for product
     get product(): _Product | undefined {

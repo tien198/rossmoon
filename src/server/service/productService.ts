@@ -18,7 +18,7 @@ export interface ProductServiceConstructor<T extends _Product, TProdRespo extend
 export interface ProductServiceInstance<T extends _Product, TProdRespo extends ProductRespositoryInstance<T>> {
     _productRespo: TProdRespo
 
-    readonly product?: T
+    product?: T
     _mediaServie?: MediaServiceInstance
     _reservedProductRespo?: ReservedProductRespo
     _transactionService?: TransactionService
@@ -28,6 +28,6 @@ export interface ProductServiceInstance<T extends _Product, TProdRespo extends P
     pagination: (
         skip?: number, limit?: number
     ) => Promise<Pagination<T>>
-    create: (prod: T) => Promise<T>
-    update: (prod: T) => Promise<T>
+    create: (prod?: T) => Promise<T>
+    update: (prod?: T) => Promise<T>
 }
